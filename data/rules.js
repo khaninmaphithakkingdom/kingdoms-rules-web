@@ -25,8 +25,7 @@ window.KI_RULES = {
       footerText:"Respect the rules · Protect the wilderness · Play together", search:"Search rules...", copy:"Link copied",
       packNote:"Players below 45% Growth do not count toward the group limit. At 45% Growth or higher, they must leave the group as soon as possible to comply with Pack Limits.",
       herdIntro:"Herbivores may mix in a group as long as the total does not exceed 45 Herd Tokens.",
-      herdFree:"
-Juveniles at up to 45% Growth = 0 Tokens",
+      herdFree:"Juveniles at up to 45% Growth = 0 Tokens",
       herdSpecial:"Stegosaurus and Triceratops may not stay together. When using the 45 Token rule, the entire team must use the same colour; otherwise it is immediately counted as Third Party.",
       total:"Maximum total"
     },
@@ -53,8 +52,7 @@ Juveniles at up to 45% Growth = 0 Tokens",
       subtitle:{th:"มาตรฐานพื้นฐานของชุมชน",en:"Core community standards",vi:"Tiêu chuẩn cộng đồng cốt lõi"},
       items:[
         {type:"danger",title:{th:"🤝 1. ห้ามคุกคามหรือไม่ให้เกียรติผู้อื่น",en:"🤝 1. No harassment or disrespect",vi:"🤝 1. Không quấy rối hoặc thiếu tôn trọng"},body:{th:"ห้ามคุกคาม ไม่ให้เกียรติ หรือใช้คำหยาบ รวมถึงการแกล้งผู้อื่นแบบจงใจ",en:"Harassment, disrespect, profanity, and intentional bullying of others are prohibited.",vi:"Cấm quấy rối, thiếu tôn trọng, chửi bới hoặc cố ý bắt nạt người khác."}},
-        {type:"danger",title:{th:"🛡️ 2. ห้ามโกงหรือใช้ช่องโหว่",en:"🛡️ 2. No cheats or exploits"
-,vi:"🛡️ 2. Cấm gian lận hoặc khai thác lỗi"},body:{th:"ห้ามใช้โปรแกรมโกง และช่องโหว่ของเกมเพื่อผลประโยชน์ทุกชนิด",en:"Do not use cheat programs or exploit game vulnerabilities for any kind of gain.",vi:"Không được dùng phần mềm gian lận hoặc khai thác lỗ hổng trò chơi để thu lợi dưới bất kỳ hình thức nào."}},
+        {type:"danger",title:{th:"🛡️ 2. ห้ามโกงหรือใช้ช่องโหว่",en:"🛡️ 2. No cheats or exploits",vi:"🛡️ 2. Cấm gian lận hoặc khai thác lỗi"},body:{th:"ห้ามใช้โปรแกรมโกง และช่องโหว่ของเกมเพื่อผลประโยชน์ทุกชนิด",en:"Do not use cheat programs or exploit game vulnerabilities for any kind of gain.",vi:"Không được dùng phần mềm gian lận hoặc khai thác lỗ hổng trò chơi để thu lợi dưới bất kỳ hình thức nào."}},
         {type:"danger",title:{th:"📢 3. ห้ามโฆษณาเซิร์ฟเวอร์อื่น",en:"📢 3. No advertising other servers",vi:"📢 3. Cấm quảng cáo máy chủ khác"},body:{th:"ห้ามโฆษณาเซิร์ฟเวอร์อื่นภายในเซิร์ฟเวอร์ของเรา",en:"Advertising other servers within our server is prohibited.",vi:"Cấm quảng cáo máy chủ khác trong máy chủ của chúng tôi."}},
         {type:"danger",title:{th:"📄 4. ห้ามให้ข้อมูลเท็จหรือบิดเบือนข้อเท็จจริง",en:"📄 4. No false or distorted information",vi:"📄 4. Cấm cung cấp thông tin sai lệch"},body:{th:"ห้ามให้ข้อมูลเท็จต่อทีมงาน และบิดเบือนข้อมูลที่ส่งผลเสียต่อทีมงานและเซิร์ฟเวอร์",en:"Do not provide false information to staff or distort facts in a way that harms staff or the server.",vi:"Không được cung cấp thông tin sai cho nhân viên hoặc bóp méo sự thật gây ảnh hưởng xấu đến nhân viên hay máy chủ."}},
         {type:"warning",title:{th:"📵 5. งดนำดราม่าภายในเซิร์ฟเวอร์ไปลงโซเชียล",en:"📵 5. Keep server drama off social media",vi:"📵 5. Không đưa drama của máy chủ lên mạng xã hội"},body:{th:"หากมีปัญหาให้ใช้ช่องทาง Report / Support ของเซิร์ฟเวอร์",en:"If there is a problem, use the server's Report / Support channels.",vi:"Nếu có vấn đề, hãy sử dụng kênh Report / Support của máy chủ."}}
