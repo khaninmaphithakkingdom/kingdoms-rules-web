@@ -45,7 +45,7 @@ jobs:
           set -euo pipefail
           node --check data/rules-v12.js
           node --check js/app-v13.js
-          test -s css/style-v14.css
+          test -s css/style-v15.css
           test -s assets/herd-tokens-v10.jpg
           test -s assets/staff-assistance-area-v10.jpg
           test -s assets/kingdoms-isle-logo-v13.jpg
