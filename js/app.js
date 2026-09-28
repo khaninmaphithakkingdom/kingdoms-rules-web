@@ -45,9 +45,179 @@
   }
 
   async function hydrateAssets() {
-    for (const name of Object.key
-…[middle output omitted]…
-ote">
+    for (const name of Object.keys(assetSpec)) {
+      const nodes = $$('[data-asset="' + name + '"]');
+      if (!nodes.length) continue;
+
+      try {
+        const url = await getAssetDataUrl(name);
+        nodes.forEach(node => node.src = url);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  const safeLang = () => ["th", "en", "vi"].includes(state.lang) ? state.lang : "th";
+  const tx = obj => obj?.[safeLang()] ?? obj?.th ?? "";
+  const normalize = value => (value || "").toLocaleLowerCase().normalize("NFKC");
+  const cleanNavTitle = value => (value || "")
+    .replace(/\p{Extended_Pictographic}/gu, "")
+    .replace(/\uFE0F/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  function stripHTML(html) {
+    const el = document.createElement("div");
+    el.innerHTML = html || "";
+    return el.textContent || "";
+  }
+
+  function setStaticUI() {
+    const t = data.ui[safeLang()];
+    document.documentElement.lang = safeLang();
+
+    $$("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key]) el.textContent = t[key];
+    });
+
+    searchInput.placeholder = t.search;
+    mobileSearchInput.placeholder = t.search;
+
+    $$(".lang-btn").forEach(button => {
+      button.classList.toggle("active", button.dataset.lang === safeLang());
+    });
+  }
+
+  function searchableText(section) {
+    let text = tx(section.title) + " " + tx(section.subtitle) + " ";
+
+    (section.items || []).forEach(item => {
+      text += tx(item.title) + " " + stripHTML(tx(item.body)) + " ";
+    });
+
+    if (section.feature === "packLimits") {
+      Object.entries(data.packLimits).forEach(([group, rows]) => {
+        text += group + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    if (section.feature === "herdTokens") {
+      Object.entries(data.herdTokens).forEach(([tier, rows]) => {
+        text += tier + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    return normalize(text);
+  }
+
+  function highlight(html, rawQuery) {
+    const q = rawQuery.trim();
+    if (!q) return html;
+
+    const holder = document.createElement("div");
+    holder.innerHTML = html;
+
+    const needle = normalize(q);
+    const walker = document.createTreeWalker(holder, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node => {
+      const raw = node.nodeValue;
+      const index = normalize(raw).indexOf(needle);
+      if (index < 0) return;
+
+      const fragment = document.createDocumentFragment();
+      fragment.append(raw.slice(0, index));
+
+      const mark = document.createElement("mark");
+      mark.textContent = raw.slice(index, index + q.length);
+      fragment.append(mark, raw.slice(index + q.length));
+
+      node.replaceWith(fragment);
+    });
+
+    return holder.innerHTML;
+  }
+
+  function renderRuleCard(item, index) {
+    const query = state.query.trim();
+
+    return `
+      <article class="rule-card ${item.type || ""}">
+        <div class="rule-card-head">
+          <div class="rule-index">${String(index + 1).padStart(2, "0")}</div>
+          <div>
+            <h3>${highlight(tx(item.title), query)}</h3>
+            <div class="rule-body">${highlight(tx(item.body), query)}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderPackLimits() {
+    const t = data.ui[safeLang()];
+    const labels = safeLang() === "th"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"สายพันธุ์", limit:"จำนวนสูงสุด" }
+      : safeLang() === "vi"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Loài", limit:"Giới hạn" }
+      : { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Species", limit:"Max" };
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-copy">
+          <span class="eyebrow">GROUP PACK LIMITS</span>
+          <h3>${tx(data.sections.find(s => s.id === "pack-limits").title)}</h3>
+          <div class="rule-body"><p>${t.packNote}</p></div>
+
+          ${Object.entries(data.packLimits).map(([group, rows]) => `
+            <div class="rule-card info" style="margin-top:14px">
+              <h3>${labels[group]}</h3>
+              <table class="pack-table">
+                <thead>
+                  <tr><th>${labels.species}</th><th>${labels.limit}</th></tr>
+                </thead>
+                <tbody>
+                  ${rows.map(([name, amount]) => `<tr><td>${name}</td><td>× ${amount}</td></tr>`).join("")}
+                </tbody>
+              </table>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderHerdTokens() {
+    const t = data.ui[safeLang()];
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-media">
+          <img data-asset="herd" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <div class="feature-copy">
+            <span class="eyebrow">HERBIVORE GROUP RULES</span>
+            <h3>45 HERD TOKENS</h3>
+            <div class="rule-body">
+              <p>${t.herdIntro}</p>
+              <p><strong>${t.herdFree}</strong></p>
+            </div>
+
+            <div class="token-grid">
+              ${Object.entries(data.herdTokens).map(([tier, rows]) => `
+                <div class="token-tier">
+                  <strong><span>${tier}</span><span>TOKENS</span></strong>
+                  <small>${rows.map(([name, amount]) => `${name} — ${amount}`).join("<br>")}</small>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="rule-body">
+              <div class="quote">
                 <strong>${t.total}: 45 Herd Tokens</strong><br>
                 ${t.herdSpecial}
               </div>
@@ -90,8 +260,7 @@ ote">
       return `
         <section class="rule-section" id="${section.id}" data-section="${section.id}">
           <div class="section-heading">
-            <div class="section-heading-main">
-              <span class="section-number">${section.code}</span>
+            <div class="section-heading-main">       <span class="section-number">${section.code}</span>
               <div>
                 <h2>${section.icon} ${tx(section.title)}</h2>
                 <p>${tx(section.subtitle)}</p>
@@ -232,6 +401,3 @@ ote">
     }, 50);
   }
 })();
-
-
-
