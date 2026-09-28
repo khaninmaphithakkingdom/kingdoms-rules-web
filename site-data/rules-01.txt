@@ -1,0 +1,28 @@
+window.KI_RULES = {
+  ui: {
+    th: {
+      navTitle:"หมวดกฎ", navHint:"เลือกหัวข้อเพื่อไปยังกฎโดยตรง", currentRules:"CURRENT RULESET",
+      heroLead:"อ่านกฎทั้งหมดก่อนเข้าเล่น เพื่อให้ทุกคนอยู่ร่วมกันได้อย่างยุติธรรมและสนุก",
+      noticeTitle:"กฎสามารถเปลี่ยนแปลงได้",
+      noticeBody:"หากมีการเปลี่ยนแปลง ทีมงานจะแจ้งผ่านห้องประกาศของเซิร์ฟเวอร์",
+      sectionsLabel:"หมวดกฎ", rulesLabel:"หัวข้อ", languagesLabel:"ภาษา",
+      quickCombat:"กฎการต่อสู้", quickThird:"Third Party", quickRedeem:"กฎ Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"ไม่พบกฎที่ค้นหา", noResultsBody:"ลองใช้คำค้นที่สั้นลง หรือเลือกหมวดจากเมนูด้านซ้าย",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"ค้นหากฎ...", copy:"คัดลอกลิงก์แล้ว",
+      packNote:"Growth ต่ำกว่า 45% ไม่นับรวมในจำนวนจำกัดของกลุ่ม เมื่อ Growth ตั้งแต่ 45% ขึ้นไป ต้องแยกออกจากกลุ่มโดยเร็วที่สุด",
+      herdIntro:"ไดโนเสาร์กินพืชสามารถรวมกลุ่มกันได้ โดยมี Herd Tokens รวมกันสูงสุดไม่เกิน 45 Token",
+      herdFree:"Juvenile ที่มี Growth สูงสุดไม่เกิน 45% = 0 Token",
+      herdSpecial:"Stegosaurus กับ Triceratops ห้ามอยู่ด้วยกัน และหากใช้กฎ 45 Token ต้องใช้สีเดียวกันทั้งทีม หากไม่ใช้สีเดียวกันจะนับเป็น 3rd Party ทันที",
+      total:"รวมสูงสุด"
+    },
+    en: {
+      navTitle:"Rule Categories", navHint:"Choose a section to jump directly to it", currentRules:"CURRENT RULESET",
+      heroLead:"Read all rules before playing so everyone can share the server fairly and enjoyably.",
+      noticeTitle:"Rules may change", noticeBody:"When rules change, staff will announce the update in the server announcement channels.",
+      sectionsLabel:"sections", rulesLabel:"topics", languagesLabel:"languages",
+      quickCombat:"Combat Rules", quickThird:"Third Party", quickRedeem:"Redeem Rules", quickPack:"Pack Limits",
+      noResultsTitle:"No matching rules found", noResultsBody:"Try a shorter search term or choose a category from the navigation.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Search rules...", copy:"Link copied",
+      packNote:"Players below 45% Growth do not count toward the group limit. At 45% Growth or higher, they must leave the group as soon as possible to comply with Pack Limits.",
+      herdIntro:"Herbivores may mix in a group as long as the total does not exceed 45 Herd Tokens.",
+      herdFree:"
