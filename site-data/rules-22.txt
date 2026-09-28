@@ -1,0 +1,24 @@
+ule evasion, exploitation, or unfair advantage may be reviewed using the evidence, context, intent, and the complete sequence of events.",
+    vi:"Quy tắc tồn tại để mọi người chơi công bằng, không phải để tìm kẽ hở lách luật. Hành vi cố ý né luật, lợi dụng lỗ hổng hoặc tạo lợi thế không công bằng có thể được xem xét dựa trên bằng chứng, bối cảnh, ý định và toàn bộ diễn biến."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "evidence").items.push({
+  type:"danger",
+  title:{th:"🚫 ห้ามตัดต่อหรือบิดเบือนหลักฐาน",en:"🚫 Do not manipulate evidence",vi:"🚫 Cấm chỉnh sửa hoặc bóp méo bằng chứng"},
+  body:{
+    th:"ห้ามตัดต่อ ดัดแปลง หรือเผยแพร่หลักฐานในลักษณะที่ทำให้เหตุการณ์ถูกเข้าใจผิด และห้ามให้ข้อมูลเท็จหรือปกปิดข้อเท็จจริงต่อทีมงานเพื่อให้ตนเองหรือผู้อื่นพ้นผิด",
+    en:"Do not edit, alter, or present evidence in a way that misrepresents what happened. Do not give false information or conceal relevant facts from staff to clear yourself or another player.",
+    vi:"Không được chỉnh sửa, thay đổi hoặc trình bày bằng chứng theo cách làm sai lệch sự việc. Không được cung cấp thông tin sai hoặc che giấu sự thật liên quan với nhân viên để giúp bản thân hoặc người khác thoát lỗi."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "survival").items.push({
+  type:"warning",
+  title:{th:"การบังคับใช้ 🛡️ Sanctuary Camping",en:"🛡️ ⚠️ Sanctuary Camping enforcement",vi:"Xử lý 🛡️ Sanctuary Camping"},
+  body:{
+    th:"การกระทำครั้งแรกอาจได้รับการตักเตือน หากทำซ้ำหรือจงใจทำต่อหลังได้รับคำเตือน สามารถได้รับบทลงโทษที่รุนแรงขึ้น",
+    en:"A first incident may receive a warning. Repeated behaviour or intentionally continuing after a warning may result in a more severe penalty.",
+    vi:"Lần vi phạm đầu có thể bị cảnh cáo. Nếu tái phạm hoặc cố ý tiếp tục sau khi được cảnh báo, hình phạt có thể nghiêm khắc hơn."
+  }
+});
