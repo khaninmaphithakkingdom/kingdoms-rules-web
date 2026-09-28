@@ -24,16 +24,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Rebuild final logo asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets
+          cat logo-v13-data/logo-*.txt | tr -d '\r\n' | base64 -d > assets/kingdoms-isle-logo-v13.jpg
+          test -s assets/kingdoms-isle-logo-v13.jpg
+          file assets/kingdoms-isle-logo-v13.jpg
+
       - name: Validate v13 site
         shell: bash
         run: |
           set -euo pipefail
-          node --check data/rules.js
-          node --check data/rules-v10.js
-          node --check js/app.js
-          node --check js/app-v10.js
+          node --check data/rules-v12.js
+          node --check js/app-v13.js
+          test -s css/style-v13.css
           test -s assets/herd-tokens-v10.jpg
-          test -s assets/staff-assistance-area-v10.jpg\n          test -s assets/kingdoms-isle-logo-v13.webp
+          test -s assets/staff-assistance-area-v10.jpg
+          test -s assets/kingdoms-isle-logo-v13.jpg
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
