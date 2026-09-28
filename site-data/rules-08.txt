@@ -1,0 +1,17 @@
+nh bắt đầu</strong><br>Chưa có damage ≠ chưa có giao tranh</div>"
+        }},
+        {type:"danger",title:{th:"🔄 Server Restart — กฎ 10 นาที",en:"🔄 Server Restart — 10 Minute Rule",vi:"🔄 Server Restart — Quy tắc 10 phút"},body:{
+          th:"ห้ามเริ่มไฟต์ใหม่หรือสู้ต่อในช่วง <strong>10 นาทีก่อน Server Restart</strong> และ <strong>10 นาทีหลัง Server Restart</strong> เมื่อเข้าสู่ช่วง 10 นาทีก่อนรีสตาร์ท ผู้เล่นที่กำลังสู้ต้องหยุดทันทีและแยกออกจากไฟต์ หลังเซิร์ฟเวอร์กลับมาต้องรอครบ 10 นาทีก่อนเริ่มสู้ได้อีกครั้ง ผู้เล่นต้องหาที่ Safe Logout ด้วยตนเอง หากนอนออกในพื้นที่ไม่ปลอดภัยแล้วกลับมาเสียตัว เซิร์ฟเวอร์จะไม่รับผิดชอบ",
+          en:"Do not start a new fight or continue fighting during the <strong>10 minutes before a server restart</strong> or the <strong>10 minutes after a server restart</strong>. Once the pre-restart window begins, active fights must stop immediately and players must disengage. After the server returns, wait the full 10 minutes before fighting again. Players are responsible for finding a safe logout location; the server is not responsible for losses caused by logging out in an unsafe place.",
+          vi:"Cấm bắt đầu giao tranh mới hoặc tiếp tục đánh trong <strong>10 phút trước khi server restart</strong> và <strong>10 phút sau khi server restart</strong>. Khi bước vào khoảng 10 phút trước restart, mọi giao tranh đang diễn ra phải dừng ngay và người chơi phải tách ra. Sau khi server hoạt động lại, phải chờ đủ 10 phút mới được giao tranh. Người chơi tự chịu trách nhiệm tìm nơi Safe Logout; máy chủ không chịu trách nhiệm nếu mất nhân vật vì đăng xuất ở nơi không an toàn."
+        }}
+      ]
+    },
+
+    {
+      id:"third-party", icon:"👁", code:"05",
+      title:{th:"Third Party และการเฝ้าดูไฟต์",en:"Third Party & Fight Observation",vi:"Third Party & quan sát giao tranh"},
+      subtitle:{th:"การแทรกแซงไฟต์และกฎ 20 นาที",en:"Interference and the 20-minute rule",vi:"Can thiệp giao tranh và quy tắc 20 phút"},
+      items:[
+        {type:"danger",title:{th:"⚠️ Third-Party Fight — ต้องหยุดทันที",en:"⚠️ Third-Party Fight — stop immediately",vi:"⚠️ Third-Party Fight — phải dừng ngay"},body:{
+          th:"หากเกิด Third-Party Fight ผู้เล่นทุกฝ่ายต้องหยุดการต่อสู้ทันทีและแยกออกจากบริเวณ ห้ามเข้าร่วมวงต่อสู้ ห้ามโจมตีแบบมั่วไฟต์ และ <strong>ห้ามโจมตีสวนกลับ</strong> แม้ถูกกัดโดยไม่ตั้งใจ ผู้ที่ยังคงโจมตี เข้าร่วมไฟต์ หรือสวนกลับ
