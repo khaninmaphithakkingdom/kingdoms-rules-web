@@ -1,0 +1,24 @@
+mns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px;max-width:560px}.hero-stats>div{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-height:88px;padding:16px 18px 15px;border:1px solid rgba(214,181,106,.12);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.008)),linear-gradient(90deg,rgba(67,90,47,.08),transparent 65%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.015);overflow:hidden}.hero-stats>div:before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:999px;background:linear-gradient(180deg,rgba(214,181,106,.9),rgba(126,159,69,.45))}
+.hero-stats strong{display:block;margin:0;font-family:Georgia,'Times New Roman',serif;font-size:1.95rem;line-height:1;color:#edd79d;font-variant-numeric:tabular-nums;letter-spacing:0;white-space:nowrap}.hero-stats span{display:block;margin-top:8px;font-size:.68rem;font-weight:700;line-height:1.2;letter-spacing:.08em;color:#7c8779;text-transform:uppercase;white-space:nowrap}
+.hero-emblem{position:relative;min-height:400px;display:grid;place-items:center}.hero-emblem img{position:relative;z-index:2;width:min(440px,95%);aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 30px 55px rgba(0,0,0,.6));opacity:.95}
+.emblem-halo{position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(214,181,106,.16),rgba(71,95,49,.08) 38%,transparent 70%);filter:blur(8px)}
+.quick-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.quick-card{display:flex;align-items:center;gap:13px;padding:18px 22px;border:0;background:#0d120f;cursor:pointer;text-align:left;transition:.2s}.quick-card:hover{background:#141b15}
+.quick-card>span{font-size:1.45rem;filter:saturate(.7)}.quick-card div{display:grid}.quick-card small{color:#667066;font-size:.61rem;letter-spacing:.14em}.quick-card strong{font-size:.84rem;color:#d7d3c8}
+.toolbar-mobile{display:none}
+.rules-root{max-width:1180px;margin:0 auto;padding:40px clamp(20px,4vw,54px) 70px}
+.rule-section{scroll-margin-top:96px;margin-bottom:44px}
+.section-heading{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.section-heading-main{display:flex;gap:14px;align-items:center}.section-number{font-family:Georgia,'Times New Roman',serif;color:#5e675d;font-size:.85rem}
+.section-heading h2{margin:0;font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.75rem,3vw,2.55rem);font-weight:600;color:#ede5d4}
+.section-heading p{margin:7px 0 0;color:#b2baae;font-size:.9rem;font-weight:900;letter-spacing:.015em;line-height:1.45;text-shadow:0 0 1px rgba(255,255,255,.12)}
+.anchor-btn{border:1px solid var(--line);background:#0d130f;color:#787f77;border-radius:9px;padding:7px 9px;cursor:pointer}.anchor-btn:hover{color:var(--gold);border-color:rgba(214,181,106,.3)}
+.rule-grid{display:grid;gap:12px}
+.rule-card{position:relative;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(24,32,25,.93),rgba(14,20,16,.96));padding:20px 22px;box-shadow:0 8px 30px rgba(0,0,0,.13)}
+.rule-card:before{content:"";position:absolute;left:0;top:16px;bottom:16px;width:2px;background:linear-gradient(180deg,transparent,var(--bronze),transparent);opacity:.55}
+.rule-card-head{display:flex;gap:12px;align-items:flex-start}.rule-index{flex:0 0 auto;min-width:42px;padding-top:1px;color:#6c746b;font-size:.72rem;font-weight:900;letter-spacing:.08em}
+.rule-card h3{margin:0;color:#e8e2d5;font-size:1rem;font-weight:800}.rule-card .rule-body{margin:8px 0 0;color:#a6ada3;font-size:.92rem}
+.rule-body p{margin:.45em 0}.rule-body ul{margin:.7em 0 .1em;padding-left:1.25rem}.rule-body li{margin:.38em 0}.rule-body strong{color:#ddd0ac}.rule-body .muted{color:#778078}
+.rule-body .quote{margin-top:10px;padding:10px 12px;background:rgba(0,0,0,.18);border-left:2px solid var(--gold-2);border-radius:0 8px 8px 0;color:#c8c6bd}
+.rule-card.warning{border-color:rgba(180,126,58,.28);background:linear-gradient(180deg,rgba(47,36,20,.34),rgba(18,20,15,.95))}
+.rule-card.danger{bor
