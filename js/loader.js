@@ -2,15 +2,36 @@
   "use strict";
 
   async function loadParts(prefix, count) {
-    const files = Array.from({length: count}, (_, i) =>
-      `site-data/${prefix}-${String(i + 1).padStart(2, "0")}.txt`
+    const files = Array.from({ length: count }, (_, i) =>
+      `site-data/${prefix}-${String(i + 1).padStart(2, "0")}.txt?v=2`
     );
-    const parts = await Promise.all(files.map(async file => {
-      const response = await fetch(file, {cache: "no-store"});
+    const parts = [];
+    for (const file of files) {
+      const response = await fetch(file, { cache: "no-store" });
       if (!response.ok) throw new Error(`Failed to load ${file}: ${response.status}`);
-      return response.text();
-    }));
+      parts.push(await response.text());
+    }
     return parts.join("");
+  }
+
+  function runScript(source, name) {
+    return new Promise((resolve, reject) => {
+      const blob = new Blob([source + "\n//# sourceURL=" + name], { type: "text/javascript" });
+      const url = URL.createObjectURL(blob);
+      const script = document.createElement("script");
+      script.src = url;
+      script.onload = () => {
+        URL.revokeObjectURL(url);
+        script.remove();
+        resolve();
+      };
+      script.onerror = () => {
+        URL.revokeObjectURL(url);
+        script.remove();
+        reject(new Error("Failed to execute " + name));
+      };
+      document.head.appendChild(script);
+    });
   }
 
   async function boot() {
@@ -21,10 +42,10 @@
     document.head.appendChild(style);
 
     const rules = await loadParts("rules", 22);
-    (0, eval)(rules);
+    await runScript(rules, "rules-full.js");
 
     const app = await loadParts("app", 3);
-    (0, eval)(app);
+    await runScript(app, "app-full.js");
 
     document.documentElement.classList.add("ki-ready");
   }
