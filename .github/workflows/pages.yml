@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Validate v10 site
+      - name: Validate v13 site
         shell: bash
         run: |
           set -euo pipefail
@@ -33,7 +33,7 @@ jobs:
           node --check js/app.js
           node --check js/app-v10.js
           test -s assets/herd-tokens-v10.jpg
-          test -s assets/staff-assistance-area-v10.jpg
+          test -s assets/staff-assistance-area-v10.jpg\n          test -s assets/kingdoms-isle-logo-v13.webp
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
