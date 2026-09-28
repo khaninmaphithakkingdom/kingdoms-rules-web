@@ -1,0 +1,38 @@
+evidence from both sides. If evidence is insufficient to establish a violation, the case may be dismissed.",vi:"Đối với báo cáo SPOT, phản bội hoặc lên kế hoạch giết, cần có bối cảnh như clip/recording, chat, voice, screenshot và trình tự sự kiện. Nhân viên sẽ xem bằng chứng từ cả hai bên. Nếu bằng chứng không đủ xác nhận vi phạm, vụ việc có thể bị bác."}}
+      ]
+    },
+
+    {
+      id:"pack-limits", icon:"🦕", code:"12",
+      title:{th:"Group Pack Limits",en:"Group Pack Limits",vi:"Giới hạn Group Pack"},
+      subtitle:{th:"จำนวนสูงสุดของแต่ละสายพันธุ์",en:"Maximum group size by species",vi:"Số lượng tối đa theo từng loài"},
+      feature:"packLimits", items:[]
+    },
+    {
+      id:"herd-tokens", icon:"🌿", code:"13",
+      title:{th:"Herbivore Herd Tokens",en:"Herbivore Herd Tokens",vi:"Herbivore Herd Tokens"},
+      subtitle:{th:"กฎรวมกลุ่มกินพืชสูงสุด 45 Token",en:"Herbivore mixed-group limit: 45 Tokens",vi:"Giới hạn nhóm herbivore hỗn hợp: 45 Token"},
+      feature:"herdTokens", items:[]
+    }
+  ],
+
+  packLimits: {
+    Herbivore:[["Hypsilophodon",12],["Dryosaurus",12],["Pachycephalosaurus",8],["Tenontosaurus",6],["Kentrosaurus",5],["Diabloceratops",5],["Maiasaura",4],["Stegosaurus",3],["Triceratops",2]],
+    Omnivore:[["Beipisaurus",12],["Gallimimus",8]],
+    Carnivore:[["Pteranodon",10],["Troodon",10],["Omniraptor",8],["Herrerasaurus",8],["Austroraptor",8],["Dilophosaurus",5],["Carnotaurus",4],["Ceratosaurus",4],["Allosaurus",3],["Deinosuchus",2],["Tyrannosaurus Rex",2]]
+  },
+
+  herdTokens: {
+    "Micro — 3":[["Dryosaurus",3],["Beipiaosaurus",3],["Hypsilophodon",3]],
+    "Low — 5":[["Gallimimus",5],["Pachycephalosaurus",5]],
+    "Medium — 10":[["Maiasaura",10],["Tenontosaurus",10],["Diabloceratops",10],["Kentrosaurus",10]],
+    "High — 20":[["Stegosaurus",20],["Triceratops",20]]
+  }
+};
+
+window.KI_RULES.sections.find(s => s.id === "behavior").items.push({
+  type:"warning",
+  title:{th:"⚖️ Final Rule — หลักการตัดสิน",en:"⚖️ Final Rule — decision principle",vi:"⚖️ Final Rule — nguyên tắc xử lý"},
+  body:{
+    th:"กฎมีไว้เพื่อให้ทุกคนเล่นอย่างเท่าเทียม ไม่ใช่เพื่อหาช่องเอาชนะกฎ หากมีพฤติกรรมจงใจหลีกเลี่ยงกฎ ใช้ช่องโหว่ หรือสร้างความได้เปรียบที่ไม่เป็นธรรม ทีมงานสามารถพิจารณาจากหลักฐาน บริบท เจตนา และเหตุการณ์ทั้งหมด",
+    en:"Rules exist so everyone can play fairly, not as loopholes to be worked around. Intentional r
