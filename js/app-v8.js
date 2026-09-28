@@ -200,7 +200,7 @@
     return `
       <article class="rule-card feature">
         <div class="feature-media">
-          <img data-asset="herd" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <img class="herd-reference-image" src="assets/herd-tokens.jpg" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
           <div class="feature-copy">
             <span class="eyebrow">HERBIVORE GROUP RULES</span>
             <h3>45 HERD TOKENS</h3>
@@ -212,7 +212,7 @@
             <div class="token-grid">
               ${Object.entries(data.herdTokens).map(([tier, rows]) => `
                 <div class="token-tier">
-                  <strong><span>${tier}</span><span>TOKENS</span></strong>
+                  <strong class="token-tier-title"><span>${tier}</span><em>TOKENS</em></strong>
                   <small>${rows.map(([name, amount]) => `${name} — ${amount}`).join("<br>")}</small>
                 </div>
               `).join("")}
