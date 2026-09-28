@@ -1,0 +1,13 @@
+
+          en:"If you were not part of the fight from the beginning: do not immediately attack either side, do not wait nearby for the fight to end, and do not wait for one side to become disadvantaged, injured, or dead before attacking.<br><br><strong>If you did not watch or observe the fight:</strong> there is no 20-minute wait; you may engage immediately.<br><strong>If you watched/observed and became aware of which side had the advantage:</strong> wait at least 20 minutes after the fight ends before engaging players from that fight.<br><div class='quote'>⚠ F2 evidence is required for both cases. Without F2 or an Overlay recording game audio, the case will be treated as Third Party immediately, with no exceptions.</div>",
+          vi:"Nếu bạn không tham gia giao tranh từ đầu: không được lập tức tấn công một bên, không được đứng chờ gần đó để đợi trận kết thúc, và không được chờ một bên yếu thế/bị thương/chết rồi mới tấn công.<br><br><strong>Nếu bạn không đứng xem hoặc theo dõi:</strong> không cần chờ 20 phút; có thể giao tranh ngay.<br><strong>Nếu bạn đã đứng xem/theo dõi và biết bên nào đang lợi thế:</strong> phải chờ ít nhất 20 phút sau khi giao tranh kết thúc mới được tấn công người chơi từ trận đó.<br><div class='quote'>⚠ Cần có bằng chứng F2 cho cả hai trường hợp. Nếu không có F2 hoặc Overlay ghi âm gameplay, vụ việc sẽ bị xem là Third Party ngay, không có ngoại lệ.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"groups", icon:"🦖", code:"06",
+      title:{th:"🧬 Mixpacking และ 👥 Overpacking",en:"🧬 Mixpacking & 👥 Overpacking",vi:"🧬 Mixpacking & 👥 Overpacking"},
+      subtitle:{th:"การรวมกลุ่มและการช่วยเหลือข้ามกลุ่ม",en:"Grouping and cross-group assistance",vi:"Lập nhóm và hỗ trợ chéo"},
+      items:[
+        {type:"danger",title:{th:"🧬 Mixpacking",en:"🧬 Mixpacking",vi:"🧬 Mixpacking"},body:{th:"Carnivore ต่างสายพันธุ์ห้ามรวมกลุ่มเพื่อสร้างความได้เปรียบในการต่อสู้ ห้ามใช้สายพันธุ์อื่นช่วยโจมตี เป็นเหยื่อล่อ ดัก/ต้อน/ปิดทาง หรือส่งข้อมูลตำแหน่งเพื่อช่วยล่าหรือสู้ การพูดคุยกันอย่างเดียวไม่ถือเป็น Mixpacking หากไม่มีการช่วยเหลือหรือสร้างความได้เปรียบ",en:"Different carnivore species may not group to gain a combat advantage. Do not use another species to attack, bait, trap, herd, block routes, or relay locations to assist hunting or combat. Talking alone is not Mixpacking when no assistance or advantage is created.",vi:"Các loài ăn th
