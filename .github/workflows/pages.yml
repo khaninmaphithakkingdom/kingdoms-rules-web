@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -32,6 +32,17 @@ jobs:
           cat logo-v13-data/logo-*.txt | tr -d '\r\n' | base64 -d > assets/kingdoms-isle-logo-v13.jpg
           test -s assets/kingdoms-isle-logo-v13.jpg
           file assets/kingdoms-isle-logo-v13.jpg
+
+      - name: Persist final logo asset
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/kingdoms-isle-logo-v13.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Persist final Kingdoms Isle logo [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Validate v13 site
         shell: bash
