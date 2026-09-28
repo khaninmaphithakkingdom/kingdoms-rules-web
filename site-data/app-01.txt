@@ -1,0 +1,147 @@
+(() => {
+  "use strict";
+
+  const data = window.KI_RULES;
+  const state = {
+    lang: localStorage.getItem("ki-rules-lang") || "th",
+    query: ""
+  };
+
+  const $ = (s, root = document) => root.querySelector(s);
+  const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+
+  const rulesRoot = $("#rulesRoot");
+  const categoryNav = $("#categoryNav");
+  const noResults = $("#noResults");
+  const sidebar = $("#sidebar");
+  const mobileMenuBtn = $("#mobileMenuBtn");
+  const searchInput = $("#searchInput");
+  const mobileSearchInput = $("#mobileSearchInput");
+  const toast = $("#toast");
+
+  const assetCache = {};
+  const assetSpec = {
+    logo: { mime:"image/png", chunks:4 },
+    herd: { mime:"image/jpeg", chunks:8 }
+  };
+
+  async function getAssetDataUrl(name) {
+    if (assetCache[name]) return assetCache[name];
+
+    const spec = assetSpec[name];
+    if (!spec) return "";
+
+    const parts = await Promise.all(
+      Array.from({ length: spec.chunks }, (_, i) =>
+        fetch(`assets-data/${name}-${i + 1}.txt`).then(r => {
+          if (!r.ok) throw new Error(`Asset chunk failed: ${name}-${i + 1}`);
+          return r.text();
+        })
+      )
+    );
+
+    assetCache[name] = `data:${spec.mime};base64,${parts.join("").replace(/\s+/g, "")}`;
+    return assetCache[name];
+  }
+
+  async function hydrateAssets() {
+    for (const name of Object.keys(assetSpec)) {
+      const nodes = $$('[data-asset="' + name + '"]');
+      if (!nodes.length) continue;
+
+      try {
+        const url = await getAssetDataUrl(name);
+        nodes.forEach(node => node.src = url);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  const safeLang = () => ["th", "en", "vi"].includes(state.lang) ? state.lang : "th";
+  const tx = obj => obj?.[safeLang()] ?? obj?.th ?? "";
+  const normalize = value => (value || "").toLocaleLowerCase().normalize("NFKC");
+  const cleanNavTitle = value => (value || "")
+    .replace(/\p{Extended_Pictographic}/gu, "")
+    .replace(/\uFE0F/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  function stripHTML(html) {
+    const el = document.createElement("div");
+    el.innerHTML = html || "";
+    return el.textContent || "";
+  }
+
+  function setStaticUI() {
+    const t = data.ui[safeLang()];
+    document.documentElement.lang = safeLang();
+
+    $$("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key]) el.textContent = t[key];
+    });
+
+    searchInput.placeholder = t.search;
+    mobileSearchInput.placeholder = t.search;
+
+    $$(".lang-btn").forEach(button => {
+      button.classList.toggle("active", button.dataset.lang === safeLang());
+    });
+  }
+
+  function searchableText(section) {
+    let text = tx(section.title) + " " + tx(section.subtitle) + " ";
+
+    (section.items || []).forEach(item => {
+      text += tx(item.title) + " " + stripHTML(tx(item.body)) + " ";
+    });
+
+    if (section.feature === "packLimits") {
+      Object.entries(data.packLimits).forEach(([group, rows]) => {
+        text += group + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    if (section.feature === "herdTokens") {
+      Object.entries(data.herdTokens).forEach(([tier, rows]) => {
+        text += tier + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    return normalize(text);
+  }
+
+  function highlight(html, rawQuery) {
+    const q = rawQuery.trim();
+    if (!q) return html;
+
+    const holder = document.createElement("div");
+    holder.innerHTML = html;
+
+    const needle = normalize(q);
+    const walker = document.createTreeWalker(holder, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node => {
+      const raw = node.nodeValue;
+      const index = normalize(raw).indexOf(needle);
+      if (index < 0) return;
+
+      const fragment = document.createDocumentFragment();
+      fragment.append(raw.slice(0, index));
+
+      const mark = document.createElement("mark");
+      mark.textContent = raw.slice(index, index + q.length);
+      fragment.append(mark, raw.slice(index + q.length));
+
+      node.replaceWith(fragment);
+    });
+
+    return holder.innerHTML;
+  }
+
+  function renderRuleCard(item, index) {
+    cons
