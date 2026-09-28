@@ -210,7 +210,7 @@
     return `
       <article class="rule-card feature">
         <div class="feature-media">
-          <img class="herd-reference-image" src="assets/herd-tokens-v10.png" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <img class="herd-reference-image" src="assets/herd-tokens-v10.jpg" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
           <div class="feature-copy">
             <span class="eyebrow">HERBIVORE GROUP RULES</span>
             <h3>45 HERD TOKENS</h3>
