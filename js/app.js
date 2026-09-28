@@ -266,7 +266,7 @@
                 <p>${tx(section.subtitle)}</p>
               </div>
             </div>
-            <button class="anchor-btn" type="button" data-copy="${section.id}" aria-label="Copy section link">#</button>
+            <button class="anchor-btn" type="button" data-copy="${section.id}" aria-label="Copy section link" title="Copy section link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a4 4 0 0 0 5.66 0l2.14-2.14a4 4 0 0 0-5.66-5.66l-1.22 1.22"/><path d="M13.4 10.6a4 4 0 0 0-5.66 0L5.6 12.74a4 4 0 1 0 5.66 5.66l1.22-1.22"/></svg></button>
           </div>
           ${body}
         </section>
