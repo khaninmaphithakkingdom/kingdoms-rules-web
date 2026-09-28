@@ -1,0 +1,13 @@
+t. Nếu việc vào team được cố ý dùng để dụ người khác rồi giết, nhân viên có thể xử lý theo luật."}},
+        {type:"danger",title:{th:"📍 ห้าม SPOT จุดจากข้อมูลพันธมิตร",en:"📍 Do not SPOT using alliance information",vi:"📍 Cấm SPOT bằng thông tin liên minh"},body:{th:"ห้ามใช้ข้อมูลที่ได้จากการเป็นพันธมิตรเพื่อบอกตำแหน่ง SPOT จุด ส่งพิกัด เรียกเพื่อน หรือส่งข้อมูลให้กลุ่มอื่นเข้ามาโจมตี โดยเฉพาะกรณีออกทีมแล้วบอกจุดให้เพื่อนมาฆ่า",en:"Do not use information obtained through an alliance to share locations, SPOT, send coordinates, call friends, or give another group information to attack. Leaving the team and then giving friends the target's location is specifically prohibited.",vi:"Không được dùng thông tin có được từ liên minh để báo vị trí, SPOT, gửi tọa độ, gọi bạn hoặc cung cấp thông tin cho nhóm khác đến tấn công. Đặc biệt cấm rời team rồi báo vị trí cho bạn đến giết."}},
+        {type:"info",title:{th:"⚔️ 2v2 / 3v3 / จำนวนเท่ากัน",en:"⚔️ 2v2 / 3v3 / equal numbers",vi:"⚔️ 2v2 / 3v3 / số lượng bằng nhau"},body:{th:"หากผู้เล่นพบกันโดยแต่ละฝ่ายมีจำนวนเท่ากัน เช่น 2v2, 3v3, 4v4 สามารถต่อสู้กันได้ตามปกติ แต่ยังต้องปฏิบัติตามกฎ Third Party",en:"When both sides meet with equal numbers, such as 2v2, 3v3, or 4v4, they may fight normally, but Third Party rules still apply.",vi:"Khi hai bên gặp nhau với số lượng bằng nhau như 2v2, 3v3 hoặc 4v4, có thể giao tranh bình thường nhưng vẫn phải tuân thủ quy tắc Third Party."}}
+      ]
+    },
+
+    {
+      id:"spot", icon:"📍", code:"10",
+      title:{th:"Community หรือ SPOT จุด?",en:"Community or SPOT?",vi:"Community hay SPOT?"},
+      subtitle:{th:"เส้นแบ่งของการแชร์ข้อมูลในเกม",en:"The line between general information and targeting",vi:"Ranh giới giữa thông tin chung và chỉ điểm"},
+      items:[
+        {type:"success",title:{th:"🟢 Community — ข้อมูลทั่วไป",en:"🟢 Community — general information",vi:"🟢 Community — thông tin chung"},body:{th:"การพูดคุยหรือแลกเปลี่ยนข้อมูลทั่วไป เช่น “แถว North Lake มีคนเยอะ” โดยไม่ได้มีเจตนาชี้เป้าให้ผู้อื่นไปดำเนินการต่อ ไม่ถือเป็น SPOT",en:"General discussion or information sharing, such as “There are many people around North Lake,” without an intent to direct others toward a target, is not SPOT.",vi:"Trao đổi thông tin chung, ví dụ “khu North Lake có nhiều người,” mà không có ý định chỉ mục tiêu để người khác đi xử lý, không bị xem là SPOT."}},
+        {type:"danger",titl
