@@ -248,3 +248,46 @@ button,input{font:inherit}button{color:inherit}a{color:inherit}
 @media(max-width:410px){
   .quick-strip{grid-template-columns:1fr}
 }
+
+
+/* v10 — match Kingdoms Isle portal typography */
+html,body,button,input,select,textarea{
+  font-family:"Chakra Petch","Leelawadee UI","Segoe UI",sans-serif;
+}
+.brand-copy strong,
+.sidebar-intro strong,
+.hero h1,
+.hero h1 span,
+.hero-stats strong,
+.section-heading h2,
+.rule-card h3,
+.feature-copy h3,
+.pack-table td:last-child,
+.site-footer strong{
+  font-family:"Chakra Petch","Leelawadee UI","Segoe UI",sans-serif;
+}
+.hero h1{
+  font-weight:600;
+  letter-spacing:-.035em;
+  line-height:.88;
+}
+.hero h1 span{
+  font-weight:600;
+  letter-spacing:.025em;
+}
+.section-heading h2{
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+.rule-card h3,
+.quick-card strong,
+.nav-copy strong{
+  font-weight:600;
+}
+.eyebrow,
+.quick-card small,
+.brand-copy small,
+.hero-stats span{
+  font-family:"Chakra Petch","Leelawadee UI","Segoe UI",sans-serif;
+  font-weight:600;
+}
