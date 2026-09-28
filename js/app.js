@@ -21,7 +21,6 @@
 
   const assetCache = {};
   const assetSpec = {
-    logo: { mime:"image/png", chunks:4 },
     herd: { mime:"image/jpeg", chunks:8 }
   };
 
@@ -76,6 +75,9 @@
   function setStaticUI() {
     const t = data.ui[safeLang()];
     document.documentElement.lang = safeLang();
+    const languageCode = { th:"TH", en:"EN", vi:"VN" }[safeLang()] || "TH";
+    const languageCount = $("#languageCount");
+    if (languageCount) languageCount.textContent = languageCode;
 
     $$("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
