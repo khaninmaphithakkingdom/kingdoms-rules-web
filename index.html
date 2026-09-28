@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c0a">
+  <meta name="description" content="[TH] Kingdoms Isle official server rules">
+  <title>[TH] Kingdoms Isle — Server Rules</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to rules</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Kingdoms Isle Server Rules">
+        <div class="brand-mark"><img src="assets/logo.png" alt="Kingdoms Isle logo"></div>
+        <span class="brand-copy">
+          <strong>KINGDOMS ISLE</strong>
+          <small>EVRIMA SURVIVAL NETWORK</small>
+        </span>
+      </a>
+      <div class="top-actions">
+        <label class="search-wrap desktop-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="ค้นหากฎ..." aria-label="ค้นหากฎ">
+          <kbd>Ctrl K</kbd>
+        </label>
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button class="lang-btn active" data-lang="th" type="button">TH</button>
+          <button class="lang-btn" data-lang="en" type="button">EN</button>
+          <button class="lang-btn" data-lang="vi" type="button">VI</button>
+        </div>
+        <button id="mobileMenuBtn" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar" aria-label="Rules navigation">
+      <div class="sidebar-intro">
+        <span class="eyebrow">RULE DIRECTORY</span>
+        <strong data-i18n="navTitle">หมวดกฎ</strong>
+        <small data-i18n="navHint">เลือกหัวข้อเพื่อไปยังกฎโดยตรง</small>
+      </div>
+      <nav id="categoryNav" class="category-nav"></nav>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <span data-i18n="currentRules">CURRENT RULESET</span>
+      </div>
+    </aside>
+
+    <main id="content" class="content">
+      <section id="top" class="hero">
+        <div class="hero-noise" aria-hidden="true"></div>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">[TH] KINGDOMS ISLE</span>
+            <h1>SERVER <span>RULES</span></h1>
+            <p class="hero-lead" data-i18n="heroLead">อ่านกฎทั้งหมดก่อนเข้าเล่น เพื่อให้ทุกคนอยู่ร่วมกันได้อย่างยุติธรรมและสนุก</p>
+            <div class="hero-notice">
+              <div class="notice-mark">⚖</div>
+              <div>
+                <strong data-i18n="noticeTitle">กฎสามารถเปลี่ยนแปลงได้</strong>
+                <p data-i18n="noticeBody">หากมีการเปลี่ยนแปลง ทีมงานจะแจ้งผ่านห้องประกาศของเซิร์ฟเวอร์</p>
+              </div>
+            </div>
+            <div class="hero-stats">
+              <div><strong id="sectionCount">0</strong><span data-i18n="sectionsLabel">หมวดกฎ</span></div>
+              <div><strong id="ruleCount">0</strong><span data-i18n="rulesLabel">หัวข้อ</span></div>
+              <div><strong>TH · EN · VI</strong><span data-i18n="languagesLabel">ภาษา</span></div>
+            </div>
+          </div>
+          <div class="hero-emblem">
+            <div class="emblem-halo"></div>
+            <img src="assets/logo.png" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-strip" aria-label="Quick links">
+        <button class="quick-card" data-target="combat" type="button"><span>⚔</span><div><small>COMBAT</small><strong data-i18n="quickCombat">กฎการต่อสู้</strong></div></button>
+        <button class="quick-card" data-target="third-party" type="button"><span>👁</span><div><small>THIRD PARTY</small><strong data-i18n="quickThird">Third Party</strong></div></button>
+        <button class="quick-card" data-target="redeem" type="button"><span>♻</span><div><small>REDEEM</small><strong data-i18n="quickRedeem">กฎ Redeem</strong></div></button>
+        <button class="quick-card" data-target="pack-limits" type="button"><span>🦖</span><div><small>GROUP LIMITS</small><strong data-i18n="quickPack">Pack Limits</strong></div></button>
+      </section>
+
+      <section class="toolbar-mobile">
+        <label class="search-wrap mobile-search">
+          <span aria-hidden="true">⌕</span>
+          <input id="mobileSearchInput" type="search" autocomplete="off" placeholder="ค้นหากฎ..." aria-label="ค้นหากฎ">
+        </label>
+      </section>
+
+      <section id="rulesRoot" class="rules-root" aria-live="polite"></section>
+
+      <section id="noResults" class="no-results" hidden>
+        <span>⌕</span>
+        <h2 data-i18n="noResultsTitle">ไม่พบกฎที่ค้นหา</h2>
+        <p data-i18n="noResultsBody">ลองใช้คำค้นที่สั้นลง หรือเลือกหมวดจากเมนูด้านซ้าย</p>
+      </section>
+
+      <footer class="site-footer">
+        <img src="assets/logo.png" alt="" aria-hidden="true">
+        <div>
+          <strong>KINGDOMS ISLE</strong>
+          <p data-i18n="footerText">Respect the rules · Protect the wilderness · Play together</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="data/rules.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+
