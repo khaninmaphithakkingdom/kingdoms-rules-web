@@ -24,15 +24,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Rebuild complete site files
+      - name: Rebuild complete site files safely
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p css data js
-          cat site-data/css-*.txt > css/style.css
-          cat site-data/rules-*.txt > data/rules.js
-          cat site-data/app-*.txt > js/app.js
+
+          : > css/style.css
+          for f in site-data/css-*.txt; do
+            perl -0777 -pe 's/\r?\n\z//' "$f" >> css/style.css
+          done
+
+          : > data/rules.js
+          for f in site-data/rules-*.txt; do
+            perl -0777 -pe 's/\r?\n\z//' "$f" >> data/rules.js
+          done
+
+          : > js/app.js
+          for f in site-data/app-*.txt; do
+            perl -0777 -pe 's/\r?\n\z//' "$f" >> js/app.js
+          done
+
+          node --check data/rules.js
+          node --check js/app.js
           touch .nojekyll
+
           echo "CSS bytes: $(wc -c < css/style.css)"
           echo "Rules bytes: $(wc -c < data/rules.js)"
           echo "App bytes: $(wc -c < js/app.js)"
@@ -44,7 +60,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add css/style.css data/rules.js js/app.js .nojekyll
           if ! git diff --cached --quiet; then
-            git commit -m "Rebuild complete site files [skip ci]"
+            git commit -m "Repair rebuilt site files [skip ci]"
             git push origin HEAD:main
           fi
 
