@@ -24,6 +24,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Rebuild complete site files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p css data js
+          cat site-data/css-*.txt > css/style.css
+          cat site-data/rules-*.txt > data/rules.js
+          cat site-data/app-*.txt > js/app.js
+          echo "CSS bytes: $(wc -c < css/style.css)"
+          echo "Rules bytes: $(wc -c < data/rules.js)"
+          echo "App bytes: $(wc -c < js/app.js)"
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
