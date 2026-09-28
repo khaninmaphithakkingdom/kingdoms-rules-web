@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,8 +31,22 @@ jobs:
           mkdir -p assets
           cat asset-v10-final/herd-*.b64 | tr -d '\r\n' | base64 -d > assets/herd-tokens-v10.jpg
           cat asset-v10-final/staff-*.b64 | tr -d '\r\n' | base64 -d > assets/staff-assistance-area-v10.jpg
-          test -s assets/herd-tokens-v10.jpg
-          test -s assets/staff-assistance-area-v10.jpg
+          test "$(stat -c%s assets/herd-tokens-v10.jpg)" = "264143"
+          test "$(stat -c%s assets/staff-assistance-area-v10.jpg)" = "144488"
+          file assets/herd-tokens-v10.jpg
+          file assets/staff-assistance-area-v10.jpg
+
+      - name: Persist final image assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/herd-tokens-v10.jpg assets/staff-assistance-area-v10.jpg
+          if ! git diff --cached --quiet; then
+            git commit -m "Persist final v10 image assets [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Validate JavaScript
         run: |
