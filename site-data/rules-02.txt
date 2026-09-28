@@ -1,0 +1,28 @@
+Juveniles at up to 45% Growth = 0 Tokens",
+      herdSpecial:"Stegosaurus and Triceratops may not stay together. When using the 45 Token rule, the entire team must use the same colour; otherwise it is immediately counted as Third Party.",
+      total:"Maximum total"
+    },
+    vi: {
+      navTitle:"Danh mục quy tắc", navHint:"Chọn mục để chuyển thẳng đến quy tắc", currentRules:"CURRENT RULESET",
+      heroLead:"Hãy đọc toàn bộ quy tắc trước khi chơi để mọi người cùng chơi công bằng và vui vẻ.",
+      noticeTitle:"Quy tắc có thể thay đổi", noticeBody:"Khi có thay đổi, nhân viên sẽ thông báo trong các kênh announcement của máy chủ.",
+      sectionsLabel:"danh mục", rulesLabel:"chủ đề", languagesLabel:"ngôn ngữ",
+      quickCombat:"Quy tắc chiến đấu", quickThird:"Third Party", quickRedeem:"Quy tắc Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"Không tìm thấy quy tắc phù hợp", noResultsBody:"Hãy thử từ khóa ngắn hơn hoặc chọn danh mục từ menu.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Tìm quy tắc...", copy:"Đã sao chép liên kết",
+      packNote:"Người chơi dưới 45% Growth không tính vào giới hạn nhóm. Khi đạt từ 45% Growth trở lên, phải rời nhóm sớm nhất có thể để tuân thủ Pack Limit.",
+      herdIntro:"Herbivore có thể lập nhóm hỗn hợp miễn tổng không vượt quá 45 Herd Tokens.",
+      herdFree:"Juvenile tối đa 45% Growth = 0 Token",
+      herdSpecial:"Stegosaurus và Triceratops không được ở cùng nhau. Khi dùng quy tắc 45 Token, cả team phải dùng cùng màu; nếu không sẽ bị tính là Third Party ngay.",
+      total:"Tổng tối đa"
+    }
+  },
+
+  sections: [
+    {
+      id:"basic", icon:"⚖", code:"01",
+      title:{th:"กฎพื้นฐาน",en:"Basic Rules",vi:"Quy tắc cơ bản"},
+      subtitle:{th:"มาตรฐานพื้นฐานของชุมชน",en:"Core community standards",vi:"Tiêu chuẩn cộng đồng cốt lõi"},
+      items:[
+        {type:"danger",title:{th:"🤝 1. ห้ามคุกคามหรือไม่ให้เกียรติผู้อื่น",en:"🤝 1. No harassment or disrespect",vi:"🤝 1. Không quấy rối hoặc thiếu tôn trọng"},body:{th:"ห้ามคุกคาม ไม่ให้เกียรติ หรือใช้คำหยาบ รวมถึงการแกล้งผู้อื่นแบบจงใจ",en:"Harassment, disrespect, profanity, and intentional bullying of others are prohibited.",vi:"Cấm quấy rối, thiếu tôn trọng, chửi bới hoặc cố ý bắt nạt người khác."}},
+        {type:"danger",title:{th:"🛡️ 2. ห้ามโกงหรือใช้ช่องโหว่",en:"🛡️ 2. No cheats or exploits"
