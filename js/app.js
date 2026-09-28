@@ -19,31 +19,35 @@
   const mobileSearchInput = $("#mobileSearchInput");
   const toast = $("#toast");
 
-  const safeLang = () => ["th", "en", "vi"].includes(state.lang) ? state.lang : "th";
-  const tx = obj => obj?.[safeLang()] ?? obj?.th ?? "";
-  const normalize = value => (value || "").toLocaleLowerCase().normalize("NFKC");
-  const cleanNavTitle = value => (value || "")
-    .replace(/\p{Extended_Pictographic}/gu, "")
-    .replace(/\uFE0F/gu, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
+  const assetCache = {};
+  const assetSpec = {
+    logo: { mime:"image/png", chunks:4 },
+    herd: { mime:"image/jpeg", chunks:8 }
+  };
 
-  function stripHTML(html) {
-    const el = document.createElement("div");
-    el.innerHTML = html || "";
-    return el.textContent || "";
+  async function getAssetDataUrl(name) {
+    if (assetCache[name]) return assetCache[name];
+
+    const spec = assetSpec[name];
+    if (!spec) return "";
+
+    const parts = await Promise.all(
+      Array.from({ length: spec.chunks }, (_, i) =>
+        fetch(`assets-data/${name}-${i + 1}.txt`).then(r => {
+          if (!r.ok) throw new Error(`Asset chunk failed: ${name}-${i + 1}`);
+          return r.text();
+        })
+      )
+    );
+
+    assetCache[name] = `data:${spec.mime};base64,${parts.join("").replace(/\s+/g, "")}`;
+    return assetCache[name];
   }
 
-  function setStaticUI() {
-    const t = data.ui[safeLang()];
-    document.documentElement.lang = safeLang();
-
-    $$("[data-i18n]").forEach(el => {
-      const key = el.dataset.i18n;
-      if (t[key]) el.textContent = t[key];
-   
+  async function hydrateAssets() {
+    for (const name of Object.key
 …[middle output omitted]…
-           <div class="quote">
+ote">
                 <strong>${t.total}: 45 Herd Tokens</strong><br>
                 ${t.herdSpecial}
               </div>
@@ -109,6 +113,7 @@
 
     bindDynamic();
     updateActiveNav();
+    hydrateAssets();
   }
 
   function bindDynamic() {
@@ -227,4 +232,6 @@
     }, 50);
   }
 })();
+
+
 
