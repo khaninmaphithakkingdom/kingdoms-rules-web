@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -24,45 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Rebuild complete site files safely
-        shell: bash
+      - name: Validate JavaScript
         run: |
-          set -euo pipefail
-          mkdir -p css data js
-
-          : > css/style.css
-          for f in site-data/css-*.txt; do
-            perl -0777 -pe 's/\r?\n\z//' "$f" >> css/style.css
-          done
-
-          : > data/rules.js
-          for f in site-data/rules-*.txt; do
-            perl -0777 -pe 's/\r?\n\z//' "$f" >> data/rules.js
-          done
-
-          : > js/app.js
-          for f in site-data/app-*.txt; do
-            perl -0777 -pe 's/\r?\n\z//' "$f" >> js/app.js
-          done
-
           node --check data/rules.js
           node --check js/app.js
-          touch .nojekyll
-
-          echo "CSS bytes: $(wc -c < css/style.css)"
-          echo "Rules bytes: $(wc -c < data/rules.js)"
-          echo "App bytes: $(wc -c < js/app.js)"
-
-      - name: Save rebuilt files to main
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add css/style.css data/rules.js js/app.js .nojekyll
-          if ! git diff --cached --quiet; then
-            git commit -m "Repair rebuilt site files [skip ci]"
-            git push origin HEAD:main
-          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
