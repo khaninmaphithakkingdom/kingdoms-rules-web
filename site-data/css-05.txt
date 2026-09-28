@@ -1,0 +1,8 @@
+-columns:1fr}.feature-media img{height:360px;border-right:0;border-bottom:1px solid var(--line)}.feature-copy{padding:20px}.token-grid{grid-template-columns:1fr}
+}
+@media(max-width:410px){
+  .lang-switch{padding:2px}.lang-btn{min-width:31px;padding:0 5px}.quick-strip{grid-template-columns:1fr}
+}
+
+
+
