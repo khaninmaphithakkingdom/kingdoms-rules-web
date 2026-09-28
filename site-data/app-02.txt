@@ -1,0 +1,117 @@
+t query = state.query.trim();
+
+    return `
+      <article class="rule-card ${item.type || ""}">
+        <div class="rule-card-head">
+          <div class="rule-index">${String(index + 1).padStart(2, "0")}</div>
+          <div>
+            <h3>${highlight(tx(item.title), query)}</h3>
+            <div class="rule-body">${highlight(tx(item.body), query)}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderPackLimits() {
+    const t = data.ui[safeLang()];
+    const labels = safeLang() === "th"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"สายพันธุ์", limit:"จำนวนสูงสุด" }
+      : safeLang() === "vi"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Loài", limit:"Giới hạn" }
+      : { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Species", limit:"Max" };
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-copy">
+          <span class="eyebrow">GROUP PACK LIMITS</span>
+          <h3>${tx(data.sections.find(s => s.id === "pack-limits").title)}</h3>
+          <div class="rule-body"><p>${t.packNote}</p></div>
+
+          ${Object.entries(data.packLimits).map(([group, rows]) => `
+            <div class="rule-card info" style="margin-top:14px">
+              <h3>${labels[group]}</h3>
+              <table class="pack-table">
+                <thead>
+                  <tr><th>${labels.species}</th><th>${labels.limit}</th></tr>
+                </thead>
+                <tbody>
+                  ${rows.map(([name, amount]) => `<tr><td>${name}</td><td>× ${amount}</td></tr>`).join("")}
+                </tbody>
+              </table>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderHerdTokens() {
+    const t = data.ui[safeLang()];
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-media">
+          <img data-asset="herd" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <div class="feature-copy">
+            <span class="eyebrow">HERBIVORE GROUP RULES</span>
+            <h3>45 HERD TOKENS</h3>
+            <div class="rule-body">
+              <p>${t.herdIntro}</p>
+              <p><strong>${t.herdFree}</strong></p>
+            </div>
+
+            <div class="token-grid">
+              ${Object.entries(data.herdTokens).map(([tier, rows]) => `
+                <div class="token-tier">
+                  <strong><span>${tier}</span><span>TOKENS</span></strong>
+                  <small>${rows.map(([name, amount]) => `${name} — ${amount}`).join("<br>")}</small>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="rule-body">
+              <div class="quote">
+                <strong>${t.total}: 45 Herd Tokens</strong><br>
+                ${t.herdSpecial}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function render() {
+    setStaticUI();
+
+    const query = normalize(state.query.trim());
+    const visibleSections = data.sections.filter(section => {
+      return !query || searchableText(section).includes(query);
+    });
+
+    categoryNav.innerHTML = data.sections.map(section => `
+      <button class="nav-link" type="button" data-target="${section.id}">
+        <span class="nav-icon">${section.icon}</span>
+        <span class="nav-copy">
+          <strong>${cleanNavTitle(tx(section.title))}</strong>
+          <small><b>${section.code}</b><span>·</span>${tx(section.subtitle)}</small>
+        </span>
+      </button>
+    `).join("");
+
+    rulesRoot.innerHTML = visibleSections.map(section => {
+      let body = "";
+
+      if (section.feature === "packLimits") {
+        body = renderPackLimits();
+      } else if (section.feature === "herdTokens") {
+        body = renderHerdTokens();
+      } else {
+        body = `<div class="rule-grid">${section.items.map(renderRuleCard).join("")}</div>`;
+      }
+
+      return `
+        <section class="rule-section" id="${section.id}" data-section="${section.id}">
+          <div class="section-heading">
+            <div class="section-heading-main">
