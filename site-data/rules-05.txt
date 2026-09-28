@@ -1,0 +1,14 @@
+ by Case จากข้อเท็จจริง หลักฐาน บริบท ลำดับเหตุการณ์ และเจตนา เหตุการณ์ที่ดูคล้ายกันอาจมีรายละเอียดต่างกันและได้ผลพิจารณาต่างกัน <div class='quote'><strong>มาตรฐานเดียวกัน ≠ ผลลัพธ์ต้องเหมือนกันทุกเคส</strong><br>มาตรฐานเดียวกัน = ใช้หลักเกณฑ์เดียวกันพิจารณาข้อเท็จจริงของแต่ละเคส</div>",
+          en:"Staff review cases individually using facts, evidence, context, sequence of events, and intent. Similar-looking incidents may contain different details and may lead to different decisions.<div class='quote'><strong>Same standard ≠ identical outcome in every case.</strong><br>Same standard = applying the same criteria to each case's facts.</div>",
+          vi:"Nhân viên xem xét từng vụ việc dựa trên sự thật, bằng chứng, bối cảnh, trình tự sự kiện và ý định. Các tình huống trông giống nhau có thể có chi tiết khác nhau và dẫn đến kết quả khác nhau.<div class='quote'><strong>Cùng tiêu chuẩn ≠ mọi vụ việc phải có cùng kết quả.</strong><br>Cùng tiêu chuẩn = áp dụng cùng tiêu chí cho sự thật của từng vụ việc.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"voice", icon:"🎙", code:"03",
+      title:{th:"กฎการใช้ไมค์",en:"Voice Chat Rules",vi:"Quy tắc Voice Chat"},
+      subtitle:{th:"การใช้เสียงโดยไม่รบกวนผู้อื่น",en:"Use voice without disrupting others",vi:"Sử dụng giọng nói không làm phiền người khác"},
+      items:[
+        {type:"danger",title:{th:"🔇 ห้ามก่อกวนด้วยเสียง",en:"🔇 No disruptive audio",vi:"🔇 Cấm gây rối bằng âm thanh"},body:{th:"ห้ามเป่าไมค์ ตะโกนใส่ไมค์ ทำเสียงรบกวน หรือจงใจทำให้ผู้อื่นรำคาญ การยั่วยุคู่ต่อสู้ทำได้เพื่อสร้างสีสัน แต่ต้องไม่เข้าข่ายคุกคาม เหยียดหยาม หรือรุนแรงเกินสมควร",en:"Do not blow into the mic, scream, create disruptive noise, or intentionally annoy others. Competitive taunting is allowed for flavour, but must not become harassment, discrimination, or excessive abuse.",vi:"Không thổi mic, la hét, tạo tiếng ồn gây rối hoặc cố ý làm phiền người khác. Có thể khiêu khích đối thủ trong phạm vi trò chơi, nhưng không được trở thành quấy rối, kỳ thị hoặc lăng mạ quá mức."}},
+        {type:"warning",title:{th:"🎵 Soundboard",en:"🎵 Soundboard",vi:"🎵 Soundboard"},body:{th:"ห้าม Spam Soundboard หรือเสียงซ้ำ ๆ เพื่อก่อกวนโดยเจตนา สามารถใช้ Soundboard เพื่อสร้างสีสันได้หากไม่รบกวนผู้อื่นจนเกินสมควร",en:"Do not spam soundboards or repeated audio to intentionally disrupt others. Soundboards may be used for fun when they do not
