@@ -1,0 +1,18 @@
+ excessively disturb others.",vi:"Không spam soundboard hoặc âm thanh lặp lại để cố ý gây rối. Có thể dùng soundboard để tạo không khí nếu không làm phiền người khác quá mức."}}
+      ]
+    },
+
+    {
+      id:"combat", icon:"⚔", code:"04",
+      title:{th:"กฎการต่อสู้",en:"Combat Rules",vi:"Quy tắc chiến đấu"},
+      subtitle:{th:"การเริ่มไฟต์ การจบไฟต์ Crash และ Restart",en:"Fight start, fight end, crashes and restarts",vi:"Bắt đầu/kết thúc giao tranh, crash và restart"},
+      items:[
+        {type:"danger",title:{th:"🚪 Combat Log",en:"🚪 Combat Log",vi:"🚪 Combat Log"},body:{
+          th:"ห้าม Logout / ปิดเกม / ออกจากเซิร์ฟเวอร์ / จงใจหลุดจากเกมระหว่างการต่อสู้เพื่อหลีกเลี่ยงการบาดเจ็บหรือการตาย รวมถึงการ Logout ก่อนเริ่มไฟต์เพื่อหลีกเลี่ยงการต่อสู้ หรือกลับเข้าเกมเพื่อเปลี่ยนสถานการณ์ให้ได้เปรียบ หากมีหลักฐานเพียงพอ",
+          en:"Do not log out, close the game, leave the server, or intentionally disconnect during combat to avoid injury or death. Logging out before a fight to avoid combat, or rejoining to change the situation in your favour, may also count when supported by sufficient evidence.",
+          vi:"Cấm đăng xuất, tắt game, rời máy chủ hoặc cố ý mất kết nối trong lúc giao tranh để tránh bị thương hoặc chết. Đăng xuất trước khi giao tranh để né đánh, hoặc vào lại để thay đổi tình thế có lợi cho mình, cũng có thể bị xem là vi phạm khi có đủ bằng chứng."
+        }},
+        {type:"warning",title:{th:"💥 Crash / Game Error / Connection Error",en:"💥 Crash / Game Error / Connection Error",vi:"💥 Crash / Game Error / Connection Error"},body:{
+          th:"หากหลุดระหว่างไฟต์จาก 💥 Crash / Game Error / Connection Error สามารถส่งหลักฐานเพื่อขอพิจารณาได้ <strong>หลังหลุดแล้วห้ามกลับเข้าสู่การต่อสู้เดิมโดยเด็ดขาด</strong> แม้จะเข้าเกมกลับมาได้ หลักฐานควรแสดงว่าเป็นการหลุดจริง เช่น คลิปก่อนหลุด ภาพหน้าจอ การบันทึกย้อนหลัง หรือหลักฐาน Crash/Error ภาพจอดำเพียงอย่างเดียวอาจไม่เพียงพอ",
+          en:"If you disconnect during combat because of a crash, game error, or connection error, you may submit evidence for review. <strong>After disconnecting, you must not return to the same fight</strong>, even if you can rejoin the game. Evidence should show a genuine disconnect, such as pre-crash footage, screenshots, replay footage, or crash/error proof. A black screen alone may be insufficient.",
+          vi:"Nếu bị mất kết nối trong giao tranh
