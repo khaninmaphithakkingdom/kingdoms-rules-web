@@ -147,18 +147,28 @@
 
   function renderRuleCard(item, index) {
     const query = state.query.trim();
-
-    return `
-      <article class="rule-card ${item.type || ""}">
-        <div class="rule-card-head">
-          <div class="rule-index">${String(index + 1).padStart(2, "0")}</div>
-          <div>
-            <h3>${highlight(tx(item.title), query)}</h3>
-            <div class="rule-body">${highlight(tx(item.body), query)}</div>
-          </div>
+    const content = `
+      <div class="rule-card-head">
+        <div class="rule-index">${String(index + 1).padStart(2, "0")}</div>
+        <div class="rule-card-copy">
+          <h3>${highlight(tx(item.title), query)}</h3>
+          <div class="rule-body">${highlight(tx(item.body), query)}</div>
         </div>
-      </article>
+      </div>
     `;
+
+    if (item.image) {
+      return `
+        <article class="rule-card ${item.type || ""} visual-rule">
+          <div class="visual-rule-media">
+            <img src="${item.image}" alt="${tx(item.imageAlt) || stripHTML(tx(item.title))}" loading="lazy">
+          </div>
+          <div class="visual-rule-copy">${content}</div>
+        </article>
+      `;
+    }
+
+    return `<article class="rule-card ${item.type || ""}">${content}</article>`;
   }
 
   function renderPackLimits() {
@@ -200,7 +210,7 @@
     return `
       <article class="rule-card feature">
         <div class="feature-media">
-          <img data-asset="herd" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <img class="herd-reference-image" src="assets/herd-tokens-v10.png" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
           <div class="feature-copy">
             <span class="eyebrow">HERBIVORE GROUP RULES</span>
             <h3>45 HERD TOKENS</h3>
@@ -212,7 +222,7 @@
             <div class="token-grid">
               ${Object.entries(data.herdTokens).map(([tier, rows]) => `
                 <div class="token-tier">
-                  <strong><span>${tier}</span><span>TOKENS</span></strong>
+                  <strong class="token-tier-title"><span>${tier}</span><em>TOKENS</em></strong>
                   <small>${rows.map(([name, amount]) => `${name} — ${amount}`).join("<br>")}</small>
                 </div>
               `).join("")}
@@ -387,7 +397,11 @@
       if (section.offsetTop <= y) active = section.id;
     });
 
-    $$(".nav-link").forEach(button => {
+    $(".nav-link").forEach(button => {
+      button.classList.toggle("active", button.dataset.target === active);
+    });
+
+    $(".quick-card").forEach(button => {
       button.classList.toggle("active", button.dataset.target === active);
     });
   }
