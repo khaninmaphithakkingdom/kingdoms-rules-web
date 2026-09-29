@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090c0a">
   <meta name="description" content="[TH] Kingdoms Isle official server rules">
-  <title>[TH] Kingdoms Isle �?" Server Rules</title>
+  <title>[TH] Kingdoms Isle — Server Rules</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,8 +24,8 @@
       </a>
       <div class="top-actions">
         <label class="search-wrap desktop-search">
-          <span aria-hidden="true">�O</span>
-          <input id="searchInput" type="search" autocomplete="off" placeholder="�,,�1%�,T�,��,��,?�,Z..." aria-label="�,,�1%�,T�,��,��,?�,Z">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="ค้นหากฎ..." aria-label="ค้นหากฎ">
           <kbd>Ctrl K</kbd>
         </label>
         <div class="lang-switch" role="group" aria-label="Language">
@@ -33,15 +33,15 @@
           <button class="lang-btn" data-lang="en" type="button">EN</button>
           <button class="lang-btn" data-lang="vi" type="button">VN</button>
         </div>
-        <button id="mobileMenuBtn" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false">�~�</button>
+        <button id="mobileMenuBtn" class="icon-btn menu-btn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
       </div>
     </header>
 
     <aside id="sidebar" class="sidebar" aria-label="Rules navigation">
       <div class="sidebar-intro">
         <span class="eyebrow">RULE DIRECTORY</span>
-        <strong data-i18n="navTitle">�,��,��,�,"�,?�,Z</strong>
-        <small data-i18n="navHint">�1?�,��,��,-�,?�,��,�,�,,�1%�,-�1?�,z�,��1^�,-�1,�,>�,��,�,؅,?�,Z�1,�,"�,��,�,��,�</small>
+        <strong data-i18n="navTitle">หมวดกฎ</strong>
+        <small data-i18n="navHint">เลือกหัวข้อเพื่อไปยังกฎโดยตรง</small>
       </div>
       <nav id="categoryNav" class="category-nav"></nav>
       <div class="sidebar-footer">
@@ -57,18 +57,18 @@
           <div class="hero-copy">
             <span class="eyebrow">[TH] KINGDOMS ISLE</span>
             <h1>SERVER <span>RULES</span></h1>
-            <p class="hero-lead" data-i18n="heroLead">�,-�1^�,��,T�,?�,Z�,-�,�1%�,؅,��,��,"�,?�1^�,-�,T�1?�,,�1%�,��1?�,��1^�,T �1?�,z�,��1^�,-�1��,��1%�,-�,,�,?�,,�,T�,-�,��,1�1^�,��1^�,�,��,?�,�,T�1,�,"�1%�,-�,��1^�,��,؅,��,,�,�,'�,~�,��,��,��1?�,��,��,��,T�,,�,?</p>
+            <p class="hero-lead" data-i18n="heroLead">อ่านกฎทั้งหมดก่อนเข้าเล่น เพื่อให้ทุกคนอยู่ร่วมกันได้อย่างยุติธรรมและสนุก</p>
             <div class="hero-notice">
-              <div class="notice-mark">�s-</div>
+              <div class="notice-mark">⚖</div>
               <div>
-                <strong data-i18n="noticeTitle">�,?�,Z�,��,��,��,��,��,-�1?�,>�,��,�1^�,��,T�1?�,>�,��,؅1,�,"�1%</strong>
-                <p data-i18n="noticeBody">�,��,��,?�,��,�,?�,��,��1?�,>�,��,�1^�,��,T�1?�,>�,��,� �,-�,�,��,؅,��,T�,^�,��1?�,^�1%�,؅,o�1^�,��,T�,��1%�,-�,؅,>�,��,��,?�,��,"�,,�,-�,؅1?�,<�,'�,��1O�,Y�1?�,�,-�,��1O</p>
+                <strong data-i18n="noticeTitle">กฎสามารถเปลี่ยนแปลงได้</strong>
+                <p data-i18n="noticeBody">หากมีการเปลี่ยนแปลง ทีมงานจะแจ้งผ่านห้องประกาศของเซิร์ฟเวอร์</p>
               </div>
             </div>
             <div class="hero-stats">
-              <div><strong id="sectionCount">0</strong><span data-i18n="sectionsLabel">�,��,��,�,"�,?�,Z</span></div>
-              <div><strong id="ruleCount">0</strong><span data-i18n="rulesLabel">�,��,�,�,,�1%�,-</span></div>
-              <div><strong id="languageCount">3</strong><span data-i18n="languagesLabel">�,��,��,c�,�</span></div>
+              <div><strong id="sectionCount">0</strong><span data-i18n="sectionsLabel">หมวดกฎ</span></div>
+              <div><strong id="ruleCount">0</strong><span data-i18n="rulesLabel">หัวข้อ</span></div>
+              <div><strong id="languageCount">3</strong><span data-i18n="languagesLabel">ภาษา</span></div>
             </div>
           </div>
           <div class="hero-emblem">
@@ -79,33 +79,33 @@
       </section>
 
       <section class="quick-strip" aria-label="Quick links">
-        <a class="quick-card weekend-quick" data-target="weekend-pvp" href="#weekend-pvp"><span>dY"�</span><div><small>WEEKEND PVP</small><strong data-i18n="quickWeekend">Weekend PVP</strong></div></a>
-        <a class="quick-card" data-target="combat" href="#combat"><span>�s"</span><div><small>COMBAT</small><strong data-i18n="quickCombat">�,?�,Z�,?�,��,��,�1^�,-�,��,1�1%</strong></div></a>
-        <a class="quick-card" data-target="third-party" href="#third-party"><span>dY`?</span><div><small>THIRD PARTY</small><strong data-i18n="quickThird">Third Party</strong></div></a>
-        <a class="quick-card" data-target="redeem" href="#redeem"><span>�T�</span><div><small>REDEEM</small><strong data-i18n="quickRedeem">�,?�,Z Redeem</strong></div></a>
-        <a class="quick-card" data-target="pack-limits" href="#pack-limits"><span>dY�-</span><div><small>GROUP LIMITS</small><strong data-i18n="quickPack">Pack Limits</strong></div></a>
+        <a class="quick-card weekend-quick" data-target="weekend-pvp" href="#weekend-pvp"><span>🔥</span><div><small>WEEKEND PVP</small><strong data-i18n="quickWeekend">Weekend PVP</strong></div></a>
+        <a class="quick-card" data-target="combat" href="#combat"><span>⚔</span><div><small>COMBAT</small><strong data-i18n="quickCombat">กฎการต่อสู้</strong></div></a>
+        <a class="quick-card" data-target="third-party" href="#third-party"><span>👁</span><div><small>THIRD PARTY</small><strong data-i18n="quickThird">Third Party</strong></div></a>
+        <a class="quick-card" data-target="redeem" href="#redeem"><span>♻</span><div><small>REDEEM</small><strong data-i18n="quickRedeem">กฎ Redeem</strong></div></a>
+        <a class="quick-card" data-target="pack-limits" href="#pack-limits"><span>🦖</span><div><small>GROUP LIMITS</small><strong data-i18n="quickPack">Pack Limits</strong></div></a>
       </section>
 
       <section class="toolbar-mobile">
         <label class="search-wrap mobile-search">
-          <span aria-hidden="true">�O</span>
-          <input id="mobileSearchInput" type="search" autocomplete="off" placeholder="�,,�1%�,T�,��,��,?�,Z..." aria-label="�,,�1%�,T�,��,��,?�,Z">
+          <span aria-hidden="true">⌕</span>
+          <input id="mobileSearchInput" type="search" autocomplete="off" placeholder="ค้นหากฎ..." aria-label="ค้นหากฎ">
         </label>
       </section>
 
       <section id="rulesRoot" class="rules-root" aria-live="polite"></section>
 
       <section id="noResults" class="no-results" hidden>
-        <span>�O</span>
-        <h2 data-i18n="noResultsTitle">�1,�,��1^�,z�,s�,?�,Z�,-�,�1^�,,�1%�,T�,��,�</h2>
-        <p data-i18n="noResultsBody">�,��,-�,؅1��,S�1%�,,�,3�,,�1%�,T�,-�,�1^�,��,�1%�,T�,��,� �,��,��,��,-�1?�,��,��,-�,?�,��,��,�,"�,^�,��,?�1?�,��,T�,1�,"�1%�,��,T�,<�1%�,��,�</p>
+        <span>⌕</span>
+        <h2 data-i18n="noResultsTitle">ไม่พบกฎที่ค้นหา</h2>
+        <p data-i18n="noResultsBody">ลองใช้คำค้นที่สั้นลง หรือเลือกหมวดจากเมนูด้านซ้าย</p>
       </section>
 
       <footer class="site-footer">
         <img src="assets/kingdoms-isle-logo-v13.jpg" alt="" aria-hidden="true">
         <div>
           <strong>KINGDOMS ISLE</strong>
-          <p data-i18n="footerText">Respect the rules A� Protect the wilderness A� Play together</p>
+          <p data-i18n="footerText">Respect the rules · Protect the wilderness · Play together</p>
         </div>
       </footer>
     </main>
