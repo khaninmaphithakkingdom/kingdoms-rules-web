@@ -21,8 +21,7 @@
 
   const assetCache = {};
   const assetSpec = {
-    herd: { mime:"image/jpeg", chunks:8 },
-    penaltiesBg: { mime:"image/jpeg", chunks:9 }
+    herd: { mime:"image/jpeg", chunks:8 }
   };
 
   async function getAssetDataUrl(name) {
@@ -291,9 +290,7 @@
     const items = section.items || [];
 
     return `
-      <div class="penalties-visual-bg" aria-hidden="true">
-        <img data-asset="penaltiesBg" alt="">
-      </div>
+      <div class="penalties-visual-bg" aria-hidden="true"></div>
       <div class="penalties-inner">
         <div class="penalties-grid">
           ${items.map(item => `
