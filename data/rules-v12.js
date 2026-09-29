@@ -1,4 +1,109 @@
-ody:{
+window.KI_RULES = {
+  ui: {
+    th: {
+      navTitle:"หมวดกฎ", navHint:"เลือกหัวข้อเพื่อไปยังกฎโดยตรง", currentRules:"CURRENT RULESET",
+      heroLead:"อ่านกฎทั้งหมดก่อนเข้าเล่น เพื่อให้ทุกคนอยู่ร่วมกันได้อย่างยุติธรรมและสนุก",
+      noticeTitle:"กฎสามารถเปลี่ยนแปลงได้",
+      noticeBody:"หากมีการเปลี่ยนแปลง ทีมงานจะแจ้งผ่านห้องประกาศของเซิร์ฟเวอร์",
+      sectionsLabel:"หมวดกฎ", rulesLabel:"หัวข้อ", languagesLabel:"ภาษา",
+      quickCombat:"กฎการต่อสู้", quickThird:"Third Party", quickRedeem:"กฎ Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"ไม่พบกฎที่ค้นหา", noResultsBody:"ลองใช้คำค้นที่สั้นลง หรือเลือกหมวดจากเมนูด้านซ้าย",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"ค้นหากฎ...", copy:"คัดลอกลิงก์แล้ว",
+      packNote:"Growth ต่ำกว่า 45% ไม่นับรวมในจำนวนจำกัดของกลุ่ม เมื่อ Growth ตั้งแต่ 45% ขึ้นไป ต้องแยกออกจากกลุ่มโดยเร็วที่สุด",
+      herdIntro:"ไดโนเสาร์กินพืชสามารถรวมกลุ่มกันได้ โดยมี Herd Tokens รวมกันสูงสุดไม่เกิน 45 Token",
+      herdFree:"Juvenile ที่มี Growth สูงสุดไม่เกิน 45% = 0 Token",
+      herdSpecial:"Stegosaurus กับ Triceratops ห้ามอยู่ด้วยกัน และหากใช้กฎ 45 Token ต้องใช้สีเดียวกันทั้งทีม หากไม่ใช้สีเดียวกันจะนับเป็น 3rd Party ทันที",
+      total:"รวมสูงสุด"
+    },
+    en: {
+      navTitle:"Rule Categories", navHint:"Choose a section to jump directly to it", currentRules:"CURRENT RULESET",
+      heroLead:"Read all rules before playing so everyone can share the server fairly and enjoyably.",
+      noticeTitle:"Rules may change", noticeBody:"When rules change, staff will announce the update in the server announcement channels.",
+      sectionsLabel:"sections", rulesLabel:"topics", languagesLabel:"languages",
+      quickCombat:"Combat Rules", quickThird:"Third Party", quickRedeem:"Redeem Rules", quickPack:"Pack Limits",
+      noResultsTitle:"No matching rules found", noResultsBody:"Try a shorter search term or choose a category from the navigation.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Search rules...", copy:"Link copied",
+      packNote:"Players below 45% Growth do not count toward the group limit. At 45% Growth or higher, they must leave the group as soon as possible to comply with Pack Limits.",
+      herdIntro:"Herbivores may mix in a group as long as the total does not exceed 45 Herd Tokens.",
+      herdFree:"Juveniles at up to 45% Growth = 0 Tokens",
+      herdSpecial:"Stegosaurus and Triceratops may not stay together. When using the 45 Token rule, the entire team must use the same colour; otherwise it is immediately counted as Third Party.",
+      total:"Maximum total"
+    },
+    vi: {
+      navTitle:"Danh mục quy tắc", navHint:"Chọn mục để chuyển thẳng đến quy tắc", currentRules:"CURRENT RULESET",
+      heroLead:"Hãy đọc toàn bộ quy tắc trước khi chơi để mọi người cùng chơi công bằng và vui vẻ.",
+      noticeTitle:"Quy tắc có thể thay đổi", noticeBody:"Khi có thay đổi, nhân viên sẽ thông báo trong các kênh announcement của máy chủ.",
+      sectionsLabel:"danh mục", rulesLabel:"chủ đề", languagesLabel:"ngôn ngữ",
+      quickCombat:"Quy tắc chiến đấu", quickThird:"Third Party", quickRedeem:"Quy tắc Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"Không tìm thấy quy tắc phù hợp", noResultsBody:"Hãy thử từ khóa ngắn hơn hoặc chọn danh mục từ menu.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Tìm quy tắc...", copy:"Đã sao chép liên kết",
+      packNote:"Người chơi dưới 45% Growth không tính vào giới hạn nhóm. Khi đạt từ 45% Growth trở lên, phải rời nhóm sớm nhất có thể để tuân thủ Pack Limit.",
+      herdIntro:"Herbivore có thể lập nhóm hỗn hợp miễn tổng không vượt quá 45 Herd Tokens.",
+      herdFree:"Juvenile tối đa 45% Growth = 0 Token",
+      herdSpecial:"Stegosaurus và Triceratops không được ở cùng nhau. Khi dùng quy tắc 45 Token, cả team phải dùng cùng màu; nếu không sẽ bị tính là Third Party ngay.",
+      total:"Tổng tối đa"
+    }
+  },
+
+  sections: [
+    {
+      id:"basic", icon:"⚖", code:"01",
+      title:{th:"กฎพื้นฐาน",en:"Basic Rules",vi:"Quy tắc cơ bản"},
+      subtitle:{th:"มาตรฐานพื้นฐานของชุมชน",en:"Core community standards",vi:"Tiêu chuẩn cộng đồng cốt lõi"},
+      items:[
+        {type:"danger",title:{th:"🤝 1. ห้ามคุกคามหรือไม่ให้เกียรติผู้อื่น",en:"🤝 1. No harassment or disrespect",vi:"🤝 1. Không quấy rối hoặc thiếu tôn trọng"},body:{th:"ห้ามคุกคาม ไม่ให้เกียรติ หรือใช้คำหยาบ รวมถึงการแกล้งผู้อื่นแบบจงใจ",en:"Harassment, disrespect, profanity, and intentional bullying of others are prohibited.",vi:"Cấm quấy rối, thiếu tôn trọng, chửi bới hoặc cố ý bắt nạt người khác."}},
+        {type:"danger",title:{th:"🛡️ 2. ห้ามโกงหรือใช้ช่องโหว่",en:"🛡️ 2. No cheats or exploits",vi:"🛡️ 2. Cấm gian lận hoặc khai thác lỗi"},body:{th:"ห้ามใช้โปรแกรมโกง และช่องโหว่ของเกมเพื่อผลประโยชน์ทุกชนิด",en:"Do not use cheat programs or exploit game vulnerabilities for any kind of gain.",vi:"Không được dùng phần mềm gian lận hoặc khai thác lỗ hổng trò chơi để thu lợi dưới bất kỳ hình thức nào."}},
+        {type:"danger",title:{th:"📢 3. ห้ามโฆษณาเซิร์ฟเวอร์อื่น",en:"📢 3. No advertising other servers",vi:"📢 3. Cấm quảng cáo máy chủ khác"},body:{th:"ห้ามโฆษณาเซิร์ฟเวอร์อื่นภายในเซิร์ฟเวอร์ของเรา",en:"Advertising other servers within our server is prohibited.",vi:"Cấm quảng cáo máy chủ khác trong máy chủ của chúng tôi."}},
+        {type:"danger",title:{th:"📄 4. ห้ามให้ข้อมูลเท็จหรือบิดเบือนข้อเท็จจริง",en:"📄 4. No false or distorted information",vi:"📄 4. Cấm cung cấp thông tin sai lệch"},body:{th:"ห้ามให้ข้อมูลเท็จต่อทีมงาน และบิดเบือนข้อมูลที่ส่งผลเสียต่อทีมงานและเซิร์ฟเวอร์",en:"Do not provide false information to staff or distort facts in a way that harms staff or the server.",vi:"Không được cung cấp thông tin sai cho nhân viên hoặc bóp méo sự thật gây ảnh hưởng xấu đến nhân viên hay máy chủ."}},
+        {type:"warning",title:{th:"📵 5. งดนำดราม่าภายในเซิร์ฟเวอร์ไปลงโซเชียล",en:"📵 5. Keep server drama off social media",vi:"📵 5. Không đưa drama của máy chủ lên mạng xã hội"},body:{th:"หากมีปัญหาให้ใช้ช่องทาง Report / Support ของเซิร์ฟเวอร์",en:"If there is a problem, use the server's Report / Support channels.",vi:"Nếu có vấn đề, hãy sử dụng kênh Report / Support của máy chủ."}},
+        {type:"info",title:{th:"📖 6. ผู้เล่นมีหน้าที่อ่านและทำความเข้าใจกฎ",en:"📖 6. Players are responsible for reading and understanding the rules",vi:"📖 6. Người chơi có trách nhiệm đọc và hiểu quy tắc"},body:{
+          th:"ผู้เล่นทุกคนมีหน้าที่อ่าน ทำความเข้าใจ และปฏิบัติตามกฎของเซิร์ฟเวอร์ก่อนเข้าเล่น<br><br>การอ้างว่า <strong>“ไม่รู้กฎ”</strong> หรือ <strong>“ไม่ได้อ่านกฎ”</strong> จะไม่ถือเป็นข้อแก้ตัวในการฝ่าฝืนกฎ<br><br>หากผู้เล่นกระทำผิดกฎ แม้จะอ้างว่าไม่ทราบกฎ ผู้เล่นยังคงอาจได้รับบทลงโทษตามความเหมาะสม",
+          en:"All players are responsible for reading, understanding, and following the server rules before playing.<br><br>Claiming <strong>“I did not know the rules”</strong> or <strong>“I did not read the rules”</strong> is not an excuse for breaking them.<br><br>If a player violates the rules, they may still receive an appropriate punishment even if they claim they were unaware of the rule.",
+          vi:"Mọi người chơi có trách nhiệm đọc, hiểu và tuân thủ quy tắc của máy chủ trước khi chơi.<br><br>Việc nói rằng <strong>“không biết quy tắc”</strong> hoặc <strong>“chưa đọc quy tắc”</strong> không được xem là lý do biện minh cho việc vi phạm.<br><br>Nếu người chơi vi phạm quy tắc, họ vẫn có thể bị xử phạt phù hợp ngay cả khi nói rằng mình không biết quy tắc."
+        }}
+      ]
+    },
+
+    {
+      id:"behavior", icon:"🤝", code:"02",
+      title:{th:"พฤติกรรมและการติดต่อทีมงาน",en:"Behaviour & Staff Conduct",vi:"Hành vi & làm việc với nhân viên"},
+      subtitle:{th:"การสื่อสารอย่างเคารพและการพิจารณาเคส",en:"Respectful communication and case handling",vi:"Giao tiếp tôn trọng và xử lý vụ việc"},
+      items:[
+        {type:"danger",title:{th:"🚫 Zero Tolerance",en:"🚫 Zero Tolerance",vi:"Không khoan nhượng"},body:{
+          th:"เซิร์ฟเวอร์ไม่ต้อนรับการเหยียดเชื้อชาติ/ชาติพันธุ์ การเหยียดเพศหรือรสนิยมทางเพศ การดูถูกหรือเหยียดเพศ มุกหรือคำพูดที่เหยียดบุคคล/กลุ่มคน พฤติกรรมหรือการสื่อสารเชิงทางเพศที่ไม่เหมาะสม และการคุกคามหรือล่วงละเมิดที่ทำให้ผู้อื่นรู้สึกไม่ปลอดภัย<br><span class='muted'>คำว่า “แค่ล้อเล่น” หรือ “เป็นเพียงมุก” ไม่ใช่ข้อยกเว้น</span>",
+          en:"The server does not tolerate racism or ethnic discrimination, discrimination based on sex or sexual orientation, sexist insults, discriminatory jokes or remarks, inappropriate sexual behaviour or communication, or harassment that makes others feel unsafe.<br><span class='muted'>“Just joking” is not an exception.</span>",
+          vi:"Máy chủ không chấp nhận phân biệt chủng tộc/dân tộc, phân biệt giới tính hoặc xu hướng tính dục, lời lẽ hạ nhục mang tính giới, trò đùa/kỳ thị cá nhân hoặc nhóm người, hành vi hay giao tiếp tình dục không phù hợp, hoặc quấy rối khiến người khác cảm thấy không an toàn.<br><span class='muted'>“Chỉ đùa thôi” không phải là ngoại lệ.</span>"
+        }},
+        {type:"info",title:{th:"💬 Trash Talk",en:"💬 Trash Talk",vi:"💬 Trash Talk"},body:{th:"การพูดแซว พูดแขวะ หรือ Trash Talk สามารถเกิดขึ้นได้ตามวัฒนธรรมการเล่นเกม แต่ต้องอยู่ในขอบเขตและไม่ทำมากเกินไป",en:"Teasing, banter, and trash talk may occur as part of gaming culture, but it must stay within reasonable limits.",vi:"Trêu chọc, cà khịa và trash talk có thể xuất hiện trong văn hóa chơi game, nhưng phải ở mức hợp lý và không quá đà."}},
+        {type:"warning",title:{th:"🛡️ ให้เกียรติทีมงานระหว่างดำเนินเคส",en:"🛡️ Respect staff during case handling",vi:"🛡️ Tôn trọng nhân viên khi xử lý vụ việc"},body:{
+          th:"ผู้เล่นต้องสื่อสารกับทีมงานด้วยความสุภาพและให้ความร่วมมือ หลีกเลี่ยงการใช้อารมณ์ ดูหมิ่น ประชด ยั่วยุ หรือกดดัน หากยังไม่ให้ความร่วมมือหลังได้รับคำเตือน ทีมงานอาจพักหรือยุติการดำเนินเคสได้ ผู้เล่นยังมีสิทธิ์ชี้แจง โต้แย้ง หรือขอทบทวนคำตัดสินด้วยเหตุผลและหลักฐานอย่างสุภาพ",
+          en:"Players must communicate politely and cooperate with staff. Avoid emotional abuse, insults, sarcasm, provocation, or pressure. If non-cooperation continues after a warning, staff may pause or close the case. Players may still explain, challenge, or request a review using reasons and evidence respectfully.",
+          vi:"Người chơi phải giao tiếp lịch sự và hợp tác với nhân viên. Tránh xúc phạm, mỉa mai, khiêu khích hoặc gây áp lực. Nếu vẫn không hợp tác sau khi được cảnh báo, nhân viên có thể tạm dừng hoặc kết thúc vụ việc. Người chơi vẫn có quyền giải trình, phản biện hoặc yêu cầu xem xét lại bằng lý do và bằng chứng một cách lịch sự."
+        }},
+        {type:"info",title:{th:"⚖️ มาตรฐานการพิจารณาเคส",en:"⚖️ Case-by-case review standard",vi:"⚖️ Tiêu chuẩn xem xét từng vụ việc"},body:{
+          th:"ทีมงานพิจารณาแบบ Case by Case จากข้อเท็จจริง หลักฐาน บริบท ลำดับเหตุการณ์ และเจตนา เหตุการณ์ที่ดูคล้ายกันอาจมีรายละเอียดต่างกันและได้ผลพิจารณาต่างกัน <div class='quote'><strong>มาตรฐานเดียวกัน ≠ ผลลัพธ์ต้องเหมือนกันทุกเคส</strong><br>มาตรฐานเดียวกัน = ใช้หลักเกณฑ์เดียวกันพิจารณาข้อเท็จจริงของแต่ละเคส</div>",
+          en:"Staff review cases individually using facts, evidence, context, sequence of events, and intent. Similar-looking incidents may contain different details and may lead to different decisions.<div class='quote'><strong>Same standard ≠ identical outcome in every case.</strong><br>Same standard = applying the same criteria to each case's facts.</div>",
+          vi:"Nhân viên xem xét từng vụ việc dựa trên sự thật, bằng chứng, bối cảnh, trình tự sự kiện và ý định. Các tình huống trông giống nhau có thể có chi tiết khác nhau và dẫn đến kết quả khác nhau.<div class='quote'><strong>Cùng tiêu chuẩn ≠ mọi vụ việc phải có cùng kết quả.</strong><br>Cùng tiêu chuẩn = áp dụng cùng tiêu chí cho sự thật của từng vụ việc.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"voice", icon:"🎙", code:"03",
+      title:{th:"กฎการใช้ไมค์",en:"Voice Chat Rules",vi:"Quy tắc Voice Chat"},
+      subtitle:{th:"การใช้เสียงโดยไม่รบกวนผู้อื่น",en:"Use voice without disrupting others",vi:"Sử dụng giọng nói không làm phiền người khác"},
+      items:[
+        {type:"danger",title:{th:"🔇 ห้ามก่อกวนด้วยเสียง",en:"🔇 No disruptive audio",vi:"🔇 Cấm gây rối bằng âm thanh"},body:{th:"ห้ามเป่าไมค์ ตะโกนใส่ไมค์ ทำเสียงรบกวน หรือจงใจทำให้ผู้อื่นรำคาญ การยั่วยุคู่ต่อสู้ทำได้เพื่อสร้างสีสัน แต่ต้องไม่เข้าข่ายคุกคาม เหยียดหยาม หรือรุนแรงเกินสมควร",en:"Do not blow into the mic, scream, create disruptive noise, or intentionally annoy others. Competitive taunting is allowed for flavour, but must not become harassment, discrimination, or excessive abuse.",vi:"Không thổi mic, la hét, tạo tiếng ồn gây rối hoặc cố ý làm phiền người khác. Có thể khiêu khích đối thủ trong phạm vi trò chơi, nhưng không được trở thành quấy rối, kỳ thị hoặc lăng mạ quá mức."}},
+        {type:"warning",title:{th:"🎵 Soundboard",en:"🎵 Soundboard",vi:"🎵 Soundboard"},body:{th:"ห้าม Spam Soundboard หรือเสียงซ้ำ ๆ เพื่อก่อกวนโดยเจตนา สามารถใช้ Soundboard เพื่อสร้างสีสันได้หากไม่รบกวนผู้อื่นจนเกินสมควร",en:"Do not spam soundboards or repeated audio to intentionally disrupt others. Soundboards may be used for fun when they do not excessively disturb others.",vi:"Không spam soundboard hoặc âm thanh lặp lại để cố ý gây rối. Có thể dùng soundboard để tạo không khí nếu không làm phiền người khác quá mức."}}
+      ]
+    },
+
+    {
+      id:"combat", icon:"⚔", code:"04",
+      title:{th:"กฎการต่อสู้",en:"Combat Rules",vi:"Quy tắc chiến đấu"},
+      subtitle:{th:"การเริ่มไฟต์ การจบไฟต์ Crash และ Restart",en:"Fight start, fight end, crashes and restarts",vi:"Bắt đầu/kết thúc giao tranh, crash và restart"},
+      items:[
+        {type:"danger",title:{th:"🚪 Combat Log",en:"🚪 Combat Log",vi:"🚪 Combat Log"},body:{
           th:"ห้าม Logout / ปิดเกม / ออกจากเซิร์ฟเวอร์ / จงใจหลุดจากเกมระหว่างการต่อสู้เพื่อหลีกเลี่ยงการบาดเจ็บหรือการตาย รวมถึงการ Logout ก่อนเริ่มไฟต์เพื่อหลีกเลี่ยงการต่อสู้ หรือกลับเข้าเกมเพื่อเปลี่ยนสถานการณ์ให้ได้เปรียบ หากมีหลักฐานเพียงพอ",
           en:"Do not log out, close the game, leave the server, or intentionally disconnect during combat to avoid injury or death. Logging out before a fight to avoid combat, or rejoining to change the situation in your favour, may also count when supported by sufficient evidence.",
           vi:"Cấm đăng xuất, tắt game, rời máy chủ hoặc cố ý mất kết nối trong lúc giao tranh để tránh bị thương hoặc chết. Đăng xuất trước khi giao tranh để né đánh, hoặc vào lại để thay đổi tình thế có lợi cho mình, cũng có thể bị xem là vi phạm khi có đủ bằng chứng."
@@ -109,7 +214,8 @@ ody:{
         {type:"warning",title:{th:"⚠️ กฎสำคัญที่สุด — “อย่าไว้ใจใคร”",en:"⚠️ Most Important Rule — “Trust No One”",vi:"⚠️ Quy tắc quan trọng nhất — “Đừng tin ai”"},body:{th:"<div class='quote'><strong>การเป็นมิตร การพูดคุย หรือการบอกว่าจะไม่ทำร้าย ไม่ได้หมายความว่าอีกฝ่ายจะเป็นคนที่คุณไว้ใจได้</strong></div><br><strong>🩸 “ในเกมนี้ คุณไว้ใจใครไม่ได้”</strong><br><br>⚠️ อย่าไว้ใจผู้เล่นอื่นเพียงเพราะเขาเข้ามาพูดคุยกับคุณ<br>⚠️ อย่าไว้ใจเพียงเพราะเขาบอกว่าจะไม่ทำร้าย<br>⚠️ อย่าเปิดเผยข้อมูลสำคัญโดยไม่จำเป็น<br>⚠️ อย่าคิดว่าการพูดคุยหรือทำตัวเป็นมิตร หมายความว่าอีกฝ่ายเป็นพันธมิตรแล้ว<br>⚠️ ก่อนเข้าทีมหรือเข้าใกล้ผู้เล่นอื่น ควรพิจารณาความเสี่ยงด้วยตัวเอง<br><br><div class='quote'><strong>🦖 CARNIVORE / คำหลอกล่ออาจเป็นส่วนหนึ่งของการล่า</strong><br>โดยเฉพาะเมื่อพบกับ Carnivore ผู้เล่นไม่ควรเชื่อคำพูดหรือท่าทีเป็นมิตรโดยอัตโนมัติ ตราบใดที่ทั้งสองฝ่าย <strong>ยังไม่ได้เข้าทีมกัน</strong> Carnivore สามารถใช้การพูดคุย การทำทีเป็นมิตร หรือการหลอกล่อให้เป้าหมายเข้าใกล้ ก่อนเริ่มโจมตีได้ และให้ถือว่าเป็นส่วนหนึ่งของการล่า<br><br>คำพูด เช่น “จะไม่ทำร้าย”, “เข้ามาใกล้ได้”, “ไม่ฆ่า” หรือข้อความในลักษณะเดียวกัน <strong>ไม่ได้สร้างสถานะพันธมิตรขึ้นมาโดยอัตโนมัติ</strong></div><br><strong>⚠️ การพูดคุยหรือการเตือนกันเพียงอย่างเดียว ไม่ถือว่าเป็นการสร้างพันธมิตร</strong><br><br><strong>อย่างไรก็ตาม เมื่อผู้เล่นตัดสินใจเข้าทีมกันแล้ว กฎพันธมิตรจะมีผลทันที</strong><br>• ห้ามฆ่ากัน<br>• ห้ามหักหลังโดยใช้ข้อมูลของพันธมิตร<br>• ห้าม SPOT หรือส่งข้อมูลให้ผู้เล่นอื่นเข้ามาฆ่าพันธมิตร<br><br>ทีมงานไม่สามารถรับประกันความสัมพันธ์ คำพูด หรือความน่าเชื่อถือของผู้เล่นคนอื่นได้ ผู้เล่นต้องประเมินความเสี่ยงด้วยตัวเองก่อนตัดสินใจเข้าทีม",en:"<div class='quote'><strong>Being friendly, talking, or saying that no harm will be done does not mean the other player is trustworthy.</strong></div><br><strong>🩸 “In this game, trust no one.”</strong><br><br>⚠️ Do not trust another player simply because they talk to you.<br>⚠️ Do not trust them simply because they say they will not hurt you.<br>⚠️ Do not reveal important information unnecessarily.<br>⚠️ Do not assume friendly behaviour or conversation means an alliance already exists.<br>⚠️ Before teaming or approaching another player, assess the risk yourself.<br><br><div class='quote'><strong>🦖 CARNIVORE / Deception may be part of the hunt</strong><br>Players should be especially cautious around Carnivores and should not automatically trust friendly words or behaviour. As long as both sides <strong>have not joined the same team</strong>, a Carnivore may talk, act friendly, or lure a target closer before attacking; this may be treated as part of the hunt.<br><br>Statements such as “I won’t hurt you”, “come closer”, “I won’t kill you”, or similar wording <strong>do not automatically create alliance status</strong>.</div><br><strong>⚠️ Conversation or warnings alone do not create an alliance.</strong><br><br><strong>However, once players decide to join the same team, alliance rules apply immediately.</strong><br>• Do not kill each other.<br>• Do not betray a teammate by using alliance information against them.<br>• Do not SPOT or pass information to other players so they can kill your ally.<br><br>Staff cannot guarantee another player’s relationship, statements, or trustworthiness. Players must assess the risk themselves before choosing to team.",vi:"<div class='quote'><strong>Việc tỏ ra thân thiện, nói chuyện hoặc nói rằng sẽ không làm hại không có nghĩa là người kia đáng tin.</strong></div><br><strong>🩸 “Trong trò chơi này, đừng tin ai.”</strong><br><br>⚠️ Đừng tin người chơi khác chỉ vì họ nói chuyện với bạn.<br>⚠️ Đừng tin chỉ vì họ nói rằng sẽ không làm hại bạn.<br>⚠️ Không tiết lộ thông tin quan trọng khi không cần thiết.<br>⚠️ Đừng cho rằng nói chuyện hoặc tỏ ra thân thiện có nghĩa là đã trở thành đồng minh.<br>⚠️ Trước khi vào team hoặc tiến lại gần người chơi khác, hãy tự đánh giá rủi ro.<br><br><div class='quote'><strong>🦖 CARNIVORE / Lừa dụ có thể là một phần của cuộc săn</strong><br>Người chơi cần đặc biệt cẩn thận khi gặp Carnivore và không nên tự động tin lời nói hoặc thái độ thân thiện. Miễn là hai bên <strong>chưa vào cùng một team</strong>, Carnivore có thể nói chuyện, giả vờ thân thiện hoặc dụ mục tiêu tiến lại gần trước khi tấn công; hành vi này có thể được xem là một phần của cuộc săn.<br><br>Những câu như “tôi sẽ không làm hại”, “lại gần đi”, “tôi không giết đâu” hoặc tương tự <strong>không tự động tạo trạng thái đồng minh</strong>.</div><br><strong>⚠️ Chỉ nói chuyện hoặc cảnh báo nhau không tạo thành liên minh.</strong><br><br><strong>Tuy nhiên, ngay khi người chơi quyết định vào cùng team, quy tắc liên minh có hiệu lực ngay lập tức.</strong><br>• Không được giết nhau.<br>• Không được phản bội bằng cách sử dụng thông tin của đồng minh chống lại họ.<br>• Không được SPOT hoặc chuyển thông tin cho người chơi khác để họ đến giết đồng minh.<br><br>Nhân viên không thể bảo đảm mối quan hệ, lời nói hay độ đáng tin của người chơi khác. Người chơi phải tự đánh giá rủi ro trước khi quyết định vào team."}},
         {type:"danger",title:{th:"🤝 เมื่อเข้าทีมแล้ว ห้ามฆ่ากัน",en:"🤝 Once teamed, do not kill each other",vi:"🤝 Đã vào team thì không được giết nhau"},body:{th:"เมื่อทั้งสองฝ่ายตกลงเข้าทีมเดียวกัน ให้ถือว่าเป็นพันธมิตรทันที ห้ามฆ่าหรือโจมตีสมาชิกในทีม ห้ามทำทีเป็นมิตรเพื่อให้อีกฝ่ายลดการป้องกัน และห้ามใช้การเข้าทีมเป็นเครื่องมือเตรียมฆ่าในภายหลัง",en:"Once both sides agree to join the same team, alliance status applies immediately. Do not kill or attack teammates, pretend to be friendly to lower their guard, or use teaming as a setup for a later kill.",vi:"Khi hai bên đồng ý vào cùng team, trạng thái liên minh có hiệu lực ngay. Không được giết hoặc tấn công đồng đội, giả vờ thân thiện để đối phương mất cảnh giác, hoặc dùng việc vào team để chuẩn bị giết sau đó."}},
         {type:"danger",title:{th:"🚫 ห้ามออกทีมแล้วฆ่าทันที",en:"🚫 No leave-team-then-kill setup",vi:"🚫 Cấm rời team rồi lập tức giết"},body:{th:"ห้ามใช้รูปแบบ เข้าทีม → ทำทีเป็นมิตร → ออกจากทีม → กลับมาฆ่า หากพบเจตนาใช้การเข้าทีมเพื่อหลอกล่อแล้วนำไปสู่การฆ่า ทีมงานสามารถดำเนินการตามกฎได้",en:"Do not use a join team → act friendly → leave team → return to kill setup. If teaming is intentionally used to lure someone into a later kill, staff may take action.",vi:"Cấm kiểu vào team → giả vờ thân thiện → rời team → quay lại giết. Nếu việc vào team được cố ý dùng để dụ người khác rồi giết, nhân viên có thể xử lý theo luật."}},
-        {type:"danger",title:{th:"📍 ห้าม SPOT จุดจากข้อมูลพันธมิตร",en:"📍 Do not SPOT using alliance information",vi:"📍 Cấm SPOT bằng thông tin liên minh"},body:{th:"ห้ามใช้ข้อมูลที่ได้จากการเป็นพันธมิตรเพื่อบอกตำแหน่ง SPOT จุด ส่งพิกัด เรียกเพื่อน หรือส่งข้อมูลให้กลุ่มอื่นเข้ามาโจมตี โดยเฉพาะกรณีออกทีมแล้วบอกจุดให้เพื่อนมาฆ่า",en:"Do not use information obtained through an alliance to share locations, SPOT, send coordinates, call friends, or give another group information to attack. Leaving the team and then giving friends the target's location is specifically prohibited.",vi:"Không được dùng thông tin có được từ liên minh để báo vị trí, SPOT, gửi tọa độ, gọi bạn hoặc cung cấp thông tin cho nhóm khác đến tấn công. Đặc biệt cấm rời team rồi báo vị trí cho bạn đến giết."}},
+        {type:"danger",title:{th:"📍 ห้าม SPOT จุดจากข้อมูลพันธมิตร",en:"📍 Do not SPOT using alliance information",vi:"📍 Cấm SPOT bằng thông tin liên minh"},body:{th:"ห้
+ามใช้ข้อมูลที่ได้จากการเป็นพันธมิตรเพื่อบอกตำแหน่ง SPOT จุด ส่งพิกัด เรียกเพื่อน หรือส่งข้อมูลให้กลุ่มอื่นเข้ามาโจมตี โดยเฉพาะกรณีออกทีมแล้วบอกจุดให้เพื่อนมาฆ่า",en:"Do not use information obtained through an alliance to share locations, SPOT, send coordinates, call friends, or give another group information to attack. Leaving the team and then giving friends the target's location is specifically prohibited.",vi:"Không được dùng thông tin có được từ liên minh để báo vị trí, SPOT, gửi tọa độ, gọi bạn hoặc cung cấp thông tin cho nhóm khác đến tấn công. Đặc biệt cấm rời team rồi báo vị trí cho bạn đến giết."}},
         {type:"info",title:{th:"⚔️ 2v2 / 3v3 / จำนวนเท่ากัน",en:"⚔️ 2v2 / 3v3 / equal numbers",vi:"⚔️ 2v2 / 3v3 / số lượng bằng nhau"},body:{th:"หากผู้เล่นพบกันโดยแต่ละฝ่ายมีจำนวนเท่ากัน เช่น 2v2, 3v3, 4v4 สามารถต่อสู้กันได้ตามปกติ แต่ยังต้องปฏิบัติตามกฎ Third Party",en:"When both sides meet with equal numbers, such as 2v2, 3v3, or 4v4, they may fight normally, but Third Party rules still apply.",vi:"Khi hai bên gặp nhau với số lượng bằng nhau như 2v2, 3v3 hoặc 4v4, có thể giao tranh bình thường nhưng vẫn phải tuân thủ quy tắc Third Party."}}
       ]
     },
