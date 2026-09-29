@@ -44,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
           node --check data/rules-v12.js
-          node --check js/app-v21.js
+          node --check js/app-v25.js
           test -s css/style-v24.css
           test -s assets/herd-tokens-v10.jpg
           test -s assets/staff-assistance-area-v10.jpg
