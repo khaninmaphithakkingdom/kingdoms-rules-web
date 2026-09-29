@@ -344,13 +344,7 @@
             <span>THE PIT · SOUTH WEST</span>
             <strong>RULES ZONE REFERENCE</strong>
           </div>
-          <div class="pvp-map-art" role="img" aria-label="${tx(section.map.alt)}">
-            <div class="pvp-map-marker">
-              <span></span>
-              <strong>THE PIT</strong>
-              <small>SOUTH WEST · RULES ZONE</small>
-            </div>
-          </div>
+          <div class="pvp-map-art" role="img" aria-label="${tx(section.map.alt)}"></div>
           <figcaption>${tx(section.map.caption)}</figcaption>
         </figure>
 
