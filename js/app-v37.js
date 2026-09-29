@@ -45,9 +45,397 @@
 
   async function hydrateAssets() {
     for (const name of Object.keys(assetSpec)) {
-      const nodes = $$('[d
-…[middle output omitted]…
-22"/></svg></button>
+      const nodes = $$('[data-asset="' + name + '"]');
+      if (!nodes.length) continue;
+
+      try {
+        const url = await getAssetDataUrl(name);
+        nodes.forEach(node => node.src = url);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+  const safeLang = () => ["th", "en", "vi"].includes(state.lang) ? state.lang : "th";
+  const tx = obj => obj?.[safeLang()] ?? obj?.th ?? "";
+  const normalize = value => (value || "").toLocaleLowerCase().normalize("NFKC");
+  const cleanNavTitle = value => (value || "")
+    .replace(/\p{Extended_Pictographic}/gu, "")
+    .replace(/\uFE0F/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  function stripHTML(html) {
+    const el = document.createElement("div");
+    el.innerHTML = html || "";
+    return el.textContent || "";
+  }
+
+  function setStaticUI() {
+    const t = data.ui[safeLang()];
+    document.documentElement.lang = safeLang();
+    const languageCode = { th:"TH", en:"EN", vi:"VN" }[safeLang()] || "TH";
+    const languageCount = $("#languageCount");
+    if (languageCount) languageCount.textContent = languageCode;
+
+    $$("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key]) el.textContent = t[key];
+    });
+
+    searchInput.placeholder = t.search;
+    mobileSearchInput.placeholder = t.search;
+
+    $$(".lang-btn").forEach(button => {
+      button.classList.toggle("active", button.dataset.lang === safeLang());
+    });
+  }
+
+  function searchableText(section) {
+    let text = tx(section.title) + " " + tx(section.subtitle) + " ";
+
+    (section.items || []).forEach(item => {
+      text += tx(item.title) + " " + stripHTML(tx(item.body)) + " ";
+    });
+
+    if (section.feature === "packLimits") {
+      Object.entries(data.packLimits).forEach(([group, rows]) => {
+        text += group + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    if (section.feature === "herdTokens") {
+      Object.entries(data.herdTokens).forEach(([tier, rows]) => {
+        text += tier + " " + rows.flat().join(" ") + " ";
+      });
+    }
+
+    if (section.searchText) text += tx(section.searchText) + " ";
+
+    return normalize(text);
+  }
+
+  function highlight(html, rawQuery) {
+    const q = rawQuery.trim();
+    if (!q) return html;
+
+    const holder = document.createElement("div");
+    holder.innerHTML = html;
+
+    const needle = normalize(q);
+    const walker = document.createTreeWalker(holder, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node => {
+      const raw = node.nodeValue;
+      const index = normalize(raw).indexOf(needle);
+      if (index < 0) return;
+
+      const fragment = document.createDocumentFragment();
+      fragment.append(raw.slice(0, index));
+
+      const mark = document.createElement("mark");
+      mark.textContent = raw.slice(index, index + q.length);
+      fragment.append(mark, raw.slice(index + q.length));
+
+      node.replaceWith(fragment);
+    });
+
+    return holder.innerHTML;
+  }
+
+  function cleanRuleTitle(item) {
+    const raw = tx(item.title).trim();
+    const match = raw.match(/^([^\p{L}\p{N}]*)(?:\d+\.\s*)?(.*)$/u);
+    const leading = match ? match[1] : "";
+    const rest = match ? match[2].trimStart() : raw;
+    return `${leading}${rest}`;
+  }
+
+  function renderRuleCard(item, index) {
+    const query = state.query.trim();
+    const content = `
+      <div class="rule-card-head">
+        <div class="rule-card-copy">
+          <h3>${highlight(cleanRuleTitle(item), query)}</h3>
+          <div class="rule-body">${highlight(tx(item.body), query)}</div>
+        </div>
+      </div>
+    `;
+
+    if (item.image) {
+      return `
+        <article class="rule-card ${item.type || ""} visual-rule ${item.image.includes("staff-assistance-area") ? "staff-assistance-rule" : ""}">
+          <div class="visual-rule-media">
+            <img src="${item.image}" alt="${tx(item.imageAlt) || stripHTML(tx(item.title))}" loading="lazy">
+          </div>
+          <div class="visual-rule-copy">${content}</div>
+        </article>
+      `;
+    }
+
+    return `<article class="rule-card ${item.type || ""}">${content}</article>`;
+  }
+
+  function renderRuleGroups(items) {
+    const groups = [];
+    let current = null;
+
+    items.forEach((item, index) => {
+      if (item.image) {
+        groups.push({ visual:true, item, index });
+        current = null;
+        return;
+      }
+
+      const type = item.type || "default";
+      if (!current || current.visual || current.type !== type) {
+        current = { visual:false, type, rows:[] };
+        groups.push(current);
+      }
+      current.rows.push({ item, index });
+    });
+
+    return groups.map(group => {
+      if (group.visual) return renderRuleCard(group.item, group.index);
+
+      return `
+        <div class="rule-group ${group.type}">
+          ${group.rows.map(({ item, index }) => `
+            <article class="rule-group-item">
+              <div class="rule-card-head">
+                <div class="rule-card-copy">
+                  <h3>${highlight(cleanRuleTitle(item), state.query.trim())}</h3>
+                  <div class="rule-body">${highlight(tx(item.body), state.query.trim())}</div>
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }).join("");
+  }
+
+  function renderPackLimits() {
+    const t = data.ui[safeLang()];
+    const labels = safeLang() === "th"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"สายพันธุ์", limit:"จำนวนสูงสุด" }
+      : safeLang() === "vi"
+      ? { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Loài", limit:"Giới hạn" }
+      : { Herbivore:"HERBIVORE", Omnivore:"OMNIVORE", Carnivore:"CARNIVORE", species:"Species", limit:"Max" };
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-copy">
+          <span class="eyebrow">GROUP PACK LIMITS</span>
+          <h3>${tx(data.sections.find(s => s.id === "pack-limits").title)}</h3>
+          <div class="rule-body"><p>${t.packNote}</p></div>
+
+          ${Object.entries(data.packLimits).map(([group, rows]) => `
+            <div class="rule-card info" style="margin-top:14px">
+              <h3>${labels[group]}</h3>
+              <table class="pack-table">
+                <thead>
+                  <tr><th>${labels.species}</th><th>${labels.limit}</th></tr>
+                </thead>
+                <tbody>
+                  ${rows.map(([name, amount]) => `<tr><td>${name}</td><td>× ${amount}</td></tr>`).join("")}
+                </tbody>
+              </table>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderHerdTokens() {
+    const t = data.ui[safeLang()];
+
+    return `
+      <article class="rule-card feature">
+        <div class="feature-media">
+          <img class="herd-reference-image" src="assets/herd-tokens-v10.jpg" alt="Herbivore Herd Tokens reference artwork" loading="lazy">
+          <div class="feature-copy">
+            <span class="eyebrow">HERBIVORE GROUP RULES</span>
+            <h3>45 HERD TOKENS</h3>
+            <div class="rule-body">
+              <p>${t.herdIntro}</p>
+              <p><strong>${t.herdFree}</strong></p>
+            </div>
+
+            <div class="token-grid">
+              ${Object.entries(data.herdTokens).map(([tier, rows]) => `
+                <div class="token-tier">
+                  <strong class="token-tier-title"><span>${tier}</span><em>TOKENS</em></strong>
+                  <small>${rows.map(([name, amount]) => `${name} — ${amount}`).join("<br>")}</small>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="rule-body">
+              <div class="quote">
+                <strong>${t.total}: 45 Herd Tokens</strong><br>
+                ${t.herdSpecial}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderWeekendPvp(section) {
+    const bullets = list => (list || []).map(item => `<li><span aria-hidden="true">◆</span><div>${tx(item)}</div></li>`).join("");
+
+    return `
+      <div class="weekend-pvp-shell">
+        <div class="pvp-hero-band">
+          <div class="pvp-hero-copy">
+            <span class="pvp-signature-kicker">KINGDOMS ISLE · SIGNATURE WEEKEND PVP</span>
+            <h3>WEEKEND <span>NO-RULES PVP</span></h3>
+            <p class="pvp-zone-split"><span>${tx(section.signature.splitLeft)}</span><b aria-hidden="true">/</b><span>${tx(section.signature.splitRight)}</span></p>
+          </div>
+
+          <div class="pvp-schedule">
+            <div class="pvp-schedule-top">
+              <span>${tx(section.schedule.kicker)}</span>
+              <strong>${tx(section.schedule.timezone)}</strong>
+            </div>
+            <div class="pvp-time-grid">
+              <div>
+                <small>${tx(section.schedule.startLabel)}</small>
+                <strong>${tx(section.schedule.start)}</strong>
+              </div>
+              <div class="pvp-time-arrow" aria-hidden="true">→</div>
+              <div>
+                <small>${tx(section.schedule.endLabel)}</small>
+                <strong>${tx(section.schedule.end)}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pvp-motto" aria-label="${tx(section.signature.motto)}">
+            <span>FREE PVP</span><b>≠</b><span>FREE TOXIC</span>
+          </div>
+        </div>
+
+        <div class="pvp-zone-grid">
+          <article class="pvp-zone-card pit-zone">
+            <span class="pvp-zone-eyebrow">${tx(section.pit.eyebrow)}</span>
+            <p>${tx(section.pit.body)}</p>
+            <ul>${bullets(section.pit.bullets)}</ul>
+            <div class="pvp-zone-callout">${tx(section.pit.callout)}</div>
+          </article>
+
+          <article class="pvp-zone-card outside-zone">
+            <span class="pvp-zone-eyebrow">${tx(section.outside.eyebrow)}</span>
+            <p>${tx(section.outside.body)}</p>
+            <ul>${bullets(section.outside.bullets)}</ul>
+            <div class="pvp-zone-callout">${tx(section.outside.callout)}</div>
+          </article>
+        </div>
+
+        <figure class="pvp-map-card">
+          <div class="pvp-map-topline">
+            <span>THE PIT · SOUTH WEST</span>
+            <strong>RULES ZONE REFERENCE</strong>
+          </div>
+          <div class="pvp-map-art" role="img" aria-label="${tx(section.map.alt)}"></div>
+          <figcaption>${tx(section.map.caption)}</figcaption>
+        </figure>
+
+        <div class="pvp-core-panel">
+          <div class="pvp-core-head">
+            <span>${tx(section.core.eyebrow)}</span>
+            <p>${tx(section.core.body)}</p>
+          </div>
+          <ul class="pvp-core-list">${bullets(section.core.bullets)}</ul>
+          <div class="pvp-trash-note">💬 ${tx(section.core.trash)}</div>
+          <div class="pvp-cheat-note">🚫 ${tx(section.core.cheat)}</div>
+        </div>
+
+        <div class="pvp-final-line">
+          <span>${tx(section.signature.line)}</span>
+          <strong>${tx(section.signature.motto)}</strong>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderPenalties(section) {
+    const items = section.items || [];
+
+    return `
+      <div class="penalties-visual-bg" aria-hidden="true"></div>
+      <div class="penalties-inner">
+        <div class="penalties-grid">
+          ${items.map(item => `
+            <article class="penalty-card penalty-${item.type || "default"}">
+              <div class="penalty-level" aria-hidden="true">${item.level}</div>
+              <div class="penalty-card-copy">
+                <small>${tx(item.kicker)}</small>
+                <h3>${tx(item.title)}</h3>
+                <div class="penalty-body">${tx(item.body)}</div>
+                <div class="penalty-meta">${tx(item.meta)}</div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+        <div class="penalties-notes">
+          <div class="penalty-note history-note"><span>⌛</span><div>${tx(section.historyNote)}</div></div>
+          <div class="penalty-note serious-note"><span>⚠</span><div>${tx(section.seriousNote)}</div></div>
+          <div class="penalty-note cheat-note"><span>🚫</span><div>${tx(section.cheatNote)}</div></div>
+        </div>
+      </div>
+    `;
+  }
+
+  function render() {
+    setStaticUI();
+
+    const query = normalize(state.query.trim());
+    const visibleSections = data.sections.filter(section => {
+      return !query || searchableText(section).includes(query);
+    });
+
+    categoryNav.innerHTML = data.sections.map(section => `
+      <a class="nav-link" href="#${section.id}" data-target="${section.id}">
+        <span class="nav-icon">${section.icon}</span>
+        <span class="nav-copy">
+          <strong>${cleanNavTitle(tx(section.title))}</strong>
+        </span>
+      </a>
+    `).join("");
+
+    rulesRoot.innerHTML = visibleSections.map(section => {
+      let body = "";
+
+      if (section.feature === "packLimits") {
+        body = renderPackLimits();
+      } else if (section.feature === "herdTokens") {
+        body = renderHerdTokens();
+      } else if (section.feature === "penalties") {
+        body = renderPenalties(section);
+      } else if (section.feature === "weekendPvp") {
+        body = renderWeekendPvp(section);
+      } else {
+        body = `<div class="rule-grid">${renderRuleGroups(section.items)}</div>`;
+      }
+
+      return `
+        <section class="rule-section ${section.feature ? `feature-${section.feature}` : ""}" id="${section.id}" data-section="${section.id}">
+          <div class="section-heading">
+            <div class="section-heading-main">
+              <div>
+                <h2>${section.icon} ${tx(section.title)}</h2>
+                <p>${tx(section.subtitle)}</p>
+              </div>
+            </div>
+            <button class="anchor-btn" type="button" data-copy="${section.id}" aria-label="Copy section link" title="Copy section link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a4 4 0 0 0 5.66 0l2.14-2.14a4 4 0 0 0-5.66-5.66l-1.22 1.22"/><path d="M13.4 10.6a4 4 0 0 0-5.66 0L5.6 12.74a4 4 0 1 0 5.66 5.66l1.22-1.22"/></svg></button>
           </div>
           ${body}
         </section>
