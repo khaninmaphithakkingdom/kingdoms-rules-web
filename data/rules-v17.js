@@ -1,0 +1,467 @@
+window.KI_RULES = {
+  ui: {
+    th: {
+      navTitle:"หมวดกฎ", navHint:"เลือกหัวข้อเพื่อไปยังกฎโดยตรง", currentRules:"CURRENT RULESET",
+      heroLead:"อ่านกฎทั้งหมดก่อนเข้าเล่น เพื่อให้ทุกคนอยู่ร่วมกันได้อย่างยุติธรรมและสนุก",
+      noticeTitle:"กฎสามารถเปลี่ยนแปลงได้",
+      noticeBody:"หากมีการเปลี่ยนแปลง ทีมงานจะแจ้งผ่านห้องประกาศของเซิร์ฟเวอร์",
+      sectionsLabel:"หมวดกฎ", rulesLabel:"หัวข้อ", languagesLabel:"ภาษา",
+      quickWeekend:"Weekend PVP", quickCombat:"กฎการต่อสู้", quickThird:"Third Party", quickRedeem:"กฎ Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"ไม่พบกฎที่ค้นหา", noResultsBody:"ลองใช้คำค้นที่สั้นลง หรือเลือกหมวดจากเมนูด้านซ้าย",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"ค้นหากฎ...", copy:"คัดลอกลิงก์แล้ว",
+      packNote:"Growth ต่ำกว่า 45% ไม่นับรวมในจำนวนจำกัดของกลุ่ม เมื่อ Growth ตั้งแต่ 45% ขึ้นไป ต้องแยกออกจากกลุ่มโดยเร็วที่สุด",
+      herdIntro:"ไดโนเสาร์กินพืชสามารถรวมกลุ่มกันได้ โดยมี Herd Tokens รวมกันสูงสุดไม่เกิน 45 Token",
+      herdFree:"Juvenile ที่มี Growth สูงสุดไม่เกิน 45% = 0 Token",
+      herdSpecial:"Stegosaurus กับ Triceratops ห้ามอยู่ด้วยกัน และหากใช้กฎ 45 Token ต้องใช้สีเดียวกันทั้งทีม หากไม่ใช้สีเดียวกันจะนับเป็น 3rd Party ทันที",
+      total:"รวมสูงสุด"
+    },
+    en: {
+      navTitle:"Rule Categories", navHint:"Choose a section to jump directly to it", currentRules:"CURRENT RULESET",
+      heroLead:"Read all rules before playing so everyone can share the server fairly and enjoyably.",
+      noticeTitle:"Rules may change", noticeBody:"When rules change, staff will announce the update in the server announcement channels.",
+      sectionsLabel:"sections", rulesLabel:"topics", languagesLabel:"languages",
+      quickWeekend:"Weekend PVP", quickCombat:"Combat Rules", quickThird:"Third Party", quickRedeem:"Redeem Rules", quickPack:"Pack Limits",
+      noResultsTitle:"No matching rules found", noResultsBody:"Try a shorter search term or choose a category from the navigation.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Search rules...", copy:"Link copied",
+      packNote:"Players below 45% Growth do not count toward the group limit. At 45% Growth or higher, they must leave the group as soon as possible to comply with Pack Limits.",
+      herdIntro:"Herbivores may mix in a group as long as the total does not exceed 45 Herd Tokens.",
+      herdFree:"Juveniles at up to 45% Growth = 0 Tokens",
+      herdSpecial:"Stegosaurus and Triceratops may not stay together. When using the 45 Token rule, the entire team must use the same colour; otherwise it is immediately counted as Third Party.",
+      total:"Maximum total"
+    },
+    vi: {
+      navTitle:"Danh mục quy tắc", navHint:"Chọn mục để chuyển thẳng đến quy tắc", currentRules:"CURRENT RULESET",
+      heroLead:"Hãy đọc toàn bộ quy tắc trước khi chơi để mọi người cùng chơi công bằng và vui vẻ.",
+      noticeTitle:"Quy tắc có thể thay đổi", noticeBody:"Khi có thay đổi, nhân viên sẽ thông báo trong các kênh announcement của máy chủ.",
+      sectionsLabel:"danh mục", rulesLabel:"chủ đề", languagesLabel:"ngôn ngữ",
+      quickWeekend:"Weekend PVP", quickCombat:"Quy tắc chiến đấu", quickThird:"Third Party", quickRedeem:"Quy tắc Redeem", quickPack:"Pack Limits",
+      noResultsTitle:"Không tìm thấy quy tắc phù hợp", noResultsBody:"Hãy thử từ khóa ngắn hơn hoặc chọn danh mục từ menu.",
+      footerText:"Respect the rules · Protect the wilderness · Play together", search:"Tìm quy tắc...", copy:"Đã sao chép liên kết",
+      packNote:"Người chơi dưới 45% Growth không tính vào giới hạn nhóm. Khi đạt từ 45% Growth trở lên, phải rời nhóm sớm nhất có thể để tuân thủ Pack Limit.",
+      herdIntro:"Herbivore có thể lập nhóm hỗn hợp miễn tổng không vượt quá 45 Herd Tokens.",
+      herdFree:"Juvenile tối đa 45% Growth = 0 Token",
+      herdSpecial:"Stegosaurus và Triceratops không được ở cùng nhau. Khi dùng quy tắc 45 Token, cả team phải dùng cùng màu; nếu không sẽ bị tính là Third Party ngay.",
+      total:"Tổng tối đa"
+    }
+  },
+
+  sections: [
+    {
+      id:"basic", icon:"⚖", code:"01",
+      title:{th:"กฎพื้นฐาน",en:"Basic Rules",vi:"Quy tắc cơ bản"},
+      subtitle:{th:"มาตรฐานพื้นฐานของชุมชน",en:"Core community standards",vi:"Tiêu chuẩn cộng đồng cốt lõi"},
+      items:[
+        {type:"danger",title:{th:"🤝 1. ห้ามคุกคามหรือไม่ให้เกียรติผู้อื่น",en:"🤝 1. No harassment or disrespect",vi:"🤝 1. Không quấy rối hoặc thiếu tôn trọng"},body:{th:"ห้ามคุกคาม ไม่ให้เกียรติ หรือใช้คำหยาบ รวมถึงการแกล้งผู้อื่นแบบจงใจ",en:"Harassment, disrespect, profanity, and intentional bullying of others are prohibited.",vi:"Cấm quấy rối, thiếu tôn trọng, chửi bới hoặc cố ý bắt nạt người khác."}},
+        {type:"danger",title:{th:"🛡️ 2. ห้ามโกงหรือใช้ช่องโหว่",en:"🛡️ 2. No cheats or exploits",vi:"🛡️ 2. Cấm gian lận hoặc khai thác lỗi"},body:{th:"ห้ามใช้โปรแกรมโกง และช่องโหว่ของเกมเพื่อผลประโยชน์ทุกชนิด",en:"Do not use cheat programs or exploit game vulnerabilities for any kind of gain.",vi:"Không được dùng phần mềm gian lận hoặc khai thác lỗ hổng trò chơi để thu lợi dưới bất kỳ hình thức nào."}},
+        {type:"danger",title:{th:"📢 3. ห้ามโฆษณาเซิร์ฟเวอร์อื่น",en:"📢 3. No advertising other servers",vi:"📢 3. Cấm quảng cáo máy chủ khác"},body:{th:"ห้ามโฆษณาเซิร์ฟเวอร์อื่นภายในเซิร์ฟเวอร์ของเรา",en:"Advertising other servers within our server is prohibited.",vi:"Cấm quảng cáo máy chủ khác trong máy chủ của chúng tôi."}},
+        {type:"danger",title:{th:"📄 4. ห้ามให้ข้อมูลเท็จหรือบิดเบือนข้อเท็จจริง",en:"📄 4. No false or distorted information",vi:"📄 4. Cấm cung cấp thông tin sai lệch"},body:{th:"ห้ามให้ข้อมูลเท็จต่อทีมงาน และบิดเบือนข้อมูลที่ส่งผลเสียต่อทีมงานและเซิร์ฟเวอร์",en:"Do not provide false information to staff or distort facts in a way that harms staff or the server.",vi:"Không được cung cấp thông tin sai cho nhân viên hoặc bóp méo sự thật gây ảnh hưởng xấu đến nhân viên hay máy chủ."}},
+        {type:"warning",title:{th:"📵 5. งดนำดราม่าภายในเซิร์ฟเวอร์ไปลงโซเชียล",en:"📵 5. Keep server drama off social media",vi:"📵 5. Không đưa drama của máy chủ lên mạng xã hội"},body:{th:"หากมีปัญหาให้ใช้ช่องทาง Report / Support ของเซิร์ฟเวอร์",en:"If there is a problem, use the server's Report / Support channels.",vi:"Nếu có vấn đề, hãy sử dụng kênh Report / Support của máy chủ."}},
+        {type:"info",title:{th:"📖 6. ผู้เล่นมีหน้าที่อ่านและทำความเข้าใจกฎ",en:"📖 6. Players are responsible for reading and understanding the rules",vi:"📖 6. Người chơi có trách nhiệm đọc và hiểu quy tắc"},body:{
+          th:"ผู้เล่นทุกคนมีหน้าที่อ่าน ทำความเข้าใจ และปฏิบัติตามกฎของเซิร์ฟเวอร์ก่อนเข้าเล่น<br><br>การอ้างว่า <strong>“ไม่รู้กฎ”</strong> หรือ <strong>“ไม่ได้อ่านกฎ”</strong> จะไม่ถือเป็นข้อแก้ตัวในการฝ่าฝืนกฎ<br><br>หากผู้เล่นกระทำผิดกฎ แม้จะอ้างว่าไม่ทราบกฎ ผู้เล่นยังคงอาจได้รับบทลงโทษตามความเหมาะสม",
+          en:"All players are responsible for reading, understanding, and following the server rules before playing.<br><br>Claiming <strong>“I did not know the rules”</strong> or <strong>“I did not read the rules”</strong> is not an excuse for breaking them.<br><br>If a player violates the rules, they may still receive an appropriate punishment even if they claim they were unaware of the rule.",
+          vi:"Mọi người chơi có trách nhiệm đọc, hiểu và tuân thủ quy tắc của máy chủ trước khi chơi.<br><br>Việc nói rằng <strong>“không biết quy tắc”</strong> hoặc <strong>“chưa đọc quy tắc”</strong> không được xem là lý do biện minh cho việc vi phạm.<br><br>Nếu người chơi vi phạm quy tắc, họ vẫn có thể bị xử phạt phù hợp ngay cả khi nói rằng mình không biết quy tắc."
+        }}
+      ]
+    },
+
+    {
+      id:"weekend-pvp", icon:"⚔️", code:"SIGNATURE",
+      title:{th:"WEEKEND NO-RULES PVP",en:"WEEKEND NO-RULES PVP",vi:"WEEKEND NO-RULES PVP"},
+      subtitle:{
+        th:"Signature Weekend PvP · THE PIT Rules Zone / ภายนอกเป็น No-Rules PVP",
+        en:"Signature Weekend PvP · THE PIT Rules Zone / No-Rules PVP outside",
+        vi:"PvP cuối tuần đặc trưng · THE PIT là Rules Zone / bên ngoài là No-Rules PVP"
+      },
+      feature:"weekendPvp",
+      searchText:{
+        th:"Weekend No-Rules PVP Free PVP Free Toxic THE PIT Rules Zone Safe Zone วันเสาร์ วันอาทิตย์ เวลาไทย ICT UTC+7 48 ชั่วโมง โกง exploit bug toxic",
+        en:"Weekend No-Rules PVP Free PVP Free Toxic THE PIT Rules Zone Safe Zone Saturday Sunday Thailand Time ICT UTC+7 48 hours cheat exploit bug toxic",
+        vi:"Weekend No-Rules PVP Free PVP Free Toxic THE PIT Rules Zone Safe Zone thứ bảy chủ nhật giờ Thái Lan ICT UTC+7 48 giờ cheat exploit bug toxic"
+      },
+      schedule:{
+        kicker:{th:"48 ชั่วโมงเต็ม",en:"48 FULL HOURS",vi:"48 GIỜ LIÊN TỤC"},
+        startLabel:{th:"เริ่มกิจกรรม",en:"STARTS",vi:"BẮT ĐẦU"},
+        start:{th:"วันเสาร์ 00:00",en:"SATURDAY 00:00",vi:"THỨ BẢY 00:00"},
+        endLabel:{th:"สิ้นสุดกิจกรรม",en:"ENDS",vi:"KẾT THÚC"},
+        end:{th:"วันจันทร์ 00:00",en:"MONDAY 00:00",vi:"THỨ HAI 00:00"},
+        timezone:{th:"เวลาไทย (ICT / UTC+7)",en:"THAILAND TIME (ICT / UTC+7)",vi:"GIỜ THÁI LAN (ICT / UTC+7)"}
+      },
+      pit:{
+        eyebrow:{th:"🟢 THE PIT — RULES ZONE",en:"🟢 THE PIT — RULES ZONE",vi:"🟢 THE PIT — RULES ZONE"},
+        body:{
+          th:"THE PIT เป็นพื้นที่สำหรับผู้เล่นที่ไม่ต้องการเข้าร่วม No-Rules PVP ในช่วง Weekend PVP โดยกฎ PVP ปกติของเซิร์ฟเวอร์ยังคงมีผลบังคับใช้ภายในพื้นที่นี้",
+          en:"THE PIT is for players who do not want to take part in No-Rules PVP during the weekend. Normal server PvP rules remain fully active inside this area.",
+          vi:"THE PIT dành cho người chơi không muốn tham gia No-Rules PVP vào cuối tuần. Các quy tắc PvP bình thường của máy chủ vẫn có hiệu lực đầy đủ trong khu vực này."
+        },
+        bullets:[
+          {th:"หาอาหาร เติบโต ล่า และทำกิจกรรมตามปกติได้",en:"Feed, grow, hunt, and play normally.",vi:"Có thể kiếm thức ăn, trưởng thành, săn và chơi bình thường."},
+          {th:"ยังสามารถ PVP และฆ่ากันได้ตามปกติ",en:"PvP and killing are still allowed.",vi:"Vẫn có thể PvP và hạ gục nhau."},
+          {th:"ทุกการต่อสู้ต้องอยู่ภายใต้กฎ PVP ปกติของเซิร์ฟเวอร์",en:"Every fight must follow the server's normal PvP rules.",vi:"Mọi giao tranh phải tuân theo quy tắc PvP bình thường của máy chủ."}
+        ],
+        callout:{th:"THE PIT ไม่ใช่ Safe Zone",en:"THE PIT IS NOT A SAFE ZONE",vi:"THE PIT KHÔNG PHẢI SAFE ZONE"}
+      },
+      outside:{
+        eyebrow:{th:"🔴 OUTSIDE THE PIT — NO-RULES PVP",en:"🔴 OUTSIDE THE PIT — NO-RULES PVP",vi:"🔴 OUTSIDE THE PIT — NO-RULES PVP"},
+        body:{
+          th:"เมื่อผู้เล่นออกจาก THE PIT ให้ถือว่าเป็นการเลือกเข้าร่วม No-Rules PVP โดยสมัครใจ และยอมรับความเสี่ยงจากการต่อสู้ภายนอกพื้นที่",
+          en:"Leaving THE PIT is treated as a voluntary choice to enter No-Rules PVP and accept the risks of combat outside the zone.",
+          vi:"Rời THE PIT được xem là tự nguyện tham gia No-Rules PVP và chấp nhận rủi ro giao tranh bên ngoài khu vực."
+        },
+        bullets:[
+          {th:"PVP ได้อย่างอิสระ",en:"PvP freely.",vi:"PvP tự do."},
+          {th:"ล่า ต่อสู้ ซุ่มโจมตี ไล่ หนี แย่งพื้นที่ และกลับมาสู้ใหม่ได้",en:"Hunt, fight, ambush, chase, escape, contest territory, and return to fight again.",vi:"Săn, giao tranh, phục kích, truy đuổi, bỏ chạy, tranh lãnh thổ và quay lại giao tranh."},
+          {th:"ไม่อยู่ภายใต้ข้อจำกัดของกฎ PVP ปกติ แต่กฎหลักของเซิร์ฟเวอร์ยังมีผล",en:"Normal PvP restrictions do not apply, but the server's core rules still do.",vi:"Các giới hạn PvP bình thường không áp dụng, nhưng quy tắc cốt lõi của máy chủ vẫn có hiệu lực."}
+        ],
+        callout:{th:"ออกจาก THE PIT = สมัครใจเข้าร่วม NO-RULES PVP",en:"LEAVING THE PIT = VOLUNTARILY ENTERING NO-RULES PVP",vi:"RỜI THE PIT = TỰ NGUYỆN THAM GIA NO-RULES PVP"}
+      },
+      map:{
+        alt:{
+          th:"แผนที่พื้นที่ THE PIT อยู่ในโซน SOUTH WEST",
+          en:"Map showing THE PIT in the SOUTH WEST zone",
+          vi:"Bản đồ cho thấy THE PIT ở khu SOUTH WEST"
+        },
+        caption:{
+          th:"THE PIT อยู่ในพื้นที่ SOUTH WEST — ใช้แผนที่นี้เป็นจุดอ้างอิงหลักของ Rules Zone",
+          en:"THE PIT is located in SOUTH WEST — use this map as the primary Rules Zone reference.",
+          vi:"THE PIT nằm ở SOUTH WEST — sử dụng bản đồ này làm mốc chính cho Rules Zone."
+        }
+      },
+      core:{
+        eyebrow:{th:"🚫 CORE SERVER RULES STILL APPLY",en:"🚫 CORE SERVER RULES STILL APPLY",vi:"🚫 CORE SERVER RULES VẪN ÁP DỤNG"},
+        body:{
+          th:"No-Rules PVP หมายถึงไม่มีข้อจำกัดของกฎ PVP ปกติภายนอก THE PIT เท่านั้น ไม่ได้ยกเลิกกฎหลักของเซิร์ฟเวอร์",
+          en:"No-Rules PVP only removes the normal PvP restrictions outside THE PIT. It does not remove the server's core rules.",
+          vi:"No-Rules PVP chỉ gỡ các giới hạn PvP bình thường bên ngoài THE PIT. Các quy tắc cốt lõi của máy chủ vẫn giữ nguyên."
+        },
+        bullets:[
+          {th:"ห้าม Cheat / Hack / โปรแกรมภายนอกที่ให้ความได้เปรียบอย่างไม่เป็นธรรม",en:"No Cheat / Hack / external software that provides an unfair advantage.",vi:"Cấm Cheat / Hack / phần mềm bên ngoài tạo lợi thế không công bằng."},
+          {th:"ห้าม Exploit / Bug Abuse",en:"No Exploit / Bug Abuse.",vi:"Cấm Exploit / Bug Abuse."},
+          {th:"ห้าม Toxic รุนแรง ดูถูก เหยียด คุกคาม โจมตีตัวบุคคล หรือพาดพิงครอบครัว",en:"No severe toxicity, discrimination, harassment, personal attacks, or attacks involving someone's family.",vi:"Cấm toxic nghiêm trọng, kỳ thị, quấy rối, công kích cá nhân hoặc lôi gia đình người khác vào."},
+          {th:"ห้ามลากดราม่าจากเกมไป Discord หรือ Social Media",en:"Do not carry in-game drama into Discord or social media.",vi:"Không kéo drama trong game sang Discord hoặc mạng xã hội."}
+        ],
+        trash:{
+          th:"สามารถแซวหรือ Trash Talk ได้ตามบรรยากาศ PVP แต่ต้องรู้ขอบเขต และห้ามเปลี่ยนเป็นการโจมตีตัวบุคคล",
+          en:"Banter and trash talk are allowed within the PvP atmosphere, but must stay within limits and must not become personal attacks.",
+          vi:"Có thể trêu chọc hoặc trash talk theo không khí PvP, nhưng phải có giới hạn và không được biến thành công kích cá nhân."
+        },
+        cheat:{
+          th:"หากทีมงานตรวจสอบพบการใช้โปรแกรมโกงหรือซอฟต์แวร์ภายนอกเพื่อความได้เปรียบ → Permanent Ban ทันที โดยข้ามคำตักเตือนด้วยวาจา, Warning 1 และ Warning 2",
+          en:"Verified cheat software or unfair external software → Immediate Permanent Ban, bypassing verbal warning, Warning 1, and Warning 2.",
+          vi:"Nếu xác minh có phần mềm gian lận hoặc phần mềm bên ngoài tạo lợi thế không công bằng → Cấm vĩnh viễn ngay lập tức, bỏ qua cảnh cáo bằng lời, Warning 1 và Warning 2."
+        }
+      },
+      signature:{
+        line:{th:"PVP = สู้กันในเกม · NOT = ทะเลาะกันนอกเกม",en:"PVP = FIGHT IN GAME · NOT = FIGHT OUTSIDE THE GAME",vi:"PVP = CHIẾN ĐẤU TRONG GAME · NOT = CÃI NHAU NGOÀI GAME"},
+        motto:{th:"FREE PVP ≠ FREE TOXIC",en:"FREE PVP ≠ FREE TOXIC",vi:"FREE PVP ≠ FREE TOXIC"},
+        splitLeft:{th:"STAY IN THE PIT. FOLLOW THE RULES.",en:"STAY IN THE PIT. FOLLOW THE RULES.",vi:"Ở TRONG THE PIT. TUÂN THEO QUY TẮC."},
+        splitRight:{th:"STEP OUTSIDE. ACCEPT THE WAR.",en:"STEP OUTSIDE. ACCEPT THE WAR.",vi:"BƯỚC RA NGOÀI. CHẤP NHẬN CUỘC CHIẾN."}
+      },
+      items:[]
+    },
+
+    {
+      id:"behavior", icon:"🤝", code:"02",
+      title:{th:"พฤติกรรมและการติดต่อทีมงาน",en:"Behaviour & Staff Conduct",vi:"Hành vi & làm việc với nhân viên"},
+      subtitle:{th:"การสื่อสารอย่างเคารพและการพิจารณาเคส",en:"Respectful communication and case handling",vi:"Giao tiếp tôn trọng và xử lý vụ việc"},
+      items:[
+        {type:"danger",title:{th:"🚫 Zero Tolerance",en:"🚫 Zero Tolerance",vi:"Không khoan nhượng"},body:{
+          th:"เซิร์ฟเวอร์ไม่ต้อนรับการเหยียดเชื้อชาติ/ชาติพันธุ์ การเหยียดเพศหรือรสนิยมทางเพศ การดูถูกหรือเหยียดเพศ มุกหรือคำพูดที่เหยียดบุคคล/กลุ่มคน พฤติกรรมหรือการสื่อสารเชิงทางเพศที่ไม่เหมาะสม และการคุกคามหรือล่วงละเมิดที่ทำให้ผู้อื่นรู้สึกไม่ปลอดภัย<br><span class='muted'>คำว่า “แค่ล้อเล่น” หรือ “เป็นเพียงมุก” ไม่ใช่ข้อยกเว้น</span>",
+          en:"The server does not tolerate racism or ethnic discrimination, discrimination based on sex or sexual orientation, sexist insults, discriminatory jokes or remarks, inappropriate sexual behaviour or communication, or harassment that makes others feel unsafe.<br><span class='muted'>“Just joking” is not an exception.</span>",
+          vi:"Máy chủ không chấp nhận phân biệt chủng tộc/dân tộc, phân biệt giới tính hoặc xu hướng tính dục, lời lẽ hạ nhục mang tính giới, trò đùa/kỳ thị cá nhân hoặc nhóm người, hành vi hay giao tiếp tình dục không phù hợp, hoặc quấy rối khiến người khác cảm thấy không an toàn.<br><span class='muted'>“Chỉ đùa thôi” không phải là ngoại lệ.</span>"
+        }},
+        {type:"info",title:{th:"💬 Trash Talk",en:"💬 Trash Talk",vi:"💬 Trash Talk"},body:{th:"การพูดแซว พูดแขวะ หรือ Trash Talk สามารถเกิดขึ้นได้ตามวัฒนธรรมการเล่นเกม แต่ต้องอยู่ในขอบเขตและไม่ทำมากเกินไป",en:"Teasing, banter, and trash talk may occur as part of gaming culture, but it must stay within reasonable limits.",vi:"Trêu chọc, cà khịa và trash talk có thể xuất hiện trong văn hóa chơi game, nhưng phải ở mức hợp lý và không quá đà."}},
+        {type:"warning",title:{th:"🛡️ ให้เกียรติทีมงานระหว่างดำเนินเคส",en:"🛡️ Respect staff during case handling",vi:"🛡️ Tôn trọng nhân viên khi xử lý vụ việc"},body:{
+          th:"ผู้เล่นต้องสื่อสารกับทีมงานด้วยความสุภาพและให้ความร่วมมือ หลีกเลี่ยงการใช้อารมณ์ ดูหมิ่น ประชด ยั่วยุ หรือกดดัน หากยังไม่ให้ความร่วมมือหลังได้รับคำเตือน ทีมงานอาจพักหรือยุติการดำเนินเคสได้ ผู้เล่นยังมีสิทธิ์ชี้แจง โต้แย้ง หรือขอทบทวนคำตัดสินด้วยเหตุผลและหลักฐานอย่างสุภาพ",
+          en:"Players must communicate politely and cooperate with staff. Avoid emotional abuse, insults, sarcasm, provocation, or pressure. If non-cooperation continues after a warning, staff may pause or close the case. Players may still explain, challenge, or request a review using reasons and evidence respectfully.",
+          vi:"Người chơi phải giao tiếp lịch sự và hợp tác với nhân viên. Tránh xúc phạm, mỉa mai, khiêu khích hoặc gây áp lực. Nếu vẫn không hợp tác sau khi được cảnh báo, nhân viên có thể tạm dừng hoặc kết thúc vụ việc. Người chơi vẫn có quyền giải trình, phản biện hoặc yêu cầu xem xét lại bằng lý do và bằng chứng một cách lịch sự."
+        }},
+        {type:"info",title:{th:"⚖️ มาตรฐานการพิจารณาเคส",en:"⚖️ Case-by-case review standard",vi:"⚖️ Tiêu chuẩn xem xét từng vụ việc"},body:{
+          th:"ทีมงานพิจารณาแบบ Case by Case จากข้อเท็จจริง หลักฐาน บริบท ลำดับเหตุการณ์ และเจตนา เหตุการณ์ที่ดูคล้ายกันอาจมีรายละเอียดต่างกันและได้ผลพิจารณาต่างกัน <div class='quote'><strong>มาตรฐานเดียวกัน ≠ ผลลัพธ์ต้องเหมือนกันทุกเคส</strong><br>มาตรฐานเดียวกัน = ใช้หลักเกณฑ์เดียวกันพิจารณาข้อเท็จจริงของแต่ละเคส</div>",
+          en:"Staff review cases individually using facts, evidence, context, sequence of events, and intent. Similar-looking incidents may contain different details and may lead to different decisions.<div class='quote'><strong>Same standard ≠ identical outcome in every case.</strong><br>Same standard = applying the same criteria to each case's facts.</div>",
+          vi:"Nhân viên xem xét từng vụ việc dựa trên sự thật, bằng chứng, bối cảnh, trình tự sự kiện và ý định. Các tình huống trông giống nhau có thể có chi tiết khác nhau và dẫn đến kết quả khác nhau.<div class='quote'><strong>Cùng tiêu chuẩn ≠ mọi vụ việc phải có cùng kết quả.</strong><br>Cùng tiêu chuẩn = áp dụng cùng tiêu chí cho sự thật của từng vụ việc.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"voice", icon:"🎙", code:"03",
+      title:{th:"กฎการใช้ไมค์",en:"Voice Chat Rules",vi:"Quy tắc Voice Chat"},
+      subtitle:{th:"การใช้เสียงโดยไม่รบกวนผู้อื่น",en:"Use voice without disrupting others",vi:"Sử dụng giọng nói không làm phiền người khác"},
+      items:[
+        {type:"danger",title:{th:"🔇 ห้ามก่อกวนด้วยเสียง",en:"🔇 No disruptive audio",vi:"🔇 Cấm gây rối bằng âm thanh"},body:{th:"ห้ามเป่าไมค์ ตะโกนใส่ไมค์ ทำเสียงรบกวน หรือจงใจทำให้ผู้อื่นรำคาญ การยั่วยุคู่ต่อสู้ทำได้เพื่อสร้างสีสัน แต่ต้องไม่เข้าข่ายคุกคาม เหยียดหยาม หรือรุนแรงเกินสมควร",en:"Do not blow into the mic, scream, create disruptive noise, or intentionally annoy others. Competitive taunting is allowed for flavour, but must not become harassment, discrimination, or excessive abuse.",vi:"Không thổi mic, la hét, tạo tiếng ồn gây rối hoặc cố ý làm phiền người khác. Có thể khiêu khích đối thủ trong phạm vi trò chơi, nhưng không được trở thành quấy rối, kỳ thị hoặc lăng mạ quá mức."}},
+        {type:"warning",title:{th:"🎵 Soundboard",en:"🎵 Soundboard",vi:"🎵 Soundboard"},body:{th:"ห้าม Spam Soundboard หรือเสียงซ้ำ ๆ เพื่อก่อกวนโดยเจตนา สามารถใช้ Soundboard เพื่อสร้างสีสันได้หากไม่รบกวนผู้อื่นจนเกินสมควร",en:"Do not spam soundboards or repeated audio to intentionally disrupt others. Soundboards may be used for fun when they do not excessively disturb others.",vi:"Không spam soundboard hoặc âm thanh lặp lại để cố ý gây rối. Có thể dùng soundboard để tạo không khí nếu không làm phiền người khác quá mức."}}
+      ]
+    },
+
+    {
+      id:"combat", icon:"⚔", code:"04",
+      title:{th:"กฎการต่อสู้",en:"Combat Rules",vi:"Quy tắc chiến đấu"},
+      subtitle:{th:"การเริ่มไฟต์ การจบไฟต์ Crash และ Restart",en:"Fight start, fight end, crashes and restarts",vi:"Bắt đầu/kết thúc giao tranh, crash và restart"},
+      items:[
+        {type:"danger",title:{th:"🚪 Combat Log",en:"🚪 Combat Log",vi:"🚪 Combat Log"},body:{
+          th:"ห้าม Logout / ปิดเกม / ออกจากเซิร์ฟเวอร์ / จงใจหลุดจากเกมระหว่างการต่อสู้เพื่อหลีกเลี่ยงการบาดเจ็บหรือการตาย รวมถึงการ Logout ก่อนเริ่มไฟต์เพื่อหลีกเลี่ยงการต่อสู้ หรือกลับเข้าเกมเพื่อเปลี่ยนสถานการณ์ให้ได้เปรียบ หากมีหลักฐานเพียงพอ",
+          en:"Do not log out, close the game, leave the server, or intentionally disconnect during combat to avoid injury or death. Logging out before a fight to avoid combat, or rejoining to change the situation in your favour, may also count when supported by sufficient evidence.",
+          vi:"Cấm đăng xuất, tắt game, rời máy chủ hoặc cố ý mất kết nối trong lúc giao tranh để tránh bị thương hoặc chết. Đăng xuất trước khi giao tranh để né đánh, hoặc vào lại để thay đổi tình thế có lợi cho mình, cũng có thể bị xem là vi phạm khi có đủ bằng chứng."
+        }},
+        {type:"warning",title:{th:"🚪 วิธี Log Out ออกจากเกมอย่างถูกต้อง",en:"🚪 How to Log Out of the Game Correctly",vi:"🚪 Cách đăng xuất khỏi game đúng cách"},body:{
+          th:"เพื่อป้องกันปัญหาตัวละครสูญหายหรือเกิดข้อผิดพลาด ทางทีมงานขอให้ผู้เล่นทุกคน <strong>ออกจากเกมตามขั้นตอนที่ถูกต้องทุกครั้ง</strong><br><br><strong>🛏️ ขั้นตอนการ Log Out</strong><br><br><strong>1. ให้กด “นอนออก” ก่อนทุกครั้ง</strong><br>ห้ามกดออกจากเกมทันทีโดยที่ตัวละครยังไม่ได้เข้าสู่สถานะนอนออก<br><br><strong>2. กด Log Out ตามปกติ</strong><br>หลังจากกด Log Out แล้ว ระบบจะเริ่ม <strong>Countdown 60 วินาที</strong><br><br><strong>3. รอ Countdown ให้ครบ 60 วินาที</strong><br><strong>ห้ามปิดเกม / ปิดโปรแกรม / Force Close</strong> ระหว่างที่ระบบกำลังนับถอยหลัง<br><br><strong>4. ปิดเกมได้เมื่อ Countdown เสร็จสิ้นแล้วเท่านั้น</strong><br>เมื่อระบบออกจากตัวละครเรียบร้อยแล้ว จึงสามารถปิดเกมได้ตามปกติ<br><br><div class='quote'><strong>❌ สิ่งที่ห้ามทำ</strong><br>• ห้ามกด Log Out แล้วปิดเกมทันที<br>• ห้าม Alt + F4 หรือ Force Close ระหว่าง Countdown<br>• ห้ามปิดโปรแกรมก่อนครบ 60 วินาที</div><br><strong>🚨 หากไม่ทำตามขั้นตอน</strong><br>หากผู้เล่นไม่ได้ออกจากเกมตามขั้นตอนที่กำหนด และส่งผลให้ตัวละคร <strong>สูญหาย / เกิดข้อผิดพลาด</strong><br><br><strong>ทางทีมงานขอสงวนสิทธิ์ไม่ดำเนินการคืนตัวละครในกรณีดังกล่าว</strong><br><br><strong>📹 ย้ำเรื่องหลักฐาน</strong><br>หากต้องการยื่นเรื่องขอคืนตัวละคร <strong>จำเป็นต้องมีหลักฐานประกอบทุกครั้ง</strong><br><div class='quote'><strong>❗ ไม่มีหลักฐาน = ไม่สามารถดำเนินการคืนตัวละครได้</strong></div><br><span class='muted'>⚠️ กรุณาออกจากเกมให้ถูกวิธีทุกครั้ง เพื่อป้องกันปัญหาที่สามารถหลีกเลี่ยงได้<br>📹 หากพบเหตุผิดปกติ กรุณาเก็บคลิปหรือหลักฐานไว้สำหรับการตรวจสอบ</span>",
+          en:"To prevent character loss or other errors, all players must <strong>leave the game using the correct logout procedure every time</strong>.<br><br><strong>🛏️ Logout Steps</strong><br><br><strong>1. Always use “Safe Log / Sleep Logout” first</strong><br>Do not immediately leave the game while your character has not yet entered the proper logout state.<br><br><strong>2. Use Log Out normally</strong><br>After pressing Log Out, the system will begin a <strong>60-second countdown</strong>.<br><br><strong>3. Wait until the full 60-second countdown finishes</strong><br><strong>Do not close the game / close the program / Force Close</strong> while the countdown is running.<br><br><strong>4. Close the game only after the countdown has fully finished</strong><br>Once your character has logged out successfully, you may close the game normally.<br><br><div class='quote'><strong>❌ Do not</strong><br>• Press Log Out and immediately close the game<br>• Use Alt + F4 or Force Close during the countdown<br>• Close the program before the 60 seconds are complete</div><br><strong>🚨 If you do not follow these steps</strong><br>If a player does not leave the game using the required procedure and this causes the character to be <strong>lost / affected by an error</strong>,<br><br><strong>staff reserve the right not to restore the character in that case.</strong><br><br><strong>📹 Evidence reminder</strong><br>If you want to request a character restoration, <strong>supporting evidence is required every time</strong>.<br><div class='quote'><strong>❗ No evidence = staff cannot process a character restoration request</strong></div><br><span class='muted'>⚠️ Always log out correctly to prevent avoidable problems.<br>📹 If anything abnormal happens, keep a clip or other evidence for staff review.</span>",
+          vi:"Để tránh mất nhân vật hoặc phát sinh lỗi, tất cả người chơi phải <strong>thoát game đúng quy trình mỗi lần</strong>.<br><br><strong>🛏️ Các bước Log Out</strong><br><br><strong>1. Luôn dùng “Safe Log / Sleep Logout” trước</strong><br>Không được thoát game ngay khi nhân vật chưa vào trạng thái đăng xuất an toàn.<br><br><strong>2. Nhấn Log Out bình thường</strong><br>Sau khi nhấn Log Out, hệ thống sẽ bắt đầu <strong>đếm ngược 60 giây</strong>.<br><br><strong>3. Chờ đủ 60 giây</strong><br><strong>Không được tắt game / đóng chương trình / Force Close</strong> trong lúc đang đếm ngược.<br><br><strong>4. Chỉ được đóng game sau khi đếm ngược hoàn tất</strong><br>Khi nhân vật đã đăng xuất hoàn toàn, bạn mới có thể đóng game bình thường.<br><br><div class='quote'><strong>❌ Không được</strong><br>• Nhấn Log Out rồi tắt game ngay<br>• Dùng Alt + F4 hoặc Force Close trong lúc đếm ngược<br>• Đóng chương trình trước khi đủ 60 giây</div><br><strong>🚨 Nếu không làm đúng quy trình</strong><br>Nếu người chơi không thoát game theo quy định và khiến nhân vật <strong>bị mất / gặp lỗi</strong>,<br><br><strong>đội ngũ có quyền không khôi phục nhân vật trong trường hợp đó.</strong><br><br><strong>📹 Nhắc lại về bằng chứng</strong><br>Nếu muốn yêu cầu khôi phục nhân vật, <strong>bắt buộc phải có bằng chứng kèm theo mỗi lần</strong>.<br><div class='quote'><strong>❗ Không có bằng chứng = không thể xử lý yêu cầu khôi phục nhân vật</strong></div><br><span class='muted'>⚠️ Hãy luôn đăng xuất đúng cách để tránh các vấn đề có thể phòng ngừa.<br>📹 Nếu có bất thường, hãy lưu clip hoặc bằng chứng để đội ngũ kiểm tra.</span>"
+        }},
+        {type:"warning",title:{th:"🔥 DISCONNECT / CRASH DURING COMBAT",en:"🔥 DISCONNECT / CRASH DURING COMBAT",vi:"🔥 MẤT KẾT NỐI / CRASH TRONG GIAO TRANH"},body:{
+          th:"หากผู้เล่น <strong>หลุดออกจากเกมระหว่างการต่อสู้</strong> ไม่ว่าจะเกิดจาก Crash / Game Error / Connection Error ผู้เล่น <strong>จะไม่สามารถกลับเข้ามามีส่วนร่วมในการต่อสู้เดิมต่อได้ในทุกกรณี</strong><br><br>หากผู้เล่นกลับเข้ามาและ <strong>เข้าร่วมการต่อสู้เดิมต่อ</strong> จะถือว่าฝ่าฝืนกฎ <strong>3rd Party และ Mixpack ทันที</strong><br><br><strong>⚖️ CASE-BY-CASE REVIEW</strong><br>กรณี Crash / Game Error / Connection Error ผู้เล่นสามารถส่งหลักฐานเพื่อขอพิจารณาได้ โดยทีมงานจะตรวจสอบเป็นรายกรณีจากหลักฐาน เหตุการณ์แวดล้อม และบริบททั้งหมดของเหตุการณ์ก่อนดำเนินการตัดสิน<br><br><strong>📹 หลักฐานควรแสดงให้เห็นว่าเป็นการหลุดจริง เช่น</strong><br>- คลิปก่อนหลุด<br>- ภาพหน้าจอที่เห็นวันที่และเวลาอย่างชัดเจน<br>- การบันทึกย้อนหลัง<br>- หลักฐานการ Crash / Error<br><br><strong>❌ ภาพจอดำ ภาพหน้าจอที่ไม่เห็นวันที่และเวลาอย่างชัดเจน หรือหลักฐานที่ไม่สามารถยืนยันเหตุการณ์ได้ อาจไม่เพียงพอต่อการพิจารณา</strong><br><br><strong>⚠️ การอ้างว่าเกิด Crash หรือหลุดจากเกม ไม่ได้หมายความว่าจะได้รับการยกเว้นโดยอัตโนมัติ</strong> ทุกกรณีจะต้องผ่านการตรวจสอบจากทีมงานก่อน",
+          en:"If a player <strong>disconnects from the game during combat</strong>, whether due to a Crash / Game Error / Connection Error, the player <strong>may not return and participate in the same fight again under any circumstances</strong>.<br><br>If the player rejoins and <strong>continues participating in the same fight</strong>, it will immediately be treated as a violation of the <strong>3rd Party and Mixpack rules</strong>.<br><br><strong>⚖️ CASE-BY-CASE REVIEW</strong><br>For Crash / Game Error / Connection Error cases, players may submit evidence for review. Staff will assess each case individually using the evidence, surrounding circumstances, and the full context of the incident before making a decision.<br><br><strong>📹 Evidence should clearly show that the disconnect was genuine, such as:</strong><br>- Footage from before the disconnect<br>- A screenshot that clearly shows the date and time<br>- Replay or retrospective recording<br>- Crash / Error evidence<br><br><strong>❌ A black screen, a screenshot without a clearly visible date and time, or evidence that cannot verify the incident may be insufficient for review.</strong><br><br><strong>⚠️ Claiming that a crash or disconnect occurred does not automatically grant an exemption.</strong> Every case must first be reviewed by staff.",
+          vi:"Nếu người chơi <strong>bị mất kết nối khỏi game trong lúc giao tranh</strong>, dù do Crash / Game Error / Connection Error, người chơi <strong>không được quay lại và tiếp tục tham gia trận giao tranh cũ trong bất kỳ trường hợp nào</strong>.<br><br>Nếu người chơi vào lại và <strong>tiếp tục tham gia trận giao tranh cũ</strong>, hành vi đó sẽ ngay lập tức bị xem là vi phạm quy tắc <strong>3rd Party và Mixpack</strong>.<br><br><strong>⚖️ XEM XÉT TỪNG TRƯỜNG HỢP</strong><br>Trong các trường hợp Crash / Game Error / Connection Error, người chơi có thể gửi bằng chứng để được xem xét. Đội ngũ sẽ đánh giá từng trường hợp dựa trên bằng chứng, tình huống xung quanh và toàn bộ bối cảnh của sự việc trước khi đưa ra quyết định.<br><br><strong>📹 Bằng chứng nên cho thấy rõ việc mất kết nối là thật, chẳng hạn như:</strong><br>- Clip trước khi mất kết nối<br>- Ảnh chụp màn hình hiển thị rõ ngày và giờ<br>- Bản ghi lại hoặc replay<br>- Bằng chứng Crash / Error<br><br><strong>❌ Màn hình đen, ảnh chụp không hiển thị rõ ngày và giờ, hoặc bằng chứng không thể xác minh sự việc có thể không đủ để xem xét.</strong><br><br><strong>⚠️ Việc nói rằng đã bị crash hoặc mất kết nối không đồng nghĩa với việc tự động được miễn trừ.</strong> Mọi trường hợp đều phải được đội ngũ kiểm tra trước."
+        }},
+        {type:"info",title:{th:"🏁 เมื่อไหร่ถือว่าไฟต์จบ",en:"🏁 When is combat over?",vi:"🏁 Khi nào giao tranh kết thúc?"},body:{
+          th:"การต่อสู้สิ้นสุดเมื่อฝ่ายหนึ่งตายทั้งหมด, ทั้งสองฝ่ายแยกย้ายและไม่มีการไล่ล่าหรือโจมตีกันต่อ, หรือฝ่ายที่ถูกไล่หนีออกจากระยะสายตาและผู้ล่าไม่สามารถติดตามหรือค้นหาพบได้ หากกลับมาเจอกันภายหลังให้ถือเป็นไฟต์ใหม่ ห้ามอ้างว่าเป็นไฟต์เดิมเพื่อไล่แก้แค้นต่อเนื่อง",
+          en:"Combat ends when one side is completely dead, both sides disengage with no continued chase or attacks, or the chased side escapes line of sight and can no longer be tracked or found. Meeting again later is a new fight; do not claim it is the same fight to continue revenge.",
+          vi:"Giao tranh kết thúc khi một bên chết hoàn toàn, hai bên tách ra và không còn truy đuổi/tấn công, hoặc bên bị đuổi thoát khỏi tầm nhìn và không thể bị theo dõi hay tìm thấy. Gặp lại sau đó được tính là giao tranh mới; không được viện cớ “vẫn là trận cũ” để tiếp tục trả thù."
+        }},
+        {type:"success",title:{th:"⚔️ การเริ่มไฟต์ที่ถูกต้อง",en:"⚔️ What counts as starting a fight",vi:"⚔️ Thế nào là bắt đầu giao tranh"},body:{
+          th:"การเริ่มไฟต์ไม่จำเป็นต้องมี Damage ก่อนเสมอไป หากผู้เล่นไล่ล่าเป้าหมายอย่างชัดเจนและต่อเนื่องโดยมีเจตนาเข้าสู่การต่อสู้ ให้ถือว่าไฟต์เริ่มแล้ว <div class='quote'>พบกันเฉย ๆ ≠ เริ่มไฟต์<br><strong>ไล่ล่าอย่างชัดเจนเพื่อโจมตี = เริ่มไฟต์</strong><br>ยังไม่มี Damage ≠ ยังไม่มีไฟต์</div>",
+          en:"A fight does not require damage to occur first. If a player clearly and continuously chases a target with the intent to engage, the fight has already started.<div class='quote'>Simply meeting ≠ starting a fight<br><strong>Clearly chasing to attack = fight started</strong><br>No damage yet ≠ no fight</div>",
+          vi:"Giao tranh không bắt buộc phải có sát thương trước. Nếu người chơi truy đuổi mục tiêu rõ ràng và liên tục với ý định tấn công, giao tranh đã được tính là bắt đầu.<div class='quote'>Chỉ gặp nhau ≠ bắt đầu đánh<br><strong>Truy đuổi rõ ràng để tấn công = giao tranh bắt đầu</strong><br>Chưa có damage ≠ chưa có giao tranh</div>"
+        }},
+        {type:"danger",title:{th:"🔄 Server Restart — กฎ 10 นาที",en:"🔄 Server Restart — 10 Minute Rule",vi:"🔄 Server Restart — Quy tắc 10 phút"},body:{
+          th:"ห้ามเริ่มไฟต์ใหม่หรือสู้ต่อในช่วง <strong>10 นาทีก่อน Server Restart</strong> และ <strong>10 นาทีหลัง Server Restart</strong> เมื่อเข้าสู่ช่วง 10 นาทีก่อนรีสตาร์ท ผู้เล่นที่กำลังสู้ต้องหยุดทันทีและแยกออกจากไฟต์ หลังเซิร์ฟเวอร์กลับมาต้องรอครบ 10 นาทีก่อนเริ่มสู้ได้อีกครั้ง ผู้เล่นต้องหาที่ Safe Logout ด้วยตนเอง หากนอนออกในพื้นที่ไม่ปลอดภัยแล้วกลับมาเสียตัว เซิร์ฟเวอร์จะไม่รับผิดชอบ",
+          en:"Do not start a new fight or continue fighting during the <strong>10 minutes before a server restart</strong> or the <strong>10 minutes after a server restart</strong>. Once the pre-restart window begins, active fights must stop immediately and players must disengage. After the server returns, wait the full 10 minutes before fighting again. Players are responsible for finding a safe logout location; the server is not responsible for losses caused by logging out in an unsafe place.",
+          vi:"Cấm bắt đầu giao tranh mới hoặc tiếp tục đánh trong <strong>10 phút trước khi server restart</strong> và <strong>10 phút sau khi server restart</strong>. Khi bước vào khoảng 10 phút trước restart, mọi giao tranh đang diễn ra phải dừng ngay và người chơi phải tách ra. Sau khi server hoạt động lại, phải chờ đủ 10 phút mới được giao tranh. Người chơi tự chịu trách nhiệm tìm nơi Safe Logout; máy chủ không chịu trách nhiệm nếu mất nhân vật vì đăng xuất ở nơi không an toàn."
+        }}
+      ]
+    },
+
+    {
+      id:"third-party", icon:"👁", code:"05",
+      title:{th:"Third Party และการเฝ้าดูไฟต์",en:"Third Party & Fight Observation",vi:"Third Party & quan sát giao tranh"},
+      subtitle:{th:"การแทรกแซงไฟต์และกฎ 20 นาที",en:"Interference and the 20-minute rule",vi:"Can thiệp giao tranh và quy tắc 20 phút"},
+      items:[
+        {type:"danger",title:{th:"⚠️ Third-Party Fight — ต้องหยุดทันที",en:"⚠️ Third-Party Fight — stop immediately",vi:"⚠️ Third-Party Fight — phải dừng ngay"},body:{
+          th:"หากเกิด Third-Party Fight ผู้เล่นทุกฝ่ายต้องหยุดการต่อสู้ทันทีและแยกออกจากบริเวณ ห้ามเข้าร่วมวงต่อสู้ ห้ามโจมตีแบบมั่วไฟต์ และ <strong>ห้ามโจมตีสวนกลับ</strong> แม้ถูกกัดโดยไม่ตั้งใจ ผู้ที่ยังคงโจมตี เข้าร่วมไฟต์ หรือสวนกลับ จะถือว่าผิดกฎทันที <span class='muted'>ยกเว้นสายพันธุ์ที่กฎอนุญาตให้ Third Party ได้</span>",
+          en:"If a Third-Party Fight occurs, all sides must stop fighting immediately and separate from the area. Do not join the fight, attack indiscriminately, or <strong>counterattack</strong> even if another player accidentally hits you. Anyone who keeps attacking, joins the fight, or counters is immediately in violation. <span class='muted'>Exception: species explicitly allowed to Third Party.</span>",
+          vi:"Khi xảy ra Third-Party Fight, tất cả các bên phải dừng đánh ngay và rời khỏi khu vực. Không được tham gia, đánh bừa hoặc <strong>đánh trả</strong> dù bị người khác vô tình cắn. Ai tiếp tục tấn công, tham gia hoặc đánh trả sẽ bị xem là vi phạm ngay. <span class='muted'>Ngoại lệ: loài được quy tắc cho phép Third Party.</span>"
+        }},
+        {type:"success",title:{th:"🐊 ข้อยกเว้น Deinosuchus & Herrerasaurus",en:"🐊 Deinosuchus & Herrerasaurus exception",vi:"🐊 Ngoại lệ Deinosuchus & Herrerasaurus"},body:{
+          th:"Deinosuchus และ Herrerasaurus ได้รับอนุญาตให้เข้าโจมตีแบบ Third Party ได้ หากผู้เล่นถูก Deinosuchus หรือ Herrerasaurus โจมตีโดยตรง ผู้เล่นคนนั้นสามารถโจมตีสวนกลับเพื่อป้องกันตัวเองได้ สิทธิ์นี้ใช้เฉพาะผู้ที่ถูกโจมตีโดยตรงเท่านั้น",
+          en:"Deinosuchus and Herrerasaurus are allowed to Third Party. A player directly attacked by either species may counterattack in self-defence. This right applies only to the player who was directly attacked.",
+          vi:"Deinosuchus và Herrerasaurus được phép Third Party. Người chơi bị một trong hai loài tấn công trực tiếp có thể đánh trả để tự vệ. Quyền này chỉ áp dụng cho người bị tấn công trực tiếp."
+        }},
+        {type:"warning",title:{th:"👁️ Witness / Fight Observation",en:"👁️ Witness / Fight Observation",vi:"Quan sát giao tranh"},body:{
+          th:"หากไม่ได้มีส่วนร่วมในไฟต์ตั้งแต่เริ่ม: ห้ามเข้าเปิดไฟต์ทันที ห้ามยืนเฝ้ารอจังหวะ และห้ามรอให้ฝ่ายหนึ่งเสียเปรียบ/บาดเจ็บ/ตายแล้วเข้าโจมตี<br><br><strong>กรณีไม่ได้ยืนดูหรือเฝ้าสังเกต:</strong> ไม่ต้องรอ 20 นาที สามารถเข้าไฟต์ได้เลย<br><strong>กรณียืนดู/เฝ้ามองและรับรู้ว่าใครได้เปรียบเสียเปรียบ:</strong> ต้องรออย่างน้อย 20 นาทีหลังไฟต์จบก่อนจึงเปิดไฟต์กับผู้เล่นจากไฟต์นั้นได้<br><div class='quote'>⚠ ต้องมีหลักฐาน F2 ทั้งสองกรณี หากไม่มี F2 หรือ Overlay ที่บันทึกเสียงการเล่น จะปัดเป็น 3rd Party ทันที ไม่มีข้อยกเว้น</div>",
+          en:"If you were not part of the fight from the beginning: do not immediately attack either side, do not wait nearby for the fight to end, and do not wait for one side to become disadvantaged, injured, or dead before attacking.<br><br><strong>If you did not watch or observe the fight:</strong> there is no 20-minute wait; you may engage immediately.<br><strong>If you watched/observed and became aware of which side had the advantage:</strong> wait at least 20 minutes after the fight ends before engaging players from that fight.<br><div class='quote'>⚠ F2 evidence is required for both cases. Without F2 or an Overlay recording game audio, the case will be treated as Third Party immediately, with no exceptions.</div>",
+          vi:"Nếu bạn không tham gia giao tranh từ đầu: không được lập tức tấn công một bên, không được đứng chờ gần đó để đợi trận kết thúc, và không được chờ một bên yếu thế/bị thương/chết rồi mới tấn công.<br><br><strong>Nếu bạn không đứng xem hoặc theo dõi:</strong> không cần chờ 20 phút; có thể giao tranh ngay.<br><strong>Nếu bạn đã đứng xem/theo dõi và biết bên nào đang lợi thế:</strong> phải chờ ít nhất 20 phút sau khi giao tranh kết thúc mới được tấn công người chơi từ trận đó.<br><div class='quote'>⚠ Cần có bằng chứng F2 cho cả hai trường hợp. Nếu không có F2 hoặc Overlay ghi âm gameplay, vụ việc sẽ bị xem là Third Party ngay, không có ngoại lệ.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"groups", icon:"🦖", code:"06",
+      title:{th:"🧬 Mixpacking และ 👥 Overpacking",en:"🧬 Mixpacking & 👥 Overpacking",vi:"🧬 Mixpacking & 👥 Overpacking"},
+      subtitle:{th:"การรวมกลุ่มและการช่วยเหลือข้ามกลุ่ม",en:"Grouping and cross-group assistance",vi:"Lập nhóm và hỗ trợ chéo"},
+      items:[
+        {type:"danger",title:{th:"🧬 Mixpacking",en:"🧬 Mixpacking",vi:"🧬 Mixpacking"},body:{th:"Carnivore ต่างสายพันธุ์ห้ามรวมกลุ่มเพื่อสร้างความได้เปรียบในการต่อสู้ ห้ามใช้สายพันธุ์อื่นช่วยโจมตี เป็นเหยื่อล่อ ดัก/ต้อน/ปิดทาง หรือส่งข้อมูลตำแหน่งเพื่อช่วยล่าหรือสู้ การพูดคุยกันอย่างเดียวไม่ถือเป็น Mixpacking หากไม่มีการช่วยเหลือหรือสร้างความได้เปรียบ",en:"Different carnivore species may not group to gain a combat advantage. Do not use another species to attack, bait, trap, herd, block routes, or relay locations to assist hunting or combat. Talking alone is not Mixpacking when no assistance or advantage is created.",vi:"Các loài ăn thịt khác nhau không được lập nhóm để tạo lợi thế chiến đấu. Không được dùng loài khác để hỗ trợ tấn công, làm mồi nhử, chặn/dồn đường hoặc truyền vị trí để hỗ trợ săn/đánh. Chỉ nói chuyện không bị xem là Mixpacking nếu không có hỗ trợ hay tạo lợi thế."}},
+        {type:"danger",title:{th:"👥 Overpacking",en:"👥 Overpacking",vi:"👥 Overpacking"},body:{th:"ห้ามรวมกลุ่มเกินจำนวนที่กำหนดของแต่ละสายพันธุ์/กลุ่ม การอยู่ใกล้กันโดยบังเอิญไม่ถือเป็น Overpacking หากไม่มีการรวมกลุ่มหรือช่วยเหลือกัน เมื่อเกิดไฟต์ สมาชิกในตี้ของผู้ถูกโจมตีมีสิทธิ์เข้าสู้ แต่ผู้ที่ไม่ได้อยู่ในกลุ่มไม่มีสิทธิ์เข้าช่วยและต้องออกจากพื้นที่ ห้ามรอใกล้ ๆ เพื่อเข้าช่วยทีหลัง หรือช่วยด้วยการให้ข้อมูล บังทาง ดักทาง",en:"Do not exceed the allowed group size for a species/group. Accidental proximity is not Overpacking if there is no grouping or assistance. When a fight begins, party members of the attacked player may join, but players outside the group may not help and must leave the area. Do not remain nearby to join later or assist by relaying information, blocking, or trapping routes.",vi:"Không được vượt quá giới hạn nhóm của từng loài/nhóm. Vô tình ở gần nhau không phải Overpacking nếu không lập nhóm hay hỗ trợ. Khi giao tranh xảy ra, thành viên party của người bị tấn công có thể tham gia; người ngoài nhóm không được hỗ trợ và phải rời khu vực. Không được chờ gần đó để vào sau hoặc hỗ trợ bằng thông tin, chắn đường hay chặn lối."}}
+      ]
+    },
+
+    {
+      id:"survival", icon:"🪺", code:"07",
+      title:{th:"กฎการเอาตัวรอดและพื้นที่",en:"Survival & Area Rules",vi:"Quy tắc sinh tồn & khu vực"},
+      subtitle:{th:"Nest, Sanctuary, Death Avoid และ Revenge",en:"Nest, Sanctuary, Death Avoid and Revenge",vi:"Nest, Sanctuary, Death Avoid và Revenge"},
+      items:[
+        {type:"info",title:{th:"🪺 Nesting",en:"🪺 Nesting",vi:"🪺 Nesting"},body:{th:"Carnivore ห้ามโจมตี Nest ที่ไม่มีพ่อแม่อยู่ในระยะที่มองเห็นได้ Herbivore ห้ามทำลาย Nest ของ Herbivore ตัวอื่นโดยไม่มีเหตุผลตามกฎ อนุญาตให้เลี้ยงลูก Dino ที่ฟักจากไข่ได้จน Growth 45% แต่ห้ามใช้เป็นข้ออ้างเพื่อ Overpacking หรือ Mixpacking",en:"Carnivores may not attack a Nest when no parent is visible nearby. Herbivores may not destroy another herbivore's Nest without a rule-based reason. Players may raise a hatched baby Dino up to 45% Growth, but this may not be used as an excuse for Overpacking or Mixpacking.",vi:"Carnivore không được tấn công Nest khi không thấy bố/mẹ ở gần. Herbivore không được phá Nest của herbivore khác nếu không có lý do theo luật. Được phép nuôi Dino con nở từ trứng đến 45% Growth, nhưng không được dùng làm lý do cho Overpacking hoặc Mixpacking."}},
+        {type:"warning",title:{th:"🛡️🌿 Sanctuary Camping / ป่าเด็ก (SANC)",en:"🛡️🌿 Sanctuary Camping / SANC",vi:"🛡️🌿 Sanctuary Camping / SANC"},body:{
+          th:"พื้นที่ Sanctuary / ป่าเด็ก (SANC) เป็นพื้นที่สำหรับผู้เล่นใหม่และไดโนเสาร์ที่มีขนาดเล็ก โดยอนุญาตให้เฉพาะสายพันธุ์ที่กำหนดสามารถเข้าเล่นภายในพื้นที่ได้<br><br><strong>🌿 สายพันธุ์ที่สามารถเล่นในป่าเด็ก (SANC)</strong><br>🦖 Troodon<br>🦖 Herrerasaurus<br>🦖 Hypsilophodon<br><br>ห้ามทำ Sanctuary / New Player Area เพื่อก่อกวนหรือฆ่าผู้เล่นอื่น<br><br>ผู้เล่นที่มี <strong>Growth 45% ขึ้นไปต้องออกจากพื้นที่ภายใน 1 นาที 30 วินาที</strong> โดยนับพฤติกรรมร่วมด้วย<br><br><strong>⚠️ หากมีพฤติกรรมจงใจตั้งแคมป์หรือวนเวียนอยู่บริเวณ Sanctuary ทีมงานจะพิจารณาจากพฤติกรรมและสถานการณ์โดยรวม ไม่ใช่ระยะเวลาเพียงอย่างเดียว</strong>",
+          en:"The Sanctuary / SANC is an area for new players and small dinosaurs. Only the designated species are allowed to play inside the area.<br><br><strong>🌿 Species allowed in the Sanctuary (SANC)</strong><br>🦖 Troodon<br>🦖 Herrerasaurus<br>🦖 Hypsilophodon<br><br>Do not use the Sanctuary / New Player Area to harass or kill other players.<br><br>Players at <strong>45% Growth or higher must leave the area within 1 minute 30 seconds</strong>, with their behaviour also taken into account.<br><br><strong>⚠️ If a player intentionally camps or lingers around the Sanctuary, staff will consider the overall behaviour and circumstances, not the time alone.</strong>",
+          vi:"Sanctuary / SANC là khu vực dành cho người chơi mới và các loài khủng long nhỏ. Chỉ những loài được quy định mới được phép chơi trong khu vực này.<br><br><strong>🌿 Các loài được phép chơi trong Sanctuary (SANC)</strong><br>🦖 Troodon<br>🦖 Herrerasaurus<br>🦖 Hypsilophodon<br><br>Không được sử dụng Sanctuary / New Player Area để quấy rối hoặc giết người chơi khác.<br><br>Người chơi có <strong>Growth từ 45% trở lên phải rời khỏi khu vực trong vòng 1 phút 30 giây</strong>, đồng thời hành vi cũng sẽ được xem xét.<br><br><strong>⚠️ Nếu người chơi cố ý cắm trại hoặc đi vòng quanh khu vực Sanctuary, đội ngũ sẽ xem xét toàn bộ hành vi và hoàn cảnh, không chỉ dựa vào thời gian.</strong>"
+        }},
+        {type:"danger",title:{th:"💀 No Death Avoid",en:"💀 No Death Avoid",vi:"💀 No Death Avoid"},body:{
+th:"ทางทีมงาน <strong>[TH] KINGDOMS ISLE</strong> ขอแจ้งอัปเดตกฎเกี่ยวกับการ <strong>หลีกเลี่ยงความตาย (DEATH AVOID)</strong> เพื่อให้การล่าและการต่อสู้ภายในเซิร์ฟเวอร์เป็นไปอย่างยุติธรรมสำหรับทุกฝ่าย<br><br><strong>🦖 หลักการของกฎ</strong><br>หากคุณถูกศัตรูพบตัวและเริ่มถูกไล่ล่าแล้ว หรือสถานการณ์เข้าสู่การต่อสู้ / กำลังจะถูกฆ่า คุณยังสามารถพยายามหนีได้ แต่ต้องใช้ <strong>เส้นทาง กลไก และสภาพแวดล้อมตามปกติของเกม</strong> ห้ามจงใจใช้วิธีที่ทำให้คู่ต่อสู้ไม่สามารถติดตามต่อได้อย่างผิดธรรมชาติ ทำให้ตัวเองตายเพื่อยุติสถานการณ์ หรือใช้ระบบของเกมเพื่อหลีกเลี่ยงผลของการล่า<br><br><strong>❌ ตัวอย่างที่ผิดกฎ</strong><br>❌ <strong>PARKING</strong> เมื่อศัตรูเห็นคุณและกำลังไล่ล่า โดยยังมองเห็นคุณอยู่ เพื่อรอให้สถานการณ์จบ แม้ยังไม่มีการปะทะหรือดาเมจ<br>❌ จงใจ <strong>กระโดดหน้าผาหรือจากพื้นที่สูงเพื่อให้ตัวเองตาย</strong> หรือเพื่อทำให้คู่ต่อสู้ไม่สามารถติดตามต่อได้<br>❌ จงใจเข้าไปใน <strong>พื้นที่หรือภูมิประเทศที่อีกฝ่ายไม่สามารถเข้าถึงได้</strong> เพื่อหลีกเลี่ยงการถูกฆ่า<br>❌ ใช้ <strong>ENTOMB / จุดบั๊ก / พื้นที่ผิดปกติของแผนที่</strong> เพื่อหลีกเลี่ยงการถูกฆ่า<br>❌ ใช้คำสั่ง <strong>!die</strong> เพื่อทำลายหรือยุติสถานการณ์การล่าที่กำลังเกิดขึ้น<br>❌ <strong>ทิ้งซากหรือทำลายซาก</strong> เพื่อป้องกันไม่ให้ผู้ล่าได้รับอาหารจากการล่า<br>❌ ใช้ระบบ กลไก หรือวิธีการอื่นใดที่มีเจตนาทำให้คู่ต่อสู้ไม่สามารถดำเนินการล่าหรือจบสถานการณ์ได้ตามปกติ<br><br><strong>✅ สิ่งที่ทำได้</strong><br>✅ วิ่งหนีตามเส้นทางปกติ<br>✅ เปลี่ยนทิศทางหรือหลบหลีกคู่ต่อสู้<br>✅ วิ่งเข้าป่า พุ่มไม้ หรือพื้นที่ธรรมชาติ<br>✅ ใช้ต้นไม้ ก้อนหิน หรือภูมิประเทศทั่วไปในการหลบหนี ตราบใดที่ไม่ได้ใช้เพื่อทำให้คู่ต่อสู้หมดความสามารถในการติดตามอย่างผิดธรรมชาติ<br>✅ ปีนหรือขึ้นพื้นที่ที่สายพันธุ์ของตนสามารถเข้าถึงได้ตามกลไกปกติ<br>✅ ใช้เส้นทางที่ยังเปิดโอกาสให้คู่ต่อสู้สามารถติดตามต่อได้ตามธรรมชาติ<br><br><div class='quote'>หากจะ <strong>เก็บตัว / ซ่อนตัว / PARKING</strong> ต้องทำในจุดที่พ้นจากสายตาของไดโนเสาร์ตัวอื่น และต้องไม่ใช่การ PARKING ต่อหน้าศัตรูที่พบและกำลังไล่ล่าคุณอยู่</div><br><strong>⚠️ การกระโดดจากที่สูงหรือหน้าผา</strong><br>คำว่า <strong>กระโดดหน้าผาไม่ได้หมายความว่าผิดกฎทุกกรณี</strong> หากกระโดดลงจากพื้นที่สูงเพื่อใช้เป็นเส้นทางหลบหนีตามปกติ และยังมีโอกาสให้คู่ต่อสู้ติดตามหรือดำเนินการล่าต่อได้ จะไม่ถือว่าผิดโดยอัตโนมัติ<br><br>แต่หากกำลังถูกไล่ล่าแล้วจงใจกระโดดเพื่อ <strong>ทำให้ตัวเองตาย / ปฏิเสธไม่ให้คู่ต่อสู้เป็นผู้สังหาร / ทำให้คู่ต่อสู้ไม่สามารถติดตามต่อได้</strong> สามารถถือเป็น Death Avoid ได้ โดยทีมงานจะพิจารณาจากสถานการณ์ เส้นทางที่ใช้ ผลของการกระทำ และเจตนาเป็นรายกรณี<br><br><strong>⚠️ ข้อยกเว้นกรณี Dilophosaurus</strong><br>หากกำลังเผชิญหน้าหรือต่อสู้กับ <strong>Dilophosaurus</strong> อนุญาตให้ขึ้นก้อนหินหรือพื้นที่สูงที่สามารถเข้าถึงได้ตามปกติ เพื่อ <strong>หลบหลีกสกิลเงาแยกร่าง / Hallucination</strong> ได้<br><br>เมื่อขึ้นพื้นที่ดังกล่าวเพื่อรับมือกับสกิลของ Dilophosaurus แล้ว ผู้เล่น <strong>สามารถอยู่บนพื้นที่นั้นต่อได้จนกว่าการต่อสู้จะสิ้นสุด</strong> และ <strong>ไม่ถือเป็น Death Avoid</strong> แม้ Dilophosaurus จะไม่สามารถขึ้นไปถึงผู้เล่นได้ในขณะนั้น<br><br><div class='quote'><strong>ข้อยกเว้นนี้ใช้เฉพาะกรณีต่อสู้กับ Dilophosaurus เพื่อรับมือกับสกิล Hallucination เท่านั้น</strong></div><br><br><strong>⚠️ หลักสำคัญของกฎ</strong><br><div class='quote'><strong>“หนีได้ แต่ห้ามใช้วิธีที่จงใจทำลายหรือยุติสถานการณ์การล่าอย่างผิดธรรมชาติ”</strong></div><br>หากทีมงานตรวจสอบพบว่ามี <strong>เจตนาหลีกเลี่ยงความตาย (DEATH AVOID)</strong> อาจมีการดำเนินการตามกฎของเซิร์ฟเวอร์<br><br>📌 กฎนี้มีผล <strong>ตั้งแต่ประกาศเป็นต้นไป</strong>",
+en:"The <strong>[TH] KINGDOMS ISLE</strong> staff team is updating the <strong>DEATH AVOID</strong> rule to keep hunting and combat fair for all players.<br><br><strong>🦖 Core principle</strong><br>If an enemy has spotted you and begun chasing you, or the situation has entered combat / you are about to be killed, you may still try to escape, but you must use <strong>normal game routes, mechanics, and environments</strong>. Do not intentionally use a method that unnaturally prevents the opponent from continuing the pursuit, kills your own character to end the situation, or abuses a game system to avoid the outcome of the hunt.<br><br><strong>❌ Examples of violations</strong><br>❌ <strong>PARKING</strong> while an enemy can still see you and is actively hunting you, simply to wait for the situation to end, even if no contact or damage has occurred yet.<br>❌ Intentionally <strong>jumping from a cliff or high area to kill yourself</strong> or to make it impossible for the opponent to continue following you.<br>❌ Intentionally entering an <strong>area or terrain the opponent cannot access</strong> in order to avoid being killed.<br>❌ Using <strong>ENTOMB / bug spots / abnormal map areas</strong> to avoid being killed.<br>❌ Using the <strong>!die</strong> command to break or end an active hunting situation.<br>❌ <strong>Abandoning or destroying a corpse</strong> to prevent the hunter from receiving food from the hunt.<br>❌ Using any system, mechanic, or method with the intent to stop the opponent from continuing or normally concluding the hunt.<br><br><strong>✅ Allowed actions</strong><br>✅ Running away along normal routes<br>✅ Changing direction or dodging the opponent<br>✅ Running into forests, bushes, or natural areas<br>✅ Using trees, rocks, or normal terrain to escape, as long as it is not used to unnaturally remove the opponent's ability to continue the pursuit<br>✅ Climbing or reaching areas your species can normally access<br>✅ Using escape routes that still allow the opponent a natural opportunity to continue following<br><br><div class='quote'>If you want to <strong>park / hide your character</strong>, do so out of sight of other dinosaurs. Do not PARK in front of an enemy that has already spotted you and is actively hunting you.</div><br><strong>⚠️ Jumping from cliffs or high areas</strong><br><strong>Jumping from a cliff is not automatically a violation in every case.</strong> If a player jumps down from a high area as part of a normal escape route and the opponent still has a reasonable opportunity to continue the pursuit, it is not automatically Death Avoid.<br><br>However, if the player is already being chased and intentionally jumps in order to <strong>kill themselves / deny the opponent the kill / deliberately prevent the opponent from continuing the pursuit</strong>, it may be treated as Death Avoid. Staff will review the circumstances, route used, result of the action, and the player's apparent intent case by case.<br><br><strong>⚠️ Dilophosaurus exception</strong><br>When facing or fighting a <strong>Dilophosaurus</strong>, players are allowed to move onto a rock or normally accessible elevated area in order to <strong>avoid its shadow-clone / Hallucination ability</strong>.<br><br>Once the player has moved onto such an area to counter Dilophosaurus's ability, they <strong>may remain there until the fight has ended</strong>, and this <strong>will not be considered Death Avoid</strong> even if the Dilophosaurus cannot reach the player there at that time.<br><br><div class='quote'><strong>This exception applies only when fighting Dilophosaurus for the purpose of countering its Hallucination ability.</strong></div><br><br><strong>⚠️ Core rule</strong><br><div class='quote'><strong>“You may escape, but you may not intentionally destroy or unnaturally end the hunting situation.”</strong></div><br>If staff determine that there was <strong>intentional DEATH AVOID</strong>, action may be taken under the server rules.<br><br>📌 This rule is effective <strong>from the time of this announcement onward</strong>.",
+vi:"Đội ngũ <strong>[TH] KINGDOMS ISLE</strong> cập nhật quy tắc <strong>DEATH AVOID</strong> để việc săn và giao tranh trong máy chủ công bằng cho tất cả người chơi.<br><br><strong>🦖 Nguyên tắc của quy tắc</strong><br>Nếu kẻ địch đã phát hiện và bắt đầu truy đuổi bạn, hoặc tình huống đã bước vào giao tranh / bạn sắp bị giết, bạn vẫn có thể cố gắng chạy trốn nhưng phải sử dụng <strong>đường đi, cơ chế và môi trường bình thường của game</strong>. Không được cố ý dùng cách khiến đối phương không thể tiếp tục truy đuổi một cách bất thường, tự làm nhân vật chết để kết thúc tình huống, hoặc lợi dụng hệ thống game để né kết quả của cuộc săn.<br><br><strong>❌ Ví dụ vi phạm</strong><br>❌ <strong>PARKING</strong> khi kẻ địch vẫn nhìn thấy bạn và đang săn đuổi, chỉ để chờ tình huống kết thúc, kể cả khi chưa có va chạm hoặc sát thương.<br>❌ Cố ý <strong>nhảy khỏi vách đá hoặc nơi cao để tự chết</strong> hoặc khiến đối phương không thể tiếp tục đuổi theo.<br>❌ Cố ý vào <strong>khu vực hoặc địa hình mà đối phương không thể tiếp cận</strong> để tránh bị giết.<br>❌ Dùng <strong>ENTOMB / điểm bug / khu vực bản đồ bất thường</strong> để né bị giết.<br>❌ Dùng lệnh <strong>!die</strong> để phá hoặc chấm dứt tình huống săn đang diễn ra.<br>❌ <strong>Bỏ xác hoặc phá xác</strong> để ngăn kẻ săn nhận được thức ăn từ cuộc săn.<br>❌ Dùng bất kỳ hệ thống, cơ chế hoặc phương pháp nào với mục đích khiến đối phương không thể tiếp tục hoặc kết thúc cuộc săn theo cách bình thường.<br><br><strong>✅ Những gì được phép</strong><br>✅ Chạy trốn theo tuyến đường bình thường<br>✅ Đổi hướng hoặc né tránh đối phương<br>✅ Chạy vào rừng, bụi cây hoặc khu vực tự nhiên<br>✅ Dùng cây, đá hoặc địa hình thông thường để trốn, miễn là không cố ý làm đối phương mất khả năng tiếp tục truy đuổi một cách bất thường<br>✅ Leo hoặc lên khu vực mà loài của bạn có thể tiếp cận bình thường<br>✅ Dùng tuyến đường trốn vẫn cho đối phương cơ hội tự nhiên để tiếp tục đuổi theo<br><br><div class='quote'>Nếu muốn <strong>PARKING / ẩn nhân vật</strong>, hãy làm ở nơi nằm ngoài tầm nhìn của các khủng long khác. Không được PARKING trước mặt kẻ địch đã phát hiện và đang săn đuổi bạn.</div><br><strong>⚠️ Nhảy từ vách đá hoặc nơi cao</strong><br><strong>Nhảy khỏi vách đá không đồng nghĩa với vi phạm trong mọi trường hợp.</strong> Nếu người chơi nhảy xuống từ nơi cao như một phần của tuyến đường chạy trốn bình thường và đối phương vẫn có cơ hội hợp lý để tiếp tục truy đuổi, hành vi đó không tự động bị xem là Death Avoid.<br><br>Tuy nhiên, nếu người chơi đang bị truy đuổi và cố ý nhảy để <strong>tự chết / không cho đối phương có được kill / cố tình khiến đối phương không thể tiếp tục truy đuổi</strong>, hành vi đó có thể bị xem là Death Avoid. Đội ngũ sẽ xem xét hoàn cảnh, tuyến đường, kết quả của hành động và ý định theo từng trường hợp.<br><br><strong>⚠️ Ngoại lệ với Dilophosaurus</strong><br>Khi đối đầu hoặc giao tranh với <strong>Dilophosaurus</strong>, người chơi được phép lên đá hoặc khu vực cao có thể tiếp cận bình thường để <strong>né kỹ năng bóng phân thân / Hallucination</strong>.<br><br>Sau khi lên khu vực đó để đối phó với kỹ năng của Dilophosaurus, người chơi <strong>được phép ở lại đó cho đến khi giao tranh kết thúc</strong> và <strong>không bị xem là Death Avoid</strong>, ngay cả khi Dilophosaurus không thể tiếp cận người chơi ở vị trí đó trong thời điểm đó.<br><br><div class='quote'><strong>Ngoại lệ này chỉ áp dụng khi giao tranh với Dilophosaurus nhằm đối phó với kỹ năng Hallucination.</strong></div><br><br><strong>⚠️ Nguyên tắc quan trọng</strong><br><div class='quote'><strong>“Có thể chạy trốn, nhưng không được cố ý phá hỏng hoặc kết thúc tình huống săn một cách bất thường.”</strong></div><br>Nếu đội ngũ xác định có <strong>ý định DEATH AVOID</strong>, người chơi có thể bị xử lý theo quy tắc của
+ máy chủ.<br><br>📌 Quy tắc này có hiệu lực <strong>kể từ thời điểm thông báo</strong>."
+}},{type:"danger",title:{th:"⏱️ No Revenge — 30 นาที",en:"⏱️ No Revenge — 30 minutes",vi:"⏱️ No Revenge — 30 phút"},body:{th:"หลังไฟต์จบ ห้ามกลับมาแก้แค้นฝ่ายตรงข้ามภายใน 30 นาที รวมถึงกลับไปโจมตีผู้เล่นเดิม เรียกเพื่อน/สมาชิกฝูง เปลี่ยน Dino แล้วกลับมา หรือส่งข้อมูลตำแหน่งให้ผู้อื่นมาแก้แค้น หากเกิดการต่อสู้ใหม่ที่ไม่เกี่ยวกับเหตุการณ์เดิม สามารถพิจารณาเป็นไฟต์ใหม่ตามสถานการณ์",en:"After a fight ends, do not return for revenge against the opposing side within 30 minutes. This includes returning to attack the same player, calling friends/pack members, switching Dino and coming back, or sharing locations so others can retaliate. A genuinely unrelated new encounter may be considered a new fight depending on the situation.",vi:"Sau khi giao tranh kết thúc, không được quay lại trả thù đối phương trong 30 phút. Bao gồm quay lại tấn công cùng người chơi, gọi bạn/thành viên bầy, đổi Dino rồi quay lại, hoặc gửi vị trí để người khác trả thù. Một cuộc chạm trán mới thực sự không liên quan có thể được xem là giao tranh mới tùy tình huống."}},
+        {type:"danger",title:{th:"📺 Stream Sniping",en:"📺 Stream Sniping",vi:"📺 Stream Sniping"},body:{th:"ห้ามใช้การดู Stream เพื่อติดตาม ค้นหาตำแหน่ง หรือโจมตี/ฆ่าผู้เล่น ไม่ว่า Streamer จะรู้ตัวหรือไม่ หากตรวจพบ ผู้กระทำจะได้รับโทษแบน 1 สัปดาห์",en:"Do not use a stream to track, locate, attack, or kill a player, whether or not the streamer is aware. Confirmed violations receive a one-week ban.",vi:"Cấm dùng stream để theo dõi, xác định vị trí, tấn công hoặc giết người chơi, bất kể streamer có biết hay không. Vi phạm được xác nhận sẽ bị cấm 1 tuần."}},
+        {type:"warning",title:{th:"📍 No Location Dropping",en:"📍 No Location Dropping",vi:"📍 No Location Dropping"},body:{th:"แชร์ตำแหน่งของตัวเองได้หากระบุชัดว่าเป็นตำแหน่งของตนเอง ห้ามแชร์ตำแหน่งของผู้เล่นอื่นโดยไม่ได้รับอนุญาต หากอยู่ใน Pack / Group สมาชิกทุกคนต้องเห็นด้วยก่อนแชร์ตำแหน่งของกลุ่ม หากต้องการ Report ให้เปิด Ticket หรือเรียก Admin ในเกมแทนการแชร์ตำแหน่ง",en:"You may share your own location if you clearly state that it is yours. Do not share another player's location without permission. In a Pack / Group, all members must agree before the group's location is shared. For reports, open a Ticket or call an in-game Admin instead of publicly sharing locations.",vi:"Bạn có thể chia sẻ vị trí của chính mình nếu nói rõ đó là vị trí của bạn. Không được chia sẻ vị trí người khác khi chưa được phép. Trong Pack / Group, tất cả thành viên phải đồng ý trước khi chia sẻ vị trí nhóm. Khi report, hãy mở Ticket hoặc gọi Admin trong game thay vì công khai vị trí."}},
+        {type:"success",image:"assets/staff-assistance-area-v10.jpg",imageAlt:{th:"พื้นที่คุ้มครองชั่วคราวระหว่างการช่วยเหลือของทีมงาน",en:"Temporary staff assistance protection area",vi:"Khu vực bảo vệ tạm thời khi nhân viên hỗ trợ"},title:{th:"🛡️ พื้นที่คุ้มครองระหว่างการช่วยเหลือของทีมงาน",en:"🛡️ Staff Assistance Protection Area",vi:"🛡️ Khu vực bảo vệ khi nhân viên hỗ trợ"},body:{
+          th:"พื้นที่ดังกล่าวถือเป็น <strong>พื้นที่ปลอดภัยชั่วคราว</strong> สำหรับผู้เล่นที่กำลังได้รับความช่วยเหลือหรืออยู่ระหว่างการดำเนินเคสโดยทีมงาน<br><br><strong>ห้ามผู้เล่นอื่นเข้ามา:</strong><ul><li>โจมตี</li><li>สังหาร</li><li>ก่อกวน</li><li>ขัดขวาง</li><li>แทรกแซง</li></ul>ในขณะที่ทีมงานกำลังปฏิบัติหน้าที่<br><br>ผู้ที่ฝ่าฝืนอาจได้รับการลงโทษตามกฎของเซิร์ฟเวอร์ โดยพิจารณาตามเจตนาและความรุนแรงของเหตุการณ์<br><br><div class='quote'><strong>⚠️ พื้นที่นี้จะมีสถานะเป็นพื้นที่ปลอดภัยเฉพาะในช่วงเวลาที่ทีมงานกำลังให้ความช่วยเหลือเท่านั้น</strong><br><br>ผู้เล่นที่ได้รับความช่วยเหลือห้ามใช้สถานการณ์ดังกล่าวเพื่อหลบหนีจากการต่อสู้หรือแสวงหาความได้เปรียบภายในเกม</div>",
+          en:"The area is considered a <strong>temporary safe zone</strong> for players who are receiving assistance or whose case is currently being handled by staff.<br><br><strong>Other players must not:</strong><ul><li>Attack</li><li>Kill</li><li>Harass or disrupt</li><li>Obstruct</li><li>Interfere</li></ul>while staff are performing their duties.<br><br>Players who violate this rule may be punished under the server rules, with staff considering the intent and severity of the incident.<br><br><div class='quote'><strong>⚠️ This area is only considered a safe zone while staff are actively providing assistance.</strong><br><br>The player receiving assistance must not use the situation to escape from combat or gain an in-game advantage.</div>",
+          vi:"Khu vực này được xem là <strong>vùng an toàn tạm thời</strong> dành cho người chơi đang được đội ngũ hỗ trợ hoặc đang trong quá trình xử lý vụ việc.<br><br><strong>Người chơi khác không được:</strong><ul><li>Tấn công</li><li>Giết</li><li>Quấy rối</li><li>Cản trở</li><li>Can thiệp</li></ul>trong khi đội ngũ đang thực hiện nhiệm vụ.<br><br>Người vi phạm có thể bị xử phạt theo quy tắc máy chủ, dựa trên ý định và mức độ nghiêm trọng của sự việc.<br><br><div class='quote'><strong>⚠️ Khu vực này chỉ có trạng thái vùng an toàn trong thời gian đội ngũ đang trực tiếp hỗ trợ.</strong><br><br>Người chơi đang được hỗ trợ không được lợi dụng tình huống này để thoát khỏi giao tranh hoặc tạo lợi thế trong game.</div>"
+        }}
+      ]
+    },
+
+    {
+      id:"redeem", icon:"♻", code:"08",
+      title:{th:"กฎระบบ Redeem",en:"Redeem Rules",vi:"Quy tắc Redeem"},
+      subtitle:{th:"คูลดาวน์ 15 นาทีและข้อห้ามหลัง Redeem",en:"15-minute cooldown and post-redeem restrictions",vi:"Cooldown 15 phút và hạn chế sau Redeem"},
+      items:[
+        {type:"danger",title:{th:"♻️ ห้าม Redeem เพื่อแก้แค้นหรือเสริมกำลัง",en:"♻️ No Redeem for revenge or reinforcement",vi:"♻️ Cấm Redeem để trả thù hoặc tiếp viện"},body:{th:"ห้าม Redeem ตัวใหม่กลับไปไล่ล่า ดักรอ ติดตาม หรือแก้แค้นผู้เล่น/กลุ่มจากเหตุการณ์ก่อนหน้า และห้าม Redeem เพื่อเข้าช่วยไฟต์ เสริมกำลัง หรือแทนสมาชิกที่เพิ่งเสียชีวิตในเหตุการณ์เดิม",en:"Do not Redeem a new Dino to chase, camp, track, or take revenge on players/groups from a previous incident. Do not Redeem to join the same fight, reinforce it, or replace a member who just died.",vi:"Không được Redeem Dino mới để truy đuổi, phục kích, theo dõi hoặc trả thù người chơi/nhóm từ tình huống trước. Không được Redeem để vào hỗ trợ cùng giao tranh, tiếp viện hoặc thay thế thành viên vừa chết."}},
+        {type:"danger",title:{th:"🎯 ห้าม SPOT / Counter / ดักเป้าหมาย",en:"🎯 No SPOT / Counter / target camping",vi:"🎯 Cấm SPOT / Counter / phục kích mục tiêu"},body:{th:"ห้าม SPOT แจ้งตำแหน่งหรือส่งข้อมูลให้ผู้เล่นอื่น Redeem กลับมาช่วยไฟต์ ห้ามใช้ข้อมูลจากไฟต์เดิม เช่น สายพันธุ์ จำนวน ตำแหน่ง หรือสถานการณ์ เพื่อเลือกตัวที่ได้เปรียบกว่าแล้ว Counter และห้ามใช้ข้อมูลเส้นทางหรือพฤติกรรมเป้าหมายเพื่อดักรอหรือซุ่มโจมตี",en:"Do not SPOT, share locations, or relay information so others can Redeem back into a fight. Do not use information from the previous fight—such as species, numbers, location, or situation—to choose a stronger counter, and do not use target route/behaviour information to camp or ambush them.",vi:"Không được SPOT, báo vị trí hoặc gửi thông tin để người khác Redeem quay lại hỗ trợ giao tranh. Không được dùng thông tin từ trận trước như loài, số lượng, vị trí hoặc tình hình để chọn Dino khắc chế mạnh hơn, và không được dùng đường đi/hành vi của mục tiêu để phục kích."}},
+        {type:"warning",title:{th:"🚫 ห้ามหลบเลี่ยงผลของไฟต์",en:"🚫 Do not evade the outcome of a fight",vi:"🚫 Không né hậu quả của giao tranh"},body:{th:"ห้ามเปลี่ยนตัวเพื่อหลีกเลี่ยงผลจากไฟต์เดิม เช่น เสียเปรียบ บาดเจ็บ ถูกล่า หรือเสียสมาชิก แล้วกลับมาดำเนินสถานการณ์เดิมต่อ",en:"Do not switch characters to avoid consequences from the same fight—such as being disadvantaged, injured, hunted, or losing a member—and then continue the same situation.",vi:"Không được đổi nhân vật để né hậu quả của giao tranh cũ như đang bất lợi, bị thương, bị săn hoặc mất thành viên rồi quay lại tiếp tục tình huống cũ."}},
+        {type:"danger",title:{th:"⏳ Redeem Combat Cooldown — 15 นาที",en:"⏳ Redeem Combat Cooldown — 15 minutes",vi:"⏳ Redeem Combat Cooldown — 15 phút"},body:{th:"หลัง Redeem ต้องรอ 15 นาทีเต็มก่อนเป็นฝ่ายเริ่มการต่อสู้ ระหว่างนั้นห้ามเปิดไฟต์/โจมตีก่อน ช่วยไฟต์ของเพื่อน ไล่ล่า ติดตาม กดดัน ดักเป้าหมาย SPOT หรือส่งข้อมูลช่วยการต่อสู้ และห้ามรอใกล้เป้าหมายเพื่อเปิดไฟต์ทันทีหลังหมดคูลดาวน์",en:"After Redeeming, wait a full 15 minutes before initiating combat. During this time, do not attack first, help a friend's fight, chase, track, pressure, camp a target, SPOT/share combat information, or wait near a target to attack immediately when the cooldown expires.",vi:"Sau khi Redeem, phải chờ đủ 15 phút mới được chủ động bắt đầu giao tranh. Trong thời gian này không được đánh trước, hỗ trợ giao tranh của bạn, truy đuổi, theo dõi, gây áp lực, phục kích mục tiêu, SPOT/gửi thông tin chiến đấu hoặc chờ gần mục tiêu để đánh ngay khi hết cooldown."}},
+        {type:"success",title:{th:"🛡️ ข้อยกเว้นการป้องกันตัว",en:"🛡️ Self-defence exception",vi:"🛡️ Ngoại lệ tự vệ"},body:{th:"หากผู้เล่นที่ Redeem มา <strong>ถูกโจมตีก่อนจริง ๆ</strong> สามารถโจมตีสวนเพื่อป้องกันตัวได้แม้ยังไม่ครบ 15 นาที ต้องเป็นกรณีที่อีกฝ่ายโจมตีก่อนชัดเจน ห้ามยั่ว เดินจี้ ล้อม ขวางทาง หรือกดดันให้อีกฝ่ายตี และห้ามใช้ข้อยกเว้นนี้เพื่อกลับไปช่วยไฟต์เดิมหรือแก้แค้น หากผู้ Redeem โจมตีก่อนจะไม่ถือเป็นการป้องกันตัว",en:"A Redeemed player who is <strong>genuinely attacked first</strong> may counterattack in self-defence even before 15 minutes have passed. The other side must clearly attack first. Do not provoke, crowd, surround, block, or pressure someone into hitting you, and do not use this exception to rejoin the old fight or take revenge. If the Redeemed player attacks first, it is not self-defence.",vi:"Người chơi vừa Redeem nếu <strong>thực sự bị tấn công trước</strong> có thể đánh trả để tự vệ dù chưa đủ 15 phút. Đối phương phải rõ ràng là bên đánh trước. Không được khiêu khích, bám sát, bao vây, chắn đường hoặc gây áp lực để ép người khác đánh mình; không được dùng ngoại lệ này để quay lại trận cũ hoặc trả thù. Nếu người Redeem đánh trước thì không được tính là tự vệ."}},
+        {type:"info",title:{th:"⚠️ ครบ 15 นาที ≠ กลับไปไฟต์เดิมได้",en:"⚠️ 15 minutes elapsed ≠ permission to return to the old fight",vi:"⚠️ Hết 15 phút ≠ được quay lại trận cũ"},body:{th:"ครบ 15 นาทีไม่ได้หมายความว่าสามารถกลับไปแก้แค้นหรือกลับเข้าสู่เหตุการณ์เดิมได้ การ Redeem ต้องถือเป็นการเริ่มสถานการณ์ใหม่อย่างอิสระ",en:"Finishing the 15-minute cooldown does not mean you may return for revenge or re-enter the previous incident. A Redeem must start a new, independent situation.",vi:"Hết 15 phút không có nghĩa là được quay lại trả thù hoặc quay lại tình huống cũ. Redeem phải được xem là bắt đầu một tình huống mới, độc lập."}}
+      ]
+    },
+
+    {
+      id:"alliance", icon:"🤝", code:"09",
+      title:{th:"กฎพันธมิตร",en:"Alliance Rules",vi:"Quy tắc liên minh"},
+      subtitle:{th:"เข้าทีมแล้วห้ามหักหลังหรือ SPOT",en:"Once teamed, no betrayal or SPOT",vi:"Đã vào team thì không phản bội hoặc SPOT"},
+      items:[
+        {type:"warning",title:{th:"⚠️ กฎสำคัญที่สุด — “อย่าไว้ใจใคร”",en:"⚠️ Most Important Rule — “Trust No One”",vi:"⚠️ Quy tắc quan trọng nhất — “Đừng tin ai”"},body:{th:"<div class='quote'><strong>การเป็นมิตร การพูดคุย หรือการบอกว่าจะไม่ทำร้าย ไม่ได้หมายความว่าอีกฝ่ายจะเป็นคนที่คุณไว้ใจได้</strong></div><br><strong>🩸 “ในเกมนี้ คุณไว้ใจใครไม่ได้”</strong><br><br>⚠️ อย่าไว้ใจผู้เล่นอื่นเพียงเพราะเขาเข้ามาพูดคุยกับคุณ<br>⚠️ อย่าไว้ใจเพียงเพราะเขาบอกว่าจะไม่ทำร้าย<br>⚠️ อย่าเปิดเผยข้อมูลสำคัญโดยไม่จำเป็น<br>⚠️ อย่าคิดว่าการพูดคุยหรือทำตัวเป็นมิตร หมายความว่าอีกฝ่ายเป็นพันธมิตรแล้ว<br>⚠️ ก่อนเข้าทีมหรือเข้าใกล้ผู้เล่นอื่น ควรพิจารณาความเสี่ยงด้วยตัวเอง<br><br><div class='quote'><strong>🦖 CARNIVORE / คำหลอกล่ออาจเป็นส่วนหนึ่งของการล่า</strong><br>โดยเฉพาะเมื่อพบกับ Carnivore ผู้เล่นไม่ควรเชื่อคำพูดหรือท่าทีเป็นมิตรโดยอัตโนมัติ ตราบใดที่ทั้งสองฝ่าย <strong>ยังไม่ได้เข้าทีมกัน</strong> Carnivore สามารถใช้การพูดคุย การทำทีเป็นมิตร หรือการหลอกล่อให้เป้าหมายเข้าใกล้ ก่อนเริ่มโจมตีได้ และให้ถือว่าเป็นส่วนหนึ่งของการล่า<br><br>คำพูด เช่น “จะไม่ทำร้าย”, “เข้ามาใกล้ได้”, “ไม่ฆ่า” หรือข้อความในลักษณะเดียวกัน <strong>ไม่ได้สร้างสถานะพันธมิตรขึ้นมาโดยอัตโนมัติ</strong></div><br><strong>⚠️ การพูดคุยหรือการเตือนกันเพียงอย่างเดียว ไม่ถือว่าเป็นการสร้างพันธมิตร</strong><br><br><strong>อย่างไรก็ตาม เมื่อผู้เล่นตัดสินใจเข้าทีมกันแล้ว กฎพันธมิตรจะมีผลทันที</strong><br>• ห้ามฆ่ากัน<br>• ห้ามหักหลังโดยใช้ข้อมูลของพันธมิตร<br>• ห้าม SPOT หรือส่งข้อมูลให้ผู้เล่นอื่นเข้ามาฆ่าพันธมิตร<br><br>ทีมงานไม่สามารถรับประกันความสัมพันธ์ คำพูด หรือความน่าเชื่อถือของผู้เล่นคนอื่นได้ ผู้เล่นต้องประเมินความเสี่ยงด้วยตัวเองก่อนตัดสินใจเข้าทีม",en:"<div class='quote'><strong>Being friendly, talking, or saying that no harm will be done does not mean the other player is trustworthy.</strong></div><br><strong>🩸 “In this game, trust no one.”</strong><br><br>⚠️ Do not trust another player simply because they talk to you.<br>⚠️ Do not trust them simply because they say they will not hurt you.<br>⚠️ Do not reveal important information unnecessarily.<br>⚠️ Do not assume friendly behaviour or conversation means an alliance already exists.<br>⚠️ Before teaming or approaching another player, assess the risk yourself.<br><br><div class='quote'><strong>🦖 CARNIVORE / Deception may be part of the hunt</strong><br>Players should be especially cautious around Carnivores and should not automatically trust friendly words or behaviour. As long as both sides <strong>have not joined the same team</strong>, a Carnivore may talk, act friendly, or lure a target closer before attacking; this may be treated as part of the hunt.<br><br>Statements such as “I won’t hurt you”, “come closer”, “I won’t kill you”, or similar wording <strong>do not automatically create alliance status</strong>.</div><br><strong>⚠️ Conversation or warnings alone do not create an alliance.</strong><br><br><strong>However, once players decide to join the same team, alliance rules apply immediately.</strong><br>• Do not kill each other.<br>• Do not betray a teammate by using alliance information against them.<br>• Do not SPOT or pass information to other players so they can kill your ally.<br><br>Staff cannot guarantee another player’s relationship, statements, or trustworthiness. Players must assess the risk themselves before choosing to team.",vi:"<div class='quote'><strong>Việc tỏ ra thân thiện, nói chuyện hoặc nói rằng sẽ không làm hại không có nghĩa là người kia đáng tin.</strong></div><br><strong>🩸 “Trong trò chơi này, đừng tin ai.”</strong><br><br>⚠️ Đừng tin người chơi khác chỉ vì họ nói chuyện với bạn.<br>⚠️ Đừng tin chỉ vì họ nói rằng sẽ không làm hại bạn.<br>⚠️ Không tiết lộ thông tin quan trọng khi không cần thiết.<br>⚠️ Đừng cho rằng nói chuyện hoặc tỏ ra thân thiện có nghĩa là đã trở thành đồng minh.<br>⚠️ Trước khi vào team hoặc tiến lại gần người chơi khác, hãy tự đánh giá rủi ro.<br><br><div class='quote'><strong>🦖 CARNIVORE / Lừa dụ có thể là một phần của cuộc săn</strong><br>Người chơi cần đặc biệt cẩn thận khi gặp Carnivore và không nên tự động tin lời nói hoặc thái độ thân thiện. Miễn là hai bên <strong>chưa vào cùng một team</strong>, Carnivore có thể nói chuyện, giả vờ thân thiện hoặc dụ mục tiêu tiến lại gần trước khi tấn công; hành vi này có thể được xem là một phần của cuộc săn.<br><br>Những câu như “tôi sẽ không làm hại”, “lại gần đi”, “tôi không giết đâu” hoặc tương tự <strong>không tự động tạo trạng thái đồng minh</strong>.</div><br><strong>⚠️ Chỉ nói chuyện hoặc cảnh báo nhau không tạo thành liên minh.</strong><br><br><strong>Tuy nhiên, ngay khi người chơi quyết định vào cùng team, quy tắc liên minh có hiệu lực ngay lập tức.</strong><br>• Không được giết nhau.<br>• Không được phản bội bằng cách sử dụng thông tin của đồng minh chống lại họ.<br>• Không được SPOT hoặc chuyển thông tin cho người chơi khác để họ đến giết đồng minh.<br><br>Nhân viên không thể bảo đảm mối quan hệ, lời nói hay độ đáng tin của người chơi khác. Người chơi phải tự đánh giá rủi ro trước khi quyết định vào team."}},
+        {type:"danger",title:{th:"🤝 เมื่อเข้าทีมแล้ว ห้ามฆ่ากัน",en:"🤝 Once teamed, do not kill each other",vi:"🤝 Đã vào team thì không được giết nhau"},body:{th:"เมื่อทั้งสองฝ่ายตกลงเข้าทีมเดียวกัน ให้ถือว่าเป็นพันธมิตรทันที ห้ามฆ่าหรือโจมตีสมาชิกในทีม ห้ามทำทีเป็นมิตรเพื่อให้อีกฝ่ายลดการป้องกัน และห้ามใช้การเข้าทีมเป็นเครื่องมือเตรียมฆ่าในภายหลัง",en:"Once both sides agree to join the same team, alliance status applies immediately. Do not kill or attack teammates, pretend to be friendly to lower their guard, or use teaming as a setup for a later kill.",vi:"Khi hai bên đồng ý vào cùng team, trạng thái liên minh có hiệu lực ngay. Không được giết hoặc tấn công đồng đội, giả vờ thân thiện để đối phương mất cảnh giác, hoặc dùng việc vào team để chuẩn bị giết sau đó."}},
+        {type:"danger",title:{th:"🚫 ห้ามออกทีมแล้วฆ่าทันที",en:"🚫 No leave-team-then-kill setup",vi:"🚫 Cấm rời team rồi lập tức giết"},body:{th:"ห้ามใช้รูปแบบ เข้าทีม → ทำทีเป็นมิตร → ออกจากทีม → กลับมาฆ่า หากพบเจตนาใช้การเข้าทีมเพื่อหลอกล่อแล้วนำไปสู่การฆ่า ทีมงานสามารถดำเนินการตามกฎได้",en:"Do not use a join team → act friendly → leave team → return to kill setup. If teaming is intentionally used to lure someone into a later kill, staff may take action.",vi:"Cấm kiểu vào team → giả vờ thân thiện → rời team → quay lại giết. Nếu việc vào team được cố ý dùng để dụ người khác rồi giết, nhân viên có thể xử lý theo luật."}},
+        {type:"danger",title:{th:"📍 ห้าม SPOT จุดจากข้อมูลพันธมิตร",en:"📍 Do not SPOT using alliance information",vi:"📍 Cấm SPOT bằng thông tin liên minh"},body:{th:"ห้ามใช้ข้อมูลที่ได้จากการเป็นพันธมิตรเพื่อบอกตำแหน่ง SPOT จุด ส่งพิกัด เรียกเพื่อน หรือส่งข้อมูลให้กลุ่มอื่นเข้ามาโจมตี โดยเฉพาะกรณีออกทีมแล้วบอกจุดให้เพื่อนมาฆ่า",en:"Do not use information obtained through an alliance to share locations, SPOT, send coordinates, call friends, or give another group information to attack. Leaving the team and then giving friends the target's location is specifically prohibited.",vi:"Không được dùng thông tin có được từ liên minh để báo vị trí, SPOT, gửi tọa độ, gọi bạn hoặc cung cấp thông tin cho nhóm khác đến tấn công. Đặc biệt cấm rời team rồi báo vị trí cho bạn đến giết."}},
+        {type:"info",title:{th:"⚔️ 2v2 / 3v3 / จำนวนเท่ากัน",en:"⚔️ 2v2 / 3v3 / equal numbers",vi:"⚔️ 2v2 / 3v3 / số lượng bằng nhau"},body:{th:"หากผู้เล่นพบกันโดยแต่ละฝ่ายมีจำนวนเท่ากัน เช่น 2v2, 3v3, 4v4 สามารถต่อสู้กันได้ตามปกติ แต่ยังต้องปฏิบัติตามกฎ Third Party",en:"When both sides meet with equal numbers, such as 2v2, 3v3, or 4v4, they may fight normally, but Third Party rules still apply.",vi:"Khi hai bên gặp nhau với số lượng bằng nhau như 2v2, 3v3 hoặc 4v4, có thể giao tranh bình thường nhưng vẫn phải tuân thủ quy tắc Third Party."}}
+      ]
+    },
+
+    {
+      id:"spot", icon:"📍", code:"10",
+      title:{th:"Community หรือ SPOT จุด?",en:"Community or SPOT?",vi:"Community hay SPOT?"},
+      subtitle:{th:"เส้นแบ่งของการแชร์ข้อมูลในเกม",en:"The line between general information and targeting",vi:"Ranh giới giữa thông tin chung và chỉ điểm"},
+      items:[
+        {type:"success",title:{th:"🟢 Community — ข้อมูลทั่วไป",en:"🟢 Community — general information",vi:"🟢 Community — thông tin chung"},body:{th:"การพูดคุยหรือแลกเปลี่ยนข้อมูลทั่วไป เช่น “แถว North Lake มีคนเยอะ” โดยไม่ได้มีเจตนาชี้เป้าให้ผู้อื่นไปดำเนินการต่อ ไม่ถือเป็น SPOT",en:"General discussion or information sharing, such as “There are many people around North Lake,” without an intent to direct others toward a target, is not SPOT.",vi:"Trao đổi thông tin chung, ví dụ “khu North Lake có nhiều người,” mà không có ý định chỉ mục tiêu để người khác đi xử lý, không bị xem là SPOT."}},
+        {type:"danger",title:{th:"🔴 SPOT — ชี้เป้าเพื่อให้ผู้อื่นดำเนินการ",en:"🔴 SPOT — targeting for someone else to act",vi:"🔴 SPOT — chỉ mục tiêu để người khác hành động"},body:{th:"การระบุตำแหน่งพร้อมรายละเอียดของผู้เล่น เช่น จำนวน ตำแหน่ง ทิศทาง หรือสถานะ เพื่อให้ผู้อื่นติดตาม เข้าไปสู้ หรือเปิดไฟต์แทน อาจถือเป็น SPOT แม้ไม่พูดคำว่า “มาช่วย” ทีมงานจะดูรายละเอียด ความชัดเจนของตำแหน่ง จำนวน/ทิศทาง/สถานะ การติดตามต่อเนื่อง การเรียกผู้อื่น และเจตนาของการส่งข้อมูล",en:"Giving a location together with player details—such as numbers, position, direction, or status—so others can track, engage, or start a fight may be SPOT even without saying “come help.” Staff consider the level of detail, precision of location, numbers/direction/status, ongoing tracking, whether others were called, and the intent behind the information.",vi:"Cung cấp vị trí kèm chi tiết người chơi như số lượng, vị trí, hướng di chuyển hoặc trạng thái để người khác theo dõi, vào đánh hoặc mở giao tranh có thể bị xem là SPOT dù không nói “đến giúp”. Nhân viên sẽ xem mức độ chi tiết, độ chính xác của vị trí, số lượng/hướng/trạng thái, việc theo dõi liên tục, có gọi người khác hay không và mục đích truyền thông tin."}},
+        {type:"info",title:{th:"🧠 หลักจำง่าย",en:"🧠 Simple distinction",vi:"🧠 Cách phân biệt đơn giản"},body:{th:"<div class='quote'><strong>การบอกข้อมูลทั่วไป = Community</strong><br><strong>การชี้เป้าเพื่อให้ผู้อื่นไปดำเนินการ = SPOT</strong></div>",en:"<div class='quote'><strong>General information = Community</strong><br><strong>Pointing out a target so others can act = SPOT</strong></div>",vi:"<div class='quote'><strong>Thông tin chung = Community</strong><br><strong>Chỉ mục tiêu để người khác hành động = SPOT</strong></div>"}}
+      ]
+    },
+
+    {
+      id:"evidence", icon:"🎥", code:"11",
+      title:{th:"หลักฐานและการรายงาน",en:"Evidence & Reporting",vi:"Bằng chứng & báo cáo"},
+      subtitle:{th:"สิ่งที่ควรเตรียมก่อนเปิด Ticket",en:"What to prepare before opening a Ticket",vi:"Cần chuẩn bị gì trước khi mở Ticket"},
+      items:[
+        {type:"info",title:{th:"🎥 แนวทางส่งหลักฐาน",en:"🎥 Evidence guidelines",vi:"🎥 Hướng dẫn gửi bằng chứng"},body:{th:"หากต้องการรายงานผู้เล่น ให้เปิด Ticket ประเภทรายงานผู้เล่นและเตรียมคลิปหลักฐานให้เรียบร้อย คลิปต้องชัดเจนและต่อเนื่อง พร้อมระบุรายละเอียดและช่วงเวลาสำคัญ หากไฟล์ใหญ่หรือยาว ให้ใช้ Google Drive หรือ YouTube และตรวจสอบว่าลิงก์เปิดดูได้ Google Drive ต้องตั้งเป็น “ทุกคนที่มีลิงก์สามารถดูได้” Ticket ที่ไม่มีหลักฐาน หลักฐานไม่ชัด หรือลิงก์เปิดไม่ได้อาจไม่สามารถนำมาพิจารณาได้",en:"To report a player, open a player-report Ticket and prepare the evidence first. Footage must be clear and continuous, with relevant details and important timestamps. For large or long videos, use Google Drive or YouTube and verify the link works. Google Drive should be set to “Anyone with the link can view.” Tickets with no evidence, unclear evidence, or inaccessible links may not be reviewable.",vi:"Để báo cáo người chơi, hãy mở Ticket loại báo cáo và chuẩn bị bằng chứng trước. Video phải rõ ràng, liên tục và có mô tả cùng mốc thời gian quan trọng. Nếu file lớn hoặc dài, hãy dùng Google Drive hoặc YouTube và kiểm tra liên kết mở được. Google Drive cần đặt “Bất kỳ ai có liên kết đều có thể xem”. Ticket không có bằng chứng, bằng chứng không rõ hoặc link không mở được có thể không được xem xét."}},
+        {type:"warning",title:{th:"📌 หลักฐานควรมีบริบท",en:"📌 Evidence should include context",vi:"📌 Bằng chứng cần có bối cảnh"},body:{th:"หลักฐานควรแสดงเหตุการณ์ก่อน ระหว่าง และหลังเกิดเหตุหากจำเป็น รวมถึงเสียง ชื่อ ตัวละคร และช่วงเวลาที่เกี่ยวข้อง แนะนำ F2 / NVIDIA Overlay / Instant Replay ไม่จำเป็นต้องอัดทั้งเกม แต่ควรมีบริบทเพียงพอให้ทีมงานตรวจสอบ",en:"Evidence should show the event before, during, and after where necessary, including audio, names, characters, and relevant timing. F2 / NVIDIA Overlay / Instant Replay are recommended. You do not need to record the whole game, but the clip should contain enough context for staff to review.",vi:"Bằng chứng nên thể hiện diễn biến trước, trong và sau sự việc khi cần, bao gồm âm thanh, tên, nhân vật và thời điểm liên quan. Khuyến nghị F2 / NVIDIA Overlay / Instant Replay. Không cần ghi cả buổi chơi nhưng clip phải có đủ bối cảnh để nhân viên kiểm tra."}},
+        {type:"info",title:{th:"📍 หลักฐาน Alliance / SPOT",en:"📍 Alliance / SPOT evidence",vi:"📍 Bằng chứng Alliance / SPOT"},body:{th:"กรณีร้องเรียน SPOT / การหักหลัง / การวางแผนฆ่า ควรมีบริบท เช่น Clip/Recording, Chat, Voice, Screenshot และลำดับเหตุการณ์ ทีมงานจะพิจารณาหลักฐานของทั้งสองฝ่าย หากหลักฐานไม่เพียงพอที่จะยืนยันการกระทำผิด ทีมงานสามารถปัดตกเคสได้",en:"For SPOT, betrayal, or planned-kill reports, include context such as clips/recordings, chat, voice, screenshots, and the event sequence. Staff will consider evidence from both sides. If evidence is insufficient to establish a violation, the case may be dismissed.",vi:"Đối với báo cáo SPOT, phản bội hoặc lên kế hoạch giết, cần có bối cảnh như clip/recording, chat, voice, screenshot và trình tự sự kiện. Nhân viên sẽ xem bằng chứng từ cả hai bên. Nếu bằng chứng không đủ xác nhận vi phạm, vụ việc có thể bị bác."}}
+      ]
+    },
+
+    {
+      id:"pack-limits", icon:"🦕", code:"12",
+      title:{th:"Group Pack Limits",en:"Group Pack Limits",vi:"Giới hạn Group Pack"},
+      subtitle:{th:"จำนวนสูงสุดของแต่ละสายพันธุ์",en:"Maximum group size by species",vi:"Số lượng tối đa theo từng loài"},
+      feature:"packLimits", items:[]
+    },
+    {
+      id:"herd-tokens", icon:"🌿", code:"13",
+      title:{th:"Herbivore Herd Tokens",en:"Herbivore Herd Tokens",vi:"Herbivore Herd Tokens"},
+      subtitle:{th:"กฎรวมกลุ่มกินพืชสูงสุด 45 Token",en:"Herbivore mixed-group limit: 45 Tokens",vi:"Giới hạn nhóm herbivore hỗn hợp: 45 Token"},
+      feature:"herdTokens", items:[]
+    },
+    {
+      id:"penalties", icon:"⚠️", code:"14",
+      title:{th:"บทลงโทษ",en:"Server Penalties",vi:"Hình phạt máy chủ"},
+      subtitle:{th:"ลำดับการลงโทษและสถานะคำเตือนของผู้เล่น",en:"Penalty progression and player warning status",vi:"Trình tự xử phạt và trạng thái cảnh cáo của người chơi"},
+      feature:"penalties",
+      items:[
+        {
+          level:"1", type:"verbal",
+          kicker:{th:"ครั้งที่ 1",en:"1st Offence",vi:"Lần 1"},
+          title:{th:"ตักเตือนด้วยวาจา",en:"Verbal Warning",vi:"Cảnh cáo bằng lời nói"},
+          body:{
+            th:"ทีมงานจะแจ้งตักเตือนผู้เล่นโดยตรง และบันทึกคำตักเตือนไว้ใน <strong>ประวัติผู้เล่นแบบถาวร</strong> คำตักเตือนไม่มีวันหมดอายุ และมีเพียง <strong>ทีมแอดมินเท่านั้น</strong> ที่สามารถดูประวัตินี้ได้",
+            en:"Staff will warn the player directly. The warning is recorded <strong>permanently in the player history</strong>, does not expire, and can be viewed <strong>only by the admin team</strong>.",
+            vi:"Nhân viên sẽ cảnh cáo trực tiếp người chơi. Cảnh cáo được <strong>lưu vĩnh viễn trong lịch sử người chơi</strong>, không hết hạn và <strong>chỉ đội ngũ admin</strong> có thể xem."
+          },
+          meta:{th:"ถาวร · เฉพาะแอดมินดูได้",en:"Permanent · Admin-only record",vi:"Vĩnh viễn · Chỉ admin xem"}
+        },
+        {
+          level:"2", type:"warning-one",
+          kicker:{th:"ครั้งที่ 2",en:"2nd Offence",vi:"Lần 2"},
+          title:{th:"ใบเตือนที่ 1 (Warning 1)",en:"Warning 1",vi:"Cảnh cáo 1 (Warning 1)"},
+          body:{
+            th:"ผู้เล่นจะได้รับ <strong>ใบเตือนที่ 1</strong> มีอายุ <strong>1 เดือน</strong> และจะได้รับยศ <strong>Warning 1</strong> ใน Discord ระหว่างที่ใบเตือนยังมีผล เมื่อครบกำหนดให้ถอดยศออก",
+            en:"The player receives <strong>Warning 1</strong>, valid for <strong>1 month</strong>, with a <strong>Warning 1</strong> Discord role while the warning is active. The role is removed when it expires.",
+            vi:"Người chơi nhận <strong>Warning 1</strong> có hiệu lực <strong>1 tháng</strong> và được gắn role <strong>Warning 1</strong> trên Discord trong thời gian cảnh cáo còn hiệu lực. Role sẽ được gỡ khi hết hạn."
+          },
+          meta:{th:"อายุ 1 เดือน · มียศใน Discord",en:"1 month · Discord role",vi:"1 tháng · Role Discord"}
+        },
+        {
+          level:"3", type:"warning-two",
+          kicker:{th:"ครั้งที่ 3",en:"3rd Offence",vi:"Lần 3"},
+          title:{th:"ใบเตือนที่ 2 (Warning 2)",en:"Warning 2",vi:"Cảnh cáo 2 (Warning 2)"},
+          body:{
+            th:"ผู้เล่นจะได้รับ <strong>ใบเตือนที่ 2</strong> มีอายุ <strong>1 เดือน</strong> และจะได้รับยศ <strong>Warning 2</strong> ใน Discord ระหว่างที่ใบเตือนยังมีผล เมื่อครบกำหนดให้ถอดยศออก โดยถือเป็น <strong>ขั้นสุดท้ายก่อนการแบนถาวร</strong>",
+            en:"The player receives <strong>Warning 2</strong>, valid for <strong>1 month</strong>, with a <strong>Warning 2</strong> Discord role while active. The role is removed when it expires. This is the <strong>final stage before a permanent ban</strong>.",
+            vi:"Người chơi nhận <strong>Warning 2</strong> có hiệu lực <strong>1 tháng</strong> và được gắn role <strong>Warning 2</strong> trên Discord trong thời gian còn hiệu lực. Role sẽ được gỡ khi hết hạn. Đây là <strong>bước cuối trước khi bị cấm vĩnh viễn</strong>."
+          },
+          meta:{th:"อายุ 1 เดือน · ขั้นสุ
+ดท้ายก่อนแบน",en:"1 month · Final warning",vi:"1 tháng · Cảnh cáo cuối"}
+        },
+        {
+          level:"4", type:"permanent-ban",
+          kicker:{th:"ครั้งที่ 4",en:"4th Offence",vi:"Lần 4"},
+          title:{th:"แบนถาวรออกจากเซิร์ฟเวอร์ (Permanent Ban)",en:"Permanent Ban from the Server",vi:"Cấm vĩnh viễn khỏi máy chủ (Permanent Ban)"},
+          body:{
+            th:"หากผู้เล่นกระทำผิดจนถึงขั้นที่ 4 จะถูก <strong>แบนออกจากเซิร์ฟเวอร์อย่างถาวร</strong> และ <strong>ไม่สามารถกลับเข้ามาเล่นในเซิร์ฟเวอร์ได้อีก</strong>",
+            en:"A player who reaches the fourth stage will be <strong>permanently banned from the server</strong> and <strong>will not be allowed to return to play on the server</strong>.",
+            vi:"Người chơi đến bước thứ tư sẽ bị <strong>cấm vĩnh viễn khỏi máy chủ</strong> và <strong>không được phép quay lại chơi trên máy chủ</strong>."
+          },
+          meta:{th:"ถาวร · ไม่สามารถกลับมาเล่นได้",en:"Permanent · No return",vi:"Vĩnh viễn · Không được quay lại"}
+        }
+      ],
+      historyNote:{
+        th:"แม้ Warning 1 / Warning 2 จะหมดอายุและถูกถอดยศออกจาก Discord แล้ว <strong>ประวัติการกระทำผิดยังสามารถถูกเก็บไว้</strong> เพื่อให้ทีมแอดมินตรวจสอบย้อนหลังได้",
+        en:"Even after Warning 1 / Warning 2 expires and the Discord role is removed, the <strong>violation history may still be retained</strong> for retrospective review by the admin team.",
+        vi:"Ngay cả khi Warning 1 / Warning 2 đã hết hạn và role Discord được gỡ, <strong>lịch sử vi phạm vẫn có thể được lưu lại</strong> để đội ngũ admin kiểm tra về sau."
+      },
+      seriousNote:{
+        th:"<strong>ความผิดร้ายแรง:</strong> ความผิดบางประเภทอาจถูกพิจารณา <strong>ข้ามลำดับบทลงโทษ</strong> ได้ตามความรุนแรง เจตนา หลักฐาน และผลกระทบของการกระทำ",
+        en:"<strong>Serious violations:</strong> Certain offences may <strong>skip steps in the penalty progression</strong> depending on severity, intent, evidence, and the impact of the conduct.",
+        vi:"<strong>Vi phạm nghiêm trọng:</strong> Một số hành vi có thể được xem xét <strong>bỏ qua các bước xử phạt thông thường</strong> tùy theo mức độ nghiêm trọng, ý định, bằng chứng và hậu quả."
+      },
+      cheatNote:{
+        th:"<strong>🚫 การใช้โปรแกรมโกง — แบนถาวรทันที</strong><br>หากทีมงานตรวจสอบพบว่าผู้เล่นใช้ <strong>โปรแกรมโกง หรือซอฟต์แวร์ภายนอกที่ให้ความได้เปรียบอย่างไม่เป็นธรรม</strong> ผู้เล่นจะถูก <strong>แบนออกจากเซิร์ฟเวอร์อย่างถาวรทันที (Permanent Ban)</strong> โดยไม่ต้องผ่านคำตักเตือนด้วยวาจา, Warning 1 หรือ Warning 2 ก่อน",
+        en:"<strong>🚫 Cheating software — Immediate Permanent Ban</strong><br>If staff verify that a player used <strong>cheat software or external software that provides an unfair advantage</strong>, the player will receive an <strong>immediate Permanent Ban from the server</strong> without first receiving a verbal warning, Warning 1, or Warning 2.",
+        vi:"<strong>🚫 Sử dụng phần mềm gian lận — Cấm vĩnh viễn ngay lập tức</strong><br>Nếu đội ngũ xác minh người chơi đã sử dụng <strong>phần mềm gian lận hoặc phần mềm bên ngoài tạo lợi thế không công bằng</strong>, người chơi sẽ bị <strong>cấm vĩnh viễn khỏi máy chủ ngay lập tức (Permanent Ban)</strong> mà không cần trải qua cảnh cáo bằng lời nói, Warning 1 hoặc Warning 2."
+      }
+    }
+  ],
+
+  packLimits: {
+    Herbivore:[["Hypsilophodon",12],["Dryosaurus",12],["Pachycephalosaurus",8],["Tenontosaurus",6],["Kentrosaurus",5],["Diabloceratops",5],["Maiasaura",4],["Stegosaurus",3],["Triceratops",2]],
+    Omnivore:[["Beipisaurus",12],["Gallimimus",8]],
+    Carnivore:[["Pteranodon",10],["Troodon",10],["Omniraptor",8],["Herrerasaurus",8],["Austroraptor",8],["Dilophosaurus",5],["Carnotaurus",4],["Ceratosaurus",4],["Allosaurus",3],["Deinosuchus",2],["Tyrannosaurus Rex",2]]
+  },
+
+  herdTokens: {
+    "Micro — 3":[["Dryosaurus",3],["Beipiaosaurus",3],["Hypsilophodon",3]],
+    "Low — 5":[["Gallimimus",5],["Pachycephalosaurus",5]],
+    "Medium — 10":[["Maiasaura",10],["Tenontosaurus",10],["Diabloceratops",10],["Kentrosaurus",10]],
+    "High — 20":[["Stegosaurus",20],["Triceratops",20]]
+  }
+};
+
+window.KI_RULES.sections.find(s => s.id === "behavior").items.push({
+  type:"warning",
+  title:{th:"⚖️ Final Rule — หลักการตัดสิน",en:"⚖️ Final Rule — decision principle",vi:"⚖️ Final Rule — nguyên tắc xử lý"},
+  body:{
+    th:"กฎมีไว้เพื่อให้ทุกคนเล่นอย่างเท่าเทียม ไม่ใช่เพื่อหาช่องเอาชนะกฎ หากมีพฤติกรรมจงใจหลีกเลี่ยงกฎ ใช้ช่องโหว่ หรือสร้างความได้เปรียบที่ไม่เป็นธรรม ทีมงานสามารถพิจารณาจากหลักฐาน บริบท เจตนา และเหตุการณ์ทั้งหมด",
+    en:"Rules exist so everyone can play fairly, not as loopholes to be worked around. Intentional rule evasion, exploitation, or unfair advantage may be reviewed using the evidence, context, intent, and the complete sequence of events.",
+    vi:"Quy tắc tồn tại để mọi người chơi công bằng, không phải để tìm kẽ hở lách luật. Hành vi cố ý né luật, lợi dụng lỗ hổng hoặc tạo lợi thế không công bằng có thể được xem xét dựa trên bằng chứng, bối cảnh, ý định và toàn bộ diễn biến."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "evidence").items.push({
+  type:"danger",
+  title:{th:"🚫 ห้ามตัดต่อหรือบิดเบือนหลักฐาน",en:"🚫 Do not manipulate evidence",vi:"🚫 Cấm chỉnh sửa hoặc bóp méo bằng chứng"},
+  body:{
+    th:"ห้ามตัดต่อ ดัดแปลง หรือเผยแพร่หลักฐานในลักษณะที่ทำให้เหตุการณ์ถูกเข้าใจผิด และห้ามให้ข้อมูลเท็จหรือปกปิดข้อเท็จจริงต่อทีมงานเพื่อให้ตนเองหรือผู้อื่นพ้นผิด",
+    en:"Do not edit, alter, or present evidence in a way that misrepresents what happened. Do not give false information or conceal relevant facts from staff to clear yourself or another player.",
+    vi:"Không được chỉnh sửa, thay đổi hoặc trình bày bằng chứng theo cách làm sai lệch sự việc. Không được cung cấp thông tin sai hoặc che giấu sự thật liên quan với nhân viên để giúp bản thân hoặc người khác thoát lỗi."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "survival").items.push({
+  type:"warning",
+  title:{th:"การบังคับใช้ 🛡️ Sanctuary Camping",en:"🛡️ ⚠️ Sanctuary Camping enforcement",vi:"Xử lý 🛡️ Sanctuary Camping"},
+  body:{
+    th:"การกระทำครั้งแรกอาจได้รับการตักเตือน หากทำซ้ำหรือจงใจทำต่อหลังได้รับคำเตือน สามารถได้รับบทลงโทษที่รุนแรงขึ้น",
+    en:"A first incident may receive a warning. Repeated behaviour or intentionally continuing after a warning may result in a more severe penalty.",
+    vi:"Lần vi phạm đầu có thể bị cảnh cáo. Nếu tái phạm hoặc cố ý tiếp tục sau khi được cảnh báo, hình phạt có thể nghiêm khắc hơn."
+  }
+});
