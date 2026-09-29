@@ -1940,7 +1940,6 @@ ote > span{width:27px;height:27px}
   min-height:420px;
   background-color:#061018;
   background-image:url("../assets/weekend-pvp-map-v1.jpg");
-  background-image:url("../assets/weekend-pvp-map-v1.jpg");
   background-size:contain;
   background-repeat:no-repeat;
   background-position:center;
@@ -1954,7 +1953,7 @@ ote > span{width:27px;height:27px}
   display:none;
   position:absolute;z-index:2;left:12.8%;top:77%;
   transform:translate(-50%,-50%);
-  display:grid;justify-items:center;
+  justify-items:center;
   pointer-events:none;
   filter:drop-shadow(0 5px 12px rgba(0,0,0,.75))
 }
