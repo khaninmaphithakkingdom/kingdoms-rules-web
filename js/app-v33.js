@@ -87,7 +87,7 @@
     searchInput.placeholder = t.search;
     mobileSearchInput.placeholder = t.search;
 
-    $(".lang-btn").forEach(button => {
+    $$(".lang-btn").forEach(button => {
       button.classList.toggle("active", button.dataset.lang === safeLang());
     });
   }
