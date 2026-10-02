@@ -1,0 +1,34 @@
+
+(() => {
+  "use strict";
+  const game = window.KI_GAME_DATA || {meta:{},species:{}};
+  const C = window.KI_GUIDE_CONTENT;
+  if (!C) return;
+  const root = document.getElementById("guideRoot");
+  const page = document.body.dataset.page || "guide";
+  const state = {lang:localStorage.getItem("ki-rules-lang")||"th",query:"",diet:"all",mutationCategory:"all"};
+  if(!["th","en","vi"].includes(state.lang)) state.lang="th";
+  const tx=v=>v==null?"":(typeof v==="string"||typeof v==="number"?String(v):(v[state.lang]??v.en??v.th??v.vi??""));
+  const U=()=>C.ui[state.lang]||C.ui.en;
+  const aliasFor=name=>tx(C.speciesAliases?.[name]||name);
+  const speciesLabel=name=>state.lang==="en"?name:(aliasFor(name)===name?name:aliasFor(name)+" - "+name);
+  const dietLabel=v=>{const m={Carnivore:{th:"???????? (Carnivore)",en:"Carnivore",vi:"An th?t (Carnivore)"},Herbivore:{th:"?????? (Herbivore)",en:"Herbivore",vi:"An c? (Herbivore)"},Omnivore:{th:"????????????????????? (Omnivore)",en:"Omnivore",vi:"An t?p (Omnivore)"}};return tx(m[v]||v)};
+  const categoryLabel=v=>({Lifecycle:U().catLifecycle,"Slot Exclusive":U().catSlot,Unlockable:U().catUnlockable,"Test / Horde":U().catTest,Removed:U().catRemoved}[v]||v);
+  const conditionLabel=v=>v==="active"?U().activeCondition:v==="passive"?U().passiveCondition:v;
+  const restrictionLabel=v=>String(v||"").replace(/Female On
+…[middle output omitted]…
+"badges"><span class="badge">'+E(conditionLabel(c.type))+'</span>'+(c.community?'<span class="badge community">'+E(U().communityTested)+'</span>':"")+'</div><h3>'+E(tx(c.title))+'</h3><p>'+E(tx(c.body))+'</p></div></article>').join("")+'</div></section><section class="section prose-grid"><article class="info-card"><h3>Prime / Frail</h3><p>'+E(tx({th:"????? Prime ????????????? species - ??? Dinosaur Database ?? curve ??????????",en:"Prime bonuses differ by species - use the Dinosaur Database for each species' real curve.",vi:"Bonus Prime kh�c nhau theo lo�i - xem curve th?t t?ng lo�i trong Dinosaur Database."}))+'</p></article><article class="info-card"><h3>Entomb</h3><p>'+E(tx({th:"????????? mechanics ??? cross-check ???; ?????????? community-tested ????????????",en:"Only cross-checked mechanics are presented; community-tested details are labeled separately.",vi:"Ch? hi?n th? mechanics da cross-check; chi ti?t community-tested du?c g?n nhan ri�ng."}))+'</p></article></section>'+source(C.sources.prime,"Prime community reference")+source(C.sources.thaiPrime,"Thai unlock reference")}
+  function mutCard(x){
+    const b=x.status==="test"?'<span class="badge test">'+E(U().test)+'</span>':x.status==="removed"?'<span class="badge removed">'+E(U().removed)+'</span>':'<span class="badge current">'+E(U().current)+'</span>';
+    const BU=C.buildUi?.[state.lang]||C.buildUi?.en||{};
+    const slotText=Array.isArray(x.equipSlots)?(x.equipSlots.length===4?(BU.allSlots||"All Slots"):x.equipSlots.map(n=>"Slot "+n).join(" / ")):(BU.needsVerification||"NEEDS VERIFICATION");
+    const confidence=x.confidence==="community-tested"?U().communityTested:x.confidence==="community-reference"?(BU.communityReference||"COMMUNITY REFERENCE"):x.confidence==="needs-verification"?(BU.needsVerification||"NEEDS VERIFICATION"):x.confidence==="historical"?U().catRemoved:x.confidence==="test-reference"?U().catTest:(BU.communityReference||"COMMUNITY REFERENCE");
+    return '<article class="mutation-card"><div class="badges">'+b+'<span class="badge">'+E(categoryLabel(x.category))+'</span>'+(x.restriction?'<span class="badge">'+E(restrictionLabel(x.restriction))+'</span>':"")+'<span class="badge">'+E(slotText)+'</span></div><h3>'+E(x.name)+'</h3><p>'+E(tx(x.effect))+(x.value?' <strong style="color:#d9c17e">'+E(x.value)+'</strong>':"")+'</p>'+(x.unlock?'<div class="unlock"><strong>'+E(U().howUnlock)+'</strong><br>'+E(tx(x.unlock))+'</div>':"")+'<div class="mutation-meta"><span class="badge">'+E(confidence)+'</span></div></article>';
+  }
+function mutations(){const cats=["all","Lifecycle","Slot Exclusive","Unlockable","Test / Horde","Removed"],list=C.mutations.filter(m=>{const hay=(m.name+" "+tx(m.effect)+" "+m.restriction+" "+m.slot+" "+tx(m.unlock||"")).toLowerCase();return(!state.query||hay.includes(state.query.toLowerCase()))&&(state.mutationCategory==="all"||m.category===state.mutationCategory)});root.innerHTML=hero('<span>MUTATION</span> DATABASE',E(tx(U().mutationLead)),'<div class="hero-meta"><span class="meta-chip"><strong>'+C.mutations.length+'</strong> '+E(U().records)+'</span></div>')+'<section class="section"><div class="toolbar"><div class="field"><label>'+E(U().search)+'</label><input id="mutationSearch" value="'+E(state.query)+'"></div><div class="field"><label>'+E(U().category)+'</label><select id="mutationFilter">'+cats.map(c=>'<option value="'+E(c)+'" '+(state.mutationCategory===c?"selected":"")+'>'+E(c==="all"?U().all:categoryLabel(c))+'</option>').join("")+'</select></div><div class="field"><label>'+E(U().status)+'</label><select disabled><option>'+E(U().contentScope)+'</option></select></div></div><div class="mutation-grid">'+(list.length?list.map(mutCard).join(""):'<div class="empty">'+E(U().noResults)+'</div>')+'</div></section>'+source(C.sources.mutations,"Mutation community reference")+source(C.sources.thaiMutations,"Thai unlock-method reference");document.getElementById("mutationSearch")?.addEventListener("input",e=>{state.query=e.target.value;mutations()});document.getElementById("mutationFilter")?.addEventListener("change",e=>{state.mutationCategory=e.target.value;mutations()})}
+  function guideSection(k){const g=C.guides[k];root.innerHTML=hero('<span>'+E(tx(g.title))+'</span>',E(tx(g.lead)),'<div class="notice"><strong>GAME GUIDE</strong><br>'+E(U().guideNotice)+'</div>')+'<section class="section"><div class="prose-grid">'+g.cards.map(c=>'<article class="info-card"><h3>'+E(tx(c.h))+'</h3><p>'+E(tx(c.p))+'</p></article>').join("")+'</div></section>'+source(g.source,"Current guide reference")}
+  function bindSpecies(){document.querySelectorAll(".species-card[data-species]").forEach(card=>{const go=()=>location.href="/dinosaurs/?species="+encodeURIComponent(card.dataset.species);card.addEventListener("click",go);card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})})}
+  function render(){header();if(!root)return;if(page==="guide")hub();else if(page==="dinosaurs")dinosaurs();else if(page==="prime")prime();else if(page==="mutations")mutations();else if(C.guides[page])guideSection(page);else hub();bindSpecies()}
+  document.querySelectorAll(".lang-btn").forEach(b=>b.addEventListener("click",()=>{state.lang=b.dataset.lang;localStorage.setItem("ki-rules-lang",state.lang);const r=document.getElementById("pageRoot");r?.classList.add("is-switching");setTimeout(()=>{render();r?.classList.remove("is-switching")},100)}));
+  render();
+})();
