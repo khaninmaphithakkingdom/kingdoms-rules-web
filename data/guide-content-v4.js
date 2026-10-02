@@ -1,4 +1,3 @@
-
 window.KI_GUIDE_CONTENT = (() => {
   const t = (th,en,vi)=>({th,en,vi});
   const m = (name,category,effect,value="",restriction="",slot="",unlock=null,status="current",confidence="community-reference") => ({
@@ -10,4 +9,278 @@ window.KI_GUIDE_CONTENT = (() => {
       gameGuide:"GAME GUIDE",backRules:"กฎเซิร์ฟเวอร์",home:"หน้าหลัก Game Guide",dinosaurs:"ไดโนเสาร์",mutations:"MUTATIONS",
       prime:"PRIME & ELDER",diet:"DIET & GROWTH",nesting:"NESTING",zones:"MIGRATION / PATROL / SANCTUARY",combat:"COMBAT / GAME SYSTEMS",
       guideLead:"คลังข้อมูลเกม The Isle: EVRIMA ของ Kingdoms Isle — แยกจากกฎเซิร์ฟเวอร์อย่างชัดเจน",
-      guideNotice:"ข้อมูลใน Game Guide คือข้อมูล mechanics ของเกม ไม่ใช่ Server Rules ของ Kingdoms f��ez����h�+my�"�%G&��"�%G&��"���B�.�.�����.���.�N��^�~��~�^�������������������^���������~�������.��^����������.���N���^������>�������R�.���r�VFW""�%6���W"��W"�w&�W��VFW"�&�V�B���W3�w&�W�V�&W'2W6RF�R�VFW"w2G&�����R�"�%���R���~���n����|k�֒6�j��G,k���r�;6ӲF�:�f�:��L;��r���R>�v�VFW"�"�������B�%6�7GV'�"�%6�7GV'�"�%6�7GV'�"���B�.���~�����~�^�����>���>��������~�~��N�~���R�W6�&���2�6��&���^��>��������n���~���^������^�~���~�^���.�^���N�������~�~�����"�$�WfV��R�f�7W6VB���W2v�F�F�&VR�6��&��W6�&���2�B&VR&W77W&RF�BW6�W2��FW"���2�WB�"�%���R6���WfV��Rn�����V�2�6��&�l:��rI���6��n��B\:����&�v�:��"�������B�%&��RƖ�2"�%&��RƖ�2"�$Ɯ:�����B&��R"���B�%6�7GV'���72֖w&F����֖w&F�����^�G&������~���������&��R6��F�F���2���^�.�.�.����"�%6�7GV'���72֖w&F����֖w&F����BG&��6���V7BF�&V7FǒF�6WfW&�&��R6��F�F���2�"�%6�7GV'���72֖w&F����֖w&F���l:G&��Ɯ:��V�G.�2F���憞�RI��R���v�&��R�"�Т���6�W&6S�&�GG3���wwr�F�V�6�R��f��wV�FR����W2 ����6��&C���F�F�S�B�$4��$B�t�R5�5DT�2"�$4��$B�t�R5�5DT�2"�$4��$B�t�R5�5DT�2"����VC�B�.��.���>�~�6��&B��^�F�vR7�7FV�2�.�N�.�N��������������e�.���~����N�>������~���>��"�$�fW'f�Wr�b6��&B�BF�vR7�7FV�2�6W&FRg&�����vF��2�6�Re'V�W2"�%N�V�rV�6��&Bl:F�vR7�7FV��L:6�&��wB������^��Be���vF��2�6�R"���6&G3������B�%&rF�vR"�%&rF�vR"�%&rF�vR"���B�.�N�~�.�����^�.���.�.�^�>�~���.�GF6��7GV�f�VR�.���~��^���^�7V6�W2�.�n��������GF6��vW"7W'fR"�$F�&V7BGF6�F�vS�W"�7V6�W2�WGWB66�W2v�F�F�RGF6��vW"7W'fR�"�%<:BF�kj�rG.�2F����v�:G.��F�V���:���RF�^��2GF6��vW"7W'fR�"�������B�$&�VVB�g&7GW&R"�$&�VVB�g&7GW&R"�$&�VVB�g&7GW&R"���B�.����~��F�vR�7FGW2G�W2��.����.�&rF�vR��^���R�WFF����F�WB���.�~�����N�N�.�^���^���������>��������^��"�%6W&FRF�vR�7FGW2G�W2g&��&rF�vR�v�F�6��R�WFF���2�BF�WBVffV7G2��FW&7F��rv�F�F�V��"�$�:����F�vR�7FGW2L:6������&rF�vS����B>��WFF���l:F�WBLkj�rL:2n���6�;��r�"�������B�%7V6�W2GF6�2"�%7V6�W2GF6�2"�,I;&�I:�F�V���:�"���B�.�������"F���6W"FWF��2����N�~���~����GF6��~�^����^���.�����>��7W'&V�B&rv�R�FF�.���r7V6�W2�������"�$F���6W"FWF��2Ɨ7G2GF6�2&W6V�B��F�B7V6�W2r7W'&V�B&rv�R�FF�"�$F���6W"FWF��2ƞ�wB�:�GF6�<;2G&��r&rv�R�FF���v�N��>�v��:��"�������B�%6W'fW"'V�W2(�v�R�V6��72"�%6W'fW"'V�W2(�v�R�V6��72"�%6W'fW"'V�W2(�v�R�V6��72"���B�.���N���~�~�^������~�>�N�N���N����N�N������^�~���.�N�N���>������������.�^�^�.�6W'fW"'V�W3��>������^����N���������"'V�W2���~�����^�����~�^��N���N�����"�$�V6��2&V��r�76�&�RF�W2��B�V��B�2���vVB'�6W'fW"'V�W3�W6RF�R'V�W2vRf�"6W'fW"�Ɩ7��"�$<j6���v�R�:�Ik�62��;F�r<;2�v�J�Ik�62�:�F�V�6W'fW"'V�W3��V�G&�r'V�W2I�2&���B�^��B�:�6��r�"�Т���6�W&6S�&�GG3���wwr�F�V�6�R��f��wV�FR�6��&B �ТӰ��&WGW&���V�ƇV"�7V6�W4Ɩ6W2�&��T6��F�F���2��WFF���2�'V��EV��&��U&�f��W2�7V6�W4'V��G2�&V6���V�FF����WF�wV�FW2��6�W&6W3���7V6�W3�&�GG3���Wg&���f�WvW"�6���"��&��S�&�GG3���wwr�F�V�6�R��f��wV�FR�&��R"���WFF���3�&�GG3���wwr�F�V�6�R��f��wV�FR��WFF���2"��F��&��S�&�GG3���wwr�F�V�6�VwV�FWF�����Ɩ�R�7&��R"��F���WFF���3�&�GG3���wwr�F�V�6�VwV�FWF�����Ɩ�R�6�WFF���2 �ТӰ�Ғ��
+      guideNotice:"ข้อมูลใน Game Guide คือข้อมูล mechanics ของเกม ไม่ใช่ Server Rules ของ Kingdoms Isle",
+      search:"ค้นหา...",all:"ทั้งหมด",current:"CURRENT EVRIMA",dataset:"Dataset",source:"แหล่งข้อมูล",lastVerified:"ตรวจล่าสุด",
+      weight:"น้ำหนัก",speed:"ความเร็ว",bite:"Bite / Attack",dietType:"ประเภทอาหาร",status:"สถานะ",
+      preferredFood:"Preferred Diet / Foods",attacks:"Attacks",speciesData:"ข้อมูล Species",primeCompare:"Prime / Frail Comparison",
+      noData:"ไม่มีข้อมูลที่ยืนยันได้",derived:"คำนวณจาก curve ของ game-data",adult75:"Adult 75%",frail875:"Frail 87.5%",prime875:"Prime 87.5%",frail100:"Frail Elder 100%",prime100:"Prime Elder 100%",
+      difference:"ต่างจาก Adult 75%",howUnlock:"HOW TO UNLOCK",communityTested:"COMMUNITY TESTED",removed:"REMOVED",test:"TEST / HORDE",
+      primeLead:"Prime เป็นระบบ endgame/lifecycle ของ EVRIMA ที่ต้องทำเงื่อนไขระหว่างชีวิตของไดโนเสาร์ก่อนเข้าสู่ช่วง Prime",
+      mutationLead:"ฐานข้อมูล Mutation โดยแยก Current / Unlockable / Test / Removed ชัดเจน",
+      noResults:"ไม่พบข้อมูลที่ตรงกับตัวกรอง",
+      fieldDirectory:"หมวดคู่มือ",evrimaReference:"ข้อมูลอ้างอิง EVRIMA",releasedSpecies:"Species ที่เปิดให้เล่น",chooseSpecies:"เลือก Species...",speciesSearch:"ค้นหาชื่อ Species...",searchHint:"ค้นหาได้ทั้งชื่อไทย / English / Tiếng Việt",category:"หมวด",records:"รายการ",contentScope:"ข้อมูล Current โดยแยก Test / Removed",footerNote:"คู่มือเกม EVRIMA · แยกจากกฎเซิร์ฟเวอร์",currentShort:"ปัจจุบัน",catLifecycle:"Lifecycle",catSlot:"เฉพาะ Slot",catUnlockable:"ปลดล็อกได้",catTest:"Test / Horde",catRemoved:"นำออกแล้ว",activeCondition:"ต้องทำ",passiveCondition:"เงื่อนไขติดตัว",growthMilestones:"ช่วงการเติบโต",primeChecklist:"รายการตรวจ Prime",primeConditions:"10 เงื่อนไข Prime",stage:"ช่วง",selectHelp:"เลือกจากรายชื่อได้ทันที หรือพิมพ์ค้นหา"
+    },
+    en:{
+      gameGuide:"GAME GUIDE",backRules:"SERVER RULES",home:"Guide Home",dinosaurs:"DINOSAURS",mutations:"MUTATIONS",
+      prime:"PRIME & ELDER",diet:"DIET & GROWTH",nesting:"NESTING",zones:"MIGRATION / PATROL / SANCTUARY",combat:"COMBAT / GAME SYSTEMS",
+      guideLead:"Kingdoms Isle reference for The Isle: EVRIMA mechanics — clearly separated from server rules.",
+      guideNotice:"Game Guide content describes game mechanics. It is not a Kingdoms Isle Server Rule.",
+      search:"Search...",all:"All",current:"CURRENT EVRIMA",dataset:"Dataset",source:"Source",lastVerified:"Last verified",
+      weight:"Weight",speed:"Speed",bite:"Bite / Attack",dietType:"Diet",status:"Status",
+      preferredFood:"Preferred Diet / Foods",attacks:"Attacks",speciesData:"Species Data",primeCompare:"Prime / Frail Comparison",
+      noData:"No verified data",derived:"Calculated from the game-data curve",adult75:"Adult 75%",frail875:"Frail 87.5%",prime875:"Prime 87.5%",frail100:"Frail Elder 100%",prime100:"Prime Elder 100%",
+      difference:"vs Adult 75%",howUnlock:"HOW TO UNLOCK",communityTested:"COMMUNITY TESTED",removed:"REMOVED",test:"TEST / HORDE",
+      primeLead:"Prime is EVRIMA's lifecycle endgame system. Conditions are completed during the life of the dinosaur before the Prime window.",
+      mutationLead:"Mutation database with Current / Unlockable / Test / Removed content separated clearly.",
+      noResults:"No data matches the current filters",
+      fieldDirectory:"FIELD DIRECTORY",evrimaReference:"EVRIMA REFERENCE",releasedSpecies:"released species",chooseSpecies:"Choose a Species...",speciesSearch:"Search species...",searchHint:"Search by Thai, English, or Vietnamese name",category:"Category",records:"records",contentScope:"Current content with Test / Removed separated",footerNote:"EVRIMA Game Guide · Server Rules remain separate",currentShort:"Current",catLifecycle:"Lifecycle",catSlot:"Slot Exclusive",catUnlockable:"Unlockable",catTest:"Test / Horde",catRemoved:"Removed",activeCondition:"Active",passiveCondition:"Passive",growthMilestones:"GROWTH MILESTONES",primeChecklist:"PRIME CHECKLIST",primeConditions:"10 Prime Conditions",stage:"Stage",selectHelp:"Choose from the list or type to search"
+    },
+    vi:{
+      gameGuide:"GAME GUIDE",backRules:"LUẬT MÁY CHỦ",home:"Trang Game Guide",dinosaurs:"KHỦNG LONG",mutations:"MUTATIONS",
+      prime:"PRIME & ELDER",diet:"DIET & GROWTH",nesting:"NESTING",zones:"MIGRATION / PATROL / SANCTUARY",combat:"COMBAT / GAME SYSTEMS",
+      guideLead:"Kho tham khảo cơ chế The Isle: EVRIMA của Kingdoms Isle — tách biệt rõ với luật máy chủ.",
+      guideNotice:"Nội dung Game Guide mô tả cơ chế trò chơi, không phải Server Rules của Kingdoms Isle.",
+      search:"Tìm kiếm...",all:"Tất cả",current:"CURRENT EVRIMA",dataset:"Dataset",source:"Nguồn",lastVerified:"Kiểm tra gần nhất",
+      weight:"Cân nặng",speed:"Tốc độ",bite:"Bite / Attack",dietType:"Chế độ ăn",status:"Trạng thái",
+      preferredFood:"Preferred Diet / Foods",attacks:"Attacks",speciesData:"Dữ liệu loài",primeCompare:"So sánh Prime / Frail",
+      noData:"Không có dữ liệu đã xác minh",derived:"Tính từ curve của game-data",adult75:"Adult 75%",frail875:"Frail 87.5%",prime875:"Prime 87.5%",frail100:"Frail Elder 100%",prime100:"Prime Elder 100%",
+      difference:"so với Adult 75%",howUnlock:"CÁCH MỞ KHÓA",communityTested:"COMMUNITY TESTED",removed:"REMOVED",test:"TEST / HORDE",
+      primeLead:"Prime là hệ thống endgame theo vòng đời của EVRIMA. Bạn phải hoàn thành điều kiện trong chính vòng đời của dinosaur trước giai đoạn Prime.",
+      mutationLead:"Cơ sở dữ liệu Mutation tách rõ Current / Unlockable / Test / Removed.",
+      noResults:"Không có dữ liệu phù hợp bộ lọc",
+      fieldDirectory:"DANH MỤC HƯỚNG DẪN",evrimaReference:"THAM KHẢO EVRIMA",releasedSpecies:"loài đang phát hành",chooseSpecies:"Chọn Species...",speciesSearch:"Tìm Species...",searchHint:"Tìm bằng tên Thái, English hoặc Tiếng Việt",category:"Danh mục",records:"mục",contentScope:"Nội dung Current, tách riêng Test / Removed",footerNote:"Hướng dẫn EVRIMA · Tách biệt với Server Rules",currentShort:"Hiện tại",catLifecycle:"Vòng đời",catSlot:"Riêng Slot",catUnlockable:"Có thể mở khóa",catTest:"Test / Horde",catRemoved:"Đã gỡ",activeCondition:"Chủ động",passiveCondition:"Thụ động",growthMilestones:"MỐC TĂNG TRƯỞNG",primeChecklist:"DANH SÁCH PRIME",primeConditions:"10 điều kiện Prime",stage:"Giai đoạn",selectHelp:"Chọn từ danh sách hoặc gõ để tìm"
+    }
+  };
+
+  const speciesAliases = {
+    Allosaurus:t("อัลโลซอรัส","Allosaurus","Khủng long Allosaurus"),
+    Austroraptor:t("ออสโตรแรปเตอร์","Austroraptor","Chim săn mồi phương nam"),
+    Beipiaosaurus:t("เบย์เพียโอซอรัส","Beipiaosaurus","Khủng long Bắc Phiêu"),
+    Carnotaurus:t("คาร์โนทอรัส","Carnotaurus","Khủng long bò ăn thịt"),
+    Ceratosaurus:t("เซราโทซอรัส","Ceratosaurus","Khủng long có sừng"),
+    Deinosuchus:t("ไดโนซูคัส","Deinosuchus","Cá sấu khủng khiếp"),
+    Diabloceratops:t("ไดแอบโลเซราทอปส์","Diabloceratops","Khủng long mặt sừng quỷ"),
+    Dilophosaurus:t("ไดโลโฟซอรัส","Dilophosaurus","Khủng long hai mào"),
+    Dryosaurus:t("ดรายโอซอรัส","Dryosaurus","Khủng long cây sồi"),
+    Gallimimus:t("แกลลิมิมัส","Gallimimus","Khủng long Gallimimus"),
+    Gallimimus:t("แกลลิมิมัส","Gallimimus","Khủng long bắt chước gà"),
+    Herrerasaurus:t("เฮอร์เรราซอรัส","Herrerasaurus","Khủng long Herrera"),
+    Hypsilophodon:t("ฮิปซิโลโฟดอน","Hypsilophodon","Khủng long răng mào cao"),
+    Kentrosaurus:t("เคนโทรซอรัส","Kentrosaurus","Khủng long Kentro"),
+    Maiasaura:t("ไมอาซอรา","Maiasaura","Khủng long mẹ tốt"),
+    Omniraptor:t("ออมนิแรปเตอร์","Omniraptor","Chim săn mồi Omni"),
+    Pachycephalosaurus:t("พาคีเซฟาโลซอรัส","Pachycephalosaurus","Khủng long đầu dày"),
+    Pteranodon:t("เทอราโนดอน","Pteranodon","Thằn lằn bay Pteranodon"),
+    Stegosaurus:t("สเตโกซอรัส","Stegosaurus","Khủng long kiếm"),
+    Tenontosaurus:t("เทนอนโทซอรัส","Tenontosaurus","Khủng long Tenonto"),
+    Triceratops:t("ไทรเซราทอปส์","Triceratops","Khủng long ba sừng"),
+    Troodon:t("โทรโอดอน","Troodon","Khủng long Troodon"),
+    Tyrannosaurus:t("ไทแรนโนซอรัส / ทีเร็กซ์","Tyrannosaurus / T-Rex","Khủng long bạo chúa / T-Rex")
+  };
+
+  const hub = [
+    {icon:"🦖",key:"dinosaurs",href:"../dinosaurs/",desc:t("ฐานข้อมูล Current EVRIMA species พร้อม stat และ Prime/Frail curve","Current EVRIMA species database with stats and Prime/Frail curves","Cơ sở dữ liệu loài EVRIMA hiện tại cùng chỉ số và curve Prime/Frail")},
+    {icon:"🧬",key:"mutations",href:"../mutations/",desc:t("Mutation, effect, restriction และวิธีปลดล็อกที่ยืนยันได้","Mutations, effects, restrictions and verified unlock requirements","Mutation, hiệu ứng, giới hạn và điều kiện mở khóa đã xác minh")},
+    {icon:"👑",key:"prime",href:"../prime/",desc:t("Prime, Frail, Elder, Prime Elder และ checklist","Prime, Frail, Elder, Prime Elder and checklist","Prime, Frail, Elder, Prime Elder và checklist")},
+    {icon:"🥩",key:"diet",href:"diet-growth/",desc:t("สารอาหาร การเติบโต และ growth multiplier","Nutrients, growth and growth multipliers","Dinh dưỡng, tăng trưởng và hệ số tăng trưởng")},
+    {icon:"🥚",key:"nesting",href:"nesting/",desc:t("Courtship, nest, eggs และ hatchling lifecycle","Courtship, nests, eggs and hatchling lifecycle","Courtship, tổ, trứng và vòng đời hatchling")},
+    {icon:"🧭",key:"zones",href:"zones/",desc:t("Migration, Patrol และ Sanctuary mechanics","Migration, Patrol and Sanctuary mechanics","Cơ chế Migration, Patrol và Sanctuary")},
+    {icon:"⚔️",key:"combat",href:"combat/",desc:t("Combat controls, damage types และ mechanics หลัก","Combat controls, damage types and core mechanics","Điều khiển chiến đấu, loại sát thương và cơ chế chính")}
+  ];
+
+  const primeConditions = [
+    {n:1,title:t("เข้า Sanctuary ตอน Juvenile","Visit a Sanctuary as a Juvenile","Vào Sanctuary khi còn Juvenile"),type:"active",body:t("เข้าเขต Sanctuary ที่กำลัง active ขณะยังอยู่ช่วง Juvenile","Enter an active Sanctuary while still Juvenile.","Vào Sanctuary đang hoạt động khi vẫn còn Juvenile.")},
+    {n:2,title:t("เกิดจาก Nest ของผู้เล่น","Get Nested In","Sinh ra từ Nest của người chơi"),type:"active",body:t("เริ่มชีวิตจากการเข้าร่วม Nest ของผู้เล่นคนอื่น","Spawn into the life through another player's nest.","Bắt đầu vòng đời thông qua nest của người chơi khác.")},
+    {n:3,title:t("Perfect Diet","Get Perfect Diet","Perfect Diet"),type:"active",body:t("มี β / γ / α อย่างน้อย 1% พร้อมกัน","Have at least 1% in β / γ / α at the same time.","Có ít nhất 1% β / γ / α cùng lúc.")},
+    {n:4,title:t("Mass Migration","Visit Mass Migration Zone","Vào Mass Migration Zone"),type:"active",body:t("เข้าเขต Mass Migration ที่กำลัง active","Stand inside an active Mass Migration zone.","Đứng trong Mass Migration zone đang hoạt động.")},
+    {n:5,title:t("Migration Zone 2 โซน","Visit 2 Migration Zones","Vào 2 Migration Zone"),type:"active",body:t("เข้า Migration Zone คนละโซนให้ครบ 2 ครั้งในชีวิตเดียว","Visit two different regular Migration zones in the same life.","Vào hai Migration zone khác nhau trong cùng một vòng đời.")},
+    {n:6,title:t("Patrol Zone 4 โซน","Visit 4 Patrol Zones","Vào 4 Patrol Zone"),type:"active",body:t("เข้า Patrol Zone ให้ครบ 4 โซนในชีวิตเดียว","Visit four Patrol zones in the same life.","Vào bốn Patrol zone trong cùng một vòng đời.")},
+    {n:7,title:t("ไม่มี Infertility","Never be infertile","Không bị Infertility"),type:"passive",body:t("ต้องไม่ติด Infertility ระหว่างชีวิตนี้","Do not receive the Infertility mutation during this life.","Không nhận mutation Infertility trong vòng đời này.")},
+    {n:8,title:t("ไม่มี Muscle Spasms","Never get Muscle Spasms","Không bị Muscle Spasms"),type:"passive",community:true,body:t("ต้องไม่ติด Muscle Spasms; trigger รายละเอียดยังอิง community testing","Avoid Muscle Spasms; trigger details remain community-tested.","Tránh Muscle Spasms; chi tiết trigger vẫn dựa trên community testing.")},
+    {n:9,title:t("เลี้ยงลูกถึง Subadult","Raise offspring to Subadult","Nuôi con đến Subadult"),type:"active",body:t("ฟักลูกจาก Nest แล้วให้ลูกอย่างน้อยหนึ่งตัวรอดถึง Subadult","Raise at least one hatched offspring to Subadult.","Nuôi ít nhất một con non từ nest sống đến Subadult.")},
+    {n:10,title:t("Species-specific automatic condition","Species-specific automatic condition","Điều kiện tự động theo loài"),type:"passive",community:true,body:t("Hypsi / Troodon / Beipi / Dryo / Deino ถูกระบุว่าได้เงื่อนไขนี้อัตโนมัติในแหล่ง community reference ปัจจุบัน","Current community reference lists Hypsi / Troodon / Beipi / Dryo / Deino as automatically meeting this condition.","Nguồn community hiện tại ghi Hypsi / Troodon / Beipi / Dryo / Deino tự động đạt điều kiện này.")}
+  ];
+
+  const mutations = [
+    m("Accelerated Prey Drive","Lifecycle",t("เพิ่มความเสียหายต่อเป้าหมายที่ HP ต่ำกว่า 35%","Deal more damage to animals below 35% health.","Gây thêm sát thương lên mục tiêu dưới 35% máu"),"10%","Carnivore"),
+    m("Advanced Gestation","Lifecycle",t("เร่ง gestation, incubation และ cooldown ของไข่","Faster egg gestation, incubation, and cooldown rate.","Tăng tốc thai kỳ, ấp trứng và hồi chiêu"),"50%","Female Only"),
+    m("Barometric Sensitivity","Lifecycle",t("แจ้งเตือนก่อนพายุหรือภัยแล้ง","Receive an indication prior to storms or droughts.","Báo hiệu trước bão hoặc hạn hán"),"","Herbivore"),
+    m("Cannibalistic","Lifecycle",t("เพิ่ม species ของตัวเองเป็น preferred prey สำหรับ nutrient","Adds your own species as preferred prey for nutrients.","Thêm chính loài mình vào preferred prey để nhận nutrient"),"","Carnivore","Slot 2 & 4"),
+    m("Cellular Regeneration","Lifecycle",t("ฟื้น HP เร็วขึ้นเล็กน้อย","Recover health slightly faster.","Hồi máu nhanh hơn một chút"),"15%"),
+    m("Congenital Hypoalgesia","Lifecycle",t("ลดความเสียหายที่ได้รับเมื่อสู้กับ species ที่ใหญ่กว่า","Reduce incoming damage when fighting larger species.","Giảm sát thương nhận vào khi chiến đấu với loài lớn hơn"),"15%"),
+    m("Efficient Digestion","Lifecycle",t("อาหารลดช้าลง","Food drains more slowly.","Thức ăn giảm chậm hơn"),"20%"),
+    m("Enlarged Meniscus","Lifecycle",t("Fall damage จะหัก stamina ก่อน HP","Fall damage hits stamina before draining health.","Sát thương rơi trừ stamina trước khi trừ máu")),
+    m("Epidermal Fibrosis","Lifecycle",t("เพิ่มความต้านทาน bleed","Increase bleed resistance.","Tăng kháng bleed"),"15%"),
+    m("Featherweight","Lifecycle",t("รอยเท้าหายเร็วขึ้นมาก","Footprints fade much faster.","Dấu chân biến mất nhanh hơn nhiều"),"50%"),
+    m("Hematophagy","Lifecycle",t("ฟื้น thirst บางส่วนขณะกินซาก","Restore some thirst while eating corpses.","Hồi một phần khát khi ăn xác"),"15%","Carnivore"),
+    m("Hemomania","Lifecycle",t("เพิ่ม damage ต่อเป้าหมายที่กำลัง bleed","Deal extra damage to a bleeding target.","Gây thêm sát thương lên mục tiêu đang bleed"),"5%","Carnivore"),
+    m("Hydrodynamic","Lifecycle",t("เพิ่มความเร็วว่ายน้ำ","Increase swimming speed.","Tăng tốc độ bơi"),"15%"),
+    m("Hydro-regenerative","Lifecycle",t("ฟื้น HP เร็วขึ้นระหว่างฝนตก","Recover health faster during rainy weather.","Hồi máu nhanh hơn khi trời mưa"),"25%"),
+    m("Hypervigilance","Lifecycle",t("เพิ่มมุมกล้องตอนกิน/ดื่ม และทำให้ได้ยินเสียงเท้าคนอื่นชัดขึ้น","Increase camera angles while eating/drinking and improve footsteps audio from others.","Tăng góc camera khi ăn/uống và nghe tiếng bước chân người khác rõ hơn"),"50%","Herbivore"),
+    m("Increased Inspiratory Capacity","Lifecycle",t("เพิ่มความจุ O₂","Increase O₂ capacity.","Tăng dung lượng O₂"),"15%"),
+    m("Infrasound Communication","Lifecycle",t("ลดเสียงขณะคุยใน chat อย่างมาก","Make significantly less noise when talking in chat.","Giảm đáng kể tiếng động khi nói trong chat"),"50%"),
+    m("Nocturnal","Lifecycle",t("ฟื้น health / locked-health เร็วขึ้นตอนกลางคืน","Faster health / locked-health recovery at night.","Hồi health / locked-health nhanh hơn ban đêm"),"5%"),
+    m("Osteosclerosis","Lifecycle",t("ต้านทานหรือลด fracture damage","Resist or reduce fracture damage.","Kháng hoặc giảm fracture damage"),"20%"),
+    m("Photosynthetic Regeneration","Lifecycle",t("ฟื้น stamina เร็วขึ้นตอนกลางวัน","Regenerate stamina faster during the day.","Hồi stamina nhanh hơn ban ngày"),"10%","Herbivore"),
+    m("Photosynthetic Tissue","Lifecycle",t("ฟื้น health / locked-health เร็วขึ้นตอนกลางวัน","Faster health / locked-health recovery during the day.","Hồi health / locked-health nhanh hơn ban ngày"),"5%"),
+    m("Reabsorption","Lifecycle",t("ฟื้นน้ำเล็กน้อยเมื่อฝนตกหรือว่ายในน้ำดื่มได้","Recover a small amount of water during rain or while swimming in drinkable water.","Hồi một ít nước khi mưa hoặc bơi trong nước uống được"),"1"),
+    m("Sequential Hermaphroditism","Lifecycle",t("เปลี่ยนเพศ; mutation นี้ไม่ส่งต่อให้ลูก","Change sex; this mutation is not passed to children.","Đổi giới tính; mutation này không truyền cho con")),
+    m("Social Behavior","Lifecycle",t("เพิ่มขนาดกลุ่ม","Increase group size.","Tăng kích thước nhóm"),"","Herbivore / Omnivore · Group Leader Only"),
+    m("Submerged Optical Retention","Lifecycle",t("เพิ่มระยะการมองเห็นใต้น้ำ","Increase underwater vision range.","Tăng tầm nhìn dưới nước"),"5%"),
+    m("Sustained Hydration","Lifecycle",t("น้ำลดช้าลง","Water drains more slowly.","Nước giảm chậm hơn"),"20%"),
+    m("Truculency","Lifecycle",t("Bucking มีโอกาสทำให้ตัวที่เกาะหลุดสูงขึ้น","Bucking has a higher chance to dismount latched animals.","Bucking có cơ hội hất đối thủ đang bám xuống cao hơn"),"5%","Herbivore"),
+    m("Wader","Lifecycle",t("ได้รับผลจากน้ำตื้นน้อยลง","Become less hindered in shallow water.","Ít bị cản trở hơn khi đi qua nước nông"),"25%"),
+    m("Xerocole Adaptation","Lifecycle",t("ได้รับน้ำบางส่วนจากการกินพืช","Gain some water when eating plants.","Nhận một phần nước khi ăn thực vật"),"15%","Herbivore"),
+
+    m("Tactile Endurance","Slot Exclusive",t("แปลงความเสียหายที่ได้รับเป็น stamina","Convert incoming damage to stamina.","Chuyển sát thương nhận vào thành stamina"),"25%","Herbivore","Slot 2 & 4"),
+    m("Traumatic Thrombosis","Removed",t("ถูกนำออกจาก EVRIMA ชั่วคราวเพื่อกลับมาปรับใช้ใหม่ในอนาคต","Temporarily removed from EVRIMA for future reintegration.","Tạm thời bị gỡ khỏi EVRIMA để được đưa trở lại trong tương lai."),"","","","","removed","historical"),
+    m("Gastronomic Regeneration","Slot Exclusive",t("การกินช่วยฟื้น HP เล็กน้อย","Eating restores a small amount of health.","Ăn giúp hồi một ít máu"),"5%","","Slot 2 & 4"),
+    m("Hypermetabolic Inanition","Slot Exclusive",t("ยิ่ง hunger ต่ำ ยิ่งทำ damage มากขึ้น","The lower your hunger, the more damage you deal.","Hunger càng thấp, sát thương gây ra càng cao"),"15%","Carnivore","Slot 2 & 4"),
+
+    m("Augmented Tapetum","Unlockable",t("เพิ่มการมองเห็นตอนกลางคืน","Increase night vision.","Tăng khả năng nhìn ban đêm"),"","Carnivore","Slot 2",t("ฆ่าผู้เล่น 5 คนตอนกลางคืน","Kill 5 players at night.","Giết 5 người chơi vào ban đêm")),
+    m("Enhanced Digestion","Unlockable",t("ลดอัตราการ decay ของ nutrient","Decrease nutrition decay rate.","Giảm tốc độ suy giảm nutrient"),"","","Slot 2 / 3",t("มี nutrient ต่อเนื่อง 60 นาที","Have nutrients for 60 minutes.","Duy trì nutrient trong 60 phút")),
+    m("Heightened Ghrelin","Unlockable",t("เพิ่มความจุการ overeating อย่างมาก","Increase overeating capacity by a large amount.","Tăng mạnh khả năng overeating"),"","","Slot 2",t("รักษา hunger มากกว่า 80% ต่อเนื่อง 30 นาที","Maintain hunger above 80% for 30 minutes.","Duy trì hunger trên 80% trong 30 phút")),
+    m("Multichambered Lungs","Unlockable",t("เพิ่ม threshold การฟื้น stamina","Increase stamina-regeneration threshold.","Tăng ngưỡng hồi stamina"),"","","Slot 2 / 3",t("ใช้ stamina รวม 4,500 จากการ sprint หรือ fast-swim","Drain 4,500 stamina by sprinting or fast-swimming.","Tiêu hao tổng 4.500 stamina bằng sprint hoặc bơi nhanh")),
+    m("Osteophagic","Unlockable",t("กินกระดูกเพื่อช่วยฟื้น fracture","Consume bones to regenerate fractures faster.","Ăn xương để hồi fracture nhanh hơn"),"","Carnivore","",t("กินกระดูกขณะมีกระดูกหัก","Eat bones while you have a broken bone.","Ăn xương khi đang bị gãy xương")),
+    m("Parthenogenesis","Unlockable",t("ทำ Nest ได้โดยไม่มีคู่; ไม่ส่งต่อให้ลูก","Nest without a mate; not inherited by children.","Làm nest không cần bạn đời; không truyền cho con"),"","Female Only","Slot 2",t("ปลดล็อกใน Slot 2 ตามระบบ","Unlocks on Slot 2.","Mở ở Slot 2 theo hệ thống")),
+    m("Prolific Reproduction","Unlockable",t("ลูกมี health/stamina regen สูงขึ้น ใช้อาหารน้อยลง และโตเร็วขึ้น","Offspring get better health/stamina regen, need less food, and grow faster.","Con non hồi health/stamina tốt hơn, cần ít thức ăn hơn và lớn nhanh hơn"),"","Female Only","Slot 2",t("ปลดล็อกใน Slot 2 ตามระบบ","Unlocks on Slot 2.","Mở ở Slot 2 theo hệ thống")),
+    m("Reinforced Tendons","Unlockable",t("กระโดดใช้ stamina น้อยลง; Pteranodon ใช้ takeoff stamina น้อยลง","Jumping costs less stamina; reduces Pteranodon takeoff stamina.","Nhảy tốn ít stamina hơn; Pteranodon tốn ít stamina cất cánh hơn"),"","","",t("กระโดด 50 ครั้ง","Jump 50 times.","Nhảy 50 lần")),
+    m("Reniculate Kidneys","Unlockable",t("ดื่มน้ำเค็มได้","Can drink saltwater.","Có thể uống nước mặn"),"","", "",t("ทำเงื่อนไขดื่มน้ำเค็มเพื่อปลดล็อก; ค่า threshold ปัจจุบันยังต้องตรวจในเกม","Complete the saltwater-drinking unlock condition; the current threshold still needs in-game verification.","Hoàn thành điều kiện uống nước mặn để mở khóa; ngưỡng hiện tại vẫn cần xác minh trong game."),"current","needs-verification"),
+
+    m("Pit Organ","Test / Horde",t("มองเห็นแหล่ง IR (infrared)","See sources of IR (infrared) light.","Nhìn thấy nguồn sáng IR (hồng ngoại)"),"","","","", "test","test-reference"),
+    m("Paratrepsis","Test / Horde",t("ทำ fracture ปลอมได้","Fake fractures.","Có thể giả fracture"),"","","","", "test","test-reference"),
+    m("Cochlear Sensitivity","Test / Horde",t("มีสัญญาณบอก sound trap จากระยะไกล","Indicate sound traps from a distance.","Báo hiệu sound trap từ xa"),"","","","", "test","test-reference"),
+    m("Intraspecific Aggression","Removed",t("เคยเพิ่ม damage ต่อ species เดียวกัน; ถูกถอดใน 0.15.116","Formerly increased damage to your own species; removed in 0.15.116.","Từng tăng sát thương lên cùng loài; đã bị gỡ ở 0.15.116"),"","","","", "removed","historical")
+  ];
+
+  const mutationMeta = {
+    "Cannibalistic":{equipSlots:[2,4]},
+    "Tactile Endurance":{equipSlots:[2,4]},
+    "Gastronomic Regeneration":{equipSlots:[2,4]},
+    "Hypermetabolic Inanition":{equipSlots:[2,4]},
+    "Augmented Tapetum":{equipSlots:[2],unlockAtSlots:[2]},
+    "Enhanced Digestion":{equipSlots:[2,3],unlockAtSlots:[2,3]},
+    "Heightened Ghrelin":{equipSlots:[2],unlockAtSlots:[2]},
+    "Multichambered Lungs":{equipSlots:[2,3],unlockAtSlots:[2,3],confidence:"needs-verification"},
+    "Osteophagic":{equipSlots:null,confidence:"needs-verification"},
+    "Parthenogenesis":{equipSlots:[2],unlockAtSlots:[2]},
+    "Prolific Reproduction":{equipSlots:[2],unlockAtSlots:[2]},
+    "Reinforced Tendons":{equipSlots:null,confidence:"needs-verification"},
+    "Reniculate Kidneys":{equipSlots:[1,2,3,4],unlockAtSlots:[2,3],confidence:"community-tested"}
+  };
+  mutations.forEach(x=>{
+    const meta=mutationMeta[x.name]||{};
+    x.equipSlots=Object.prototype.hasOwnProperty.call(meta,"equipSlots")?meta.equipSlots:[1,2,3,4];
+    x.unlockAtSlots=meta.unlockAtSlots||[];
+    x.unlockRequirement=x.unlock||null;
+    if(meta.confidence)x.confidence=meta.confidence;
+  });
+
+  const buildUi = {
+    th:{title:"RECOMMENDED BUILDS",lead:"แนวทาง Mutation แยกตามสายการเล่นของ Species นี้",community:"COMMUNITY RECOMMENDATION",communityReference:"COMMUNITY REFERENCE",slot:"ใช้ได้ใน Slot",allSlots:"ทุก Slot",strength:"จุดเด่น",tradeoff:"ข้อควรระวัง",why:"เหตุผล",needsVerification:"NEEDS VERIFICATION"},
+    en:{title:"RECOMMENDED BUILDS",lead:"Mutation setups tailored to this Species and playstyle.",community:"COMMUNITY RECOMMENDATION",communityReference:"COMMUNITY REFERENCE",slot:"Available Slot",allSlots:"All Slots",strength:"Strength",tradeoff:"Trade-off",why:"Why",needsVerification:"NEEDS VERIFICATION"},
+    vi:{title:"RECOMMENDED BUILDS",lead:"Gợi ý Mutation theo từng lối chơi phù hợp với Species này.",community:"COMMUNITY RECOMMENDATION",communityReference:"COMMUNITY REFERENCE",slot:"Slot có thể dùng",allSlots:"Mọi Slot",strength:"Điểm mạnh",tradeoff:"Đánh đổi",why:"Lý do",needsVerification:"NEEDS VERIFICATION"}
+  };
+
+  const roleProfiles = {
+    bleed:{name:t("สายกดดัน / Bleed","Pressure / Bleed","Áp lực / Bleed"),desc:t("เน้นกดดันเป้าหมายต่อเนื่องและได้ประโยชน์เมื่อไฟต์ยืดเยื้อ","Built for sustained pressure and longer engagements.","Tập trung duy trì áp lực trong giao tranh kéo dài."),strength:t("กดดันต่อเนื่องและรักษาความได้เปรียบในไฟต์","Sustained pressure and strong fight momentum.","Duy trì áp lực và nhịp giao tranh tốt."),tradeoff:t("ต้องเข้าปะทะจริงเพื่อให้ Mutation สายต่อสู้คุ้มค่า","Combat-focused picks give less value when avoiding fights.","Các lựa chọn thiên chiến đấu kém giá trị nếu tránh giao tranh.")},
+    chase:{name:t("สายไล่ล่า / Endurance","Chase / Endurance","Truy đuổi / Bền bỉ"),desc:t("เน้นอยู่ในสนามได้นาน ลดภาระอาหารและน้ำ และรักษาจังหวะการไล่","Built to stay active longer while reducing food and water pressure.","Giúp hoạt động lâu hơn, giảm áp lực thức ăn và nước."),strength:t("เหมาะกับการเดินทางและไล่เป้าหมายระยะยาว","Good for long travel and extended pursuit.","Phù hợp di chuyển xa và truy đuổi lâu."),tradeoff:t("พลังปะทะตรง ๆ ต่ำกว่าสาย Combat","Lower direct combat payoff than a combat build.","Ít lợi thế giao tranh trực tiếp hơn build chiến đấu.")},
+    aquatic:{name:t("สายน้ำ / Aquatic","Aquatic","Thủy sinh"),desc:t("เน้นการเคลื่อนที่ การมองเห็น และการเอาตัวรอดในน้ำ","Focused on movement, vision, and survival around water.","Tập trung di chuyển, tầm nhìn và sinh tồn dưới nước."),strength:t("คุมพื้นที่น้ำและทางหนีได้ดีขึ้น","Better control of water routes and escape options.","Kiểm soát đường nước và lối thoát tốt hơn."),tradeoff:t("ประโยชน์ลดลงเมื่อเล่นบนบกเป็นเวลานาน","Less value during long land-only sessions.","Ít giá trị hơn khi ở trên cạn lâu.")},
+    ambush:{name:t("สายซุ่มโจมตี / Ambush","Ambush","Phục kích"),desc:t("เน้นเข้าหาแบบเงียบ เลือกจังหวะ และลดความเสี่ยงหลังพลาดการเปิดไฟต์","Built around approach, timing, and safer disengagement.","Tập trung tiếp cận, chọn thời điểm và rút lui an toàn."),strength:t("เหมาะกับการเลือกไฟต์และหลบการตามรอย","Strong for choosing fights and reducing tracking pressure.","Tốt khi chọn giao tranh và giảm nguy cơ bị truy dấu."),tradeoff:t("ไม่ใช่ชุดสำหรับยืนแลกตรง ๆ นาน ๆ","Not designed for long face-to-face trades.","Không phù hợp trao đổi sát thương trực diện kéo dài.")},
+    tank:{name:t("สายถึก / Frontline","Tank / Frontline","Chống chịu / Tuyến trước"),desc:t("เน้นความทนทานต่อ bleed, fracture และการเสีย HP ระหว่างปะทะ","Focused on resisting bleed, fractures, and health loss in direct fights.","Tập trung chịu bleed, fracture và mất máu trong giao tranh trực diện."),strength:t("รับแรงปะทะและรักษาสภาพตัวได้ดีขึ้น","Improves durability in repeated direct engagements.","Tăng độ bền trong các pha giao tranh trực tiếp liên tục."),tradeoff:t("เสียพื้นที่ให้ Mutation ด้าน mobility หรือ resource efficiency","Uses slots that could otherwise improve mobility or resource efficiency.","Chiếm slot có thể dùng cho mobility hoặc tiết kiệm tài nguyên.")},
+    survival:{name:t("สายเอาตัวรอด / Sustain","Survival / Sustain","Sinh tồn / Duy trì"),desc:t("เน้นฟื้นตัว อยู่ได้นาน และลดโอกาสเสียชีวิตจากความเสียหายสะสม","Built for recovery, longevity, and safer sessions.","Tập trung hồi phục, sống lâu và giảm rủi ro tích lũy."),strength:t("เล่นยาวได้สบายขึ้นและฟื้นตัวระหว่างเหตุการณ์ได้ดี","More forgiving over long sessions with better recovery.","Ổn định hơn khi chơi lâu và hồi phục tốt hơn."),tradeoff:t("ความสามารถฆ่าหรือไล่เป้าหมายไม่พุ่งเท่าสายเฉพาะทาง","Less offensive burst than specialized combat setups.","Ít bùng nổ sát thương hơn build chuyên chiến đấu.")},
+    escape:{name:t("สายหนี / Mobility","Escape / Mobility","Thoát thân / Cơ động"),desc:t("เน้นไม่ให้ถูกตามง่าย รักษาทรัพยากร และเอาตัวรอดเมื่อเสียตำแหน่ง","Built to disengage, conserve resources, and avoid being tracked.","Tập trung rút lui, tiết kiệm tài nguyên và khó bị truy dấu."),strength:t("ลดความเสี่ยงจากการถูกไล่และช่วยให้อยู่รอดเมื่อเสียเปรียบ","Safer disengagement when a fight turns bad.","Rút lui an toàn hơn khi giao tranh bất lợi."),tradeoff:t("ไม่ได้เพิ่มพลังโจมตีโดยตรง","Does not directly increase offensive output.","Không tăng sát thương trực tiếp.")},
+    herd:{name:t("สายฝูง / Group","Herd / Group","Bầy đàn / Nhóm"),desc:t("เน้นความอยู่รอดร่วมกันและประโยชน์เมื่อเล่นกับกลุ่ม","Built around group survival and coordinated play.","Tập trung sinh tồn và phối hợp theo nhóm."),strength:t("เหมาะกับการเดินฝูงและการเล่นเป็นทีม","Strong for coordinated herd or group play.","Phù hợp chơi bầy và phối hợp nhóm."),tradeoff:t("บางตัวเลือกให้ประโยชน์น้อยลงเมื่อเล่นคนเดียว","Some picks provide less value when playing solo.","Một số lựa chọn kém hiệu quả khi chơi một mình.")}
+  };
+
+  const speciesBuilds = {
+    Allosaurus:[{role:"bleed",mutations:["Hemomania","Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis"]},{role:"chase",mutations:["Efficient Digestion","Sustained Hydration","Cellular Regeneration","Accelerated Prey Drive"]}],
+    Austroraptor:[{role:"aquatic",mutations:["Hydrodynamic","Increased Inspiratory Capacity","Hemomania","Epidermal Fibrosis"]},{role:"survival",mutations:["Gastronomic Regeneration","Sustained Hydration","Cellular Regeneration","Osteosclerosis"]}],
+    Beipiaosaurus:[{role:"aquatic",mutations:["Hydrodynamic","Increased Inspiratory Capacity","Submerged Optical Retention","Wader"]},{role:"survival",mutations:["Gastronomic Regeneration","Cellular Regeneration","Efficient Digestion","Sustained Hydration"]}],
+    Carnotaurus:[{role:"chase",mutations:["Efficient Digestion","Sustained Hydration","Hemomania","Epidermal Fibrosis"]},{role:"bleed",mutations:["Gastronomic Regeneration","Osteosclerosis","Cellular Regeneration","Accelerated Prey Drive"]}],
+    Ceratosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Hematophagy","Epidermal Fibrosis","Osteosclerosis"]},{role:"bleed",mutations:["Hemomania","Accelerated Prey Drive","Cellular Regeneration","Sustained Hydration"]}],
+    Deinosuchus:[{role:"aquatic",mutations:["Hydrodynamic","Increased Inspiratory Capacity","Submerged Optical Retention","Sustained Hydration"]},{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Cellular Regeneration"]}],
+    Diabloceratops:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Truculency"]},{role:"survival",mutations:["Xerocole Adaptation","Sustained Hydration","Efficient Digestion","Cellular Regeneration"]}],
+    Dilophosaurus:[{role:"bleed",mutations:["Nocturnal","Hemomania","Epidermal Fibrosis","Sustained Hydration"]},{role:"ambush",mutations:["Gastronomic Regeneration","Featherweight","Cellular Regeneration","Efficient Digestion"]}],
+    Dryosaurus:[{role:"escape",mutations:["Featherweight","Xerocole Adaptation","Sustained Hydration","Efficient Digestion"]},{role:"survival",mutations:["Cellular Regeneration","Epidermal Fibrosis","Osteosclerosis","Photosynthetic Regeneration"]}],
+    Gallimimus:[{role:"escape",mutations:["Featherweight","Sustained Hydration","Efficient Digestion","Cellular Regeneration"]},{role:"herd",mutations:["Social Behavior","Epidermal Fibrosis","Osteosclerosis","Gastronomic Regeneration"]}],
+    Herrerasaurus:[{role:"ambush",mutations:["Enlarged Meniscus","Featherweight","Hemomania","Epidermal Fibrosis"]},{role:"survival",mutations:["Gastronomic Regeneration","Cellular Regeneration","Sustained Hydration","Osteosclerosis"]}],
+    Hypsilophodon:[{role:"escape",mutations:["Featherweight","Xerocole Adaptation","Sustained Hydration","Efficient Digestion"]},{role:"herd",mutations:["Social Behavior","Epidermal Fibrosis","Osteosclerosis","Photosynthetic Regeneration"]}],
+    Kentrosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Truculency"]},{role:"survival",mutations:["Xerocole Adaptation","Sustained Hydration","Efficient Digestion","Cellular Regeneration"]}],
+    Maiasaura:[{role:"herd",mutations:["Social Behavior","Epidermal Fibrosis","Osteosclerosis","Cellular Regeneration"]},{role:"survival",mutations:["Xerocole Adaptation","Gastronomic Regeneration","Efficient Digestion","Sustained Hydration"]}],
+    Omniraptor:[{role:"bleed",mutations:["Hemomania","Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis"]},{role:"chase",mutations:["Efficient Digestion","Sustained Hydration","Cellular Regeneration","Featherweight"]}],
+    Pachycephalosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Osteosclerosis","Epidermal Fibrosis","Cellular Regeneration"]},{role:"survival",mutations:["Xerocole Adaptation","Sustained Hydration","Efficient Digestion","Photosynthetic Regeneration"]}],
+    Pteranodon:[{role:"chase",mutations:["Efficient Digestion","Sustained Hydration","Featherweight","Cellular Regeneration"]},{role:"survival",mutations:["Epidermal Fibrosis","Osteosclerosis","Nocturnal","Cellular Regeneration"]}],
+    Stegosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Truculency"]},{role:"survival",mutations:["Xerocole Adaptation","Sustained Hydration","Efficient Digestion","Cellular Regeneration"]}],
+    Tenontosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Cellular Regeneration"]},{role:"survival",mutations:["Xerocole Adaptation","Sustained Hydration","Efficient Digestion","Photosynthetic Regeneration"]}],
+    Triceratops:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Cellular Regeneration"]},{role:"herd",mutations:["Social Behavior","Xerocole Adaptation","Sustained Hydration","Efficient Digestion"]}],
+    Troodon:[{role:"bleed",mutations:["Nocturnal","Hemomania","Featherweight","Epidermal Fibrosis"]},{role:"survival",mutations:["Gastronomic Regeneration","Cellular Regeneration","Efficient Digestion","Osteosclerosis"]}],
+    Tyrannosaurus:[{role:"tank",mutations:["Gastronomic Regeneration","Epidermal Fibrosis","Osteosclerosis","Accelerated Prey Drive"]},{role:"chase",mutations:["Efficient Digestion","Sustained Hydration","Cellular Regeneration","Hematophagy"]}]
+  };
+
+  const recommendationMeta = {
+    gameVersion:"0.21.784",
+    checked:"2026-10-03",
+    publicSources:false,
+    confidence:"community-recommendation",
+    notes:"Species-specific recommendations derived from current Game Guide mechanics, current mutation restrictions, cross-checked community references, and user-confirmed gameplay information."
+  };
+
+  const guides = {
+    "diet-growth":{
+      title:t("DIET & GROWTH","DIET & GROWTH","DIET & GROWTH"),
+      lead:t("ระบบสารอาหารและการเติบโตของ EVRIMA","EVRIMA nutrient and growth systems","Hệ thống dinh dưỡng và tăng trưởng EVRIMA"),
+      cards:[
+        {h:t("3 Nutrients","3 Nutrients","3 Nutrient"),p:t("β Protein, γ Lipid และ α Carb เป็นสามแถบหลักของ Diet","β Protein, γ Lipid and α Carb are the three core diet bars.","β Protein, γ Lipid và α Carb là ba thanh diet chính.")},
+        {h:t("Growth multiplier","Growth multiplier","Hệ số tăng trưởng"),p:t("1 nutrient = 100%, 2 = 200%, ทั้ง 3 = 300% growth rate ตาม current community guide","1 nutrient = 100%, 2 = 200%, all three = 300% growth rate in the current community guide.","1 nutrient = 100%, 2 = 200%, đủ ba = 300% growth rate theo guide cộng đồng hiện tại.")},
+        {h:t("Growth pauses","Growth pauses","Tăng trưởng dừng"),p:t("หากอาหารหรือน้ำถึงศูนย์ growth สามารถหยุดได้","Growth can pause when food or hydration reaches zero.","Growth có thể dừng khi thức ăn hoặc nước về 0.")},
+        {h:t("Species-specific food","Species-specific food","Thức ăn theo loài"),p:t("รายการ preferred foods ของแต่ละ species ในฐานข้อมูล Dinosaurs มาจาก current raw game-data snapshot","Preferred foods per species in the Dinosaur Database come from the current raw game-data snapshot.","Preferred foods của từng loài trong Dinosaur Database lấy từ snapshot game-data hiện tại.")}
+      ],
+      source:"https://www.theisle.info/guide/diets"
+    },
+    nesting:{
+      title:t("COURTING & NESTING","COURTING & NESTING","COURTING & NESTING"),
+      lead:t("วงจรการหาคู่ สร้าง Nest และเลี้ยง hatchling","Courtship, nest creation and hatchling lifecycle","Courtship, tạo nest và vòng đời hatchling"),
+      cards:[
+        {h:t("Courtship","Courtship","Courtship"),p:t("ระบบ Nest เริ่มจากการจับคู่และ courtship ตาม mechanics ของเกม","Nesting begins through pairing and courtship mechanics.","Nesting bắt đầu bằng ghép đôi và courtship theo cơ chế game.")},
+        {h:t("Nest & Eggs","Nest & Eggs","Nest & Eggs"),p:t("หลังจับคู่ ผู้เล่นสร้าง Nest, gestate/lay eggs และ incubate ตามขั้นตอนของ EVRIMA","After pairing, players build a nest, gestate/lay eggs and incubate them.","Sau khi ghép đôi, người chơi dựng nest, gestate/đẻ trứng và incubate.")},
+        {h:t("Nested-in life","Nested-in life","Vòng đời từ nest"),p:t("การเกิดจาก Nest ของผู้เล่นเป็นหนึ่งใน Prime conditions ที่ current guide ระบุ","Being born from a player nest is one of the Prime conditions in the current guide.","Sinh ra từ nest người chơi là một điều kiện Prime trong guide hiện tại.")},
+        {h:t("Diet inheritance","Diet inheritance","Kế thừa diet"),p:t("current diet guide ระบุว่า hatchling สามารถรับ diet macros จากผู้ปกครองที่ให้อาหาร","The current diet guide notes that hatchlings can inherit diet macros from feeding parents.","Guide diet hiện tại ghi hatchling có thể nhận diet macro từ bố mẹ cho ăn.")}
+      ],
+      source:"https://www.theisle.info/guide/nesting"
+    },
+    zones:{
+      title:t("MIGRATION / PATROL / SANCTUARY","MIGRATION / PATROL / SANCTUARY","MIGRATION / PATROL / SANCTUARY"),
+      lead:t("สามระบบพื้นที่หลักที่เปลี่ยนเส้นทางการเล่นบน Gateway","Three major zone systems that shape movement on Gateway","Ba hệ thống zone chính định hướng di chuyển trên Gateway"),
+      cards:[
+        {h:t("Migration","Migration","Migration"),p:t("พื้นที่ movement ขนาดใหญ่ที่เน้น food/nutrient และการรวมฝูง; ต้องเข้า zone ของ species ที่ถูกต้อง","Large movement zones centered on food/nutrients and herd movement; use the correct species zone.","Zone di chuyển lớn tập trung food/nutrient và đàn; cần đúng zone của loài.")},
+        {h:t("Patrol","Patrol","Patrol"),p:t("โซนขนาดเล็กที่ผูกกับผู้เล่น/หัวหน้ากลุ่ม; สมาชิกกลุ่มใช้ zone ของ leader","Smaller player/group-leader-bound zones; group members use the leader's patrol zone.","Zone nhỏ gắn với người chơi/trưởng nhóm; thành viên dùng zone của leader.")},
+        {h:t("Sanctuary","Sanctuary","Sanctuary"),p:t("พื้นที่สำหรับช่วงเด็ก มี mushroom 3-combo และระบบผึ้งผลักสัตว์ที่โตเกินช่วงออก","Juvenile-focused zones with three-combo mushrooms and bee pressure that pushes older animals out.","Zone cho juvenile với nấm 3-combo và ong đẩy con vật quá lớn ra ngoài.")},
+        {h:t("Prime links","Prime links","Liên kết Prime"),p:t("Sanctuary, Mass Migration, Migration และ Patrol เชื่อมกับ Prime conditions หลายข้อ","Sanctuary, Mass Migration, Migration and Patrol connect directly to several Prime conditions.","Sanctuary, Mass Migration, Migration và Patrol liên quan trực tiếp nhiều điều kiện Prime.")}
+      ],
+      source:"https://www.theisle.info/guide/zones"
+    },
+    combat:{
+      title:t("COMBAT / GAME SYSTEMS","COMBAT / GAME SYSTEMS","COMBAT / GAME SYSTEMS"),
+      lead:t("ภาพรวม combat และ damage systems โดยไม่ปนกับกฎ PVP ของเซิร์ฟเวอร์","Overview of combat and damage systems, separate from Kingdoms Isle PvP rules","Tổng quan combat và damage system, tách biệt khỏi luật PvP Kingdoms Isle"),
+      cards:[
+        {h:t("Raw Damage","Raw Damage","Raw Damage"),p:t("ความเสียหายตรงจาก attack; actual value ของแต่ละ species ขึ้นกับ AttackPower curve","Direct attack damage; per-species output scales with the AttackPower curve.","Sát thương trực tiếp; giá trị theo loài phụ thuộc AttackPower curve.")},
+        {h:t("Bleed / Fracture","Bleed / Fracture","Bleed / Fracture"),p:t("เป็น damage/status types แยกจาก raw damage และมี mutation/diet บางชนิดโต้ตอบกับระบบนี้","Separate damage/status types from raw damage, with some mutations and diet effects interacting with them.","Là loại damage/status tách khỏi raw damage; một số mutation và diet tương tác với chúng.")},
+        {h:t("Species attacks","Species attacks","Đòn đánh theo loài"),p:t("หน้า Dinosaur Details แสดงชื่อ attack ที่มีอยู่ใน current raw game-data ของ species นั้น","Dinosaur Details lists attacks present in that species' current raw game-data.","Dinosaur Details liệt kê attack có trong raw game-data hiện tại của loài.")},
+        {h:t("Server Rules ≠ Game Mechanics","Server Rules ≠ Game Mechanics","Server Rules ≠ Game Mechanics"),p:t("สิ่งที่เกมทำได้ไม่ได้แปลว่าได้รับอนุญาตตาม Server Rules; ให้กลับไปหน้า Rules เมื่อต้องตัดสินกฎ","A mechanic being possible does not mean it is allowed by Server Rules; use the Rules page for server policy.","Cơ chế game làm được không có nghĩa được phép theo Server Rules; xem trang Rules để biết luật máy chủ.")}
+      ],
+      source:"https://www.theisle.info/guide/combat"
+    }
+  };
+
+  return {
+    ui,hub,speciesAliases,primeConditions,mutations,buildUi,roleProfiles,speciesBuilds,recommendationMeta,guides,
+    sources:{
+      species:"https://evrima-viewer.com/",
+      prime:"https://www.theisle.info/guide/prime",
+      mutations:"https://www.theisle.info/guide/mutations",
+      thaiPrime:"https://www.theisleguidethai.online/#prime",
+      thaiMutations:"https://www.theisleguidethai.online/#mutations"
+    }
+  };
+})();
