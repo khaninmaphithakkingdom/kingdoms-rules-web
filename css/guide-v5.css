@@ -1,0 +1,87 @@
+
+:root{
+  --bg:#070a08;--panel:#0e1510;--panel2:#131d16;--ink:#eee8db;--muted:#9da69a;
+  --gold:#d6b56a;--gold2:#92703a;--green:#728f49;--red:#8e3b35;--line:rgba(214,181,106,.17);
+  --shadow:0 22px 70px rgba(0,0,0,.46);--radius:20px
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:#070a08;color:var(--ink);font-family:Inter,Segoe UI,Tahoma,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+linear-gradient(180deg,rgba(5,8,6,.74),rgba(5,8,6,.92)),
+radial-gradient(circle at 77% 8%,rgba(112,143,73,.15),transparent 28rem),
+url("../assets/site-background-v1.jpg") center/cover fixed no-repeat}
+body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:
+linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,black,transparent 72%)}
+a{color:inherit}button,input,select{font:inherit}.shell{min-height:100vh}
+.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:76px;padding:10px 26px;background:rgba(6,10,7,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;text-
+…[middle output omitted]…
+ld{grid-column:auto}.diet-lists{grid-template-columns:1fr}.compare-wrap table{display:none}.mobile-stat-stack{display:grid;gap:10px}.mobile-stat{padding:14px;border-bottom:1px solid rgba(255,255,255,.05)}.mobile-stat:last-child{border-bottom:0}.mobile-stat h4{margin:0 0 8px;color:#dcc17c}.mobile-stat dl{display:grid;grid-template-columns:1fr auto;gap:5px 12px;margin:0}.mobile-stat dt,.mobile-stat dd{margin:0;font-size:.75rem}.mobile-stat dt{color:#77827a}.mobile-stat dd{color:#d7d2c7}.detail-card{padding:17px}.detail-card .stats{grid-template-columns:1fr!important}.section{margin-top:26px}}
+
+/* Game Guide localization/search polish - v3 */
+.species-toolbar{grid-template-columns:minmax(240px,1.25fr) minmax(220px,1fr) minmax(170px,.72fr) minmax(160px,.68fr);align-items:start}.field-help{display:block;min-height:1.15em;color:#667168;font-size:.62rem;line-height:1.35}
+@media(max-width:1050px){.species-toolbar{grid-template-columns:1fr 1fr}.species-toolbar .field:first-child{grid-column:1/-1}}
+@media(max-width:760px){.species-toolbar{grid-template-columns:1fr}.species-toolbar .field:first-child{grid-column:auto}.field-help{font-size:.64rem}}
+/* v4 - viewport fit + Rules-matched typography */
+
+/* v5 - Species detail balance + recommended builds */
+body .species-detail-section,body .species-builds-section,body .species-curve-section{min-height:0}
+.species-detail-section{align-items:start}
+.species-detail-section .detail-card{align-self:start;height:auto;min-height:0}
+.species-builds-section{margin-top:30px}
+.build-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.build-card{position:relative;overflow:hidden;padding:20px;border:1px solid rgba(214,181,106,.18);border-radius:18px;background:linear-gradient(145deg,rgba(15,23,17,.97),rgba(8,13,10,.97));box-shadow:0 18px 48px rgba(0,0,0,.28)}
+.build-card:before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(214,181,106,.62),transparent)}
+.build-card-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start;padding-bottom:15px;border-bottom:1px solid rgba(214,181,106,.12)}
+.build-kicker{display:block;margin-bottom:5px;color:#9e8958;font-size:.61rem;font-weight:700;letter-spacing:.13em}
+.build-card h3{margin:0;color:#eee4d0;font-size:1.12rem;line-height:1.3}
+.build-card-head p{margin:6px 0 0;color:#8e9a90;font-size:.77rem}
+.build-index{display:grid;place-items:center;width:38px;height:38px;border:1px solid rgba(214,181,106,.2);border-radius:10px;color:#cbb06f;background:rgba(214,181,106,.045);font-size:.72rem;font-weight:700}
+.build-mutations{display:grid;gap:9px;margin-top:15px}
+.build-mutation{padding:12px 13px;border:1px solid rgba(255,255,255,.055);border-radius:12px;background:rgba(255,255,255,.018)}
+.build-mutation-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.build-mutation-top strong{color:#e4dccb;font-size:.82rem;line-height:1.35}
+.slot-pill{flex:0 0 auto;padding:3px 7px;border:1px solid rgba(214,181,106,.18);border-radius:999px;color:#bca364;background:rgba(214,181,106,.055);font-size:.55rem;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.build-reason{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;margin-top:6px}
+.build-reason>span,.build-foot span{color:#6f7d72;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.build-reason p{margin:0;color:#99a298;font-size:.7rem;line-height:1.48}
+.build-foot{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px;padding-top:14px;border-top:1px solid rgba(214,181,106,.1)}
+.build-foot>div{min-width:0}
+.build-foot p{margin:4px 0 0;color:#879288;font-size:.68rem;line-height:1.5}
+.build-foot>div:first-child p{color:#a8b3a8}
+@media(max-width:900px){.build-grid{grid-template-columns:1fr}.build-card{padding:18px}}
+@media(max-width:760px){
+  .species-builds-section{margin-top:24px}
+  .build-card{padding:16px;border-radius:15px}
+  .build-card-head{grid-template-columns:1fr auto;gap:10px}
+  .build-card h3{font-size:1rem}
+  .build-card-head p{font-size:.73rem}
+  .build-mutation{padding:11px}
+  .build-mutation-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+  .slot-pill{font-size:.52rem}
+  .build-reason{grid-template-columns:1fr;gap:2px}
+  .build-foot{grid-template-columns:1fr}
+}
+html,body,button,input,select,textarea{
+  font-family:"Chakra Petch","Leelawadee UI","Segoe UI",sans-serif;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
+.brand-copy strong,.hero h1,.section-head h2,.hub-card h3,.species-card h3,.detail-card h2,.detail-card h3,.mutation-card h3,.info-card h3,.site-footer strong,.prime-num,.timeline strong{
+  font-family:"Chakra Petch","Leelawadee UI","Segoe UI",sans-serif;
+}
+.hero h1,.section-head h2{font-weight:600;letter-spacing:-.02em}
+.hub-card h3,.species-card h3,.detail-card h2,.detail-card h3,.mutation-card h3,.info-card h3{font-weight:600;line-height:1.28}
+.hero-meta strong,.meta-chip strong,.mini-stat strong,.prime-num,.timeline strong,table th,table td,.mobile-stat dd,.mutation-card p strong{
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+  letter-spacing:0;
+}
+.section{
+  min-height:calc(100svh - 128px);
+  min-height:calc(100dvh - 128px);
+}
+@media(max-width:760px){
+  .section{min-height:calc(100svh - 104px);min-height:calc(100dvh - 104px)}
+}
