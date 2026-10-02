@@ -7,58 +7,7 @@ window.KI_GUIDE_CONTENT = (() => {
 
   const ui = {
     th:{
-      gameGuide:"GAME GUIDE",backRules:"?????????????",home:"???????? Game Guide",dinosaurs:"?????????",mutations:"MUTATIONS",
+      gameGuide:"GAME GUIDE",backRules:"à¸à¸Žà¹€à¸‹à¸´à¸£à¹Œà¸Ÿà¹€à¸§à¸­à¸£à¹Œ",home:"à¸«à¸™à¹‰à¸²à¸«à¸¥à¸±à¸ Game Guide",dinosaurs:"à¹„à¸”à¹‚à¸™à¹€à¸ªà¸²à¸£à¹Œ",mutations:"MUTATIONS",
       prime:"PRIME & ELDER",diet:"DIET & GROWTH",nesting:"NESTING",zones:"MIGRATION / PATROL / SANCTUARY",combat:"COMBAT / GAME SYSTEMS",
-      guideLead:"????????????? The Isle: EVRIMA ??? Kingdoms Isle - ??????????????????????????????",
-      guideNotice:"???????? Game Guide ????????? mechanics ?????? ?????? Server Rules ??? Kingdoms Isle",
-      search:"?????...",all:"???????",current:"CURRENT EVRIMA",dataset:"Dataset",source:"???????????",lastVerified:"??????????",
-      weight:"???????",speed:"????????",bite:"Bite / Attack",dietType:"???????????",status:"?????",
-      preferredFood:"Preferred Diet / Foods",attacks:"Attacks",speciesData:"?????? Species",primeCompare:"Prime / Frail Comparison",
-      noData:"???????????????????????",derived:"???????? curve ??? game-data",adult75:"Adult 75%",frail875:"Frail 87.5%",prime875:"Prime 87.5%",frail100:"Frail Elder 100%",prime100:"Prime El
-â€¦[middle output omitted]â€¦
-  nesting:{
-      title:t("COURTING & NESTING","COURTING & NESTING","COURTING & NESTING"),
-      lead:t("???????????? ????? Nest ????????? hatchling","Courtship, nest creation and hatchling lifecycle","Courtship, t?o nest vï¿½ vï¿½ng d?i hatchling"),
-      cards:[
-        {h:t("Courtship","Courtship","Courtship"),p:t("???? Nest ???????????????????? courtship ??? mechanics ??????","Nesting begins through pairing and courtship mechanics.","Nesting b?t d?u b?ng ghï¿½p dï¿½i vï¿½ courtship theo co ch? game.")},
-        {h:t("Nest & Eggs","Nest & Eggs","Nest & Eggs"),p:t("?????????? ???????????? Nest, gestate/lay eggs ??? incubate ????????????? EVRIMA","After pairing, players build a nest, gestate/lay eggs and incubate them.","Sau khi ghï¿½p dï¿½i, ngu?i choi d?ng nest, gestate/d? tr?ng vï¿½ incubate.")},
-        {h:t("Nested-in life","Nested-in life","Vï¿½ng d?i t? nest"),p:t("?????????? Nest ????????????????????? Prime conditions ??? current guide ????","Being born from a player nest is one of the Prime conditions in the current guide.","Sinh ra t? nest ngu?i choi lï¿½ m?t di?u ki?n Prime trong guide hi?n t?i.")},
-        {h:t("Diet inheritance","Diet inheritance","K? th?a diet"),p:t("current diet guide ??????? hatchling ????????? diet macros ???????????????????????","The current diet guide notes that hatchlings can inherit diet macros from feeding parents.","Guide diet hi?n t?i ghi hatchling cï¿½ th? nh?n diet macro t? b? m? cho an.")}
-      ],
-      source:"https://www.theisle.info/guide/nesting"
-    },
-    zones:{
-      title:t("MIGRATION / PATROL / SANCTUARY","MIGRATION / PATROL / SANCTUARY","MIGRATION / PATROL / SANCTUARY"),
-      lead:t("???????????????????????????????????????????? Gateway","Three major zone systems that shape movement on Gateway","Ba h? th?ng zone chï¿½nh d?nh hu?ng di chuy?n trï¿½n Gateway"),
-      cards:[
-        {h:t("Migration","Migration","Migration"),p:t("??????? movement ??????????????? food/nutrient ????????????; ???????? zone ??? species ??????????","Large movement zones centered on food/nutrients and herd movement; use the correct species zone.","Zone di chuy?n l?n t?p trung food/nutrient vï¿½ dï¿½n; c?n dï¿½ng zone c?a loï¿½i.")},
-        {h:t("Patrol","Patrol","Patrol"),p:t("???????????????????????????/????????????; ?????????????? zone ??? leader","Smaller player/group-leader-bound zones; group members use the leader's patrol zone.","Zone nh? g?n v?i ngu?i choi/tru?ng nhï¿½m; thï¿½nh viï¿½n dï¿½ng zone c?a leader.")},
-        {h:t("Sanctuary","Sanctuary","Sanctuary"),p:t("????????????????????? ?? mushroom 3-combo ????????????????????????????????????","Juvenile-focused zones with three-combo mushrooms and bee pressure that pushes older animals out.","Zone cho juvenile v?i n?m 3-combo vï¿½ ong d?y con v?t quï¿½ l?n ra ngoï¿½i.")},
-        {h:t("Prime links","Prime links","Liï¿½n k?t Prime"),p:t("Sanctuary, Mass Migration, Migration ??? Patrol ????????? Prime conditions ???????","Sanctuary, Mass Migration, Migration and Patrol connect directly to several Prime conditions.","Sanctuary, Mass Migration, Migration vï¿½ Patrol liï¿½n quan tr?c ti?p nhi?u di?u ki?n Prime.")}
-      ],
-      source:"https://www.theisle.info/guide/zones"
-    },
-    combat:{
-      title:t("COMBAT / GAME SYSTEMS","COMBAT / GAME SYSTEMS","COMBAT / GAME SYSTEMS"),
-      lead:t("?????? combat ??? damage systems ????????????? PVP ??????????????","Overview of combat and damage systems, separate from Kingdoms Isle PvP rules","T?ng quan combat vï¿½ damage system, tï¿½ch bi?t kh?i lu?t PvP Kingdoms Isle"),
-      cards:[
-        {h:t("Raw Damage","Raw Damage","Raw Damage"),p:t("????????????????? attack; actual value ???????? species ??????? AttackPower curve","Direct attack damage; per-species output scales with the AttackPower curve.","Sï¿½t thuong tr?c ti?p; giï¿½ tr? theo loï¿½i ph? thu?c AttackPower curve.")},
-        {h:t("Bleed / Fracture","Bleed / Fracture","Bleed / Fracture"),p:t("???? damage/status types ?????? raw damage ????? mutation/diet ???????????????????????","Separate damage/status types from raw damage, with some mutations and diet effects interacting with them.","Lï¿½ lo?i damage/status tï¿½ch kh?i raw damage; m?t s? mutation vï¿½ diet tuong tï¿½c v?i chï¿½ng.")},
-        {h:t("Species attacks","Species attacks","Dï¿½n dï¿½nh theo loï¿½i"),p:t("???? Dinosaur Details ???????? attack ??????????? current raw game-data ??? species ????","Dinosaur Details lists attacks present in that species' current raw game-data.","Dinosaur Details li?t kï¿½ attack cï¿½ trong raw game-data hi?n t?i c?a loï¿½i.")},
-        {h:t("Server Rules ? Game Mechanics","Server Rules ? Game Mechanics","Server Rules ? Game Mechanics"),p:t("?????????????????????????????????????????? Server Rules; ????????????? Rules ?????????????????","A mechanic being possible does not mean it is allowed by Server Rules; use the Rules page for server policy.","Co ch? game lï¿½m du?c khï¿½ng cï¿½ nghia du?c phï¿½p theo Server Rules; xem trang Rules d? bi?t lu?t mï¿½y ch?.")}
-      ],
-      source:"https://www.theisle.info/guide/combat"
-    }
-  };
-
-  return {
-    ui,hub,speciesAliases,primeConditions,mutations,buildUi,roleProfiles,speciesBuilds,recommendationMeta,guides,
-    sources:{
-      species:"https://evrima-viewer.com/",
-      prime:"https://www.theisle.info/guide/prime",
-      mutations:"https://www.theisle.info/guide/mutations",
-      thaiPrime:"https://www.theisleguidethai.online/#prime",
-      thaiMutations:"https://www.theisleguidethai.online/#mutations"
-    }
-  };
-})();
+      guideLead:"à¸„à¸¥à¸±à¸‡à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹€à¸à¸¡ The Isle: EVRIMA à¸‚à¸­à¸‡ Kingdoms Isle â€” à¹à¸¢à¸à¸ˆà¸²à¸à¸à¸Žà¹€à¸‹à¸´à¸£à¹Œà¸Ÿà¹€à¸§à¸­à¸£à¹Œà¸­à¸¢à¹ˆà¸²à¸‡à¸Šà¸±à¸”à¹€à¸ˆà¸™",
+      guideNotice:"à¸‚à¹‰à¸­à¸¡à¸¹à¸¥à¹ƒà¸™ Game Guide à¸„à¸·à¸­à¸‚à¹‰à¸­à¸¡à¸¹à¸¥ mechanics à¸‚à¸­à¸‡à¹€à¸à¸¡ à¹„à¸¡à¹ˆà¹ƒà¸Šà¹ˆ Server Rules à¸‚à¸­à¸‡ Kingdoms f‰×ez‹­¦ëhš+myÒ"Â%G&öÂ"Â%G&öÂ"’Ç§B‚.˜.ˆ¾‰žˆ.‰ž‹.‰N˜Š^˜~ˆ‰~‹^˜Ž‰Î‹žˆˆ‹‰®‰Î‹ž˜ž˜Š^˜Ž‰’þŠ¾‹Š~Š¾‰ž˜ž‹.ˆŠ^‹Ž˜ŽŠ²Š®Š‹.ˆ®‹NˆˆŠ^‹Ž˜ŽŠ˜>ˆ®˜’¦öæRˆ.ŠÞˆrÆVFW""Â%6ÖÆÆW"Æ–W"öw&÷WÖÆVFW"Ö&÷VæB¦öæW3²w&÷WÖVÖ&W'2W6RF†RÆVFW"w2G&öÂ¦öæRâ"Â%¦öæRæŽ¸ò~ªöân¹¶’æ|k¹Ö’6Œj’÷G,k¹öæræŒ;6Ó²FŒ:æ‚fœ:¦âL;–ær¦öæR>ºvÆVFW"â"—ÒÀ¢¶ƒ§B‚%6æ7GV'’"Â%6æ7GV'’"Â%6æ7GV'’"’Ç§B‚.‰î‹~˜ž‰ž‰~‹^˜ŽŠ®‹>Š¾Š>‹‰®ˆ®˜ŽŠ~ˆ~˜‰N˜~ˆŠ‹R×W6‡&ööÒ2Ö6öÖ&ò˜Š^‹Š>‹‰®‰®‰Î‹n˜žˆ~‰ÎŠ^‹ˆŠ®‹‰^Š~˜Î‰~‹^˜Ž˜.‰^˜ˆ‹N‰žˆ®˜ŽŠ~ˆ~ŠÞŠÞˆ"Â$§WfVæ–ÆRÖfö7W6VB¦öæW2v—F‚F‡&VRÖ6öÖ&ò×W6‡&öö×2æB&VR&W77W&RF†BW6†W2öÆFW"æ–ÖÇ2÷WBâ"Â%¦öæR6†ò§WfVæ–ÆRn¹¶’îªVÒ2Ö6öÖ&òl:öærIª—’6öânª×B\:Î¹¶â&ævü:’â"—ÒÀ¢¶ƒ§B‚%&–ÖRÆ–æ·2"Â%&–ÖRÆ–æ·2"Â$Æœ:¦â¾«÷B&–ÖR"’Ç§B‚%6æ7GV'’ÂÖ72Ö–w&F–öâÂÖ–w&F–öâ˜Š^‹G&öÂ˜ˆ®‹~˜ŽŠÞŠˆ‹‰¢&–ÖR6öæF—F–öç2Š¾Š^‹.Š.ˆ.˜žŠÒ"Â%6æ7GV'’ÂÖ72Ö–w&F–öâÂÖ–w&F–öâæBG&öÂ6öææV7BF—&V7FÇ’Fò6WfW&Â&–ÖR6öæF—F–öç2â"Â%6æ7GV'’ÂÖ72Ö–w&F–öâÂÖ–w&F–öâl:G&öÂÆœ:¦âVâG.»2Fž«÷æ†ž¸RIž¸R¶ž¸vâ&–ÖRâ"—Ð¢ÒÀ¢6÷W&6S¢&‡GG3¢ò÷wwrçF†V—6ÆRæ–æfòöwV–FR÷¦öæW2 ¢ÒÀ¢6öÖ&C§°¢F—FÆS§B‚$4ôÔ$BòtÔR5•5DTÕ2"Â$4ôÔ$BòtÔR5•5DTÕ2"Â$4ôÔ$BòtÔR5•5DTÕ2"’À¢ÆVC§B‚.Š‹.‰îŠ>Š~Š6öÖ&B˜Š^‹FÖvR7—7FV×2˜.‰NŠ.˜NŠ˜Ž‰¾‰žˆ‹‰®ˆˆâeˆ.ŠÞˆ~˜ˆ¾‹NŠ>˜Î‰þ˜Š~ŠÞŠ>˜Â"Â$÷fW'f–Wröb6öÖ&BæBFÖvR7—7FV×2Â6W&FRg&öÒ¶–ævFö×2—6ÆRe'VÆW2"Â%N¹VærVâ6öÖ&Bl:FÖvR7—7FVÒÂL:6‚&ž¸wB¶Ž¸ö’Ç^ª×Be¶–ævFö×2—6ÆR"’À¢6&G3¥°¢¶ƒ§B‚%&rFÖvR"Â%&rFÖvR"Â%&rFÖvR"’Ç§B‚.ˆNŠ~‹.Š˜Š®‹^Š.Š¾‹.Š.‰^Š>ˆ~ˆŽ‹.ˆGF6³²7GVÂfÇVRˆ.ŠÞˆ~˜‰^˜ŽŠ^‹7V6–W2ˆ.‹n˜ž‰žˆ‹‰¢GF6µ÷vW"7W'fR"Â$F—&V7BGF6²FÖvS²W"×7V6–W2÷WGWB66ÆW2v—F‚F†RGF6µ÷vW"7W'fRâ"Â%<:BFŒkjærG.»2Fž«÷²vœ:G.¸²F†VòÆü:’ŽºRF‡^¹–2GF6µ÷vW"7W'fRâ"—ÒÀ¢¶ƒ§B‚$&ÆVVBòg&7GW&R"Â$&ÆVVBòg&7GW&R"Â$&ÆVVBòg&7GW&R"’Ç§B‚.˜‰¾˜~‰’FÖvR÷7FGW2G—W2˜Š.ˆˆŽ‹.ˆ&rFÖvR˜Š^‹Š‹R×WFF–öâöF–WB‰®‹.ˆ~ˆ®‰ž‹N‰N˜.‰^˜ž‰^ŠÞ‰®ˆ‹‰®Š>‹‰®‰®‰ž‹^˜’"Â%6W&FRFÖvR÷7FGW2G—W2g&öÒ&rFÖvRÂv—F‚6öÖR×WFF–öç2æBF–WBVffV7G2–çFW&7F–ærv—F‚F†VÒâ"Â$Ì:Æþª’FÖvR÷7FGW2L:6‚¶Ž¸ö’&rFÖvS²Þ¹—B>¹×WFF–öâl:F–WBLkjærL:2n¹¶’6Œ;¦ærâ"—ÒÀ¢¶ƒ§B‚%7V6–W2GF6·2"Â%7V6–W2GF6·2"Â,I;&âI:æ‚F†VòÆü:’"’Ç§B‚.Š¾‰ž˜ž‹"F–æ÷6W"FWF–Ç2˜Š®‰Nˆ~ˆ®‹~˜ŽŠÒGF6²‰~‹^˜ŽŠ‹^ŠÞŠ.‹ž˜Ž˜>‰’7W'&VçB&rvÖRÖFFˆ.ŠÞˆr7V6–W2‰ž‹˜ž‰’"Â$F–æ÷6W"FWF–Ç2Æ—7G2GF6·2&W6VçB–âF†B7V6–W2r7W'&VçB&rvÖRÖFFâ"Â$F–æ÷6W"FWF–Ç2Æž¸wB¼:¢GF6²<;2G&öær&rvÖRÖFF†ž¸vâNª’>ºvÆü:’â"—ÒÀ¢¶ƒ§B‚%6W'fW"'VÆW2(švÖRÖV6†æ–72"Â%6W'fW"'VÆW2(švÖRÖV6†æ–72"Â%6W'fW"'VÆW2(švÖRÖV6†æ–72"’Ç§B‚.Š®‹N˜Žˆ~‰~‹^˜Ž˜ˆŠ‰~‹>˜N‰N˜ž˜NŠ˜Ž˜N‰N˜ž˜‰¾Š^Š~˜Ž‹.˜N‰N˜žŠ>‹‰®ŠÞ‰ž‹ŽˆÞ‹.‰^‰^‹.Š6W'fW"'VÆW3²˜>Š¾˜žˆŠ^‹‰®˜N‰¾Š¾‰ž˜ž‹"'VÆW2˜Š‹~˜ŽŠÞ‰^˜žŠÞˆ~‰^‹‰NŠ®‹N‰žˆˆâ"Â$ÖV6†æ–2&V–ær÷76–&ÆRFöW2æ÷BÖVâ—B—2ÆÆ÷vVB'’6W'fW"'VÆW3²W6RF†R'VÆW2vRf÷"6W'fW"öÆ–7’â"Â$<j6Ž«òvÖRÌ:ÒIkº62¶Œ;Fær<;2ævŒJ–Ikº62Œ:—F†Vò6W'fW"'VÆW3²†VÒG&ær'VÆW2I¸2&ž«÷BÇ^ª×BÜ:’6Žºrâ"—Ð¢ÒÀ¢6÷W&6S¢&‡GG3¢ò÷wwrçF†V—6ÆRæ–æfòöwV–FRö6öÖ&B ¢Ð¢Ó° ¢&WGW&â°¢V’Æ‡V"Ç7V6–W4Æ–6W2Ç&–ÖT6öæF—F–öç2Æ×WFF–öç2Æ'V–ÆEV’Ç&öÆU&öf–ÆW2Ç7V6–W4'V–ÆG2Ç&V6öÖÖVæFF–öäÖWFÆwV–FW2À¢6÷W&6W3§°¢7V6–W3¢&‡GG3¢òöWg&–Ö×f–WvW"æ6öÒò"À¢&–ÖS¢&‡GG3¢ò÷wwrçF†V—6ÆRæ–æfòöwV–FR÷&–ÖR"À¢×WFF–öç3¢&‡GG3¢ò÷wwrçF†V—6ÆRæ–æfòöwV–FRö×WFF–öç2"À¢F†•&–ÖS¢&‡GG3¢ò÷wwrçF†V—6ÆVwV–FWF†’æöæÆ–æRò7&–ÖR"À¢F†”×WFF–öç3¢&‡GG3¢ò÷wwrçF†V—6ÆVwV–FWF†’æöæÆ–æRò6×WFF–öç2 ¢Ð¢Ó°§Ò’‚“
