@@ -65,23 +65,42 @@ function morphTargetIndex(mesh,stage){
   }
   return undefined
 }
-function applySpeciesMorph(root,name,g){
-  if(!root)return;
-  const nodes=[...(speciesData(name)?.morphs?.nodes||[])].sort((a,b)=>a.at-b.at);
-  if(!nodes.length)return;
+function morphWeightsAt(name,g,path){
+  const morphs=speciesData(name)?.morphs;
+  if(!morphs)return{};
+  const slots=morphs.slots||{};
   const v=visualGrowthAt(name,g);
-  let left=nodes[0],right=nodes[nodes.length-1];
-  if(v<=nodes[0].at){left=right=nodes[0]}
-  else if(v>=nodes[nodes.length-1].at){left=right=nodes[nodes.length-1]}
-  else for(let i=0;i<nodes.length-1;i++){if(v>=nodes[i].at&&v<=nodes[i+1].at){left=nodes[i];right=nodes[i+1];break}}
-  const mix=left===right?0:(v-left.at)/(right.at-left.at);
+  const adultBlend=THREE.MathUtils.clamp((v-.25)*2,0,1);
+  const weights={};
+  if(g<.25){
+    weights.juvenile=1;
+    if(slots.hatchling){
+      weights.hatchling=THREE.MathUtils.clamp(1-4*g,0,1);
+      weights.juvenile=THREE.MathUtils.clamp(4*g,0,1)
+    }
+  }else if(slots.subadult){
+    weights.juvenile=THREE.MathUtils.clamp(1-2*adultBlend,0,1);
+    weights.subadult=THREE.MathUtils.clamp(1-Math.abs(1-2*adultBlend),0,1)
+  }else{
+    weights.juvenile=THREE.MathUtils.clamp(1-adultBlend,0,1)
+  }
+  if(slots.elder){
+    const elderMax=path==="prime"?1:.2;
+    weights.elder=THREE.MathUtils.clamp((g-.75)*4,0,elderMax)
+  }
+  return weights
+}
+function applySpeciesMorph(root,name,g,path="frail"){
+  if(!root)return;
+  const weights=morphWeightsAt(name,g,path);
   root.traverse(o=>{
     if(!o.isMesh||!o.morphTargetInfluences||!o.morphTargetDictionary)return;
     o.morphTargetInfluences.fill(0);
-    const li=morphTargetIndex(o,left.stage),ri=morphTargetIndex(o,right.stage);
-    if(left===right){if(li!==undefined)o.morphTargetInfluences[li]=1;return}
-    if(li!==undefined)o.morphTargetInfluences[li]=1-mix;
-    if(ri!==undefined)o.morphTargetInfluences[ri]=mix
+    for(const [stage,weight] of Object.entries(weights)){
+      if(!(weight>0))continue;
+      const idx=morphTargetIndex(o,stage);
+      if(idx!==undefined)o.morphTargetInfluences[idx]=weight
+    }
   })
 }
 function growthScaleRatio(name,g,path){
@@ -98,7 +117,7 @@ function getAdultMetric(name){
 function computeAdultMetric(name){
   const asset=assetCache.get(name);if(!asset)return null;
   const clone=SkeletonUtils.clone(asset.scene);
-  applySpeciesMorph(clone,name,.75);
+  applySpeciesMorph(clone,name,.75,"frail");
   clone.rotation.set(0,Math.PI/2,0);clone.scale.setScalar(1);clone.position.set(0,0,0);clone.updateMatrixWorld(true);
   const box=new THREE.Box3().setFromObject(clone,true),size=box.getSize(new THREE.Vector3());
   const physicalHeight=capsuleHeightMeters(name);
@@ -247,12 +266,12 @@ function rebuildSide(side){
   if(rt.model)scene.remove(rt.model);
   rt.model=SkeletonUtils.clone(asset.scene);rt.model.traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});scene.add(rt.model);
   rt.mixer=new THREE.AnimationMixer(rt.model);rt.clips={};for(const c of asset.animations)rt.clips[c.name]=c;rt.action=null;
-  applySpeciesMorph(rt.model,name,effectiveGrowth(side));
+  applySpeciesMorph(rt.model,name,effectiveGrowth(side),state[side].path);
   const chosen=rt.clips[state.animation]?state.animation:(rt.clips.Idle?"Idle":Object.keys(rt.clips)[0]);if(chosen){const a=rt.mixer.clipAction(rt.clips[chosen]);a.play();a.paused=!state.playing;rt.action=a}
 }
 function refreshScene({fit=false}={}){
-  applySpeciesMorph(runtime.primary.model,state.primary.species,state.primary.growth);
-  applySpeciesMorph(runtime.compare.model,state.compare.species,effectiveGrowth("compare"));
+  applySpeciesMorph(runtime.primary.model,state.primary.species,state.primary.growth,state.primary.path);
+  applySpeciesMorph(runtime.compare.model,state.compare.species,effectiveGrowth("compare"),state.compare.path);
   placeModels();syncControls();updateUI();syncUrl();if(fit)setTimeout(fitCamera,0)
 }
 
