@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c0a">
+  <meta name="description" content="Kingdoms Isle 3D Dinosaur Lifecycle Viewer">
+  <title>3D Dinosaur Viewer — Kingdoms Isle Game Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/viewer-v1.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/guide/"><img src="/assets/kingdoms-isle-logo-v13.jpg" alt="Kingdoms Isle logo"><span><strong>KINGDOMS ISLE</strong><small>3D LIFECYCLE VIEWER</small></span></a>
+    <nav class="top-actions"><a href="/guide/" class="nav-pill">GAME GUIDE</a><a href="/dinosaurs/" class="nav-pill">DINOSAURS</a><div class="lang-switch"><button data-lang="th" class="active">TH</button><button data-lang="en">EN</button><button data-lang="vi">VN</button></div></nav>
+  </header>
+  <main class="viewer-page">
+    <section class="viewer-hero">
+      <div><span class="eyebrow">KINGDOMS ISLE · EVRIMA FIELD CODEX</span><h1>3D <span>DINOSAUR</span> VIEWER</h1><p id="viewerLead">Tyrannosaurus lifecycle viewer with real growth morphs and gameplay curves.</p></div>
+      <div class="status-badge" id="loadStatus">LOADING ASSET</div>
+    </section>
+    <section class="viewer-layout">
+      <div class="stage-panel">
+        <div class="canvas-wrap" id="canvasWrap"><canvas id="viewerCanvas"></canvas><div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div><div class="stage-chip" id="stageChip">75% · ADULT</div></div>
+        <div class="viewer-toolbar"><button id="resetCamera">Reset Camera</button><button id="playPause">Pause</button><select id="animationSelect"><option>Idle</option><option>Sniff</option><option>Trot</option></select></div>
+      </div>
+      <aside class="control-panel">
+        <div class="control-block"><label for="speciesSelect">Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Pilot species</small></div>
+        <div class="control-block"><div class="label-row"><label for="growthSlider">Growth</label><output id="growthOutput">75%</output></div><input id="growthSlider" type="range" min="0" max="100" step="0.1" value="75"><div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Elder</span></div></div>
+        <div class="control-block"><label>Lifecycle path</label><div class="segmented"><button data-path="frail" class="active">FRAIL</button><button data-path="prime">PRIME</button></div><small>Visual morph remains the same; gameplay stats follow the selected curve.</small></div>
+        <div class="stats-grid"><div><span>Weight</span><strong id="weightStat">—</strong></div><div><span>Speed</span><strong id="speedStat">—</strong></div><div><span>Bite</span><strong id="biteStat">—</strong></div><div><span>Attack Power</span><strong id="attackStat">—</strong></div></div>
+        <div class="notice"><strong>Growth mapping</strong><p>0% Hatchling · 25% Juvenile · 50% SubAdult · 75% Adult · 100% Elder</p></div>
+      </aside>
+    </section>
+  </main>
+  <script src="/data/game-guide-v2.js"></script>
+  <script type="module" src="/js/viewer-v1.js"></script>
+</body>
+</html>
