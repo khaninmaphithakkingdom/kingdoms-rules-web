@@ -3,16 +3,21 @@ import {OrbitControls} from "three/addons/controls/OrbitControls.js";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {KTX2Loader} from "three/addons/loaders/KTX2Loader.js";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
-import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const game=window.KI_GAME_DATA||{species:{}}, speciesName="Tyrannosaurus", species=game.species?.[speciesName]||null;
-const state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th",tab:"status"};
-const ui={th:{lead:"Tyrannosaurus 3D lifecycle viewer with real growth morphs and gameplay curves.",loading:"LOADING MODEL",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"Values are derived from the current Game Guide lifecycle curves.",silhouetteReady:"Rendered from real Tyrannosaurus.glb morph targets"},en:{lead:"Explore Tyrannosaurus growth with real 3D morphs and lifecycle gameplay curves.",loading:"LOADING MODEL",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves.",silhouetteReady:"Rendered from real Tyrannosaurus.glb morph targets"},vi:{lead:"Tyrannosaurus 3D lifecycle viewer with real growth morphs and gameplay curves.",loading:"LOADING MODEL",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"Values are derived from the current Game Guide lifecycle curves.",silhouetteReady:"Rendered from real Tyrannosaurus.glb morph targets"}};
+const state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th"};
+const ui={
+  th:{lead:"ดู Tyrannosaurus แบบ 3D พร้อม Growth morph และค่าสถานะจาก lifecycle curve",loading:"กำลังโหลดโมเดล",ready:"พร้อมใช้งาน",fail:"โหลดโมเดลไม่สำเร็จ",reportNote:"ค่าทั้งหมดคำนวณจาก lifecycle curve ใน Game Guide ปัจจุบัน"},
+  en:{lead:"Explore Tyrannosaurus in 3D with real growth morphs and lifecycle gameplay curves.",loading:"LOADING MODEL",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
+  vi:{lead:"Xem Tyrannosaurus 3D với growth morph thật và dữ liệu lifecycle curve.",loading:"ĐANG TẢI MÔ HÌNH",ready:"SẴN SÀNG",fail:"KHÔNG TẢI ĐƯỢC MÔ HÌNH",reportNote:"Các giá trị được tính từ lifecycle curve hiện tại trong Game Guide."}
+};
+
 let renderer,scene,camera,controls,mixer,clock,model,clips={},currentAction=null;
-let silhouetteRenderer,silhouetteScene,silhouetteCamera,silhouetteModel=null;
+
 function bz(a,b,c,d,t){const q=1-t;return q*q*q*a+3*q*q*t*b+3*q*t*t*c+t*t*t*d}
-function wb(p){return p&&(p.w===1||p.w===3)} function wa(p){return p&&(p.w===2||p.w===3)}
+function wb(p){return p&&(p.w===1||p.w===3)}
+function wa(p){return p&&(p.w===2||p.w===3)}
 function rw(a,b,t){const span=b.t-a.t,target=(t-a.t)/span,leave=a.lt??0,arrive=b.at??0;let ang=Math.atan(leave);const lw=wa(a)?(a.lw??0):Math.hypot(span,leave*span)/3;const p1t=Math.cos(ang)*lw+a.t,p1v=Math.sin(ang)*lw+a.v;ang=Math.atan(arrive);const aw=wb(b)?(b.aw??0):Math.hypot(span,arrive*span)/3;const p2t=-Math.cos(ang)*aw+b.t,p2v=-Math.sin(ang)*aw+b.v,c1=(p1t-a.t)/span,c2=(p2t-a.t)/span;let lo=0,hi=1;for(let i=0;i<50;i++){const m=(lo+hi)/2;bz(0,c1,c2,1,m)<target?lo=m:hi=m}return bz(a.v,p1v,p2v,b.v,(lo+hi)/2)}
 function rc(points,t){if(!Array.isArray(points)||!points.length)return null;const first=points[0],last=points[points.length-1];if(t<=first.t)return first.v;if(t>=last.t)return last.v;for(let i=0;i<points.length-1;i++){const a=points[i],b=points[i+1];if(t<a.t||t>b.t)continue;const span=b.t-a.t;if(span<=0)return a.v;const p=(t-a.t)/span;if(!a.c)return a.v+(b.v-a.v)*p;if(a.w||b.w)return rw(a,b,t);const m0=(a.lt??0)*span,m1=(b.at??0)*span,p2=p*p,p3=p2*p;return(2*p3-3*p2+1)*a.v+(p3-2*p2+p)*m0+(-2*p3+3*p2)*b.v+(p3-p2)*m1}return null}
 function curveAt(k,t,path=state.path){const c=species?.curves?.[k];return c?rc(path==="prime"?c.prime:c.frail,t):null}
@@ -20,25 +25,114 @@ function statsAt(t,path=state.path){const weight=curveAt("Weight",t,path),speed=
 function fmt(v,d=1){return v==null||!Number.isFinite(Number(v))?"N/A":Number(v).toLocaleString("en-US",{maximumFractionDigits:d})}
 function stageFor(g){if(g>=1)return"ELDER";if(g>=.75)return"ADULT";if(g>=.5)return"SUBADULT";if(g>=.25)return"JUVENILE";return"HATCHLING"}
 function growthWeights(g){g=THREE.MathUtils.clamp(g,0,1);const x=g*4,left=Math.min(3,Math.floor(x)),mix=x-left,w={Hatchling:0,Juvenile:0,SubAdult:0,Elder:0};if(g>=1){w.Elder=1}else if(left===0){w.Hatchling=1-mix;w.Juvenile=mix}else if(left===1){w.Juvenile=1-mix;w.SubAdult=mix}else if(left===2){w.SubAdult=1-mix}else if(left===3){w.Elder=mix}return w}
-function applyMorph(root,g){const w=growthWeights(g);root.traverse(o=>{if(!o.isMesh||!o.morphTargetDictionary||!o.morphTargetInfluences)return;for(const pair of Object.entries(w)){const idx=o.morphTargetDictionary[pair[0]];if(idx!==undefined)o.morphTargetInfluences[idx]=pair[1]}})}
+function applyMorph(root,g){const w=growthWeights(g);root.traverse(o=>{if(!o.isMesh||!o.morphTargetDictionary||!o.morphTargetInfluences)return;for(const [name,val] of Object.entries(w)){const idx=o.morphTargetDictionary[name];if(idx!==undefined)o.morphTargetInfluences[idx]=val}})}
 function percent(g){const n=g*100;return n.toFixed(n%1?1:0)+"%"}
-function updateFood(){const menu=species?.diet?.menu||species?.diet?.sources||{};const render=(id,arr)=>{$(id).innerHTML=(arr||[]).length?(arr||[]).map(x=>"<span>"+String(x)+"</span>").join(""):"<span>N/A</span>"};render("#foodCarb",menu.carb);render("#foodProtein",menu.protein);render("#foodLipid",menu.lipid)}
-function updateReport(){const s=statsAt(state.growth),stage=stageFor(state.growth),pct=percent(state.growth);$("#reportSpecies").textContent=speciesName;$("#reportAge").textContent=stage;$("#reportDiet").textContent=species?.diet?.type||"N/A";$("#reportWeight").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";$("#reportSpeed").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";$("#reportBite").textContent=s.bite==null?"N/A":fmt(s.bite);$("#reportGrowth").textContent=pct;$("#reportAttack").textContent=s.attack==null?"N/A":fmt(s.attack,3);$("#reportPath").textContent=state.path.toUpperCase();$("#reportTitle").textContent=stage+" · "+state.path.toUpperCase()+" PATH";$("#reportNote").textContent=ui[state.lang].reportNote;$("#reportGrowthOutput").textContent=pct;$("#reportGrowthSlider").value=state.growth*100}
-function updateStats(){const s=statsAt(state.growth);$("#weightStat").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";$("#speedStat").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";$("#attackStat").textContent=s.attack==null?"N/A":fmt(s.attack,3);$("#biteStat").textContent=s.bite==null?"N/A":fmt(s.bite);updateReport()}
-function syncUrl(){const u=new URL(location.href);u.searchParams.set("species",speciesName);u.searchParams.set("growth",(state.growth*100).toFixed(1).replace(".0",""));u.searchParams.set("path",state.path);u.searchParams.set("animation",state.animation);u.searchParams.set("tab",state.tab);history.replaceState(null,"",u)}
-function setTab(tab){state.tab=["status","model"].includes(tab)?tab:"status";$$('.viewer-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===state.tab));$$('.viewer-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===state.tab));if(state.tab==="model")setTimeout(resize,0);if(state.tab==="status")setTimeout(resizeSilhouette,0);syncUrl()}
-function setAnimation(name){state.animation=name;$("#animationSelect").value=name;if(!mixer||!clips[name]){syncUrl();return}if(currentAction)currentAction.fadeOut(.2);currentAction=mixer.clipAction(clips[name]);currentAction.reset().fadeIn(.2).play();currentAction.paused=!state.playing;syncUrl()}
+
+function updateFood(){
+  const menu=species?.diet?.menu||species?.diet?.sources||{};
+  const render=(id,arr)=>{$(id).innerHTML=(arr||[]).length?(arr||[]).map(x=>"<span>"+String(x)+"</span>").join(""):"<span>N/A</span>"};
+  render("#foodCarb",menu.carb);render("#foodProtein",menu.protein);render("#foodLipid",menu.lipid)
+}
+function updateReport(){
+  const s=statsAt(state.growth),stage=stageFor(state.growth),pct=percent(state.growth);
+  $("#reportSpecies").textContent=speciesName;
+  $("#reportAge").textContent=stage;
+  $("#reportDiet").textContent=species?.diet?.type||"N/A";
+  $("#reportWeight").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";
+  $("#reportSpeed").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";
+  $("#reportBite").textContent=s.bite==null?"N/A":fmt(s.bite);
+  $("#reportGrowth").textContent=pct;
+  $("#reportAttack").textContent=s.attack==null?"N/A":fmt(s.attack,3);
+  $("#reportPath").textContent=state.path.toUpperCase();
+  $("#reportTitle").textContent=stage+" · "+state.path.toUpperCase()+" PATH";
+  $("#reportNote").textContent=ui[state.lang].reportNote
+}
+function updateStats(){
+  const s=statsAt(state.growth);
+  $("#weightStat").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";
+  $("#speedStat").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";
+  $("#attackStat").textContent=s.attack==null?"N/A":fmt(s.attack,3);
+  $("#biteStat").textContent=s.bite==null?"N/A":fmt(s.bite);
+  updateReport()
+}
+function syncUrl(){
+  const u=new URL(location.href);
+  u.searchParams.set("species",speciesName);
+  u.searchParams.set("growth",(state.growth*100).toFixed(1).replace(".0",""));
+  u.searchParams.set("path",state.path);
+  u.searchParams.set("animation",state.animation);
+  u.searchParams.delete("tab");
+  history.replaceState(null,"",u)
+}
+function setAnimation(name){
+  state.animation=name;$("#animationSelect").value=name;
+  if(!mixer||!clips[name]){syncUrl();return}
+  if(currentAction)currentAction.fadeOut(.2);
+  currentAction=mixer.clipAction(clips[name]);currentAction.reset().fadeIn(.2).play();currentAction.paused=!state.playing;syncUrl()
+}
 function resetCamera(){if(!camera||!controls)return;camera.position.set(7,3.2,9);controls.target.set(0,1.8,0);controls.update()}
-function setLang(lang){state.lang=lang;localStorage.setItem("ki-rules-lang",lang);document.documentElement.lang=lang;$$('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));$("#viewerLead").textContent=ui[lang].lead;updateReport();if($("#silhouetteStatus").dataset.ready==="1")$("#silhouetteStatus").textContent=ui[lang].silhouetteReady}
-function applyGrowth(){state.growth=THREE.MathUtils.clamp(state.growth,0,1);if(model)applyMorph(model,state.growth);const pct=percent(state.growth);$("#growthOutput").textContent=pct;$("#growthSlider").value=state.growth*100;$("#stageChip").textContent=pct+" · "+stageFor(state.growth);updateStats();syncUrl()}
-function initScene(){if(!window.WebGLRenderingContext){$("#fallback").hidden=false;return}const canvas=$("#viewerCanvas");renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x0a0d0a,.025);camera=new THREE.PerspectiveCamera(35,1,.1,100);controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.minDistance=3;controls.maxDistance=20;controls.maxPolarAngle=Math.PI*.54;resetCamera();scene.add(new THREE.HemisphereLight(0xb9c5af,0x20170f,1.6));const key=new THREE.DirectionalLight(0xffddb0,3.4);key.position.set(6,8,5);scene.add(key);const rim=new THREE.DirectionalLight(0x89a889,2.1);rim.position.set(-5,4,-7);scene.add(rim);const floor=new THREE.Mesh(new THREE.CircleGeometry(7,64),new THREE.MeshStandardMaterial({color:0x10140f,roughness:1,metalness:0}));floor.rotation.x=-Math.PI/2;floor.position.y=-.03;scene.add(floor);clock=new THREE.Clock();new ResizeObserver(resize).observe($("#canvasWrap"));loadModel();animate()}
+function setLang(lang){
+  state.lang=lang;localStorage.setItem("ki-rules-lang",lang);document.documentElement.lang=lang;
+  $$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
+  $("#viewerLead").textContent=ui[lang].lead;updateReport()
+}
+function applyGrowth(){
+  state.growth=THREE.MathUtils.clamp(state.growth,0,1);
+  if(model)applyMorph(model,state.growth);
+  const pct=percent(state.growth);
+  $("#growthOutput").textContent=pct;$("#growthSlider").value=state.growth*100;
+  $("#stageChip").textContent=pct+" · "+stageFor(state.growth);
+  updateStats();syncUrl()
+}
+function initScene(){
+  if(!window.WebGLRenderingContext){$("#fallback").hidden=false;return}
+  const canvas=$("#viewerCanvas");
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.outputColorSpace=THREE.SRGBColorSpace;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x0a0d0a,.025);
+  camera=new THREE.PerspectiveCamera(35,1,.1,100);
+  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.minDistance=3;controls.maxDistance=20;controls.maxPolarAngle=Math.PI*.54;
+  resetCamera();
+  scene.add(new THREE.HemisphereLight(0xb9c5af,0x20170f,1.6));
+  const key=new THREE.DirectionalLight(0xffddb0,3.4);key.position.set(6,8,5);scene.add(key);
+  const rim=new THREE.DirectionalLight(0x89a889,2.1);rim.position.set(-5,4,-7);scene.add(rim);
+  const floor=new THREE.Mesh(new THREE.CircleGeometry(7,64),new THREE.MeshStandardMaterial({color:0x10140f,roughness:1,metalness:0}));
+  floor.rotation.x=-Math.PI/2;floor.position.y=-.03;scene.add(floor);
+  clock=new THREE.Clock();new ResizeObserver(resize).observe($("#canvasWrap"));loadModel();animate()
+}
 function resize(){if(!renderer)return;const el=$("#canvasWrap"),w=Math.max(1,el.clientWidth),h=Math.max(1,el.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
-function initSilhouette(source){const canvas=$("#silhouetteCanvas");silhouetteRenderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});silhouetteRenderer.setPixelRatio(Math.min(devicePixelRatio,1.5));silhouetteRenderer.outputColorSpace=THREE.SRGBColorSpace;silhouetteRenderer.setScissorTest(true);silhouetteScene=new THREE.Scene();silhouetteCamera=new THREE.OrthographicCamera(-1,1,1,-1,.01,100);silhouetteModel=SkeletonUtils.clone(source);silhouetteModel.rotation.y=-Math.PI/2;silhouetteModel.traverse(o=>{if(o.isMesh)o.material=new THREE.MeshBasicMaterial({color:0x445247,transparent:true,opacity:.62,side:THREE.DoubleSide,depthWrite:true})});silhouetteScene.add(silhouetteModel);$("#silhouetteStatus").dataset.ready="1";$("#silhouetteStatus").textContent=ui[state.lang].silhouetteReady;new ResizeObserver(resizeSilhouette).observe($("#silhouetteWrap"));resizeSilhouette()}
-function resizeSilhouette(){if(!silhouetteRenderer)return;const el=$("#silhouetteWrap"),w=Math.max(1,el.clientWidth),h=Math.max(1,el.clientHeight);silhouetteRenderer.setSize(w,h,false)}
-function updateSilhouetteHighlight(){}
-function loadModel(){const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);const ktx2=new KTX2Loader().setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/basis/");ktx2.detectSupport(renderer);loader.setKTX2Loader(ktx2);$("#loadStatus").textContent=ui[state.lang].loading;loader.load("/assets/viewer/Tyrannosaurus/Tyrannosaurus.glb",gltf=>{model=gltf.scene;const silhouetteSource=SkeletonUtils.clone(gltf.scene);const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());model.position.sub(center);model.position.y+=size.y*.48;const scale=5.5/Math.max(size.x,size.y,size.z);model.scale.setScalar(scale);model.traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});scene.add(model);mixer=new THREE.AnimationMixer(model);for(const c of gltf.animations)clips[c.name]=c;setAnimation(clips[state.animation]?state.animation:(clips.Idle?"Idle":Object.keys(clips)[0]));applyGrowth();initSilhouette(silhouetteSource);$("#loadStatus").textContent=ui[state.lang].ready},undefined,e=>{console.error("Viewer model load failed",e);$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false})}
-function renderSilhouettes(){if(!silhouetteRenderer||!silhouetteScene||!silhouetteCamera||!silhouetteModel)return;const el=$("#silhouetteWrap"),w=Math.max(1,el.clientWidth),h=Math.max(1,el.clientHeight),aspect=w/h,stages=[1,.75,.5,.25,0],active=Math.round(state.growth*4);silhouetteRenderer.setScissorTest(false);silhouetteRenderer.setViewport(0,0,w,h);silhouetteRenderer.setClearColor(0x000000,0);silhouetteRenderer.clear();applyMorph(silhouetteModel,1);silhouetteModel.position.set(0,0,0);silhouetteModel.updateMatrixWorld(true);const elderBox=new THREE.Box3().setFromObject(silhouetteModel,true),elderSize=elderBox.getSize(new THREE.Vector3()),elderCenter=elderBox.getCenter(new THREE.Vector3()),sideW=Math.max(elderSize.x,elderSize.z),pad=1.12,halfH=Math.max(elderSize.y*.72,sideW/(aspect*2)*pad);silhouetteCamera.left=-halfH*aspect;silhouetteCamera.right=halfH*aspect;silhouetteCamera.top=halfH;silhouetteCamera.bottom=-halfH;silhouetteCamera.near=.01;silhouetteCamera.far=500;silhouetteCamera.position.set(elderCenter.x,elderCenter.y,elderCenter.z+Math.max(sideW,elderSize.y)*3+2);silhouetteCamera.lookAt(elderCenter);silhouetteCamera.updateProjectionMatrix();for(let order=0;order<stages.length;order++){const g=stages[order],idx=Math.round(g*4);applyMorph(silhouetteModel,g);silhouetteModel.position.set(0,0,0);silhouetteModel.updateMatrixWorld(true);const box=new THREE.Box3().setFromObject(silhouetteModel,true);if(box.isEmpty())continue;const currentCenter=box.getCenter(new THREE.Vector3());silhouetteModel.position.x+=elderCenter.x-currentCenter.x;silhouetteModel.position.y+=elderBox.min.y-box.min.y;silhouetteModel.updateMatrixWorld(true);silhouetteModel.traverse(o=>{if(o.isMesh&&o.material){const isActive=idx===active;o.material.color.setHex(isActive?0xd7b76d:0x425149);o.material.opacity=isActive?.98:(.30+order*.07);o.material.depthWrite=false;o.material.depthTest=true}});silhouetteRenderer.clearDepth();silhouetteRenderer.render(silhouetteScene,silhouetteCamera)}silhouetteModel.position.set(0,0,0)}
-function animate(){requestAnimationFrame(animate);const dt=clock?.getDelta()||0;if(mixer&&state.playing)mixer.update(dt);controls?.update();renderer?.render(scene,camera);renderSilhouettes()}
-function setGrowthFromInput(v){state.growth=Number(v)/100;applyGrowth();updateSilhouetteHighlight()}
-function bind(){const q=new URLSearchParams(location.search),g=Number(q.get("growth"));if(Number.isFinite(g))state.growth=THREE.MathUtils.clamp(g/100,0,1);if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");if(q.get("animation"))state.animation=q.get("animation");if(["status","model"].includes(q.get("tab")))state.tab=q.get("tab");state.lang=localStorage.getItem("ki-rules-lang")||"th";$("#growthSlider").value=state.growth*100;$("#reportGrowthSlider").value=state.growth*100;$$('[data-path]').forEach(b=>b.classList.toggle('active',b.dataset.path===state.path));setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");setTab(state.tab);updateFood();updateStats();$("#growthOutput").textContent=percent(state.growth);$("#stageChip").textContent=percent(state.growth)+" · "+stageFor(state.growth);$("#growthSlider").addEventListener("input",e=>setGrowthFromInput(e.target.value));$("#reportGrowthSlider").addEventListener("input",e=>setGrowthFromInput(e.target.value));$$('[data-path]').forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$('[data-path]').forEach(x=>x.classList.toggle('active',x.dataset.path===state.path));updateStats();syncUrl()}));$$('.viewer-tab').forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));$("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));$("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";if(currentAction)currentAction.paused=!state.playing});$("#resetCamera").addEventListener("click",resetCamera);$$('[data-lang]').forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));$("#retryBtn").addEventListener("click",()=>location.reload())}
+function loadModel(){
+  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
+  const ktx2=new KTX2Loader().setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/basis/");
+  ktx2.detectSupport(renderer);loader.setKTX2Loader(ktx2);$("#loadStatus").textContent=ui[state.lang].loading;
+  loader.load("/assets/viewer/Tyrannosaurus/Tyrannosaurus.glb",gltf=>{
+    model=gltf.scene;
+    const box=new THREE.Box3().setFromObject(model),size=box.getSize(new THREE.Vector3()),center=box.getCenter(new THREE.Vector3());
+    model.position.sub(center);model.position.y+=size.y*.48;
+    const scale=5.5/Math.max(size.x,size.y,size.z);model.scale.setScalar(scale);
+    model.traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});
+    scene.add(model);mixer=new THREE.AnimationMixer(model);for(const c of gltf.animations)clips[c.name]=c;
+    setAnimation(clips[state.animation]?state.animation:(clips.Idle?"Idle":Object.keys(clips)[0]));applyGrowth();$("#loadStatus").textContent=ui[state.lang].ready
+  },undefined,e=>{console.error("Viewer model load failed",e);$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false})
+}
+function animate(){requestAnimationFrame(animate);const dt=clock?.getDelta()||0;if(mixer&&state.playing)mixer.update(dt);controls?.update();renderer?.render(scene,camera)}
+function bind(){
+  const q=new URLSearchParams(location.search),g=Number(q.get("growth"));
+  if(Number.isFinite(g))state.growth=THREE.MathUtils.clamp(g/100,0,1);
+  if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");
+  if(q.get("animation"))state.animation=q.get("animation");
+  state.lang=localStorage.getItem("ki-rules-lang")||"th";
+  $("#growthSlider").value=state.growth*100;
+  $$("[data-path]").forEach(b=>b.classList.toggle("active",b.dataset.path===state.path));
+  setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");
+  updateFood();updateStats();$("#growthOutput").textContent=percent(state.growth);$("#stageChip").textContent=percent(state.growth)+" · "+stageFor(state.growth);
+  $("#growthSlider").addEventListener("input",e=>{state.growth=Number(e.target.value)/100;applyGrowth()});
+  $$("[data-path]").forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$("[data-path]").forEach(x=>x.classList.toggle("active",x.dataset.path===state.path));updateStats();syncUrl()}));
+  $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
+  $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";if(currentAction)currentAction.paused=!state.playing});
+  $("#resetCamera").addEventListener("click",resetCamera);
+  $$("[data-lang]").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+  $("#retryBtn").addEventListener("click",()=>location.reload())
+}
 bind();initScene();
