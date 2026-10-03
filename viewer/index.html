@@ -37,7 +37,8 @@
         <div class="canvas-wrap" id="canvasWrap">
           <canvas id="viewerCanvas"></canvas>
           <div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div>
-          <div class="stage-chip" id="stageChip">75% · ADULT</div>
+          <div class="stage-chip" id="stageChip">TYRANNOSAURUS · 75% · ADULT</div>
+          <div class="compare-chip" id="compareChip">VS CARNOTAURUS</div>
         </div>
         <div class="viewer-toolbar">
           <button id="resetCamera">Reset Camera</button>
@@ -47,7 +48,9 @@
       </div>
 
       <aside class="control-panel combined-controls">
-        <div class="control-block"><label for="speciesSelect">Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Pilot species</small></div>
+        <div class="control-block"><label for="speciesSelect">Primary Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Primary lifecycle model</small></div>
+
+        <div class="control-block compare-control"><div class="label-row"><label for="compareSpeciesSelect">Compare Species</label><label class="compare-switch"><input id="compareEnabled" type="checkbox" checked><span>ON</span></label></div><select id="compareSpeciesSelect"><option value="Carnotaurus">Carnotaurus</option></select><small>Uses the same Growth % and lifecycle path for side-by-side comparison.</small></div>
 
         <div class="control-block">
           <div class="label-row"><label for="growthSlider">Growth</label><div class="growth-value-control"><input id="growthNumber" type="number" min="0" max="100" step="0.001" value="75" inputmode="decimal" aria-label="Growth percentage"><span>%</span></div></div>
@@ -74,11 +77,22 @@
         </article>
 
         <div class="stats-grid">
-          <div><span>Weight</span><strong id="weightStat">—</strong></div>
-          <div><span>Speed</span><strong id="speedStat">—</strong></div>
-          <div><span>Bite</span><strong id="biteStat">—</strong></div>
-          <div><span>Attack Power</span><strong id="attackStat">—</strong></div>
+          <div><span>T. REX · Weight</span><strong id="weightStat">—</strong></div>
+          <div><span>T. REX · Speed</span><strong id="speedStat">—</strong></div>
+          <div><span>T. REX · Bite</span><strong id="biteStat">—</strong></div>
+          <div><span>T. REX · Attack Power</span><strong id="attackStat">—</strong></div>
         </div>
+
+        <article class="compare-report" id="compareReport">
+          <span class="eyebrow">COMPARE · CARNOTAURUS</span>
+          <div class="compare-stat-grid">
+            <div><span>Weight</span><strong id="compareWeight">—</strong></div>
+            <div><span>Speed</span><strong id="compareSpeed">—</strong></div>
+            <div><span>Bite</span><strong id="compareBite">—</strong></div>
+            <div><span>Attack Power</span><strong id="compareAttack">—</strong></div>
+          </div>
+          <div class="compare-meta"><span id="compareStage">—</span><span id="compareDiet">Carnivore</span></div>
+        </article>
       </aside>
     </section>
 
