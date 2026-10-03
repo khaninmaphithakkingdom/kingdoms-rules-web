@@ -1,8 +1,8 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
-import {OrbitControls} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js";
-import {GLTFLoader} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js";
-import {KTX2Loader} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/KTX2Loader.js";
-import {MeshoptDecoder} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/meshopt_decoder.module.js";
+import * as THREE from "three";
+import {OrbitControls} from "three/addons/controls/OrbitControls.js";
+import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
+import {KTX2Loader} from "three/addons/loaders/KTX2Loader.js";
+import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
 
 const $=s=>document.querySelector(s), game=window.KI_GAME_DATA||{species:{}}, speciesName="Tyrannosaurus";
 const species=game.species?.[speciesName]||null, state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th"};
