@@ -24,7 +24,6 @@
     <div class="viewer-tabs" role="tablist" aria-label="Viewer mode">
       <button class="viewer-tab active" data-tab="status" type="button">STATUS REPORT</button>
       <button class="viewer-tab" data-tab="model" type="button">3D MODEL</button>
-      <button class="viewer-tab" data-tab="changes" type="button">CHANGES</button>
     </div>
 
     <section class="viewer-panel active" data-panel="status">
@@ -60,8 +59,8 @@
         </div>
         <article class="report-card growth-visual-card">
           <div class="section-title"><div><span class="eyebrow">REAL MORPH REFERENCE</span><h2>GROWTH SILHOUETTE</h2></div><span id="silhouetteStatus">Loading Tyrannosaurus morphs…</span></div>
-          <div class="silhouette-wrap" id="silhouetteWrap"><canvas id="silhouetteCanvas"></canvas></div>
-          <div class="silhouette-labels"><span>0% Hatchling</span><span>25% Juvenile</span><span>50% SubAdult</span><span>75% Adult</span><span>100% Elder</span></div>
+          <div class="silhouette-wrap" id="silhouetteWrap"><canvas id="silhouetteCanvas"></canvas><div class="human-scale" aria-hidden="true"><span class="human-head"></span><span class="human-body"></span><span class="human-arm left"></span><span class="human-arm right"></span><span class="human-leg left"></span><span class="human-leg right"></span></div></div>
+          <div class="silhouette-labels"><span>0% Hatchling</span><span>25% Juvenile</span><span>50% SubAdult</span><span>75% Adult</span><span>87.5% Prime</span><span>100% Elder</span></div>
           <div class="report-growth-control"><label for="reportGrowthSlider">Growth</label><input id="reportGrowthSlider" type="range" min="0" max="100" step="0.1" value="75"><output id="reportGrowthOutput">75%</output></div>
         </article>
       </div>
@@ -83,21 +82,6 @@
       </section>
     </section>
 
-    <section class="viewer-panel" data-panel="changes">
-      <div class="changes-shell">
-        <article class="report-card">
-          <span class="eyebrow">CURRENT → MILESTONE</span>
-          <h2 id="changesTitle">75% ADULT → 87.5% PRIME</h2>
-          <div class="changes-grid">
-            <div><span>Weight</span><strong id="changeWeight">—</strong></div>
-            <div><span>Speed</span><strong id="changeSpeed">—</strong></div>
-            <div><span>Bite</span><strong id="changeBite">—</strong></div>
-            <div><span>Attack Power</span><strong id="changeAttack">—</strong></div>
-          </div>
-          <p class="changes-note">Comparison uses the same lifecycle curve engine as the 3D Model and Status Report.</p>
-        </article>
-      </div>
-    </section>
   </main>
   <script src="/data/game-guide-v2.js"></script>
   <script type="importmap">
