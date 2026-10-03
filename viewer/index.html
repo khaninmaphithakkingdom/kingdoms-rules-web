@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090c0a">
+  <meta name="description" content="Kingdoms Isle 3D Dinosaur Lifecycle Viewer">
+  <title>3D Dinosaur Viewer — Kingdoms Isle Game Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/viewer-v1.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/guide/"><img src="/assets/kingdoms-isle-logo-v13.jpg" alt="Kingdoms Isle logo"><span><strong>KINGDOMS ISLE</strong><small>3D LIFECYCLE VIEWER</small></span></a>
+    <nav class="top-actions"><a href="/guide/" class="nav-pill">GAME GUIDE</a><a href="/dinosaurs/" class="nav-pill">DINOSAURS</a><div class="lang-switch"><button data-lang="th" class="active">TH</button><button data-lang="en">EN</button><button data-lang="vi">VN</button></div></nav>
+  </header>
+
+  <main class="viewer-page">
+    <section class="viewer-hero">
+      <div><span class="eyebrow">KINGDOMS ISLE · EVRIMA FIELD CODEX</span><h1>3D <span>DINOSAUR</span> VIEWER</h1><p id="viewerLead">Compare lifecycle growth, physical dimensions and gameplay curves in one scene.</p></div>
+      <div class="status-badge" id="loadStatus">LOADING ASSETS</div>
+    </section>
+
+    <section class="profile-strip">
+      <div><span>PRIMARY SPECIES</span><strong id="reportSpecies">Tyrannosaurus</strong></div>
+      <div><span>STAGE</span><strong id="reportAge">Adult</strong></div>
+      <div><span>DIET</span><strong id="reportDiet">Carnivore</strong></div>
+      <div><span>WEIGHT</span><strong id="reportWeight">—</strong></div>
+      <div><span>MAX SPEED</span><strong id="reportSpeed">—</strong></div>
+      <div><span>BITE FORCE</span><strong id="reportBite">—</strong></div>
+    </section>
+
+    <section class="combined-viewer-layout">
+      <div class="stage-panel">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="viewerCanvas"></canvas>
+          <div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div>
+
+          <div class="model-label model-label-primary" id="primaryModelLabel"><strong id="primaryModelName">TYRANNOSAURUS</strong><span id="primaryModelMeta">—</span></div>
+          <div class="model-label model-label-compare" id="compareModelLabel"><strong id="compareModelName">CARNOTAURUS</strong><span id="compareModelMeta">—</span></div>
+
+          <div class="stage-chip" id="stageChip">TYRANNOSAURUS · 75% · ADULT</div>
+          <div class="compare-chip" id="compareChip">CARNOTAURUS · 50.569% · SUBADULT</div>
+        </div>
+
+        <div class="viewer-toolbar">
+          <button id="resetCamera" type="button">Reset View</button>
+          <label class="toolbar-toggle"><input id="dimensionsToggle" type="checkbox"><span>Dimensions</span></label>
+          <button id="playPause" type="button">Pause</button>
+          <select id="animationSelect" aria-label="Animation"><option>Idle</option><option>Sniff</option><option>Trot</option></select>
+        </div>
+      </div>
+
+      <aside class="control-panel combined-controls">
+        <section class="dino-control-card primary-control-card">
+          <div class="control-card-head"><div><span class="eyebrow">PRIMARY</span><h2 id="primaryControlTitle">Tyrannosaurus</h2></div></div>
+
+          <div class="control-block">
+            <label for="primarySpeciesSelect">Species</label>
+            <select id="primarySpeciesSelect">
+              <option value="Tyrannosaurus">Tyrannosaurus</option>
+              <option value="Carnotaurus">Carnotaurus</option>
+            </select>
+          </div>
+
+          <div class="control-block">
+            <div class="label-row"><label for="primaryGrowthSlider">Growth</label><div class="growth-value-control"><input id="primaryGrowthNumber" type="number" min="0" max="100" step="0.001" value="75" inputmode="decimal" aria-label="Primary growth percentage"><span>%</span></div></div>
+            <input id="primaryGrowthSlider" type="range" min="0" max="100" step="0.001" value="75">
+            <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Prime</span></div>
+          </div>
+
+          <div class="control-block">
+            <label>Lifecycle Path</label>
+            <div class="segmented"><button data-primary-path="frail" class="active" type="button">FRAIL</button><button data-primary-path="prime" type="button">PRIME</button></div>
+          </div>
+
+          <div class="stats-grid primary-stats">
+            <div><span>Weight</span><strong id="weightStat">—</strong></div>
+            <div><span>Speed</span><strong id="speedStat">—</strong></div>
+            <div><span>Bite</span><strong id="biteStat">—</strong></div>
+            <div><span>Attack Power</span><strong id="attackStat">—</strong></div>
+          </div>
+        </section>
+
+        <section class="dino-control-card compare-control-card">
+          <div class="control-card-head">
+            <div><span class="eyebrow">COMPARE</span><h2 id="compareControlTitle">Carnotaurus</h2></div>
+            <label class="compare-switch"><input id="compareEnabled" type="checkbox" checked><span>ON</span></label>
+          </div>
+
+          <div id="compareControlsBody">
+            <div class="control-block">
+              <label for="compareSpeciesSelect">Species</label>
+              <select id="compareSpeciesSelect">
+                <option value="Carnotaurus">Carnotaurus</option>
+                <option value="Tyrannosaurus">Tyrannosaurus</option>
+              </select>
+              <label class="same-growth-toggle"><input id="sameGrowth" type="checkbox"><span>Same Growth</span></label>
+            </div>
+
+            <div class="control-block" id="compareGrowthControls">
+              <div class="label-row"><label for="compareGrowthSlider">Growth</label><div class="growth-value-control"><input id="compareGrowthNumber" type="number" min="0" max="100" step="0.001" value="50.569" inputmode="decimal" aria-label="Compare growth percentage"><span>%</span></div></div>
+              <input id="compareGrowthSlider" type="range" min="0" max="100" step="0.001" value="50.569">
+              <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Prime</span></div>
+            </div>
+
+            <div class="control-block">
+              <label>Lifecycle Path</label>
+              <div class="segmented"><button data-compare-path="frail" type="button">FRAIL</button><button data-compare-path="prime" class="active" type="button">PRIME</button></div>
+            </div>
+
+            <div class="compare-stat-grid">
+              <div><span>Weight</span><strong id="compareWeight">—</strong></div>
+              <div><span>Speed</span><strong id="compareSpeed">—</strong></div>
+              <div><span>Bite</span><strong id="compareBite">—</strong></div>
+              <div><span>Attack Power</span><strong id="compareAttack">—</strong></div>
+            </div>
+            <div class="compare-meta"><span id="compareStage">—</span><span id="compareDiet">—</span></div>
+          </div>
+        </section>
+
+        <article class="inline-report">
+          <span class="eyebrow">PRIMARY STATUS REPORT</span>
+          <h2 id="reportTitle">ADULT · FRAIL PATH</h2>
+          <div class="report-stat-grid">
+            <div><span>Growth</span><strong id="reportGrowth">75%</strong></div>
+            <div><span>Attack Power</span><strong id="reportAttack">—</strong></div>
+            <div><span>Lifecycle Path</span><strong id="reportPath">FRAIL</strong></div>
+            <div><span>Prime Milestone</span><strong>87.5%</strong></div>
+          </div>
+          <div class="report-note" id="reportNote">Lifecycle values are derived from the current Game Guide curves.</div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="food-panel report-card">
+      <div class="section-title"><div><span class="eyebrow">PRIMARY DIET REFERENCE</span><h2>PREFERRED FOOD</h2></div><span>Current Game Guide data</span></div>
+      <div class="food-columns">
+        <div><h3>α · CARB</h3><div id="foodCarb" class="food-list"></div></div>
+        <div><h3>β · PROTEIN</h3><div id="foodProtein" class="food-list"></div></div>
+        <div><h3>γ · LIPID</h3><div id="foodLipid" class="food-list"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/data/game-guide-v2.js"></script>
+  <script src="/data/viewer-registry-v1.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="/js/viewer-v1.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+{
+    "version":  1,
+    "date":  "2026-10-03",
+    "gameDataset":  "0.21.784",
+    "speciesCount":  2,
+    "methodology":  "Normal Edge + WebGL + CDP render matrix; edge-body-type visual review; Trot/Play-Pause/runtime/network checks.",
+    "notes":  [
+                  "16 milestone screenshots generated locally.",
+                  "Pteranodon verified in exported ground/Idle pose rather than inventing a flight height.",
+                  "Certification is Local-only and does not imply deliveryReady/viewerReady/publicSelectable."
+              ],
+    "species":  [
+                    {
+                        "species":  "Deinosuchus",
+                        "certification":  "verified-local-batch-e",
+                        "bodyType":  "semiAquatic",
+                        "renderedCases":  [
+                                              "g000-frail",
+                                              "g025-frail",
+                                              "g050-frail",
+                                              "g075-frail",
+                                              "g0875-frail",
+                                              "g0875-prime",
+                                              "g100-frail",
+                                              "g100-prime"
+                                          ],
+                        "renderedCaseCount":  8,
+                        "compareSpecies":  "Tyrannosaurus",
+                        "dimensions":  true,
+                        "sameGrowth":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "animationTrotVerified":  true,
+                        "playPauseVerified":  true,
+                        "webgl":  true,
+                        "glbBytes":  10665416,
+                        "runtimeErrorCount":  0,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "placementNote":  "Verified on shared baseline using exported pose; no arbitrary vertical offset applied.",
+                        "blocker":  "GLB remains Local-only; delivery verification pending."
+                    },
+                    {
+                        "species":  "Pteranodon",
+                        "certification":  "verified-local-batch-e",
+                        "bodyType":  "flying",
+                        "renderedCases":  [
+                                              "g000-frail",
+                                              "g025-frail",
+                                              "g050-frail",
+                                              "g075-frail",
+                                              "g0875-frail",
+                                              "g0875-prime",
+                                              "g100-frail",
+                                              "g100-prime"
+                                          ],
+                        "renderedCaseCount":  8,
+                        "compareSpecies":  "Tyrannosaurus",
+                        "dimensions":  true,
+                        "sameGrowth":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "animationTrotVerified":  true,
+                        "playPauseVerified":  true,
+                        "webgl":  true,
+                        "glbBytes":  9082344,
+                        "runtimeErrorCount":  0,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "placementNote":  "Verified in exported Idle/ground pose; no artificial flying offset applied.",
+                        "blocker":  "GLB remains Local-only; delivery verification pending."
+                    }
+                ]
+}
