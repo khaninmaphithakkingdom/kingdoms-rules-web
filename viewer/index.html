@@ -16,73 +16,82 @@
     <a class="brand" href="/guide/"><img src="/assets/kingdoms-isle-logo-v13.jpg" alt="Kingdoms Isle logo"><span><strong>KINGDOMS ISLE</strong><small>3D LIFECYCLE VIEWER</small></span></a>
     <nav class="top-actions"><a href="/guide/" class="nav-pill">GAME GUIDE</a><a href="/dinosaurs/" class="nav-pill">DINOSAURS</a><div class="lang-switch"><button data-lang="th" class="active">TH</button><button data-lang="en">EN</button><button data-lang="vi">VN</button></div></nav>
   </header>
+
   <main class="viewer-page">
     <section class="viewer-hero">
       <div><span class="eyebrow">KINGDOMS ISLE · EVRIMA FIELD CODEX</span><h1>3D <span>DINOSAUR</span> VIEWER</h1><p id="viewerLead">Tyrannosaurus lifecycle viewer with real growth morphs and gameplay curves.</p></div>
       <div class="status-badge" id="loadStatus">LOADING ASSET</div>
     </section>
-    <div class="viewer-tabs" role="tablist" aria-label="Viewer mode">
-      <button class="viewer-tab active" data-tab="status" type="button">STATUS REPORT</button>
-      <button class="viewer-tab" data-tab="model" type="button">3D MODEL</button>
-    </div>
 
-    <section class="viewer-panel active" data-panel="status">
-      <div class="status-shell">
-        <div class="profile-strip">
-          <div><span>SPECIES</span><strong id="reportSpecies">Tyrannosaurus</strong></div>
-          <div><span>AGE</span><strong id="reportAge">Adult</strong></div>
-          <div><span>DIET</span><strong id="reportDiet">Carnivore</strong></div>
-          <div><span>WEIGHT</span><strong id="reportWeight">—</strong></div>
-          <div><span>MAX SPEED</span><strong id="reportSpeed">—</strong></div>
-          <div><span>BITE FORCE</span><strong id="reportBite">—</strong></div>
+    <section class="profile-strip">
+      <div><span>SPECIES</span><strong id="reportSpecies">Tyrannosaurus</strong></div>
+      <div><span>AGE</span><strong id="reportAge">Adult</strong></div>
+      <div><span>DIET</span><strong id="reportDiet">Carnivore</strong></div>
+      <div><span>WEIGHT</span><strong id="reportWeight">—</strong></div>
+      <div><span>MAX SPEED</span><strong id="reportSpeed">—</strong></div>
+      <div><span>BITE FORCE</span><strong id="reportBite">—</strong></div>
+    </section>
+
+    <section class="combined-viewer-layout">
+      <div class="stage-panel">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="viewerCanvas"></canvas>
+          <div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div>
+          <div class="stage-chip" id="stageChip">75% · ADULT</div>
         </div>
-        <div class="status-grid">
-          <article class="report-card status-summary">
-            <span class="eyebrow">STATUS REPORT</span>
-            <h2 id="reportTitle">ADULT · FRAIL PATH</h2>
-            <div class="report-stat-grid">
-              <div><span>Growth</span><strong id="reportGrowth">75%</strong></div>
-              <div><span>Attack Power</span><strong id="reportAttack">—</strong></div>
-              <div><span>Lifecycle Path</span><strong id="reportPath">FRAIL</strong></div>
-              <div><span>Prime Milestone</span><strong>87.5%</strong></div>
-            </div>
-            <div class="report-note" id="reportNote">Lifecycle values are derived from the current Game Guide curves.</div>
-          </article>
-          <article class="report-card food-card">
-            <span class="eyebrow">PREFERRED FOOD</span>
-            <div class="food-columns">
-              <div><h3>α · CARB</h3><div id="foodCarb" class="food-list"></div></div>
-              <div><h3>β · PROTEIN</h3><div id="foodProtein" class="food-list"></div></div>
-              <div><h3>γ · LIPID</h3><div id="foodLipid" class="food-list"></div></div>
-            </div>
-          </article>
+        <div class="viewer-toolbar">
+          <button id="resetCamera">Reset Camera</button>
+          <button id="playPause">Pause</button>
+          <select id="animationSelect"><option>Idle</option><option>Sniff</option><option>Trot</option></select>
         </div>
-        <article class="report-card growth-visual-card">
-          <div class="section-title"><div><span class="eyebrow">REAL MORPH REFERENCE</span><h2>GROWTH SILHOUETTE</h2></div><span id="silhouetteStatus">Loading Tyrannosaurus morphs…</span></div>
-          <div class="silhouette-wrap" id="silhouetteWrap"><canvas id="silhouetteCanvas"></canvas><div class="human-scale" aria-hidden="true"><span class="human-head"></span><span class="human-body"></span><span class="human-arm left"></span><span class="human-arm right"></span><span class="human-leg left"></span><span class="human-leg right"></span></div></div>
-          <div class="silhouette-labels"><span>0% Hatchling</span><span>25% Juvenile</span><span>50% SubAdult</span><span>75% Adult</span><span>87.5% Prime</span><span>100% Elder</span></div>
-          <div class="report-growth-control"><label for="reportGrowthSlider">Growth</label><input id="reportGrowthSlider" type="range" min="0" max="100" step="0.1" value="75"><output id="reportGrowthOutput">75%</output></div>
+      </div>
+
+      <aside class="control-panel combined-controls">
+        <div class="control-block"><label for="speciesSelect">Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Pilot species</small></div>
+
+        <div class="control-block">
+          <div class="label-row"><label for="growthSlider">Growth</label><output id="growthOutput">75%</output></div>
+          <input id="growthSlider" type="range" min="0" max="100" step="0.1" value="75">
+          <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Elder</span></div>
+        </div>
+
+        <div class="control-block">
+          <label>Lifecycle path</label>
+          <div class="segmented"><button data-path="frail" class="active">FRAIL</button><button data-path="prime">PRIME</button></div>
+          <small>Visual morph stays on Growth; gameplay stats follow the selected path.</small>
+        </div>
+
+        <article class="inline-report">
+          <span class="eyebrow">STATUS REPORT</span>
+          <h2 id="reportTitle">ADULT · FRAIL PATH</h2>
+          <div class="report-stat-grid">
+            <div><span>Growth</span><strong id="reportGrowth">75%</strong></div>
+            <div><span>Attack Power</span><strong id="reportAttack">—</strong></div>
+            <div><span>Lifecycle Path</span><strong id="reportPath">FRAIL</strong></div>
+            <div><span>Prime Milestone</span><strong>87.5%</strong></div>
+          </div>
+          <div class="report-note" id="reportNote">Lifecycle values are derived from the current Game Guide curves.</div>
         </article>
+
+        <div class="stats-grid">
+          <div><span>Weight</span><strong id="weightStat">—</strong></div>
+          <div><span>Speed</span><strong id="speedStat">—</strong></div>
+          <div><span>Bite</span><strong id="biteStat">—</strong></div>
+          <div><span>Attack Power</span><strong id="attackStat">—</strong></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="food-panel report-card">
+      <div class="section-title"><div><span class="eyebrow">DIET REFERENCE</span><h2>PREFERRED FOOD</h2></div><span>Current Game Guide data</span></div>
+      <div class="food-columns">
+        <div><h3>α · CARB</h3><div id="foodCarb" class="food-list"></div></div>
+        <div><h3>β · PROTEIN</h3><div id="foodProtein" class="food-list"></div></div>
+        <div><h3>γ · LIPID</h3><div id="foodLipid" class="food-list"></div></div>
       </div>
     </section>
-
-    <section class="viewer-panel" data-panel="model">
-      <section class="viewer-layout">
-        <div class="stage-panel">
-          <div class="canvas-wrap" id="canvasWrap"><canvas id="viewerCanvas"></canvas><div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div><div class="stage-chip" id="stageChip">75% · ADULT</div></div>
-          <div class="viewer-toolbar"><button id="resetCamera">Reset Camera</button><button id="playPause">Pause</button><select id="animationSelect"><option>Idle</option><option>Sniff</option><option>Trot</option></select></div>
-        </div>
-        <aside class="control-panel">
-          <div class="control-block"><label for="speciesSelect">Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Pilot species</small></div>
-          <div class="control-block"><div class="label-row"><label for="growthSlider">Growth</label><output id="growthOutput">75%</output></div><input id="growthSlider" type="range" min="0" max="100" step="0.1" value="75"><div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Elder</span></div></div>
-          <div class="control-block"><label>Lifecycle path</label><div class="segmented"><button data-path="frail" class="active">FRAIL</button><button data-path="prime">PRIME</button></div><small>Visual morph remains the same; gameplay stats follow the selected curve.</small></div>
-          <div class="stats-grid"><div><span>Weight</span><strong id="weightStat">—</strong></div><div><span>Speed</span><strong id="speedStat">—</strong></div><div><span>Bite</span><strong id="biteStat">—</strong></div><div><span>Attack Power</span><strong id="attackStat">—</strong></div></div>
-          <div class="notice"><strong>Growth mapping</strong><p>0% Hatchling · 25% Juvenile · 50% SubAdult · 75% Adult · 100% Elder</p></div>
-        </aside>
-      </section>
-    </section>
-
   </main>
+
   <script src="/data/game-guide-v2.js"></script>
   <script type="importmap">
     {
