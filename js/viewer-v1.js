@@ -13,7 +13,7 @@ const morphStages={
   Carnotaurus:["Juvenile","Adult","Elder"]
 };
 const capsuleHalfHeight={Tyrannosaurus:200,Carnotaurus:136};
-const state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th",compare:true};
+const state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th",compare:true,compareScale:1};
 const ui={
   th:{lead:"ดู Tyrannosaurus แบบ 3D พร้อมเทียบ Carnotaurus ที่ Growth เดียวกัน",loading:"กำลังโหลดโมเดล",ready:"พร้อมใช้งาน",fail:"โหลดโมเดลไม่สำเร็จ",reportNote:"ค่าทั้งหมดคำนวณจาก lifecycle curve ใน Game Guide ปัจจุบัน"},
   en:{lead:"Explore Tyrannosaurus in 3D and compare Carnotaurus at the same Growth.",loading:"LOADING MODELS",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
@@ -89,6 +89,7 @@ function syncUrl(){
   u.searchParams.set("path",state.path);
   u.searchParams.set("animation",state.animation);
   if(state.compare)u.searchParams.set("compare",compareName);else u.searchParams.delete("compare");
+  u.searchParams.set("compareScale",String(Math.round(state.compareScale*100)));
   u.searchParams.delete("tab");
   history.replaceState(null,"",u)
 }
@@ -121,7 +122,7 @@ function placeModels(){
     if(state.compare){
       compare.position.set(0,0,0);
       const ratio=(capsuleHalfHeight[compareName]||1)/(capsuleHalfHeight[primaryName]||1);
-      compare.scale.setScalar(baseScale*ratio);compare.updateMatrixWorld(true);
+      compare.scale.setScalar(baseScale*ratio*state.compareScale);compare.updateMatrixWorld(true);
       const b=new THREE.Box3().setFromObject(compare),c=b.getCenter(new THREE.Vector3());
       compare.position.x+=2.45-c.x;compare.position.y+=-b.min.y;compare.position.z+=-c.z
     }
@@ -202,6 +203,7 @@ function bind(){
   if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");
   if(q.get("animation"))state.animation=q.get("animation");
   if(q.has("compare")&&q.get("compare")==="none")state.compare=false;
+  const cs=Number(q.get("compareScale"));if(Number.isFinite(cs))state.compareScale=THREE.MathUtils.clamp(cs/100,.5,2);
   state.lang=localStorage.getItem("ki-rules-lang")||"th";
   $("#growthSlider").value=state.growth*100;$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
   $$("[data-path]").forEach(b=>b.classList.toggle("active",b.dataset.path===state.path));
@@ -209,6 +211,7 @@ function bind(){
   updateFood();updateStats();$("#stageChip").textContent="TYRANNOSAURUS · "+percent(state.growth)+" · "+stageFor(state.growth);
   $("#compareChip").textContent="CARNOTAURUS · "+percent(state.growth)+" · "+stageFor(state.growth);
   $("#compareEnabled").checked=state.compare;
+  $("#compareScaleSlider").value=Math.round(state.compareScale*100);$("#compareScaleNumber").value=Math.round(state.compareScale*100);
   $("#growthSlider").addEventListener("input",e=>{state.growth=Number(e.target.value)/100;applyGrowth()});
   const applyTypedGrowth=()=>{const n=Number($("#growthNumber").value);if(!Number.isFinite(n))return;state.growth=THREE.MathUtils.clamp(n/100,0,1);applyGrowth()};
   $("#growthNumber").addEventListener("input",applyTypedGrowth);
@@ -216,6 +219,11 @@ function bind(){
   $("#growthNumber").addEventListener("blur",()=>{applyTypedGrowth();$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
   $$("[data-path]").forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$("[data-path]").forEach(x=>x.classList.toggle("active",x.dataset.path===state.path));updateStats();syncUrl()}));
   $("#compareEnabled").addEventListener("change",e=>{state.compare=e.target.checked;updateCompareMode()});
+  const setCompareScale=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compareScale=THREE.MathUtils.clamp(n/100,.5,2);$("#compareScaleSlider").value=Math.round(state.compareScale*100);if(document.activeElement!==$("#compareScaleNumber"))$("#compareScaleNumber").value=Math.round(state.compareScale*100);placeModels();syncUrl()};
+  $("#compareScaleSlider").addEventListener("input",e=>setCompareScale(e.target.value));
+  $("#compareScaleNumber").addEventListener("input",e=>setCompareScale(e.target.value));
+  $("#compareScaleNumber").addEventListener("change",e=>setCompareScale(e.target.value));
+  $("#compareScaleNumber").addEventListener("blur",()=>{$("#compareScaleNumber").value=Math.round(state.compareScale*100)});
   $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
   $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";for(const a of Object.values(actions))a.paused=!state.playing});
   $("#resetCamera").addEventListener("click",resetCamera);
