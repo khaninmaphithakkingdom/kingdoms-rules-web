@@ -1,0 +1,115 @@
+{
+    "version":  1,
+    "date":  "2026-10-03",
+    "scope":  "Production delivery verification before Viewer merge",
+    "productionBase":  "https://kingdoms-isle-rules.com/assets/viewer",
+    "releasedSpecies":  22,
+    "filesVerified":  44,
+    "glbContentType":  "model/gltf-binary",
+    "manifestContentType":  "application/json; charset=utf-8",
+    "allHttp200":  true,
+    "allByteLengthsMatch":  true,
+    "sourceImportSha256Verified":  true,
+    "entries":  {
+                    "value":  [
+                                  {
+                                      "species":  "Allosaurus",
+                                      "file":  "Allosaurus/Allosaurus.glb",
+                                      "bytes":  13479992,
+                                      "sha256":  "0ef9ec2f520ab45825f84c6d39c2c0e22b3891af225ce23357b3a2d8e872471e"
+                                  },
+                                  {
+                                      "species":  "Allosaurus",
+                                      "file":  "Allosaurus/Allosaurus.json",
+                                      "bytes":  16782,
+                                      "sha256":  "c0652571479bd16f2991903de57ba9a295d77abd18e6f6008592fb54b3288444"
+                                  },
+                                  {
+                           
+…[middle output omitted]…
+,
+                                      "bytes":  12472376,
+                                      "sha256":  "c7baccd064f4c246dbe442fd3f922d9281a158e1d05acd0f6050c6d2b6dd8b42"
+                                  },
+                                  {
+                                      "species":  "Pachycephalosaurus",
+                                      "file":  "Pachycephalosaurus/Pachycephalosaurus.json",
+                                      "bytes":  19245,
+                                      "sha256":  "863f067928a3c63fd8ed3fa12d32c269a570e190edf5d2c1af2c40f4ab6c78f7"
+                                  },
+                                  {
+                                      "species":  "Pteranodon",
+                                      "file":  "Pteranodon/Pteranodon.glb",
+                                      "bytes":  9082344,
+                                      "sha256":  "696c95aa44bacb062e082a2d644d80ea7d81c515a0f9fa2b86f12b70b4f9b1c9"
+                                  },
+                                  {
+                                      "species":  "Pteranodon",
+                                      "file":  "Pteranodon/Pteranodon.json",
+                                      "bytes":  16875,
+                                      "sha256":  "8b40caaa60f6ed8700b017f777fa4f0607ea0d71b8f80050a261a604b4ca1617"
+                                  },
+                                  {
+                                      "species":  "Stegosaurus",
+                                      "file":  "Stegosaurus/Stegosaurus.glb",
+                                      "bytes":  14360548,
+                                      "sha256":  "d1676f9ccc5ec113a9e6e795fce9136bf3b7ea028620882f1438657860ec2647"
+                                  },
+                                  {
+                                      "species":  "Stegosaurus",
+                                      "file":  "Stegosaurus/Stegosaurus.json",
+                                      "bytes":  18182,
+                                      "sha256":  "3898d47cac414a8321ea0d163783a431a1e2a73a994b2597c3adb4d41b46c486"
+                                  },
+                                  {
+                                      "species":  "Tenontosaurus",
+                                      "file":  "Tenontosaurus/Tenontosaurus.glb",
+                                      "bytes":  13128632,
+                                      "sha256":  "056e2cdb797e62bddcaf7542f29cd3eb24c4c3fbfb55c9796238e0459eaf32fd"
+                                  },
+                                  {
+                                      "species":  "Tenontosaurus",
+                                      "file":  "Tenontosaurus/Tenontosaurus.json",
+                                      "bytes":  16152,
+                                      "sha256":  "c60c24183b60cae2633ec7062e62eb9bb655370d9498b1d1b9134092e6726297"
+                                  },
+                                  {
+                                      "species":  "Triceratops",
+                                      "file":  "Triceratops/Triceratops.glb",
+                                      "bytes":  13621676,
+                                      "sha256":  "544cefe6d03420be7f5a5b873fed2c6926ac7fc22390312f082ef7ff8abd7158"
+                                  },
+                                  {
+                                      "species":  "Triceratops",
+                                      "file":  "Triceratops/Triceratops.json",
+                                      "bytes":  19336,
+                                      "sha256":  "32dfa2e4f6fa7ea74e00c69cbf83e4352cdebf9f41d7d610af64f7bf08e36879"
+                                  },
+                                  {
+                                      "species":  "Troodon",
+                                      "file":  "Troodon/Troodon.glb",
+                                      "bytes":  11632236,
+                                      "sha256":  "d829328dbafcab233f9d3197fb5a0bc95a50b926d69e1605079fe9fe0b3a013c"
+                                  },
+                                  {
+                                      "species":  "Troodon",
+                                      "file":  "Troodon/Troodon.json",
+                                      "bytes":  16659,
+                                      "sha256":  "2a1239bdeda32712370511d71cf829b29b76ef1358107f98e9a5259593708889"
+                                  },
+                                  {
+                                      "species":  "Tyrannosaurus",
+                                      "file":  "Tyrannosaurus/Tyrannosaurus.glb",
+                                      "bytes":  13709596,
+                                      "sha256":  "422d842a36965bbff1a00261d36dcc4af467aab8a7b0908e89ee538f1f2decff"
+                                  },
+                                  {
+                                      "species":  "Tyrannosaurus",
+                                      "file":  "Tyrannosaurus/Tyrannosaurus.json",
+                                      "bytes":  19285,
+                                      "sha256":  "a44f3405773594689145361e5a7843736f66b4f363d10a40a244251600a63ff0"
+                                  }
+                              ],
+                    "Count":  44
+                }
+}

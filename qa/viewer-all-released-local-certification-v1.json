@@ -1,0 +1,152 @@
+{
+    "version":  1,
+    "date":  "2026-10-03",
+    "gameDataset":  "0.21.784",
+    "scope":  "LOCAL ONLY - no GitHub/PR/Production update",
+    "counts":  {
+                   "registry":  26,
+                   "released":  22,
+                   "unreleased":  4,
+                   "releasedLocalCertified":  22,
+                   "releasedNotCertified":  0,
+                   "deliveryReady":  0,
+                   "viewerReady":  0,
+                   "publicSelectable":  0,
+                   "pilotEnabled":  2,
+                   "unreleasedLeaks":  0
+               },
+    "blockers":  [
+                     "GLB binaries for all-species expansion are still Local-only and not in the real delivery system.",
+                     "deliveryReady/viewerReady/publicSelectable must remain false until delivered URLs, HTTP 200/content type and runtime loading are verified in the actual branch/deployment path."
+                 ],
+    "species":  [
+                    {
+                        "species":  "Allosaurus",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                    
+…[middle output omitted]…
+                    },
+                    {
+                        "species":  "Omniraptor",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-b",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Oviraptor",
+                        "released":  false,
+                        "runtimeLoad":  false,
+                        "morphVerified":  false,
+                        "scaleVerified":  false,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "unreleased",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Pachycephalosaurus",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-c",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Pteranodon",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-e",
+                        "bodyType":  "flying"
+                    },
+                    {
+                        "species":  "Stegosaurus",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-c",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Tenontosaurus",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-c",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Triceratops",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-c",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Troodon",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  false,
+                        "confidence":  "verified-local-batch-b",
+                        "bodyType":  "default"
+                    },
+                    {
+                        "species":  "Tyrannosaurus",
+                        "released":  true,
+                        "runtimeLoad":  true,
+                        "morphVerified":  true,
+                        "scaleVerified":  true,
+                        "deliveryReady":  false,
+                        "viewerReady":  false,
+                        "publicSelectable":  false,
+                        "pilotEnabled":  true,
+                        "confidence":  "verified-local-pilot",
+                        "bodyType":  "default"
+                    }
+                ]
+}
