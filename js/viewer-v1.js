@@ -282,21 +282,21 @@ function bind(){
   const cg=Number(q.get("compareGrowth"));if(Number.isFinite(cg))state.compare.growth=THREE.MathUtils.clamp(cg/100,0,1);
   if(["frail","prime"].includes(q.get("path")))state.primary.path=q.get("path");
   if(["frail","prime"].includes(q.get("comparePath")))state.compare.path=q.get("comparePath");
-  state.sameGrowth=q.get("sameGrowth")==="1";state.dimensions=q.get("dimensions")==="1";if(q.get("animation"))state.animation=q.get("animation");
+  state.sameGrowth=q.get("sameGrowth")==="1";if(state.sameGrowth)state.compare.path=state.primary.path;state.dimensions=q.get("dimensions")==="1";if(q.get("animation"))state.animation=q.get("animation");
   state.lang=localStorage.getItem("ki-rules-lang")||"th";setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");syncControls();updateUI();
 
   $("#primarySpeciesSelect").addEventListener("change",e=>{state.primary.species=e.target.value;rebuildSide("primary");refreshScene({fit:true})});
   $("#compareSpeciesSelect").addEventListener("change",e=>{state.compare.species=e.target.value;rebuildSide("compare");refreshScene({fit:true})});
   $("#compareEnabled").addEventListener("change",e=>{state.compare.enabled=e.target.checked;refreshScene({fit:true})});
-  $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;if(!state.sameGrowth)state.compare.growth=state.primary.growth;refreshScene()});
+  $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;if(state.sameGrowth){state.compare.path=state.primary.path}else{state.compare.growth=state.primary.growth}refreshScene()});
 
   const setPrimaryGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.primary.growth=THREE.MathUtils.clamp(n/100,0,1);refreshScene()};
   $("#primaryGrowthSlider").addEventListener("input",e=>setPrimaryGrowth(e.target.value));$("#primaryGrowthNumber").addEventListener("input",e=>setPrimaryGrowth(e.target.value));$("#primaryGrowthNumber").addEventListener("blur",()=>{$("#primaryGrowthNumber").value=pct(state.primary.growth).replace("%","")});
   const setCompareGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compare.growth=THREE.MathUtils.clamp(n/100,0,1);refreshScene()};
   $("#compareGrowthSlider").addEventListener("input",e=>setCompareGrowth(e.target.value));$("#compareGrowthNumber").addEventListener("input",e=>setCompareGrowth(e.target.value));$("#compareGrowthNumber").addEventListener("blur",()=>{$("#compareGrowthNumber").value=pct(state.compare.growth).replace("%","")});
 
-  $$("[data-primary-path]").forEach(b=>b.addEventListener("click",()=>{state.primary.path=b.dataset.primaryPath;refreshScene()}));
-  $$("[data-compare-path]").forEach(b=>b.addEventListener("click",()=>{state.compare.path=b.dataset.comparePath;refreshScene()}));
+  $$("[data-primary-path]").forEach(b=>b.addEventListener("click",()=>{state.primary.path=b.dataset.primaryPath;if(state.sameGrowth)state.compare.path=state.primary.path;refreshScene()}));
+  $$("[data-compare-path]").forEach(b=>b.addEventListener("click",()=>{state.compare.path=b.dataset.comparePath;if(state.sameGrowth)state.primary.path=state.compare.path;refreshScene()}));
   $("#dimensionsToggle").addEventListener("change",e=>{state.dimensions=e.target.checked;updateDimensions();syncUrl()});
   $("#resetCamera").addEventListener("click",fitCamera);
   $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
