@@ -13,7 +13,7 @@ const morphStages={
   Carnotaurus:["Juvenile","Adult","Elder"]
 };
 const capsuleHalfHeight={Tyrannosaurus:200,Carnotaurus:136};
-const state={growth:.75,path:"frail",animation:"Idle",playing:true,lang:"th",compare:true,compareScale:1};
+const state={growth:.75,compareGrowth:.50569,sameGrowth:true,path:"frail",animation:"Idle",playing:true,lang:"th",compare:true};
 const ui={
   th:{lead:"ดู Tyrannosaurus แบบ 3D พร้อมเทียบ Carnotaurus ที่ Growth เดียวกัน",loading:"กำลังโหลดโมเดล",ready:"พร้อมใช้งาน",fail:"โหลดโมเดลไม่สำเร็จ",reportNote:"ค่าทั้งหมดคำนวณจาก lifecycle curve ใน Game Guide ปัจจุบัน"},
   en:{lead:"Explore Tyrannosaurus in 3D and compare Carnotaurus at the same Growth.",loading:"LOADING MODELS",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
@@ -73,12 +73,12 @@ function updateStats(){
   $("#speedStat").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";
   $("#attackStat").textContent=s.attack==null?"N/A":fmt(s.attack,3);
   $("#biteStat").textContent=s.bite==null?"N/A":fmt(s.bite);
-  const c=statsAt(compareName,state.growth);
+  const cg=state.sameGrowth?state.growth:state.compareGrowth,c=statsAt(compareName,cg);
   $("#compareWeight").textContent=c.weight==null?"N/A":fmt(c.weight)+" kg";
   $("#compareSpeed").textContent=c.speed==null?"N/A":fmt(c.speed*.036)+" km/h";
   $("#compareBite").textContent=c.bite==null?"N/A":fmt(c.bite);
   $("#compareAttack").textContent=c.attack==null?"N/A":fmt(c.attack,3);
-  $("#compareStage").textContent=percent(state.growth)+" · "+stageFor(state.growth);
+  $("#compareStage").textContent=percent(cg)+" · "+stageFor(cg);
   $("#compareDiet").textContent=speciesData(compareName)?.diet?.type||"N/A";
   updateReport()
 }
@@ -89,7 +89,9 @@ function syncUrl(){
   u.searchParams.set("path",state.path);
   u.searchParams.set("animation",state.animation);
   if(state.compare)u.searchParams.set("compare",compareName);else u.searchParams.delete("compare");
-  u.searchParams.set("compareScale",String(Math.round(state.compareScale*100)));
+  u.searchParams.set("sameGrowth",state.sameGrowth?"1":"0");
+  if(!state.sameGrowth)u.searchParams.set("compareGrowth",(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,""));else u.searchParams.delete("compareGrowth");
+  u.searchParams.delete("compareScale");
   u.searchParams.delete("tab");
   history.replaceState(null,"",u)
 }
@@ -110,10 +112,11 @@ function setLang(lang){
   $$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
   $("#viewerLead").textContent=ui[lang].lead;updateReport()
 }
+function growthScaleRatio(name,g,path=state.path){const adult=curveAt(name,"Scale",.75,path),now=curveAt(name,"Scale",g,path);return adult&&now?now/adult:1}
 function placeModels(){
-  const primary=models[primaryName],compare=models[compareName];
+  const primary=models[primaryName],compare=models[compareName],cg=state.sameGrowth?state.growth:state.compareGrowth;
   if(primary){
-    primary.position.set(0,0,0);primary.scale.setScalar(baseScale);primary.updateMatrixWorld(true);
+    primary.position.set(0,0,0);primary.scale.setScalar(baseScale*growthScaleRatio(primaryName,state.growth));primary.updateMatrixWorld(true);
     let b=new THREE.Box3().setFromObject(primary),c=b.getCenter(new THREE.Vector3());
     primary.position.x+=(state.compare?-2.1:0)-c.x;primary.position.y+=-b.min.y;primary.position.z+=-c.z
   }
@@ -121,8 +124,8 @@ function placeModels(){
     compare.visible=state.compare;
     if(state.compare){
       compare.position.set(0,0,0);
-      const ratio=(capsuleHalfHeight[compareName]||1)/(capsuleHalfHeight[primaryName]||1);
-      compare.scale.setScalar(baseScale*ratio*state.compareScale);compare.updateMatrixWorld(true);
+      const adultPhysicalRatio=(capsuleHalfHeight[compareName]||1)/(capsuleHalfHeight[primaryName]||1);
+      compare.scale.setScalar(baseScale*adultPhysicalRatio*growthScaleRatio(compareName,cg));compare.updateMatrixWorld(true);
       const b=new THREE.Box3().setFromObject(compare),c=b.getCenter(new THREE.Vector3());
       compare.position.x+=2.45-c.x;compare.position.y+=-b.min.y;compare.position.z+=-c.z
     }
@@ -135,14 +138,15 @@ function updateCompareMode(){
 }
 function applyGrowth(){
   state.growth=THREE.MathUtils.clamp(state.growth,0,1);
+  const cg=state.sameGrowth?state.growth:state.compareGrowth;
   applySpeciesMorph(models[primaryName],primaryName,state.growth);
-  applySpeciesMorph(models[compareName],compareName,state.growth);
+  applySpeciesMorph(models[compareName],compareName,cg);
   placeModels();
   const pct=percent(state.growth);
   if(document.activeElement!==$("#growthNumber"))$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
   $("#growthSlider").value=state.growth*100;
   $("#stageChip").textContent="TYRANNOSAURUS · "+pct+" · "+stageFor(state.growth);
-  $("#compareChip").textContent="CARNOTAURUS · "+pct+" · "+stageFor(state.growth);
+  $("#compareChip").textContent="CARNOTAURUS · "+percent(cg)+" · "+stageFor(cg);
   updateStats();syncUrl()
 }
 
@@ -188,7 +192,7 @@ async function loadModels(){
   mixers[primaryName]=new THREE.AnimationMixer(models[primaryName]);clips[primaryName]={};for(const clip of primaryGltf.animations)clips[primaryName][clip.name]=clip;
 
   if(c.status==="fulfilled"){
-    const compareGltf=c.value;models[compareName]=compareGltf.scene;applySpeciesMorph(models[compareName],compareName,state.growth);
+    const compareGltf=c.value;models[compareName]=compareGltf.scene;applySpeciesMorph(models[compareName],compareName,state.sameGrowth?state.growth:state.compareGrowth);
     models[compareName].traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});scene.add(models[compareName]);
     mixers[compareName]=new THREE.AnimationMixer(models[compareName]);clips[compareName]={};for(const clip of compareGltf.animations)clips[compareName][clip.name]=clip
   }else{console.error("Compare model load failed",c.reason);state.compare=false}
@@ -203,15 +207,18 @@ function bind(){
   if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");
   if(q.get("animation"))state.animation=q.get("animation");
   if(q.has("compare")&&q.get("compare")==="none")state.compare=false;
-  const cs=Number(q.get("compareScale"));if(Number.isFinite(cs))state.compareScale=THREE.MathUtils.clamp(cs/100,.5,2);
+  if(q.get("sameGrowth")==="0")state.sameGrowth=false;
+  const cg=Number(q.get("compareGrowth"));if(Number.isFinite(cg))state.compareGrowth=THREE.MathUtils.clamp(cg/100,0,1);
   state.lang=localStorage.getItem("ki-rules-lang")||"th";
   $("#growthSlider").value=state.growth*100;$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
   $$("[data-path]").forEach(b=>b.classList.toggle("active",b.dataset.path===state.path));
   setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");
   updateFood();updateStats();$("#stageChip").textContent="TYRANNOSAURUS · "+percent(state.growth)+" · "+stageFor(state.growth);
-  $("#compareChip").textContent="CARNOTAURUS · "+percent(state.growth)+" · "+stageFor(state.growth);
+  const initialCompareGrowth=state.sameGrowth?state.growth:state.compareGrowth;
+  $("#compareChip").textContent="CARNOTAURUS · "+percent(initialCompareGrowth)+" · "+stageFor(initialCompareGrowth);
   $("#compareEnabled").checked=state.compare;
-  $("#compareScaleSlider").value=Math.round(state.compareScale*100);$("#compareScaleNumber").value=Math.round(state.compareScale*100);
+  $("#sameGrowth").checked=state.sameGrowth;$("#compareGrowthControls").hidden=state.sameGrowth;
+  $("#compareGrowthSlider").value=state.compareGrowth*100;$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
   $("#growthSlider").addEventListener("input",e=>{state.growth=Number(e.target.value)/100;applyGrowth()});
   const applyTypedGrowth=()=>{const n=Number($("#growthNumber").value);if(!Number.isFinite(n))return;state.growth=THREE.MathUtils.clamp(n/100,0,1);applyGrowth()};
   $("#growthNumber").addEventListener("input",applyTypedGrowth);
@@ -219,11 +226,12 @@ function bind(){
   $("#growthNumber").addEventListener("blur",()=>{applyTypedGrowth();$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
   $$("[data-path]").forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$("[data-path]").forEach(x=>x.classList.toggle("active",x.dataset.path===state.path));updateStats();syncUrl()}));
   $("#compareEnabled").addEventListener("change",e=>{state.compare=e.target.checked;updateCompareMode()});
-  const setCompareScale=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compareScale=THREE.MathUtils.clamp(n/100,.5,2);$("#compareScaleSlider").value=Math.round(state.compareScale*100);if(document.activeElement!==$("#compareScaleNumber"))$("#compareScaleNumber").value=Math.round(state.compareScale*100);placeModels();syncUrl()};
-  $("#compareScaleSlider").addEventListener("input",e=>setCompareScale(e.target.value));
-  $("#compareScaleNumber").addEventListener("input",e=>setCompareScale(e.target.value));
-  $("#compareScaleNumber").addEventListener("change",e=>setCompareScale(e.target.value));
-  $("#compareScaleNumber").addEventListener("blur",()=>{$("#compareScaleNumber").value=Math.round(state.compareScale*100)});
+  const setCompareGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compareGrowth=THREE.MathUtils.clamp(n/100,0,1);$("#compareGrowthSlider").value=state.compareGrowth*100;if(document.activeElement!==$("#compareGrowthNumber"))$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");applySpeciesMorph(models[compareName],compareName,state.compareGrowth);placeModels();updateStats();$("#compareChip").textContent="CARNOTAURUS · "+percent(state.compareGrowth)+" · "+stageFor(state.compareGrowth);syncUrl()};
+  $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;$("#compareGrowthControls").hidden=state.sameGrowth;if(state.sameGrowth){applySpeciesMorph(models[compareName],compareName,state.growth)}else{setCompareGrowth(state.compareGrowth*100)}placeModels();updateStats();syncUrl()});
+  $("#compareGrowthSlider").addEventListener("input",e=>setCompareGrowth(e.target.value));
+  $("#compareGrowthNumber").addEventListener("input",e=>setCompareGrowth(e.target.value));
+  $("#compareGrowthNumber").addEventListener("change",e=>setCompareGrowth(e.target.value));
+  $("#compareGrowthNumber").addEventListener("blur",()=>{$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
   $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
   $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";for(const a of Object.values(actions))a.paused=!state.playing});
   $("#resetCamera").addEventListener("click",resetCamera);
