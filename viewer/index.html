@@ -50,8 +50,8 @@
         <div class="control-block"><label for="speciesSelect">Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Pilot species</small></div>
 
         <div class="control-block">
-          <div class="label-row"><label for="growthSlider">Growth</label><output id="growthOutput">75%</output></div>
-          <input id="growthSlider" type="range" min="0" max="100" step="0.1" value="75">
+          <div class="label-row"><label for="growthSlider">Growth</label><div class="growth-value-control"><input id="growthNumber" type="number" min="0" max="100" step="0.001" value="75" inputmode="decimal" aria-label="Growth percentage"><span>%</span></div></div>
+          <input id="growthSlider" type="range" min="0" max="100" step="0.001" value="75">
           <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Elder</span></div>
         </div>
 
