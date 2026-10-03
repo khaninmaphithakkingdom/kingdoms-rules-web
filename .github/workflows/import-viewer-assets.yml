@@ -1,0 +1,97 @@
+name: Import Viewer Assets
+
+on:
+  push:
+    paths:
+      - ".github/workflows/import-viewer-assets.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: viewer-asset-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Download and verify released Viewer assets
+        shell: bash
+        env:
+          ASSET_BASE: 'https://consolidated-sierra-win-historic.trycloudflare.com'
+        run: |
+          set -euo pipefail
+          mkdir -p assets/viewer
+          cat > /tmp/viewer-assets.txt <<'EOF'
+          0ef9ec2f520ab45825f84c6d39c2c0e22b3891af225ce23357b3a2d8e872471e 13479992 Allosaurus/Allosaurus.glb
+          c0652571479bd16f2991903de57ba9a295d77abd18e6f6008592fb54b3288444 16782 Allosaurus/Allosaurus.json
+          8a55609c6b2a554b47f2ba6383977fa4b1f09bdcb902f1655778395dde49314f 12001704 Austroraptor/Austroraptor.glb
+          aea370ef5f54fd26743c6045d27b3c435f50549fae6eb92932a4152ec72d21d1 18281 Austroraptor/Austroraptor.json
+          cf0ba34fb35695be07e4616e74c50fc6b74dcea24d658a0b9ca0ce6f5ae2d055 11672852 Beipiaosaurus/Beipiaosaurus.glb
+          2648e62855022b972fbb3e75b7e56820a112d8572c77f3f6e0ef6de5a4b8111f 17026 Beipiaosaurus/Beipiaosaurus.json
+          e8b095eee998c31591f47f2a46d49cd010b8dca2b0209fee3205c3af232f86fb 12435672 Carnotaurus/Carnotaurus.glb
+          3031abb48c2ce7fcf2b53c4e0d6a6c41e5d4beeec6460f098f79f9fff7a709c5 17881 Carnotaurus/Carnotaurus.json
+          a3a0ac8b2d795ab0058f53e2cc6622f656030c519729539d464a2ab8171c85a1 11434164 Ceratosaurus/Ceratosaurus.glb
+          a734a3ebd40db1c72b8ba48c039b092a5e8df5d2e58d82ffc6c0e0b546f5d74e 16733 Ceratosaurus/Ceratosaurus.json
+          13d94df42cac8ee3514e58282fb0286d382e2c1bce816520a7ca1756d28dbfb2 10665416 Deinosuchus/Deinosuchus.glb
+          a36424d75d03e2c9ac879c06827f0a44c344821a6581dd4c9df80e1b4958ba5a 16710 Deinosuchus/Deinosuchus.json
+          7ce21a15382616db0d25d89babfc4b04ea2f6c68a55c94ff0893e19c32728e6c 13886572 Diabloceratops/Diabloceratops.glb
+          40d34abae9068b67479c858cd73783337eb1bd5e7ed19f7cfb4b6f51760a0a47 16797 Diabloceratops/Diabloceratops.json
+          f624d2fdb21daa71fa5b99a13907670c370972d6fb5ae7142d7e51ea3fe46a8f 9937148 Dilophosaurus/Dilophosaurus.glb
+          61b16fef237c9e778bd356c3303092742cdd63a76ee1c96d6b1fceedd12e74fd 16975 Dilophosaurus/Dilophosaurus.json
+          662b23575d21f618d55d39eeefa6ba840174a94d72be55f5d8d4b3f86d8e07a9 12014468 Dryosaurus/Dryosaurus.glb
+          a2044ea34bc23e9abf8ecb0f1bd846f2f4cf1855ada4181de7f83d1793d9530c 16723 Dryosaurus/Dryosaurus.json
+          cfc5470a766e300073d097ac0bbbbb6b8d5e5c03583546bc338b6454645a8883 12515900 Gallimimus/Gallimimus.glb
+          51e7088992fdfba5ceceb03535197d0ab558cd48a8c892c7968cabc5e6276fc6 16742 Gallimimus/Gallimimus.json
+          2b75c4943a950d66732629c8f2bbf08939180f4b0a60a1a073319568084e3496 14249224 Herrerasaurus/Herrerasaurus.glb
+          d4a5ca970136bc180ed7d08fd8cbc4d9308c0936198479b9cedabc17d6013fee 19133 Herrerasaurus/Herrerasaurus.json
+          03625881e882f0e1206dc100fbb790124a93a2a3706971cef51669ad391cc7b2 10951376 Hypsilophodon/Hypsilophodon.glb
+          066c4cbff596e0f98e2bfa407d8b48543a47afa457367044e0aad5b398952e65 17182 Hypsilophodon/Hypsilophodon.json
+          38d995920caa00730f50bb6abbb027c0fc69fc6a4127ecad377930879154b297 9570020 Kentrosaurus/Kentrosaurus.glb
+          9964dd15ba9ec8a8b0a3b38a58e4078dd1068d25e61c25e31ad1667b2f274e07 16799 Kentrosaurus/Kentrosaurus.json
+          06ad8b08702067c3da01ea2e1016f1fc02e8201bb055a372629542b146d6bec3 12478852 Maiasaura/Maiasaura.glb
+          5efa2b20705d3139aae58e9775792ba6a13d0a8c861bc96d4809d3f9756d5c88 16552 Maiasaura/Maiasaura.json
+          8120e55c0e7f472c385d9810a0ccb5ebf8231b6024e6f6fe07d66dd2a093a99a 9324440 Omniraptor/Omniraptor.glb
+          99f20233ce301cabd04086343cdaacd3c83e718439ad7d66fffacf0c760a60c7 16224 Omniraptor/Omniraptor.json
+          c7baccd064f4c246dbe442fd3f922d9281a158e1d05acd0f6050c6d2b6dd8b42 12472376 Pachycephalosaurus/Pachycephalosaurus.glb
+          863f067928a3c63fd8ed3fa12d32c269a570e190edf5d2c1af2c40f4ab6c78f7 19245 Pachycephalosaurus/Pachycephalosaurus.json
+          696c95aa44bacb062e082a2d644d80ea7d81c515a0f9fa2b86f12b70b4f9b1c9 9082344 Pteranodon/Pteranodon.glb
+          8b40caaa60f6ed8700b017f777fa4f0607ea0d71b8f80050a261a604b4ca1617 16875 Pteranodon/Pteranodon.json
+          d1676f9ccc5ec113a9e6e795fce9136bf3b7ea028620882f1438657860ec2647 14360548 Stegosaurus/Stegosaurus.glb
+          3898d47cac414a8321ea0d163783a431a1e2a73a994b2597c3adb4d41b46c486 18182 Stegosaurus/Stegosaurus.json
+          056e2cdb797e62bddcaf7542f29cd3eb24c4c3fbfb55c9796238e0459eaf32fd 13128632 Tenontosaurus/Tenontosaurus.glb
+          c60c24183b60cae2633ec7062e62eb9bb655370d9498b1d1b9134092e6726297 16152 Tenontosaurus/Tenontosaurus.json
+          544cefe6d03420be7f5a5b873fed2c6926ac7fc22390312f082ef7ff8abd7158 13621676 Triceratops/Triceratops.glb
+          32dfa2e4f6fa7ea74e00c69cbf83e4352cdebf9f41d7d610af64f7bf08e36879 19336 Triceratops/Triceratops.json
+          d829328dbafcab233f9d3197fb5a0bc95a50b926d69e1605079fe9fe0b3a013c 11632236 Troodon/Troodon.glb
+          2a1239bdeda32712370511d71cf829b29b76ef1358107f98e9a5259593708889 16659 Troodon/Troodon.json
+          422d842a36965bbff1a00261d36dcc4af467aab8a7b0908e89ee538f1f2decff 13709596 Tyrannosaurus/Tyrannosaurus.glb
+          a44f3405773594689145361e5a7843736f66b4f363d10a40a244251600a63ff0 19285 Tyrannosaurus/Tyrannosaurus.json
+          EOF
+          while read -r expected_sha expected_bytes rel; do
+            dest="assets/viewer/$rel"
+            mkdir -p "$(dirname "$dest")"
+            echo "Downloading $rel"
+            curl --fail --location --retry 5 --retry-delay 2 --connect-timeout 20 --max-time 300 "$ASSET_BASE/$rel" -o "$dest"
+            actual_bytes="$(stat -c%s "$dest")"
+            test "$actual_bytes" = "$expected_bytes"
+            echo "$expected_sha  $dest" | sha256sum -c -
+          done < /tmp/viewer-assets.txt
+          test "$(find assets/viewer -type f \( -name "*.glb" -o -name "*.json" \) | wc -l)" -eq 44
+
+      - name: Commit verified Viewer assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/viewer
+          git commit -m "Viewer: add verified released species assets"
+          git push origin HEAD:main
