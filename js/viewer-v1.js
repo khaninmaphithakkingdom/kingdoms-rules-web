@@ -3,239 +3,304 @@ import {OrbitControls} from "three/addons/controls/OrbitControls.js";
 import {GLTFLoader} from "three/addons/loaders/GLTFLoader.js";
 import {KTX2Loader} from "three/addons/loaders/KTX2Loader.js";
 import {MeshoptDecoder} from "three/addons/libs/meshopt_decoder.module.js";
+import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const game=window.KI_GAME_DATA||{species:{}};
-const primaryName="Tyrannosaurus", compareName="Carnotaurus";
-const speciesData=name=>game.species?.[name]||null;
-const morphStages={
-  Tyrannosaurus:["Hatchling","Juvenile","SubAdult","Adult","Elder"],
-  Carnotaurus:["Juvenile","Adult","Elder"]
+const availableSpecies=["Tyrannosaurus","Carnotaurus"].filter(n=>game.species?.[n]?.released!==false);
+const state={
+  primary:{species:"Tyrannosaurus",growth:.75,path:"frail"},
+  compare:{enabled:true,species:"Carnotaurus",growth:.50569,path:"prime"},
+  sameGrowth:false,
+  dimensions:false,
+  animation:"Idle",
+  playing:true,
+  lang:"th"
 };
-const capsuleHalfHeight={Tyrannosaurus:200,Carnotaurus:136};
-const state={growth:.75,compareGrowth:.50569,sameGrowth:true,path:"frail",animation:"Idle",playing:true,lang:"th",compare:true};
 const ui={
-  th:{lead:"ดู Tyrannosaurus แบบ 3D พร้อมเทียบ Carnotaurus ที่ Growth เดียวกัน",loading:"กำลังโหลดโมเดล",ready:"พร้อมใช้งาน",fail:"โหลดโมเดลไม่สำเร็จ",reportNote:"ค่าทั้งหมดคำนวณจาก lifecycle curve ใน Game Guide ปัจจุบัน"},
-  en:{lead:"Explore Tyrannosaurus in 3D and compare Carnotaurus at the same Growth.",loading:"LOADING MODELS",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
-  vi:{lead:"Xem Tyrannosaurus 3D và so sánh Carnotaurus ở cùng Growth.",loading:"ĐANG TẢI MÔ HÌNH",ready:"SẴN SÀNG",fail:"KHÔNG TẢI ĐƯỢC MÔ HÌNH",reportNote:"Các giá trị được tính từ lifecycle curve hiện tại trong Game Guide."}
+  th:{lead:"เปรียบเทียบ Growth, ขนาดจริง และค่าสถานะของไดโนเสาร์สองตัวในฉาก 3D เดียวกัน",loading:"กำลังโหลดโมเดล",ready:"พร้อมใช้งาน",fail:"โหลดโมเดลไม่สำเร็จ",reportNote:"ค่าทั้งหมดคำนวณจาก lifecycle curve ใน Game Guide ปัจจุบัน"},
+  en:{lead:"Compare dinosaur growth, physical dimensions and gameplay curves in one 3D scene.",loading:"LOADING MODELS",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
+  vi:{lead:"So sánh tăng trưởng, kích thước và chỉ số của hai loài trong cùng một cảnh 3D.",loading:"ĐANG TẢI MÔ HÌNH",ready:"SẴN SÀNG",fail:"KHÔNG TẢI ĐƯỢC MÔ HÌNH",reportNote:"Các giá trị được tính từ lifecycle curve hiện tại trong Game Guide."}
 };
 
-let renderer,scene,camera,controls,clock,baseScale=1;
-const models={},mixers={},clips={},actions={};
+let renderer,scene,camera,controls,clock;
+const assetCache=new Map();
+const metricsCache=new Map();
+const runtime={primary:{model:null,mixer:null,clips:{},action:null},compare:{model:null,mixer:null,clips:{},action:null}};
+const dimensionGroups={primary:null,compare:null};
 
 function bz(a,b,c,d,t){const q=1-t;return q*q*q*a+3*q*q*t*b+3*q*t*t*c+t*t*t*d}
 function wb(p){return p&&(p.w===1||p.w===3)}
 function wa(p){return p&&(p.w===2||p.w===3)}
 function rw(a,b,t){const span=b.t-a.t,target=(t-a.t)/span,leave=a.lt??0,arrive=b.at??0;let ang=Math.atan(leave);const lw=wa(a)?(a.lw??0):Math.hypot(span,leave*span)/3;const p1t=Math.cos(ang)*lw+a.t,p1v=Math.sin(ang)*lw+a.v;ang=Math.atan(arrive);const aw=wb(b)?(b.aw??0):Math.hypot(span,arrive*span)/3;const p2t=-Math.cos(ang)*aw+b.t,p2v=-Math.sin(ang)*aw+b.v,c1=(p1t-a.t)/span,c2=(p2t-a.t)/span;let lo=0,hi=1;for(let i=0;i<50;i++){const m=(lo+hi)/2;bz(0,c1,c2,1,m)<target?lo=m:hi=m}return bz(a.v,p1v,p2v,b.v,(lo+hi)/2)}
 function rc(points,t){if(!Array.isArray(points)||!points.length)return null;const first=points[0],last=points[points.length-1];if(t<=first.t)return first.v;if(t>=last.t)return last.v;for(let i=0;i<points.length-1;i++){const a=points[i],b=points[i+1];if(t<a.t||t>b.t)continue;const span=b.t-a.t;if(span<=0)return a.v;const p=(t-a.t)/span;if(!a.c)return a.v+(b.v-a.v)*p;if(a.w||b.w)return rw(a,b,t);const m0=(a.lt??0)*span,m1=(b.at??0)*span,p2=p*p,p3=p2*p;return(2*p3-3*p2+1)*a.v+(p3-2*p2+p)*m0+(-2*p3+3*p2)*b.v+(p3-p2)*m1}return null}
-function curveAt(name,k,t,path=state.path){const c=speciesData(name)?.curves?.[k];return c?rc(path==="prime"?c.prime:c.frail,t):null}
-function statsAt(name,t,path=state.path){const d=speciesData(name),weight=curveAt(name,"Weight",t,path),speed=curveAt(name,"SprintSpeed",t,path),attack=curveAt(name,"AttackPower",t,path);return{weight,speed,attack,bite:attack!=null&&d?.damageBite!=null?attack*d.damageBite:null}}
+function speciesData(name){return game.species?.[name]||null}
+function curveAt(name,key,t,path){const c=speciesData(name)?.curves?.[key];return c?rc(path==="prime"?c.prime:c.frail,t):null}
+function statsAt(side){const s=state[side],name=s.species,t=side==="compare"&&state.sameGrowth?state.primary.growth:s.growth,path=s.path,d=speciesData(name),weight=curveAt(name,"Weight",t,path),speed=curveAt(name,"SprintSpeed",t,path),attack=curveAt(name,"AttackPower",t,path);return{growth:t,weight,speed,attack,bite:attack!=null&&d?.damageBite!=null?attack*d.damageBite:null}}
 function fmt(v,d=1){return v==null||!Number.isFinite(Number(v))?"N/A":Number(v).toLocaleString("en-US",{maximumFractionDigits:d})}
-function stageFor(g){if(g>=1)return"ELDER";if(g>=.75)return"ADULT";if(g>=.5)return"SUBADULT";if(g>=.25)return"JUVENILE";return"HATCHLING"}
-function percent(g){const n=g*100;return n.toFixed(n%1?1:0)+"%"}
+function pct(g,precision=3){const n=g*100;return n.toFixed(precision).replace(/0+$/,"").replace(/\.$/,"")+"%"}
+function stageFor(g,path){if(g>=1)return path==="prime"?"PRIME ELDER":"FRAIL ELDER";if(g>=.875)return path==="prime"?"PRIME":"FRAIL";if(g>=.75)return"ADULT";if(g>=.5)return"SUBADULT";if(g>=.25)return"JUVENILE";return"HATCHLING"}
 
+function visualGrowthAt(name,g){
+  const keys=speciesData(name)?.morphs?.visualGrowth?.keys;
+  const v=keys?.length?rc(keys,g):g;
+  return THREE.MathUtils.clamp(v??g,0,1)
+}
+function morphTargetIndex(mesh,stage){
+  const dict=mesh.morphTargetDictionary||{};
+  const normalized=String(stage).replace(/[^a-z0-9]/gi,"").toLowerCase();
+  for(const [name,idx] of Object.entries(dict)){
+    if(name.replace(/[^a-z0-9]/gi,"").toLowerCase()===normalized)return idx
+  }
+  return undefined
+}
 function applySpeciesMorph(root,name,g){
   if(!root)return;
-  const stages=morphStages[name]||["Adult"];
-  const scaled=THREE.MathUtils.clamp(g,0,1)*(stages.length-1);
-  const left=Math.min(stages.length-1,Math.floor(scaled)),right=Math.min(stages.length-1,left+1),mix=scaled-left;
+  const nodes=[...(speciesData(name)?.morphs?.nodes||[])].sort((a,b)=>a.at-b.at);
+  if(!nodes.length)return;
+  const v=visualGrowthAt(name,g);
+  let left=nodes[0],right=nodes[nodes.length-1];
+  if(v<=nodes[0].at){left=right=nodes[0]}
+  else if(v>=nodes[nodes.length-1].at){left=right=nodes[nodes.length-1]}
+  else for(let i=0;i<nodes.length-1;i++){if(v>=nodes[i].at&&v<=nodes[i+1].at){left=nodes[i];right=nodes[i+1];break}}
+  const mix=left===right?0:(v-left.at)/(right.at-left.at);
   root.traverse(o=>{
-    if(!o.isMesh||!o.morphTargetDictionary||!o.morphTargetInfluences)return;
+    if(!o.isMesh||!o.morphTargetInfluences||!o.morphTargetDictionary)return;
     o.morphTargetInfluences.fill(0);
-    const set=(stage,val)=>{const idx=o.morphTargetDictionary[stage];if(idx!==undefined)o.morphTargetInfluences[idx]=val};
-    if(left===right)set(stages[left],1);
-    else{set(stages[left],1-mix);set(stages[right],mix)}
+    const li=morphTargetIndex(o,left.stage),ri=morphTargetIndex(o,right.stage);
+    if(left===right){if(li!==undefined)o.morphTargetInfluences[li]=1;return}
+    if(li!==undefined)o.morphTargetInfluences[li]=1-mix;
+    if(ri!==undefined)o.morphTargetInfluences[ri]=mix
   })
+}
+function growthScaleRatio(name,g,path){
+  const adult=curveAt(name,"Scale",.75,path),now=curveAt(name,"Scale",g,path);
+  return adult&&now?now/adult:1
+}
+function capsuleHeightMeters(name){
+  const h=speciesData(name)?.capsule?.halfHeight;
+  return Number.isFinite(Number(h))?Number(h)*2/100:null
+}
+function getAdultMetric(name){
+  return metricsCache.get(name)||null
+}
+function computeAdultMetric(name){
+  const asset=assetCache.get(name);if(!asset)return null;
+  const clone=SkeletonUtils.clone(asset.scene);
+  applySpeciesMorph(clone,name,.75);
+  clone.rotation.set(0,Math.PI/2,0);clone.scale.setScalar(1);clone.position.set(0,0,0);clone.updateMatrixWorld(true);
+  const box=new THREE.Box3().setFromObject(clone,true),size=box.getSize(new THREE.Vector3());
+  const physicalHeight=capsuleHeightMeters(name);
+  const adultWorldScale=physicalHeight&&size.y>0?physicalHeight/size.y:1/Math.max(size.x,size.y,size.z);
+  const metric={rawAdultBox:box,rawAdultSize:size,adultWorldScale,physicalHeight};
+  metricsCache.set(name,metric);return metric
+}
+
+function effectiveGrowth(side){return side==="compare"&&state.sameGrowth?state.primary.growth:state[side].growth}
+function getRuntimeBox(side){const model=runtime[side].model;if(!model||!model.visible)return null;return new THREE.Box3().setFromObject(model,true)}
+function applySideTransform(side){
+  const rt=runtime[side],s=state[side],model=rt.model;if(!model)return;
+  const g=effectiveGrowth(side),metric=getAdultMetric(s.species)||computeAdultMetric(s.species),base=metric?.adultWorldScale||1;
+  model.scale.setScalar(base*growthScaleRatio(s.species,g,s.path));
+  model.rotation.set(0,side==="primary"?Math.PI/2:-Math.PI/2,0);
+  model.position.set(0,0,0);model.updateMatrixWorld(true);
+  const box=new THREE.Box3().setFromObject(model,true),center=box.getCenter(new THREE.Vector3());
+  model.position.y-=box.min.y;model.position.z-=center.z;model.updateMatrixWorld(true)
+}
+function placeModels(){
+  applySideTransform("primary");
+  if(runtime.compare.model)runtime.compare.model.visible=state.compare.enabled;
+  if(state.compare.enabled)applySideTransform("compare");
+  const pb=getRuntimeBox("primary");if(!pb)return;
+  const ps=pb.getSize(new THREE.Vector3()),pc=pb.getCenter(new THREE.Vector3());
+  if(!state.compare.enabled||!runtime.compare.model){
+    runtime.primary.model.position.x-=pc.x;
+    updateDimensions();return
+  }
+  const cb=getRuntimeBox("compare"),cs=cb.getSize(new THREE.Vector3()),cc=cb.getCenter(new THREE.Vector3());
+  const gap=Math.max(1.1,Math.min(2.2,(ps.x+cs.x)*.07));
+  const pCenter=-(ps.x/2+gap/2),cCenter=cs.x/2+gap/2;
+  runtime.primary.model.position.x+=pCenter-pc.x;
+  runtime.compare.model.position.x+=cCenter-cc.x;
+  runtime.primary.model.updateMatrixWorld(true);runtime.compare.model.updateMatrixWorld(true);
+  updateDimensions()
+}
+function visibleBounds(){
+  const box=new THREE.Box3();let any=false;
+  for(const side of ["primary","compare"]){
+    if(side==="compare"&&!state.compare.enabled)continue;
+    const b=getRuntimeBox(side);if(b){box.union(b);any=true}
+  }
+  return any?box:null
+}
+function fitCamera(){
+  const box=visibleBounds();if(!box||!camera||!controls)return;
+  const sphere=box.getBoundingSphere(new THREE.Sphere()),center=sphere.center.clone(),radius=Math.max(.5,sphere.radius);
+  const vfov=THREE.MathUtils.degToRad(camera.fov),hfov=2*Math.atan(Math.tan(vfov/2)*Math.max(.45,camera.aspect));
+  const distance=Math.max(radius/Math.sin(vfov/2),radius/Math.sin(hfov/2))*1.12;
+  controls.target.copy(center);controls.target.y=Math.max(.5,center.y*.88);
+  camera.position.set(center.x,center.y+radius*.22,center.z+distance);
+  camera.near=Math.max(.02,distance/500);camera.far=Math.max(150,distance*8);camera.updateProjectionMatrix();controls.update()
+}
+
+function makeTextSprite(text){
+  const c=document.createElement("canvas");c.width=512;c.height=128;const ctx=c.getContext("2d");
+  ctx.clearRect(0,0,c.width,c.height);ctx.font="600 42px Chakra Petch, sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillStyle="#d1b477";ctx.fillText(text,256,64);
+  const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const mat=new THREE.SpriteMaterial({map:tex,transparent:true,depthTest:false});const sprite=new THREE.Sprite(mat);sprite.scale.set(2.1,.52,1);sprite.renderOrder=10;return sprite
+}
+function addLine(group,a,b,material){
+  const geo=new THREE.BufferGeometry().setFromPoints([a,b]);const line=new THREE.Line(geo,material);line.renderOrder=9;group.add(line)
+}
+function buildDimensionGroup(side){
+  const b=getRuntimeBox(side);if(!b)return null;const size=b.getSize(new THREE.Vector3()),group=new THREE.Group(),mat=new THREE.LineBasicMaterial({color:0xb99a5f,transparent:true,opacity:.9,depthTest:false}),front=b.max.z+.35;
+  const out=side==="primary"?b.min.x-.55:b.max.x+.55,tick=.22;
+  addLine(group,new THREE.Vector3(out,b.min.y,front),new THREE.Vector3(out,b.max.y,front),mat);
+  addLine(group,new THREE.Vector3(out-tick,b.min.y,front),new THREE.Vector3(out+tick,b.min.y,front),mat);
+  addLine(group,new THREE.Vector3(out-tick,b.max.y,front),new THREE.Vector3(out+tick,b.max.y,front),mat);
+  const hs=makeTextSprite(size.y.toFixed(2)+" m");hs.position.set(out+(side==="primary"?-.85:.85),(b.min.y+b.max.y)/2,front);group.add(hs);
+  const y=.16;
+  addLine(group,new THREE.Vector3(b.min.x,y,front),new THREE.Vector3(b.max.x,y,front),mat);
+  addLine(group,new THREE.Vector3(b.min.x,y-tick,front),new THREE.Vector3(b.min.x,y+tick,front),mat);
+  addLine(group,new THREE.Vector3(b.max.x,y-tick,front),new THREE.Vector3(b.max.x,y+tick,front),mat);
+  const ls=makeTextSprite(size.x.toFixed(2)+" m");ls.position.set((b.min.x+b.max.x)/2,y+.48,front);group.add(ls);
+  return group
+}
+function disposeGroup(group){
+  if(!group)return;group.traverse(o=>{o.geometry?.dispose?.();if(o.material){const mats=Array.isArray(o.material)?o.material:[o.material];for(const m of mats){m.map?.dispose?.();m.dispose?.()}}});scene.remove(group)
+}
+function updateDimensions(){
+  for(const side of ["primary","compare"]){disposeGroup(dimensionGroups[side]);dimensionGroups[side]=null}
+  if(!state.dimensions)return;
+  dimensionGroups.primary=buildDimensionGroup("primary");if(dimensionGroups.primary)scene.add(dimensionGroups.primary);
+  if(state.compare.enabled){dimensionGroups.compare=buildDimensionGroup("compare");if(dimensionGroups.compare)scene.add(dimensionGroups.compare)}
 }
 
 function updateFood(){
-  const menu=speciesData(primaryName)?.diet?.menu||speciesData(primaryName)?.diet?.sources||{};
+  const d=speciesData(state.primary.species),menu=d?.diet?.menu||d?.diet?.sources||{};
   const render=(id,arr)=>{$(id).innerHTML=(arr||[]).length?(arr||[]).map(x=>"<span>"+String(x)+"</span>").join(""):"<span>N/A</span>"};
   render("#foodCarb",menu.carb);render("#foodProtein",menu.protein);render("#foodLipid",menu.lipid)
 }
-function updateReport(){
-  const d=speciesData(primaryName),s=statsAt(primaryName,state.growth),stage=stageFor(state.growth),pct=percent(state.growth);
-  $("#reportSpecies").textContent=primaryName;
-  $("#reportAge").textContent=stage;
-  $("#reportDiet").textContent=d?.diet?.type||"N/A";
-  $("#reportWeight").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";
-  $("#reportSpeed").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";
-  $("#reportBite").textContent=s.bite==null?"N/A":fmt(s.bite);
-  $("#reportGrowth").textContent=pct;
-  $("#reportAttack").textContent=s.attack==null?"N/A":fmt(s.attack,3);
-  $("#reportPath").textContent=state.path.toUpperCase();
-  $("#reportTitle").textContent=stage+" · "+state.path.toUpperCase()+" PATH";
-  $("#reportNote").textContent=ui[state.lang].reportNote
+function updateUI(){
+  const p=statsAt("primary"),c=statsAt("compare"),ps=state.primary,cs=state.compare,pg=p.growth,cg=c.growth;
+  $("#reportSpecies").textContent=ps.species;$("#reportAge").textContent=stageFor(pg,ps.path);$("#reportDiet").textContent=speciesData(ps.species)?.diet?.type||"N/A";
+  $("#reportWeight").textContent=p.weight==null?"N/A":fmt(p.weight)+" kg";$("#reportSpeed").textContent=p.speed==null?"N/A":fmt(p.speed*.036)+" km/h";$("#reportBite").textContent=p.bite==null?"N/A":fmt(p.bite);
+  $("#weightStat").textContent=p.weight==null?"N/A":fmt(p.weight)+" kg";$("#speedStat").textContent=p.speed==null?"N/A":fmt(p.speed*.036)+" km/h";$("#biteStat").textContent=p.bite==null?"N/A":fmt(p.bite);$("#attackStat").textContent=p.attack==null?"N/A":fmt(p.attack,3);
+  $("#reportGrowth").textContent=pct(pg);$("#reportAttack").textContent=p.attack==null?"N/A":fmt(p.attack,3);$("#reportPath").textContent=ps.path.toUpperCase();$("#reportTitle").textContent=stageFor(pg,ps.path)+" · "+ps.path.toUpperCase()+" PATH";$("#reportNote").textContent=ui[state.lang].reportNote;
+  $("#primaryControlTitle").textContent=ps.species;$("#compareControlTitle").textContent=cs.species;$("#primaryModelName").textContent=ps.species.toUpperCase();$("#compareModelName").textContent=cs.species.toUpperCase();
+  $("#primaryModelMeta").textContent=(p.weight==null?"N/A":fmt(p.weight)+" KG")+" · "+pct(pg);
+  $("#compareModelMeta").textContent=(c.weight==null?"N/A":fmt(c.weight)+" KG")+" · "+pct(cg);
+  $("#stageChip").textContent=ps.species.toUpperCase()+" · "+pct(pg)+" · "+stageFor(pg,ps.path);
+  $("#compareChip").textContent=cs.species.toUpperCase()+" · "+pct(cg)+" · "+stageFor(cg,cs.path);
+  $("#compareWeight").textContent=c.weight==null?"N/A":fmt(c.weight)+" kg";$("#compareSpeed").textContent=c.speed==null?"N/A":fmt(c.speed*.036)+" km/h";$("#compareBite").textContent=c.bite==null?"N/A":fmt(c.bite);$("#compareAttack").textContent=c.attack==null?"N/A":fmt(c.attack,3);$("#compareStage").textContent=pct(cg)+" · "+stageFor(cg,cs.path)+" · "+cs.path.toUpperCase();$("#compareDiet").textContent=speciesData(cs.species)?.diet?.type||"N/A";
+  $("#compareModelLabel").hidden=!cs.enabled;$("#compareChip").hidden=!cs.enabled;$("#compareControlsBody").hidden=!cs.enabled;
+  updateFood()
 }
-function updateStats(){
-  const s=statsAt(primaryName,state.growth);
-  $("#weightStat").textContent=s.weight==null?"N/A":fmt(s.weight)+" kg";
-  $("#speedStat").textContent=s.speed==null?"N/A":fmt(s.speed*.036)+" km/h";
-  $("#attackStat").textContent=s.attack==null?"N/A":fmt(s.attack,3);
-  $("#biteStat").textContent=s.bite==null?"N/A":fmt(s.bite);
-  const cg=state.sameGrowth?state.growth:state.compareGrowth,c=statsAt(compareName,cg);
-  $("#compareWeight").textContent=c.weight==null?"N/A":fmt(c.weight)+" kg";
-  $("#compareSpeed").textContent=c.speed==null?"N/A":fmt(c.speed*.036)+" km/h";
-  $("#compareBite").textContent=c.bite==null?"N/A":fmt(c.bite);
-  $("#compareAttack").textContent=c.attack==null?"N/A":fmt(c.attack,3);
-  $("#compareStage").textContent=percent(cg)+" · "+stageFor(cg);
-  $("#compareDiet").textContent=speciesData(compareName)?.diet?.type||"N/A";
-  updateReport()
+function syncControls(){
+  $("#primarySpeciesSelect").value=state.primary.species;$("#compareSpeciesSelect").value=state.compare.species;$("#compareEnabled").checked=state.compare.enabled;$("#sameGrowth").checked=state.sameGrowth;$("#dimensionsToggle").checked=state.dimensions;
+  $("#primaryGrowthSlider").value=state.primary.growth*100;if(document.activeElement!==$("#primaryGrowthNumber"))$("#primaryGrowthNumber").value=pct(state.primary.growth).replace("%","");
+  $("#compareGrowthSlider").value=state.compare.growth*100;if(document.activeElement!==$("#compareGrowthNumber"))$("#compareGrowthNumber").value=pct(state.compare.growth).replace("%","");
+  $("#compareGrowthControls").hidden=state.sameGrowth;
+  $$("[data-primary-path]").forEach(b=>b.classList.toggle("active",b.dataset.primaryPath===state.primary.path));
+  $$("[data-compare-path]").forEach(b=>b.classList.toggle("active",b.dataset.comparePath===state.compare.path))
 }
 function syncUrl(){
   const u=new URL(location.href);
-  u.searchParams.set("species",primaryName);
-  u.searchParams.set("growth",(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,""));
-  u.searchParams.set("path",state.path);
-  u.searchParams.set("animation",state.animation);
-  if(state.compare)u.searchParams.set("compare",compareName);else u.searchParams.delete("compare");
-  u.searchParams.set("sameGrowth",state.sameGrowth?"1":"0");
-  if(!state.sameGrowth)u.searchParams.set("compareGrowth",(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,""));else u.searchParams.delete("compareGrowth");
-  u.searchParams.delete("compareScale");
-  u.searchParams.delete("tab");
-  history.replaceState(null,"",u)
+  u.searchParams.set("species",state.primary.species);u.searchParams.set("growth",pct(state.primary.growth).replace("%",""));u.searchParams.set("path",state.primary.path);
+  u.searchParams.set("compare",state.compare.enabled?state.compare.species:"none");u.searchParams.set("sameGrowth",state.sameGrowth?"1":"0");
+  if(!state.sameGrowth)u.searchParams.set("compareGrowth",pct(state.compare.growth).replace("%",""));else u.searchParams.delete("compareGrowth");
+  u.searchParams.set("comparePath",state.compare.path);u.searchParams.set("animation",state.animation);
+  if(state.dimensions)u.searchParams.set("dimensions","1");else u.searchParams.delete("dimensions");
+  u.searchParams.delete("tab");history.replaceState(null,"",u)
 }
+function updateModelLabelPositions(){
+  const wrap=$("#canvasWrap"),w=wrap.clientWidth,h=wrap.clientHeight;
+  for(const side of ["primary","compare"]){
+    const el=side==="primary"?$("#primaryModelLabel"):$("#compareModelLabel");if(side==="compare"&&!state.compare.enabled){el.hidden=true;continue}
+    const b=getRuntimeBox(side);if(!b){el.hidden=true;continue}
+    const p=new THREE.Vector3((b.min.x+b.max.x)/2,b.max.y+.35,(b.min.z+b.max.z)/2).project(camera);
+    if(p.z>1){el.hidden=true;continue}
+    el.hidden=false;el.style.left=((p.x*.5+.5)*w)+"px";el.style.top=((-p.y*.5+.5)*h)+"px"
+  }
+}
+
 function setAnimation(name){
   state.animation=name;$("#animationSelect").value=name;
-  for(const speciesName of Object.keys(models)){
-    if(!mixers[speciesName]||!clips[speciesName]?.[name])continue;
-    if(actions[speciesName])actions[speciesName].fadeOut(.2);
-    actions[speciesName]=mixers[speciesName].clipAction(clips[speciesName][name]);
-    actions[speciesName].reset().fadeIn(.2).play();
-    actions[speciesName].paused=!state.playing
+  for(const side of ["primary","compare"]){
+    const rt=runtime[side],clip=rt.clips?.[name];if(!rt.mixer||!clip)continue;
+    rt.action?.fadeOut(.15);rt.action=rt.mixer.clipAction(clip);rt.action.reset().fadeIn(.15).play();rt.action.paused=!state.playing
   }
   syncUrl()
 }
-function resetCamera(){if(!camera||!controls)return;camera.position.set(10,4.2,14);controls.target.set(0,1.7,0);controls.update()}
-function setLang(lang){
-  state.lang=lang;localStorage.setItem("ki-rules-lang",lang);document.documentElement.lang=lang;
-  $$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));
-  $("#viewerLead").textContent=ui[lang].lead;updateReport()
+function rebuildSide(side){
+  const rt=runtime[side],name=state[side].species,asset=assetCache.get(name);if(!asset)return;
+  if(rt.model)scene.remove(rt.model);
+  rt.model=SkeletonUtils.clone(asset.scene);rt.model.traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});scene.add(rt.model);
+  rt.mixer=new THREE.AnimationMixer(rt.model);rt.clips={};for(const c of asset.animations)rt.clips[c.name]=c;rt.action=null;
+  applySpeciesMorph(rt.model,name,effectiveGrowth(side));
+  const chosen=rt.clips[state.animation]?state.animation:(rt.clips.Idle?"Idle":Object.keys(rt.clips)[0]);if(chosen){const a=rt.mixer.clipAction(rt.clips[chosen]);a.play();a.paused=!state.playing;rt.action=a}
 }
-function growthScaleRatio(name,g,path=state.path){const adult=curveAt(name,"Scale",.75,path),now=curveAt(name,"Scale",g,path);return adult&&now?now/adult:1}
-function placeModels(){
-  const primary=models[primaryName],compare=models[compareName],cg=state.sameGrowth?state.growth:state.compareGrowth;
-  if(primary){
-    primary.position.set(0,0,0);primary.scale.setScalar(baseScale*growthScaleRatio(primaryName,state.growth));primary.updateMatrixWorld(true);
-    let b=new THREE.Box3().setFromObject(primary),c=b.getCenter(new THREE.Vector3());
-    primary.position.x+=(state.compare?-2.1:0)-c.x;primary.position.y+=-b.min.y;primary.position.z+=-c.z
-  }
-  if(compare){
-    compare.visible=state.compare;
-    if(state.compare){
-      compare.position.set(0,0,0);
-      const adultPhysicalRatio=(capsuleHalfHeight[compareName]||1)/(capsuleHalfHeight[primaryName]||1);
-      compare.scale.setScalar(baseScale*adultPhysicalRatio*growthScaleRatio(compareName,cg));compare.updateMatrixWorld(true);
-      const b=new THREE.Box3().setFromObject(compare),c=b.getCenter(new THREE.Vector3());
-      compare.position.x+=2.45-c.x;compare.position.y+=-b.min.y;compare.position.z+=-c.z
-    }
-  }
+function refreshScene({fit=false}={}){
+  applySpeciesMorph(runtime.primary.model,state.primary.species,state.primary.growth);
+  applySpeciesMorph(runtime.compare.model,state.compare.species,effectiveGrowth("compare"));
+  placeModels();syncControls();updateUI();syncUrl();if(fit)setTimeout(fitCamera,0)
 }
-function updateCompareMode(){
-  $("#compareReport").hidden=!state.compare;$("#compareChip").hidden=!state.compare;
-  if(models[compareName])models[compareName].visible=state.compare;
-  $("#compareEnabled").checked=state.compare;placeModels();syncUrl()
+
+function makeLoader(){
+  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
+  const ktx2=new KTX2Loader().setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/basis/");ktx2.detectSupport(renderer);loader.setKTX2Loader(ktx2);return loader
 }
-function applyGrowth(){
-  state.growth=THREE.MathUtils.clamp(state.growth,0,1);
-  const cg=state.sameGrowth?state.growth:state.compareGrowth;
-  applySpeciesMorph(models[primaryName],primaryName,state.growth);
-  applySpeciesMorph(models[compareName],compareName,cg);
-  placeModels();
-  const pct=percent(state.growth);
-  if(document.activeElement!==$("#growthNumber"))$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
-  $("#growthSlider").value=state.growth*100;
-  $("#stageChip").textContent="TYRANNOSAURUS · "+pct+" · "+stageFor(state.growth);
-  $("#compareChip").textContent="CARNOTAURUS · "+percent(cg)+" · "+stageFor(cg);
-  updateStats();syncUrl()
+function loadAsset(name){return new Promise((resolve,reject)=>makeLoader().load("/assets/viewer/"+name+"/"+name+".glb",resolve,undefined,reject))}
+async function loadModels(){
+  $("#loadStatus").textContent=ui[state.lang].loading;
+  const results=await Promise.allSettled(availableSpecies.map(async name=>[name,await loadAsset(name)]));
+  for(const r of results)if(r.status==="fulfilled"){assetCache.set(r.value[0],r.value[1])}else console.error("Viewer asset failed",r.reason);
+  if(!assetCache.has(state.primary.species)){$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false;return}
+  for(const name of assetCache.keys())computeAdultMetric(name);
+  rebuildSide("primary");if(assetCache.has(state.compare.species))rebuildSide("compare");else state.compare.enabled=false;
+  refreshScene({fit:true});setAnimation(state.animation);$("#loadStatus").textContent=ui[state.lang].ready
 }
 
 function initScene(){
   if(!window.WebGLRenderingContext){$("#fallback").hidden=false;return}
-  const canvas=$("#viewerCanvas");
-  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;
-  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x0a0d0a,.022);
-  camera=new THREE.PerspectiveCamera(35,1,.1,120);
-  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.minDistance=4;controls.maxDistance=28;controls.maxPolarAngle=Math.PI*.54;
-  resetCamera();
-  scene.add(new THREE.HemisphereLight(0xb9c5af,0x20170f,1.6));
-  const key=new THREE.DirectionalLight(0xffddb0,3.4);key.position.set(6,8,5);scene.add(key);
-  const rim=new THREE.DirectionalLight(0x89a889,2.1);rim.position.set(-5,4,-7);scene.add(rim);
-  const floor=new THREE.Mesh(new THREE.CircleGeometry(9,64),new THREE.MeshStandardMaterial({color:0x10140f,roughness:1,metalness:0}));
-  floor.rotation.x=-Math.PI/2;floor.position.y=-.03;scene.add(floor);
+  const canvas=$("#viewerCanvas");renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.03;
+  scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x090d0a,.018);camera=new THREE.PerspectiveCamera(34,1,.02,200);
+  controls=new OrbitControls(camera,canvas);controls.enableDamping=true;controls.enablePan=true;controls.minDistance=2;controls.maxDistance=60;controls.maxPolarAngle=Math.PI*.54;
+  scene.add(new THREE.HemisphereLight(0xb9c5af,0x20170f,1.5));const key=new THREE.DirectionalLight(0xffddb0,3.1);key.position.set(6,9,7);scene.add(key);const rim=new THREE.DirectionalLight(0x7e9c83,1.8);rim.position.set(-7,5,-8);scene.add(rim);
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(34,20),new THREE.MeshStandardMaterial({color:0x10140f,roughness:1,metalness:0}));floor.rotation.x=-Math.PI/2;floor.position.y=-.025;scene.add(floor);
+  const grid=new THREE.GridHelper(34,34,0x4d4a35,0x243027);grid.position.y=.002;grid.material.opacity=.28;grid.material.transparent=true;scene.add(grid);
   clock=new THREE.Clock();new ResizeObserver(resize).observe($("#canvasWrap"));loadModels();animate()
 }
 function resize(){if(!renderer)return;const el=$("#canvasWrap"),w=Math.max(1,el.clientWidth),h=Math.max(1,el.clientHeight);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
-function makeLoader(){
-  const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
-  const ktx2=new KTX2Loader().setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/basis/");
-  ktx2.detectSupport(renderer);loader.setKTX2Loader(ktx2);return loader
-}
-function loadSpecies(name){
-  return new Promise((resolve,reject)=>{
-    const loader=makeLoader();
-    loader.load("/assets/viewer/"+name+"/"+name+".glb",gltf=>resolve(gltf),undefined,reject)
-  })
-}
-async function loadModels(){
-  $("#loadStatus").textContent=ui[state.lang].loading;
-  const [p,c]=await Promise.allSettled([loadSpecies(primaryName),loadSpecies(compareName)]);
-  if(p.status!=="fulfilled"){console.error("Primary model load failed",p.reason);$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false;return}
-  const primaryGltf=p.value;
-  models[primaryName]=primaryGltf.scene;applySpeciesMorph(models[primaryName],primaryName,state.growth);
-  models[primaryName].traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});
-  scene.add(models[primaryName]);
-  const rawBox=new THREE.Box3().setFromObject(models[primaryName]),rawSize=rawBox.getSize(new THREE.Vector3());
-  baseScale=5.5/Math.max(rawSize.x,rawSize.y,rawSize.z);
-  mixers[primaryName]=new THREE.AnimationMixer(models[primaryName]);clips[primaryName]={};for(const clip of primaryGltf.animations)clips[primaryName][clip.name]=clip;
+function animate(){requestAnimationFrame(animate);const dt=clock?.getDelta()||0;if(state.playing){runtime.primary.mixer?.update(dt);runtime.compare.mixer?.update(dt)}controls?.update();renderer?.render(scene,camera);updateModelLabelPositions()}
 
-  if(c.status==="fulfilled"){
-    const compareGltf=c.value;models[compareName]=compareGltf.scene;applySpeciesMorph(models[compareName],compareName,state.sameGrowth?state.growth:state.compareGrowth);
-    models[compareName].traverse(o=>{if(o.isMesh&&o.material)o.material.needsUpdate=true});scene.add(models[compareName]);
-    mixers[compareName]=new THREE.AnimationMixer(models[compareName]);clips[compareName]={};for(const clip of compareGltf.animations)clips[compareName][clip.name]=clip
-  }else{console.error("Compare model load failed",c.reason);state.compare=false}
-  placeModels();setAnimation(clips[primaryName][state.animation]?state.animation:(clips[primaryName].Idle?"Idle":Object.keys(clips[primaryName])[0]));
-  applyGrowth();updateCompareMode();$("#loadStatus").textContent=ui[state.lang].ready
-}
-function animate(){requestAnimationFrame(animate);const dt=clock?.getDelta()||0;if(state.playing)for(const m of Object.values(mixers))m.update(dt);controls?.update();renderer?.render(scene,camera)}
-
+function setLang(lang){state.lang=lang;localStorage.setItem("ki-rules-lang",lang);document.documentElement.lang=lang;$$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));$("#viewerLead").textContent=ui[lang].lead;updateUI()}
 function bind(){
-  const q=new URLSearchParams(location.search),g=Number(q.get("growth"));
-  if(Number.isFinite(g))state.growth=THREE.MathUtils.clamp(g/100,0,1);
-  if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");
-  if(q.get("animation"))state.animation=q.get("animation");
-  if(q.has("compare")&&q.get("compare")==="none")state.compare=false;
-  if(q.get("sameGrowth")==="0")state.sameGrowth=false;
-  const cg=Number(q.get("compareGrowth"));if(Number.isFinite(cg))state.compareGrowth=THREE.MathUtils.clamp(cg/100,0,1);
-  state.lang=localStorage.getItem("ki-rules-lang")||"th";
-  $("#growthSlider").value=state.growth*100;$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
-  $$("[data-path]").forEach(b=>b.classList.toggle("active",b.dataset.path===state.path));
-  setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");
-  updateFood();updateStats();$("#stageChip").textContent="TYRANNOSAURUS · "+percent(state.growth)+" · "+stageFor(state.growth);
-  const initialCompareGrowth=state.sameGrowth?state.growth:state.compareGrowth;
-  $("#compareChip").textContent="CARNOTAURUS · "+percent(initialCompareGrowth)+" · "+stageFor(initialCompareGrowth);
-  $("#compareEnabled").checked=state.compare;
-  $("#sameGrowth").checked=state.sameGrowth;$("#compareGrowthControls").hidden=state.sameGrowth;
-  $("#compareGrowthSlider").value=state.compareGrowth*100;$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
-  $("#growthSlider").addEventListener("input",e=>{state.growth=Number(e.target.value)/100;applyGrowth()});
-  const applyTypedGrowth=()=>{const n=Number($("#growthNumber").value);if(!Number.isFinite(n))return;state.growth=THREE.MathUtils.clamp(n/100,0,1);applyGrowth()};
-  $("#growthNumber").addEventListener("input",applyTypedGrowth);
-  $("#growthNumber").addEventListener("change",applyTypedGrowth);
-  $("#growthNumber").addEventListener("blur",()=>{applyTypedGrowth();$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
-  $$("[data-path]").forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$("[data-path]").forEach(x=>x.classList.toggle("active",x.dataset.path===state.path));updateStats();syncUrl()}));
-  $("#compareEnabled").addEventListener("change",e=>{state.compare=e.target.checked;updateCompareMode()});
-  const setCompareGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compareGrowth=THREE.MathUtils.clamp(n/100,0,1);$("#compareGrowthSlider").value=state.compareGrowth*100;if(document.activeElement!==$("#compareGrowthNumber"))$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");applySpeciesMorph(models[compareName],compareName,state.compareGrowth);placeModels();updateStats();$("#compareChip").textContent="CARNOTAURUS · "+percent(state.compareGrowth)+" · "+stageFor(state.compareGrowth);syncUrl()};
-  $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;$("#compareGrowthControls").hidden=state.sameGrowth;if(state.sameGrowth){applySpeciesMorph(models[compareName],compareName,state.growth)}else{setCompareGrowth(state.compareGrowth*100)}placeModels();updateStats();syncUrl()});
-  $("#compareGrowthSlider").addEventListener("input",e=>setCompareGrowth(e.target.value));
-  $("#compareGrowthNumber").addEventListener("input",e=>setCompareGrowth(e.target.value));
-  $("#compareGrowthNumber").addEventListener("change",e=>setCompareGrowth(e.target.value));
-  $("#compareGrowthNumber").addEventListener("blur",()=>{$("#compareGrowthNumber").value=(state.compareGrowth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
+  const q=new URLSearchParams(location.search);
+  const primarySpecies=q.get("species");if(availableSpecies.includes(primarySpecies))state.primary.species=primarySpecies;
+  const compareSpecies=q.get("compare");if(availableSpecies.includes(compareSpecies))state.compare.species=compareSpecies;else if(compareSpecies==="none")state.compare.enabled=false;
+  const pg=Number(q.get("growth"));if(Number.isFinite(pg))state.primary.growth=THREE.MathUtils.clamp(pg/100,0,1);
+  const cg=Number(q.get("compareGrowth"));if(Number.isFinite(cg))state.compare.growth=THREE.MathUtils.clamp(cg/100,0,1);
+  if(["frail","prime"].includes(q.get("path")))state.primary.path=q.get("path");
+  if(["frail","prime"].includes(q.get("comparePath")))state.compare.path=q.get("comparePath");
+  state.sameGrowth=q.get("sameGrowth")==="1";state.dimensions=q.get("dimensions")==="1";if(q.get("animation"))state.animation=q.get("animation");
+  state.lang=localStorage.getItem("ki-rules-lang")||"th";setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");syncControls();updateUI();
+
+  $("#primarySpeciesSelect").addEventListener("change",e=>{state.primary.species=e.target.value;rebuildSide("primary");refreshScene({fit:true})});
+  $("#compareSpeciesSelect").addEventListener("change",e=>{state.compare.species=e.target.value;rebuildSide("compare");refreshScene({fit:true})});
+  $("#compareEnabled").addEventListener("change",e=>{state.compare.enabled=e.target.checked;refreshScene({fit:true})});
+  $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;if(!state.sameGrowth)state.compare.growth=state.primary.growth;refreshScene()});
+
+  const setPrimaryGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.primary.growth=THREE.MathUtils.clamp(n/100,0,1);refreshScene()};
+  $("#primaryGrowthSlider").addEventListener("input",e=>setPrimaryGrowth(e.target.value));$("#primaryGrowthNumber").addEventListener("input",e=>setPrimaryGrowth(e.target.value));$("#primaryGrowthNumber").addEventListener("blur",()=>{$("#primaryGrowthNumber").value=pct(state.primary.growth).replace("%","")});
+  const setCompareGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.compare.growth=THREE.MathUtils.clamp(n/100,0,1);refreshScene()};
+  $("#compareGrowthSlider").addEventListener("input",e=>setCompareGrowth(e.target.value));$("#compareGrowthNumber").addEventListener("input",e=>setCompareGrowth(e.target.value));$("#compareGrowthNumber").addEventListener("blur",()=>{$("#compareGrowthNumber").value=pct(state.compare.growth).replace("%","")});
+
+  $$("[data-primary-path]").forEach(b=>b.addEventListener("click",()=>{state.primary.path=b.dataset.primaryPath;refreshScene()}));
+  $$("[data-compare-path]").forEach(b=>b.addEventListener("click",()=>{state.compare.path=b.dataset.comparePath;refreshScene()}));
+  $("#dimensionsToggle").addEventListener("change",e=>{state.dimensions=e.target.checked;updateDimensions();syncUrl()});
+  $("#resetCamera").addEventListener("click",fitCamera);
   $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
-  $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";for(const a of Object.values(actions))a.paused=!state.playing});
-  $("#resetCamera").addEventListener("click",resetCamera);
-  $$("[data-lang]").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
-  $("#retryBtn").addEventListener("click",()=>location.reload())
+  $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";for(const side of ["primary","compare"])if(runtime[side].action)runtime[side].action.paused=!state.playing});
+  $$("[data-lang]").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));$("#retryBtn").addEventListener("click",()=>location.reload())
 }
 bind();initScene();
