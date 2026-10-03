@@ -7,7 +7,9 @@ import * as SkeletonUtils from "three/addons/utils/SkeletonUtils.js";
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const game=window.KI_GAME_DATA||{species:{}};
-const availableSpecies=["Tyrannosaurus","Carnotaurus"].filter(n=>game.species?.[n]?.released!==false);
+const viewerRegistry=window.KI_VIEWER_REGISTRY?.species||{};
+const availableSpecies=Object.values(viewerRegistry).filter(entry=>(entry.publicSelectable||entry.pilotEnabled)&&game.species?.[entry.id]?.released!==false).map(entry=>entry.id);
+function registryEntry(name){return viewerRegistry[name]||{id:name,modelPath:"/assets/viewer/"+name+"/"+name+".glb"}}
 const state={
   primary:{species:"Tyrannosaurus",growth:.75,path:"frail"},
   compare:{enabled:true,species:"Carnotaurus",growth:.50569,path:"prime"},
@@ -22,6 +24,15 @@ const ui={
   en:{lead:"Compare dinosaur growth, physical dimensions and gameplay curves in one 3D scene.",loading:"LOADING MODELS",ready:"READY",fail:"MODEL LOAD FAILED",reportNote:"All values are derived from the current Game Guide lifecycle curves."},
   vi:{lead:"So sánh tăng trưởng, kích thước và chỉ số của hai loài trong cùng một cảnh 3D.",loading:"ĐANG TẢI MÔ HÌNH",ready:"SẴN SÀNG",fail:"KHÔNG TẢI ĐƯỢC MÔ HÌNH",reportNote:"Các giá trị được tính từ lifecycle curve hiện tại trong Game Guide."}
 };
+
+function populateSpeciesSelectors(){
+  for(const id of ["primarySpeciesSelect","compareSpeciesSelect"]){
+    const select=$("#"+id);if(!select)continue;
+    const current=select.value;
+    select.replaceChildren(...availableSpecies.map(name=>{const option=document.createElement("option");option.value=name;option.textContent=registryEntry(name).displayName||name;return option}));
+    if(availableSpecies.includes(current))select.value=current;
+  }
+}
 
 let renderer,scene,camera,controls,clock;
 const assetCache=new Map();
@@ -249,15 +260,25 @@ function makeLoader(){
   const loader=new GLTFLoader();loader.setMeshoptDecoder(MeshoptDecoder);
   const ktx2=new KTX2Loader().setTranscoderPath("https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/libs/basis/");ktx2.detectSupport(renderer);loader.setKTX2Loader(ktx2);return loader
 }
-function loadAsset(name){return new Promise((resolve,reject)=>makeLoader().load("/assets/viewer/"+name+"/"+name+".glb",resolve,undefined,reject))}
+function loadAsset(name){return new Promise((resolve,reject)=>makeLoader().load(registryEntry(name).modelPath,resolve,undefined,reject))}
+async function ensureAsset(name){
+  if(assetCache.has(name))return assetCache.get(name);
+  const asset=await loadAsset(name);assetCache.set(name,asset);computeAdultMetric(name);return asset
+}
+async function switchSpecies(side,name){
+  if(!availableSpecies.includes(name))return;
+  $("#loadStatus").textContent=ui[state.lang].loading;
+  try{await ensureAsset(name);state[side].species=name;rebuildSide(side);refreshScene({fit:true});setAnimation(state.animation);$("#loadStatus").textContent=ui[state.lang].ready}
+  catch(error){console.error("Viewer asset failed",name,error);$("#loadStatus").textContent=ui[state.lang].fail}
+}
 async function loadModels(){
   $("#loadStatus").textContent=ui[state.lang].loading;
-  const results=await Promise.allSettled(availableSpecies.map(async name=>[name,await loadAsset(name)]));
-  for(const r of results)if(r.status==="fulfilled"){assetCache.set(r.value[0],r.value[1])}else console.error("Viewer asset failed",r.reason);
-  if(!assetCache.has(state.primary.species)){$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false;return}
-  for(const name of assetCache.keys())computeAdultMetric(name);
-  rebuildSide("primary");if(assetCache.has(state.compare.species))rebuildSide("compare");else state.compare.enabled=false;
-  refreshScene({fit:true});setAnimation(state.animation);$("#loadStatus").textContent=ui[state.lang].ready
+  try{
+    await ensureAsset(state.primary.species);
+    if(state.compare.enabled)await ensureAsset(state.compare.species);
+    rebuildSide("primary");if(state.compare.enabled)rebuildSide("compare");
+    refreshScene({fit:true});setAnimation(state.animation);$("#loadStatus").textContent=ui[state.lang].ready
+  }catch(error){console.error("Viewer asset failed",error);$("#loadStatus").textContent=ui[state.lang].fail;$("#fallback").hidden=false}
 }
 
 function initScene(){
@@ -275,6 +296,7 @@ function animate(){requestAnimationFrame(animate);const dt=clock?.getDelta()||0;
 
 function setLang(lang){state.lang=lang;localStorage.setItem("ki-rules-lang",lang);document.documentElement.lang=lang;$$("[data-lang]").forEach(b=>b.classList.toggle("active",b.dataset.lang===lang));$("#viewerLead").textContent=ui[lang].lead;updateUI()}
 function bind(){
+  populateSpeciesSelectors();
   const q=new URLSearchParams(location.search);
   const primarySpecies=q.get("species");if(availableSpecies.includes(primarySpecies))state.primary.species=primarySpecies;
   const compareSpecies=q.get("compare");if(availableSpecies.includes(compareSpecies))state.compare.species=compareSpecies;else if(compareSpecies==="none")state.compare.enabled=false;
@@ -285,9 +307,9 @@ function bind(){
   state.sameGrowth=q.get("sameGrowth")==="1";if(state.sameGrowth)state.compare.path=state.primary.path;state.dimensions=q.get("dimensions")==="1";if(q.get("animation"))state.animation=q.get("animation");
   state.lang=localStorage.getItem("ki-rules-lang")||"th";setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");syncControls();updateUI();
 
-  $("#primarySpeciesSelect").addEventListener("change",e=>{state.primary.species=e.target.value;rebuildSide("primary");refreshScene({fit:true})});
-  $("#compareSpeciesSelect").addEventListener("change",e=>{state.compare.species=e.target.value;rebuildSide("compare");refreshScene({fit:true})});
-  $("#compareEnabled").addEventListener("change",e=>{state.compare.enabled=e.target.checked;refreshScene({fit:true})});
+  $("#primarySpeciesSelect").addEventListener("change",e=>switchSpecies("primary",e.target.value));
+  $("#compareSpeciesSelect").addEventListener("change",e=>switchSpecies("compare",e.target.value));
+  $("#compareEnabled").addEventListener("change",async e=>{state.compare.enabled=e.target.checked;if(state.compare.enabled){try{await ensureAsset(state.compare.species);rebuildSide("compare")}catch(error){console.error("Viewer asset failed",state.compare.species,error);state.compare.enabled=false;e.target.checked=false;$("#loadStatus").textContent=ui[state.lang].fail}}refreshScene({fit:true})});
   $("#sameGrowth").addEventListener("change",e=>{state.sameGrowth=e.target.checked;if(state.sameGrowth){state.compare.path=state.primary.path}else{state.compare.growth=state.primary.growth}refreshScene()});
 
   const setPrimaryGrowth=v=>{const n=Number(v);if(!Number.isFinite(n))return;state.primary.growth=THREE.MathUtils.clamp(n/100,0,1);refreshScene()};
