@@ -80,7 +80,7 @@ function applyGrowth(){
   state.growth=THREE.MathUtils.clamp(state.growth,0,1);
   if(model)applyMorph(model,state.growth);
   const pct=percent(state.growth);
-  $("#growthOutput").textContent=pct;$("#growthSlider").value=state.growth*100;
+  if(document.activeElement!==$("#growthNumber"))$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");$("#growthSlider").value=state.growth*100;
   $("#stageChip").textContent=pct+" · "+stageFor(state.growth);
   updateStats();syncUrl()
 }
@@ -123,11 +123,15 @@ function bind(){
   if(["frail","prime"].includes(q.get("path")))state.path=q.get("path");
   if(q.get("animation"))state.animation=q.get("animation");
   state.lang=localStorage.getItem("ki-rules-lang")||"th";
-  $("#growthSlider").value=state.growth*100;
+  $("#growthSlider").value=state.growth*100;$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"");
   $$("[data-path]").forEach(b=>b.classList.toggle("active",b.dataset.path===state.path));
   setLang(["th","en","vi"].includes(state.lang)?state.lang:"th");
-  updateFood();updateStats();$("#growthOutput").textContent=percent(state.growth);$("#stageChip").textContent=percent(state.growth)+" · "+stageFor(state.growth);
+  updateFood();updateStats();$("#stageChip").textContent=percent(state.growth)+" · "+stageFor(state.growth);
   $("#growthSlider").addEventListener("input",e=>{state.growth=Number(e.target.value)/100;applyGrowth()});
+  const applyTypedGrowth=()=>{const n=Number($("#growthNumber").value);if(!Number.isFinite(n))return;state.growth=THREE.MathUtils.clamp(n/100,0,1);applyGrowth()};
+  $("#growthNumber").addEventListener("input",applyTypedGrowth);
+  $("#growthNumber").addEventListener("change",applyTypedGrowth);
+  $("#growthNumber").addEventListener("blur",()=>{applyTypedGrowth();$("#growthNumber").value=(state.growth*100).toFixed(3).replace(/0+$/,"").replace(/\.$/,"")});
   $$("[data-path]").forEach(b=>b.addEventListener("click",()=>{state.path=b.dataset.path;$$("[data-path]").forEach(x=>x.classList.toggle("active",x.dataset.path===state.path));updateStats();syncUrl()}));
   $("#animationSelect").addEventListener("change",e=>setAnimation(e.target.value));
   $("#playPause").addEventListener("click",()=>{state.playing=!state.playing;$("#playPause").textContent=state.playing?"Pause":"Play";if(currentAction)currentAction.paused=!state.playing});
