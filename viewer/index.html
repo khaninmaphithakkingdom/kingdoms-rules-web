@@ -19,13 +19,13 @@
 
   <main class="viewer-page">
     <section class="viewer-hero">
-      <div><span class="eyebrow">KINGDOMS ISLE · EVRIMA FIELD CODEX</span><h1>3D <span>DINOSAUR</span> VIEWER</h1><p id="viewerLead">Tyrannosaurus lifecycle viewer with real growth morphs and gameplay curves.</p></div>
-      <div class="status-badge" id="loadStatus">LOADING ASSET</div>
+      <div><span class="eyebrow">KINGDOMS ISLE · EVRIMA FIELD CODEX</span><h1>3D <span>DINOSAUR</span> VIEWER</h1><p id="viewerLead">Compare lifecycle growth, physical dimensions and gameplay curves in one scene.</p></div>
+      <div class="status-badge" id="loadStatus">LOADING ASSETS</div>
     </section>
 
     <section class="profile-strip">
-      <div><span>SPECIES</span><strong id="reportSpecies">Tyrannosaurus</strong></div>
-      <div><span>AGE</span><strong id="reportAge">Adult</strong></div>
+      <div><span>PRIMARY SPECIES</span><strong id="reportSpecies">Tyrannosaurus</strong></div>
+      <div><span>STAGE</span><strong id="reportAge">Adult</strong></div>
       <div><span>DIET</span><strong id="reportDiet">Carnivore</strong></div>
       <div><span>WEIGHT</span><strong id="reportWeight">—</strong></div>
       <div><span>MAX SPEED</span><strong id="reportSpeed">—</strong></div>
@@ -37,35 +37,92 @@
         <div class="canvas-wrap" id="canvasWrap">
           <canvas id="viewerCanvas"></canvas>
           <div class="fallback" id="fallback" hidden><strong>3D Viewer unavailable</strong><p>Your browser could not start WebGL.</p><button id="retryBtn">Retry</button></div>
+
+          <div class="model-label model-label-primary" id="primaryModelLabel"><strong id="primaryModelName">TYRANNOSAURUS</strong><span id="primaryModelMeta">—</span></div>
+          <div class="model-label model-label-compare" id="compareModelLabel"><strong id="compareModelName">CARNOTAURUS</strong><span id="compareModelMeta">—</span></div>
+
           <div class="stage-chip" id="stageChip">TYRANNOSAURUS · 75% · ADULT</div>
-          <div class="compare-chip" id="compareChip">VS CARNOTAURUS</div>
+          <div class="compare-chip" id="compareChip">CARNOTAURUS · 50.569% · SUBADULT</div>
         </div>
+
         <div class="viewer-toolbar">
-          <button id="resetCamera">Reset Camera</button>
-          <button id="playPause">Pause</button>
-          <select id="animationSelect"><option>Idle</option><option>Sniff</option><option>Trot</option></select>
+          <button id="resetCamera" type="button">Reset View</button>
+          <label class="toolbar-toggle"><input id="dimensionsToggle" type="checkbox"><span>Dimensions</span></label>
+          <button id="playPause" type="button">Pause</button>
+          <select id="animationSelect" aria-label="Animation"><option>Idle</option><option>Sniff</option><option>Trot</option></select>
         </div>
       </div>
 
       <aside class="control-panel combined-controls">
-        <div class="control-block"><label for="speciesSelect">Primary Species</label><select id="speciesSelect"><option value="Tyrannosaurus">Tyrannosaurus</option></select><small>Primary lifecycle model</small></div>
+        <section class="dino-control-card primary-control-card">
+          <div class="control-card-head"><div><span class="eyebrow">PRIMARY</span><h2 id="primaryControlTitle">Tyrannosaurus</h2></div></div>
 
-        <div class="control-block compare-control"><div class="label-row"><label for="compareSpeciesSelect">Compare Species</label><label class="compare-switch"><input id="compareEnabled" type="checkbox" checked><span>ON</span></label></div><select id="compareSpeciesSelect"><option value="Carnotaurus">Carnotaurus</option></select><label class="same-growth-toggle"><input id="sameGrowth" type="checkbox" checked><span>Same Growth</span></label><div class="compare-growth-controls" id="compareGrowthControls" hidden><div class="compare-size-row"><label for="compareGrowthSlider">Compare Growth</label><div class="growth-value-control"><input id="compareGrowthNumber" type="number" min="0" max="100" step="0.001" value="50.569" inputmode="decimal" aria-label="Compare growth percentage"><span>%</span></div></div><input id="compareGrowthSlider" type="range" min="0" max="100" step="0.001" value="50.569"></div><small>Growth controls the Carnotaurus morph, physical scale and stats. There is no manual size override.</small></div>
+          <div class="control-block">
+            <label for="primarySpeciesSelect">Species</label>
+            <select id="primarySpeciesSelect">
+              <option value="Tyrannosaurus">Tyrannosaurus</option>
+              <option value="Carnotaurus">Carnotaurus</option>
+            </select>
+          </div>
 
-        <div class="control-block">
-          <div class="label-row"><label for="growthSlider">Growth</label><div class="growth-value-control"><input id="growthNumber" type="number" min="0" max="100" step="0.001" value="75" inputmode="decimal" aria-label="Growth percentage"><span>%</span></div></div>
-          <input id="growthSlider" type="range" min="0" max="100" step="0.001" value="75">
-          <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Elder</span></div>
-        </div>
+          <div class="control-block">
+            <div class="label-row"><label for="primaryGrowthSlider">Growth</label><div class="growth-value-control"><input id="primaryGrowthNumber" type="number" min="0" max="100" step="0.001" value="75" inputmode="decimal" aria-label="Primary growth percentage"><span>%</span></div></div>
+            <input id="primaryGrowthSlider" type="range" min="0" max="100" step="0.001" value="75">
+            <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Prime</span></div>
+          </div>
 
-        <div class="control-block">
-          <label>Lifecycle path</label>
-          <div class="segmented"><button data-path="frail" class="active">FRAIL</button><button data-path="prime">PRIME</button></div>
-          <small>Visual morph stays on Growth; gameplay stats follow the selected path.</small>
-        </div>
+          <div class="control-block">
+            <label>Lifecycle Path</label>
+            <div class="segmented"><button data-primary-path="frail" class="active" type="button">FRAIL</button><button data-primary-path="prime" type="button">PRIME</button></div>
+          </div>
+
+          <div class="stats-grid primary-stats">
+            <div><span>Weight</span><strong id="weightStat">—</strong></div>
+            <div><span>Speed</span><strong id="speedStat">—</strong></div>
+            <div><span>Bite</span><strong id="biteStat">—</strong></div>
+            <div><span>Attack Power</span><strong id="attackStat">—</strong></div>
+          </div>
+        </section>
+
+        <section class="dino-control-card compare-control-card">
+          <div class="control-card-head">
+            <div><span class="eyebrow">COMPARE</span><h2 id="compareControlTitle">Carnotaurus</h2></div>
+            <label class="compare-switch"><input id="compareEnabled" type="checkbox" checked><span>ON</span></label>
+          </div>
+
+          <div id="compareControlsBody">
+            <div class="control-block">
+              <label for="compareSpeciesSelect">Species</label>
+              <select id="compareSpeciesSelect">
+                <option value="Carnotaurus">Carnotaurus</option>
+                <option value="Tyrannosaurus">Tyrannosaurus</option>
+              </select>
+              <label class="same-growth-toggle"><input id="sameGrowth" type="checkbox"><span>Same Growth</span></label>
+            </div>
+
+            <div class="control-block" id="compareGrowthControls">
+              <div class="label-row"><label for="compareGrowthSlider">Growth</label><div class="growth-value-control"><input id="compareGrowthNumber" type="number" min="0" max="100" step="0.001" value="50.569" inputmode="decimal" aria-label="Compare growth percentage"><span>%</span></div></div>
+              <input id="compareGrowthSlider" type="range" min="0" max="100" step="0.001" value="50.569">
+              <div class="milestones"><span>Hatchling</span><span>Juvenile</span><span>SubAdult</span><span>Adult</span><span>Prime</span></div>
+            </div>
+
+            <div class="control-block">
+              <label>Lifecycle Path</label>
+              <div class="segmented"><button data-compare-path="frail" type="button">FRAIL</button><button data-compare-path="prime" class="active" type="button">PRIME</button></div>
+            </div>
+
+            <div class="compare-stat-grid">
+              <div><span>Weight</span><strong id="compareWeight">—</strong></div>
+              <div><span>Speed</span><strong id="compareSpeed">—</strong></div>
+              <div><span>Bite</span><strong id="compareBite">—</strong></div>
+              <div><span>Attack Power</span><strong id="compareAttack">—</strong></div>
+            </div>
+            <div class="compare-meta"><span id="compareStage">—</span><span id="compareDiet">—</span></div>
+          </div>
+        </section>
 
         <article class="inline-report">
-          <span class="eyebrow">STATUS REPORT</span>
+          <span class="eyebrow">PRIMARY STATUS REPORT</span>
           <h2 id="reportTitle">ADULT · FRAIL PATH</h2>
           <div class="report-stat-grid">
             <div><span>Growth</span><strong id="reportGrowth">75%</strong></div>
@@ -75,29 +132,11 @@
           </div>
           <div class="report-note" id="reportNote">Lifecycle values are derived from the current Game Guide curves.</div>
         </article>
-
-        <div class="stats-grid">
-          <div><span>T. REX · Weight</span><strong id="weightStat">—</strong></div>
-          <div><span>T. REX · Speed</span><strong id="speedStat">—</strong></div>
-          <div><span>T. REX · Bite</span><strong id="biteStat">—</strong></div>
-          <div><span>T. REX · Attack Power</span><strong id="attackStat">—</strong></div>
-        </div>
-
-        <article class="compare-report" id="compareReport">
-          <span class="eyebrow">COMPARE · CARNOTAURUS</span>
-          <div class="compare-stat-grid">
-            <div><span>Weight</span><strong id="compareWeight">—</strong></div>
-            <div><span>Speed</span><strong id="compareSpeed">—</strong></div>
-            <div><span>Bite</span><strong id="compareBite">—</strong></div>
-            <div><span>Attack Power</span><strong id="compareAttack">—</strong></div>
-          </div>
-          <div class="compare-meta"><span id="compareStage">—</span><span id="compareDiet">Carnivore</span></div>
-        </article>
       </aside>
     </section>
 
     <section class="food-panel report-card">
-      <div class="section-title"><div><span class="eyebrow">DIET REFERENCE</span><h2>PREFERRED FOOD</h2></div><span>Current Game Guide data</span></div>
+      <div class="section-title"><div><span class="eyebrow">PRIMARY DIET REFERENCE</span><h2>PREFERRED FOOD</h2></div><span>Current Game Guide data</span></div>
       <div class="food-columns">
         <div><h3>α · CARB</h3><div id="foodCarb" class="food-list"></div></div>
         <div><h3>β · PROTEIN</h3><div id="foodProtein" class="food-list"></div></div>
