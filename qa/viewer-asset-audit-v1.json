@@ -1,0 +1,1320 @@
+﻿[
+    {
+        "species":  "Allosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  13479992,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  98,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Adult",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  130,
+                        "radius":  65
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Austroraptor",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12001704,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  120,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Hatchling",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  85,
+                        "radius":  45
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Avaceratops",
+        "released":  false,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  10492056,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  42,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+
+                            ],
+        "visualGrowthKeyCount":  0,
+        "hasScaleCurve":  true,
+        "capsule":  null,
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "unreleased"
+    },
+    {
+        "species":  "Baryonyx",
+        "released":  false,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  11973376,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  96,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Adult",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+
+                            ],
+        "visualGrowthKeyCount":  0,
+        "hasScaleCurve":  true,
+        "capsule":  null,
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "unreleased"
+    },
+    {
+        "species":  "Beipiaosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  11672852,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  88,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  45,
+                        "radius":  25
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Camarasaurus",
+        "released":  false,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12914452,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  54,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+
+                            ],
+        "visualGrowthKeyCount":  0,
+        "hasScaleCurve":  true,
+        "capsule":  null,
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "unreleased"
+    },
+    {
+        "species":  "Carnotaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12435672,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  59,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Adult",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  136,
+                        "radius":  70
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  true,
+        "morphVerified":  true,
+        "scaleVerified":  true,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  true,
+        "confidence":  "verified-local-pilot"
+    },
+    {
+        "species":  "Ceratosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  11434164,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  93,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Elder",
+                             "Juvenile"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  5,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  99,
+                        "radius":  55
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Deinosuchus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  10665416,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  62,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  5,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  60,
+                        "radius":  60
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Diabloceratops",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  13886572,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  81,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  4,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  99,
+                        "radius":  70
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Dilophosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  9937148,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  88,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Elder",
+                             "Juvenile"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  2,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  99,
+                        "radius":  50
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Dryosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12014468,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  73,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  2,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  56,
+                        "radius":  30
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Gallimimus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12515900,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  95,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  89,
+                        "radius":  35
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Herrerasaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  14249224,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  87,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  59,
+                        "radius":  30
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Hypsilophodon",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  10951376,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  84,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Female",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  2,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  25,
+                        "radius":  14
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Kentrosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  9570020,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  109,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  5,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  70,
+                        "radius":  36
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Maiasaura",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12478852,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  82,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  4,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  129,
+                        "radius":  60
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Omniraptor",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  9324440,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  92,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder",
+                             "Adult"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  81,
+                        "radius":  45
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Oviraptor",
+        "released":  false,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  11669384,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  123,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+
+                            ],
+        "visualGrowthKeyCount":  0,
+        "hasScaleCurve":  true,
+        "capsule":  null,
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "unreleased"
+    },
+    {
+        "species":  "Pachycephalosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  12472376,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  73,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "SubAdult",
+                             "Adult",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "subadult",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  2,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  84,
+                        "radius":  45
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Pteranodon",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  9082344,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  63,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Female",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  2,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  49,
+                        "radius":  30
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Stegosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  14360548,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  76,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Female",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  7,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  119,
+                        "radius":  80
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Tenontosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  13128632,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  89,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  93,
+                        "radius":  55
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Triceratops",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  13621676,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  80,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "SubAdult",
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "subadult",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  9,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  135,
+                        "radius":  100
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Troodon",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  11632236,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  82,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "Juvenile",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  6,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  35,
+                        "radius":  20
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  false,
+        "morphVerified":  false,
+        "scaleVerified":  false,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  false,
+        "confidence":  "structural-audit"
+    },
+    {
+        "species":  "Tyrannosaurus",
+        "released":  true,
+        "glb":  true,
+        "manifest":  true,
+        "sizeBytes":  13709596,
+        "glbVersion":  2,
+        "scenes":  1,
+        "nodes":  89,
+        "meshes":  1,
+        "materials":  2,
+        "skins":  1,
+        "animations":  [
+                           "Idle",
+                           "Sniff",
+                           "Trot"
+                       ],
+        "morphTargets":  [
+                             "SubAdult",
+                             "Juvenile",
+                             "Hatchling",
+                             "Elder"
+                         ],
+        "morphNodeStages":  [
+                                "hatchling",
+                                "juvenile",
+                                "subadult",
+                                "adult",
+                                "elder"
+                            ],
+        "visualGrowthKeyCount":  7,
+        "hasScaleCurve":  true,
+        "capsule":  {
+                        "halfHeight":  200,
+                        "radius":  90
+                    },
+        "extensionsUsed":  [
+                               "KHR_mesh_quantization",
+                               "EXT_meshopt_compression",
+                               "KHR_texture_transform",
+                               "KHR_materials_specular",
+                               "KHR_texture_basisu",
+                               "EXT_texture_webp"
+                           ],
+        "structuralValidated":  true,
+        "runtimeLoad":  true,
+        "morphVerified":  true,
+        "scaleVerified":  true,
+        "deliveryReady":  false,
+        "viewerReady":  false,
+        "publicSelectable":  false,
+        "pilotEnabled":  true,
+        "confidence":  "verified-local-pilot"
+    }
+]
