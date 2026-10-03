@@ -278,8 +278,7 @@ window.KI_RULES = {
           vi:"Khi report Third Party, người báo cáo nên cung cấp bằng chứng thể hiện <strong>trình tự sự việc đầy đủ</strong>, chẳng hạn:<ul><li>🎥 Video gameplay</li><li>🖥️ F2 / Overlay</li><li>📹 Bằng chứng khác thể hiện rõ sự việc</li></ul>Nhân viên sẽ xem xét:<ul><li>Trình tự sự việc</li><li>Hành vi của người chơi</li><li>Hoàn cảnh tổng thể</li><li>Bằng chứng hiện có</li></ul><div class='quote'><strong>⚠️ Nếu bằng chứng không đủ để xác nhận có hành vi can thiệp vào Active Fight đang diễn ra, nhân viên sẽ không xử phạt chỉ dựa trên suy đoán.</strong></div>"
         }},
         {type:"info",title:{th:"📌 หลักการของกฎ",en:"📌 Final Rule Principle",vi:"📌 Nguyên tắc của quy tắc"},body:{
-          th:"<div class='quote'><strong>“ห้ามแทรกไฟต์ที่กำลังเกิดขึ้น — แต่ไม่ห้ามโจมตีผู้เล่นเพียงเพราะผู้เล่นคนนั้นเพิ่งผ่านไฟต์มา”</strong></div><br>ผู้เล่นรับผิดชอบต่อสิ่งที่ตนสามารถรับรู้ได้จากสถานการณ์จริง และไม่จำเป็นต้อง
-รับผิดชอบต่อข้อมูลที่ไม่สามารถมองเห็นหรือทราบได้ เช่น Combat Cooldown ของผู้เล่นอื่น",
+          th:"<div class='quote'><strong>“ห้ามแทรกไฟต์ที่กำลังเกิดขึ้น — แต่ไม่ห้ามโจมตีผู้เล่นเพียงเพราะผู้เล่นคนนั้นเพิ่งผ่านไฟต์มา”</strong></div><br>ผู้เล่นรับผิดชอบต่อสิ่งที่ตนสามารถรับรู้ได้จากสถานการณ์จริง และไม่จำเป็นต้องรับผิดชอบต่อข้อมูลที่ไม่สามารถมองเห็นหรือทราบได้ เช่น Combat Cooldown ของผู้เล่นอื่น",
           en:"<div class='quote'><strong>“Do not interfere with a fight that is still happening — but do not prohibit attacking a player merely because that player just finished a fight.”</strong></div><br>Players are responsible for what they can perceive from the actual situation and are not responsible for information they cannot see or know, such as another player's Combat Cooldown.",
           vi:"<div class='quote'><strong>“Không được can thiệp vào giao tranh đang diễn ra — nhưng không cấm tấn công một người chơi chỉ vì người đó vừa giao tranh xong.”</strong></div><br>Người chơi chịu trách nhiệm đối với những gì họ có thể nhận biết từ tình huống thực tế và không phải chịu trách nhiệm về thông tin họ không thể nhìn thấy hoặc biết được, chẳng hạn Combat Cooldown của người khác."
         }}
@@ -331,8 +330,7 @@ vi:"Đội ngũ <strong>[TH] KINGDOMS ISLE</strong> cập nhật quy tắc <stro
         {type:"warning",title:{th:"🚫 ห้ามหลบเลี่ยงผลของไฟต์",en:"🚫 Do not evade the outcome of a fight",vi:"🚫 Không né hậu quả của giao tranh"},body:{th:"ห้ามเปลี่ยนตัวเพื่อหลีกเลี่ยงผลจากไฟต์เดิม เช่น เสียเปรียบ บาดเจ็บ ถูกล่า หรือเสียสมาชิก แล้วกลับมาดำเนินสถานการณ์เดิมต่อ",en:"Do not switch characters to avoid consequences from the same fight—such as being disadvantaged, injured, hunted, or losing a member—and then continue the same situation.",vi:"Không được đổi nhân vật để né hậu quả của giao tranh cũ như đang bất lợi, bị thương, bị săn hoặc mất thành viên rồi quay lại tiếp tục tình huống cũ."}},
         {type:"danger",title:{th:"⏳ Redeem Combat Cooldown — 15 นาที",en:"⏳ Redeem Combat Cooldown — 15 minutes",vi:"⏳ Redeem Combat Cooldown — 15 phút"},body:{th:"หลัง Redeem ต้องรอ 15 นาทีเต็มก่อนเป็นฝ่ายเริ่มการต่อสู้ ระหว่างนั้นห้ามเปิดไฟต์/โจมตีก่อน ช่วยไฟต์ของเพื่อน ไล่ล่า ติดตาม กดดัน ดักเป้าหมาย SPOT หรือส่งข้อมูลช่วยการต่อสู้ และห้ามรอใกล้เป้าหมายเพื่อเปิดไฟต์ทันทีหลังหมดคูลดาวน์",en:"After Redeeming, wait a full 15 minutes before initiating combat. During this time, do not attack first, help a friend's fight, chase, track, pressure, camp a target, SPOT/share combat information, or wait near a target to attack immediately when the cooldown expires.",vi:"Sau khi Redeem, phải chờ đủ 15 phút mới được chủ động bắt đầu giao tranh. Trong thời gian này không được đánh trước, hỗ trợ giao tranh của bạn, truy đuổi, theo dõi, gây áp lực, phục kích mục tiêu, SPOT/gửi thông tin chiến đấu hoặc chờ gần mục tiêu để đánh ngay khi hết cooldown."}},
         {type:"success",title:{th:"🛡️ ข้อยกเว้นการป้องกันตัว",en:"🛡️ Self-defence exception",vi:"🛡️ Ngoại lệ tự vệ"},body:{th:"หากผู้เล่นที่ Redeem มา <strong>ถูกโจมตีก่อนจริง ๆ</strong> สามารถโจมตีสวนเพื่อป้องกันตัวได้แม้ยังไม่ครบ 15 นาที ต้องเป็นกรณีที่อีกฝ่ายโจมตีก่อนชัดเจน ห้ามยั่ว เดินจี้ ล้อม ขวางทาง หรือกดดันให้อีกฝ่ายตี และห้ามใช้ข้อยกเว้นนี้เพื่อกลับไปช่วยไฟต์เดิมหรือแก้แค้น หากผู้ Redeem โจมตีก่อนจะไม่ถือเป็นการป้องกันตัว",en:"A Redeemed player who is <strong>genuinely attacked first</strong> may counterattack in self-defence even before 15 minutes have passed. The other side must clearly attack first. Do not provoke, crowd, surround, block, or pressure someone into hitting you, and do not use this exception to rejoin the old fight or take revenge. If the Redeemed player attacks first, it is not self-defence.",vi:"Người chơi vừa Redeem nếu <strong>thực sự bị tấn công trước</strong> có thể đánh trả để tự vệ dù chưa đủ 15 phút. Đối phương phải rõ ràng là bên đánh trước. Không được khiêu khích, bám sát, bao vây, chắn đường hoặc gây áp lực để ép người khác đánh mình; không được dùng ngoại lệ này để quay lại trận cũ hoặc trả thù. Nếu người Redeem đánh trước thì không được tính là tự vệ."}},
-        {type:"info",title:{th:"⚠️ ครบ 15 นาที ≠ กลับไปไฟต์เดิมได้",en:"⚠️ 15 minutes elapsed ≠ permission to return to the old fight",vi:"⚠️ Hết 15 phút ≠ được quay lại trận cũ"},body:{th:"ครบ 15 นาทีไม่ได้หมายความว่าสามารถกลับไปแก้แค้นหรือกลับเข้าสู่เหตุการณ์เดิมได้ การ Redeem ต้องถือเป็นการเริ่มสถานการณ์ใหม่อย่างอิสระ",en:"Finishing the 15-minute cooldown does not mean you may return for revenge or re-enter the previous incident. A Redeem must start a new, independent situation.",vi:"Hết 15 phút không có nghĩa là được quay lại trả thù hoặc quay lại tình huống cũ. Redeem phải được xem là bắt đầu một tình huống mới, độc lậ
-p."}}
+        {type:"info",title:{th:"⚠️ ครบ 15 นาที ≠ กลับไปไฟต์เดิมได้",en:"⚠️ 15 minutes elapsed ≠ permission to return to the old fight",vi:"⚠️ Hết 15 phút ≠ được quay lại trận cũ"},body:{th:"ครบ 15 นาทีไม่ได้หมายความว่าสามารถกลับไปแก้แค้นหรือกลับเข้าสู่เหตุการณ์เดิมได้ การ Redeem ต้องถือเป็นการเริ่มสถานการณ์ใหม่อย่างอิสระ",en:"Finishing the 15-minute cooldown does not mean you may return for revenge or re-enter the previous incident. A Redeem must start a new, independent situation.",vi:"Hết 15 phút không có nghĩa là được quay lại trả thù hoặc quay lại tình huống cũ. Redeem phải được xem là bắt đầu một tình huống mới, độc lập."}}
       ]
     },
 
@@ -379,8 +377,7 @@ p."}}
       items:[
         {type:"danger",title:{th:"⏰ Report Deadline — ต้องเปิด Report ภายใน 24 ชั่วโมง",en:"⏰ Report Deadline — Open the report within 24 hours",vi:"⏰ Thời hạn Report — Phải mở báo cáo trong vòng 24 giờ"},body:{th:"ผู้เล่นที่ต้องการรายงานผู้เล่นอื่นต้อง <strong>เปิด Report อย่างเป็นทางการภายใน 24 ชั่วโมง</strong> นับจากเวลาที่เกิดเหตุการณ์ หากเกิน 24 ชั่วโมง ให้ถือว่าอยู่นอกระยะเวลารับ Player Report",en:"Players who wish to report another player must <strong>open an official Report within 24 hours</strong> of the incident. Reports opened after 24 hours are considered outside the Player Report acceptance window.",vi:"Người chơi muốn báo cáo người chơi khác phải <strong>mở Report chính thức trong vòng 24 giờ</strong> kể từ thời điểm xảy ra sự việc. Report được mở sau 24 giờ sẽ được xem là ngoài thời hạn tiếp nhận Player Report."}},
         {type:"warning",title:{th:"📨 Official Reporting Channel — ต้องใช้ Report / Ticket ที่กำหนด",en:"📨 Official Reporting Channel — Use the designated Report / Ticket",vi:"📨 Kênh báo cáo chính thức — Dùng Report / Ticket được chỉ định"},body:{th:"การ DM Staff, การแจ้งในแชต หรือการบอกปากเปล่า <strong>ไม่ถือว่าเป็นการเปิด Report อย่างเป็นทางการ</strong> ผู้เล่นต้องใช้ช่องทาง Report / Ticket ที่เซิร์ฟเวอร์กำหนด",en:"DMing staff, posting in chat, or reporting verbally <strong>does not count as opening an official Report</strong>. Players must use the server's designated Report / Ticket channel.",vi:"Nhắn DM cho staff, báo trong chat hoặc báo miệng <strong>không được tính là mở Report chính thức</strong>. Người chơi phải sử dụng kênh Report / Ticket do máy chủ quy định."}},
-        {type:"info",title:{th:"📋 Required Information & Evidence — ข้อมูลที่ควรเตรียม",en:"📋 Required Information & Evidence — What to prepare",vi:"📋 Thông tin & bằng chứng cần chuẩn bị"},body:{th:"ควรเตรียม <strong>คลิปวิดีโอหรือหลักฐานที่เกี่ยวข้อง</strong>, ชื่อผู้เล่น / ชื่อ Steam, วันและเวลาที่เกิดเหตุการณ์, รายละเอียดเหตุการณ์โดยสรุป และข้อมูลอื่นที่ช่วยให้ทีมงานตรวจสอบได้ หากไฟล์ใหญ่หรือยาว สามารถใช้ Google Drive หรือ YouTube ได้ โดยต้องตรวจสอบว่าลิงก์เปิดดูได้",en:"Prepare <strong>relevant video footage or other evidence</strong>, the player / Steam name, the date and time of the incident, a brief event summary, and any other information that helps staff investigate. Large or long files may be shared through Google Drive or YouTube, but the link must be accessible.",vi:"Hãy chuẩn bị <strong>video hoặc bằng chứng liên quan</st
-rong>, tên người chơi / tên Steam, ngày giờ xảy ra sự việc, mô tả ngắn gọn và các thông tin khác giúp staff kiểm tra. File lớn hoặc dài có thể gửi qua Google Drive hoặc YouTube, nhưng liên kết phải mở được."}},
+        {type:"info",title:{th:"📋 Required Information & Evidence — ข้อมูลที่ควรเตรียม",en:"📋 Required Information & Evidence — What to prepare",vi:"📋 Thông tin & bằng chứng cần chuẩn bị"},body:{th:"ควรเตรียม <strong>คลิปวิดีโอหรือหลักฐานที่เกี่ยวข้อง</strong>, ชื่อผู้เล่น / ชื่อ Steam, วันและเวลาที่เกิดเหตุการณ์, รายละเอียดเหตุการณ์โดยสรุป และข้อมูลอื่นที่ช่วยให้ทีมงานตรวจสอบได้ หากไฟล์ใหญ่หรือยาว สามารถใช้ Google Drive หรือ YouTube ได้ โดยต้องตรวจสอบว่าลิงก์เปิดดูได้",en:"Prepare <strong>relevant video footage or other evidence</strong>, the player / Steam name, the date and time of the incident, a brief event summary, and any other information that helps staff investigate. Large or long files may be shared through Google Drive or YouTube, but the link must be accessible.",vi:"Hãy chuẩn bị <strong>video hoặc bằng chứng liên quan</strong>, tên người chơi / tên Steam, ngày giờ xảy ra sự việc, mô tả ngắn gọn và các thông tin khác giúp staff kiểm tra. File lớn hoặc dài có thể gửi qua Google Drive hoặc YouTube, nhưng liên kết phải mở được."}},
         {type:"info",title:{th:"⚖️ Evidence Review — ทีมงานพิจารณาจากหลักฐาน",en:"⚖️ Evidence Review — Decisions are evidence-based",vi:"⚖️ Xem xét bằng chứng — Staff dựa trên bằng chứng"},body:{th:"ทีมงานจะพิจารณาเคสจาก <strong>หลักฐานและข้อมูลที่ได้รับ</strong> เป็นหลัก หลักฐานควรมีบริบทเพียงพอ เช่น เหตุการณ์ก่อน ระหว่าง และหลังเกิดเหตุเมื่อจำเป็น รวมถึงชื่อ ตัวละคร เสียง หรือช่วงเวลาที่เกี่ยวข้อง หากหลักฐานไม่เพียงพอ ทีมงานอาจไม่สามารถดำเนินการกับเคสได้",en:"Staff primarily review cases based on the <strong>evidence and information provided</strong>. Evidence should include sufficient context where necessary, such as what happened before, during, and after the incident, together with relevant names, characters, audio, or timestamps. If the evidence is insufficient, staff may be unable to take action on the case.",vi:"Staff chủ yếu xem xét vụ việc dựa trên <strong>bằng chứng và thông tin được cung cấp</strong>. Khi cần, bằng chứng nên có đủ bối cảnh trước, trong và sau sự việc, cùng tên, nhân vật, âm thanh hoặc mốc thời gian liên quan. Nếu bằng chứng không đủ, staff có thể không thể xử lý vụ việc."}},
         {type:"success",title:{th:"➕ Additional Evidence — ส่งหลักฐานเพิ่มเติมได้",en:"➕ Additional Evidence — Additional evidence may be submitted",vi:"➕ Bằng chứng bổ sung — Có thể gửi thêm bằng chứng"},body:{th:"หากผู้เล่น <strong>เปิด Report ภายใน 24 ชั่วโมงแล้ว</strong> สามารถส่งหลักฐานหรือข้อมูลเพิ่มเติมภายหลังได้ตามระยะเวลาที่ทีมงานกำหนด",en:"If the player <strong>opened the Report within the 24-hour window</strong>, additional evidence or information may be submitted later within the timeframe set by staff.",vi:"Nếu người chơi <strong>đã mở Report trong thời hạn 24 giờ</strong>, có thể gửi thêm bằng chứng hoặc thông tin sau đó trong thời hạn do staff quy định."}},
         {type:"warning",title:{th:"🛡️ Staff Investigation Exception — ไม่จำกัดการตรวจสอบของทีมงาน",en:"🛡️ Staff Investigation Exception — Staff investigations are not limited by this window",vi:"🛡️ Ngoại lệ điều tra của Staff — Không giới hạn việc điều tra của staff"},body:{th:"กฎ 24 ชั่วโมงนี้ใช้กับ <strong>Player-submitted Reports</strong> และไม่จำกัดสิทธิ์ของทีมงานในการตรวจสอบหรือดำเนินการจากหลักฐานที่ทีมงานตรวจพบเอง รวมถึง server logs, anti-cheat, staff evidence และกรณีร้ายแรง เช่น <strong>Cheating</strong>",en:"The 24-hour rule applies to <strong>Player-submitted Reports</strong>. It does not limit staff from investigating or acting on evidence discovered independently by staff, including server logs, anti-cheat data, staff evidence, or serious cases such as <strong>Cheating</strong>.",vi:"Quy tắc 24 giờ áp dụng cho <strong>Player-submitted Reports</strong>. Quy tắc này không giới hạn quyền của staff trong việc điều tra hoặc xử lý bằng chứng do staff tự phát hiện, bao gồm server logs, dữ liệu anti-cheat, bằng chứng của staff hoặc các trường hợp nghiêm trọng như <strong>Cheating</strong>."}}
@@ -423,4 +420,211 @@ rong>, tên người chơi / tên Steam, ngày giờ xảy ra sự việc, mô t
             th:"ผู้เล่นจะได้รับ <strong>ใบเตือนที่ 2</strong> มีอายุ <strong>1 เดือน</strong> และจะได้รับยศ <strong>Warning 2</strong> ใน Discord ตลอดช่วงที่ใบเตือนยังมีผล เมื่อครบกำหนด 1 เดือน ระบบจะ <strong>ถอดยศ Warning 2 อัตโนมัติ</strong> หากไม่มีการกระทำผิดเพิ่มเติมในช่วงเวลาดังกล่าว โดยถือเป็น <strong>ขั้นสุดท้ายก่อนการแบนถาวร</strong>",
             en:"The player receives <strong>Warning 2</strong>, valid for <strong>1 month</strong>, with the <strong>Warning 2</strong> Discord role while the warning remains active. After 1 month, the system will <strong>automatically remove the Warning 2 role</strong> if the player has no additional violations during that period. This remains the <strong>final stage before a permanent ban</strong>.",
             vi:
-"Người chơi nhận <strong>Warning 2</strong> có hiệu lực <strong>1 tháng</strong> và được gắn role <strong>Warning 2</strong> trên Discord trong suốt thời gian cảnh cáo còn hiệu lực. Sau
+"Người chơi nhận <strong>Warning 2</strong> có hiệu lực <strong>1 tháng</strong> và được gắn role <strong>Warning 2</strong> trên Discord trong suốt thời gian cảnh cáo còn hiệu lực. Sau 1 tháng, hệ thống sẽ <strong>tự động gỡ role Warning 2</strong> nếu người chơi không có thêm vi phạm nào trong khoảng thời gian đó. Đây vẫn là <strong>bước cuối trước khi bị cấm vĩnh viễn</strong>."
+          },
+          meta:{th:"อายุ 1 เดือน · ขั้นสุดท้ายก่อนแบน",en:"1 month · Final warning",vi:"1 tháng · Cảnh cáo cuối"}
+        },
+        {
+          level:"4", type:"permanent-ban",
+          kicker:{th:"ครั้งที่ 4",en:"4th Offence",vi:"Lần 4"},
+          title:{th:"แบนถาวรออกจากเซิร์ฟเวอร์ (Permanent Ban)",en:"Permanent Ban from the Server",vi:"Cấm vĩnh viễn khỏi máy chủ (Permanent Ban)"},
+          body:{
+            th:"หากผู้เล่นกระทำผิดจนถึงขั้นที่ 4 จะถูก <strong>แบนออกจากเซิร์ฟเวอร์อย่างถาวร</strong> และ <strong>ไม่สามารถกลับเข้ามาเล่นในเซิร์ฟเวอร์ได้อีก</strong>",
+            en:"A player who reaches the fourth stage will be <strong>permanently banned from the server</strong> and <strong>will not be allowed to return to play on the server</strong>.",
+            vi:"Người chơi đến bước thứ tư sẽ bị <strong>cấm vĩnh viễn khỏi máy chủ</strong> và <strong>không được phép quay lại chơi trên máy chủ</strong>."
+          },
+          meta:{th:"ถาวร · ไม่สามารถกลับมาเล่นได้",en:"Permanent · No return",vi:"Vĩnh viễn · Không được quay lại"}
+        }
+      ],
+      historyNote:{
+        th:"การหมดอายุหรือการถอดยศ Warning 1 / Warning 2 ออกจาก Discord <strong>ไม่ได้หมายความว่าประวัติคำเตือนจะถูกลบ</strong> ประวัติการกระทำผิดยังสามารถถูกเก็บไว้เพื่อให้ทีมแอดมินตรวจสอบย้อนหลังได้",
+        en:"The expiration or removal of a Warning 1 / Warning 2 Discord role <strong>does not mean the warning history is deleted</strong>. The violation history may still be retained for retrospective review by the admin team.",
+        vi:"Việc Warning 1 / Warning 2 hết hạn hoặc role Discord bị gỡ <strong>không có nghĩa là lịch sử cảnh cáo bị xóa</strong>. Lịch sử vi phạm vẫn có thể được lưu lại để đội ngũ admin kiểm tra về sau."
+      },
+      seriousNote:{
+        th:"<strong>ความผิดร้ายแรง:</strong> ความผิดบางประเภทอาจถูกพิจารณา <strong>ข้ามลำดับบทลงโทษ</strong> ได้ตามความรุนแรง เจตนา หลักฐาน และผลกระทบของการกระทำ",
+        en:"<strong>Serious violations:</strong> Certain offences may <strong>skip steps in the penalty progression</strong> depending on severity, intent, evidence, and the impact of the conduct.",
+        vi:"<strong>Vi phạm nghiêm trọng:</strong> Một số hành vi có thể được xem xét <strong>bỏ qua các bước xử phạt thông thường</strong> tùy theo mức độ nghiêm trọng, ý định, bằng chứng và hậu quả."
+      },
+      cheatNote:{
+        th:"<strong>🚫 การใช้โปรแกรมโกง — แบนถาวรทันที</strong><br>หากทีมงานตรวจสอบพบว่าผู้เล่นใช้ <strong>โปรแกรมโกง หรือซอฟต์แวร์ภายนอกที่ให้ความได้เปรียบอย่างไม่เป็นธรรม</strong> ผู้เล่นจะถูก <strong>แบนออกจากเซิร์ฟเวอร์อย่างถาวรทันที (Permanent Ban)</strong> โดยไม่ต้องผ่านคำตักเตือนด้วยวาจา, Warning 1 หรือ Warning 2 ก่อน",
+        en:"<strong>🚫 Cheating software — Immediate Permanent Ban</strong><br>If staff verify that a player used <strong>cheat software or external software that provides an unfair advantage</strong>, the player will receive an <strong>immediate Permanent Ban from the server</strong> without first receiving a verbal warning, Warning 1, or Warning 2.",
+        vi:"<strong>🚫 Sử dụng phần mềm gian lận — Cấm vĩnh viễn ngay lập tức</strong><br>Nếu đội ngũ xác minh người chơi đã sử dụng <strong>phần mềm gian lận hoặc phần mềm bên ngoài tạo lợi thế không công bằng</strong>, người chơi sẽ bị <strong>cấm vĩnh viễn khỏi máy chủ ngay lập tức (Permanent Ban)</strong> mà không cần trải qua cảnh cáo bằng lời nói, Warning 1 hoặc Warning 2."
+      }
+    }
+  ],
+
+  packLimits: {
+    Herbivore:[["Hypsilophodon",12],["Dryosaurus",12],["Pachycephalosaurus",8],["Tenontosaurus",6],["Kentrosaurus",5],["Diabloceratops",5],["Maiasaura",4],["Stegosaurus",3],["Triceratops",2]],
+    Omnivore:[["Beipisaurus",12],["Gallimimus",8]],
+    Carnivore:[["Pteranodon",10],["Troodon",10],["Omniraptor",8],["Herrerasaurus",8],["Austroraptor",8],["Dilophosaurus",5],["Carnotaurus",4],["Ceratosaurus",4],["Allosaurus",3],["Deinosuchus",2],["Tyrannosaurus Rex",2]]
+  },
+
+  herdTokens: {
+    "Micro — 3":[["Dryosaurus",3],["Beipiaosaurus",3],["Hypsilophodon",3]],
+    "Low — 5":[["Gallimimus",5],["Pachycephalosaurus",5]],
+    "Medium — 10":[["Maiasaura",10],["Tenontosaurus",10],["Diabloceratops",10],["Kentrosaurus",10]],
+    "High — 20":[["Stegosaurus",20],["Triceratops",20]]
+  }
+};
+
+window.KI_RULES.sections.find(s => s.id === "behavior").items.push({
+  type:"warning",
+  title:{th:"⚖️ Final Rule — หลักการตัดสิน",en:"⚖️ Final Rule — decision principle",vi:"⚖️ Final Rule — nguyên tắc xử lý"},
+  body:{
+    th:"กฎมีไว้เพื่อให้ทุกคนเล่นอย่างเท่าเทียม ไม่ใช่เพื่อหาช่องเอาชนะกฎ หากมีพฤติกรรมจงใจหลีกเลี่ยงกฎ ใช้ช่องโหว่ หรือสร้างความได้เปรียบที่ไม่เป็นธรรม ทีมงานสามารถพิจารณาจากหลักฐาน บริบท เจตนา และเหตุการณ์ทั้งหมด",
+    en:"Rules exist so everyone can play fairly, not as loopholes to be worked around. Intentional rule evasion, exploitation, or unfair advantage may be reviewed using the evidence, context, intent, and the complete sequence of events.",
+    vi:"Quy tắc tồn tại để mọi người chơi công bằng, không phải để tìm kẽ hở lách luật. Hành vi cố ý né luật, lợi dụng lỗ hổng hoặc tạo lợi thế không công bằng có thể được xem xét dựa trên bằng chứng, bối cảnh, ý định và toàn bộ diễn biến."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "evidence").items.push({
+  type:"danger",
+  title:{th:"🚫 ห้ามตัดต่อหรือบิดเบือนหลักฐาน",en:"🚫 Do not manipulate evidence",vi:"🚫 Cấm chỉnh sửa hoặc bóp méo bằng chứng"},
+  body:{
+    th:"ห้ามตัดต่อ ดัดแปลง หรือเผยแพร่หลักฐานในลักษณะที่ทำให้เหตุการณ์ถูกเข้าใจผิด และห้ามให้ข้อมูลเท็จหรือปกปิดข้อเท็จจริงต่อทีมงานเพื่อให้ตนเองหรือผู้อื่นพ้นผิด",
+    en:"Do not edit, alter, or present evidence in a way that misrepresents what happened. Do not give false information or conceal relevant facts from staff to clear yourself or another player.",
+    vi:"Không được chỉnh sửa, thay đổi hoặc trình bày bằng chứng theo cách làm sai lệch sự việc. Không được cung cấp thông tin sai hoặc che giấu sự thật liên quan với nhân viên để giúp bản thân hoặc người khác thoát lỗi."
+  }
+});
+
+window.KI_RULES.sections.find(s => s.id === "survival").items.push({
+  type:"warning",
+  title:{th:"การบังคับใช้ 🛡️ Sanctuary Camping",en:"🛡️ ⚠️ Sanctuary Camping enforcement",vi:"Xử lý 🛡️ Sanctuary Camping"},
+  body:{
+    th:"การกระทำครั้งแรกอาจได้รับการตักเตือน หากทำซ้ำหรือจงใจทำต่อหลังได้รับคำเตือน สามารถได้รับบทลงโทษที่รุนแรงขึ้น",
+    en:"A first incident may receive a warning. Repeated behaviour or intentionally continuing after a warning may result in a more severe penalty.",
+    vi:"Lần vi phạm đầu có thể bị cảnh cáo. Nếu tái phạm hoặc cố ý tiếp tục sau khi được cảnh báo, hình phạt có thể nghiêm khắc hơn."
+  }
+});
+
+/* =========================================================
+   STAFF DIRECTORY v29
+   ========================================================= */
+window.KI_RULES.sections.splice(0, 0, {
+  id:"staff-directory", icon:"🛡️", code:"TEAM",
+  title:{th:"KINGDOMS ISLE — STAFF DIRECTORY",en:"KINGDOMS ISLE — STAFF DIRECTORY",vi:"KINGDOMS ISLE — STAFF DIRECTORY"},
+  subtitle:{
+    th:"รายชื่อทีมงานอย่างเป็นทางการของ [TH] Kingdoms Isle",
+    en:"Official staff directory for [TH] Kingdoms Isle",
+    vi:"Danh sách đội ngũ chính thức của [TH] Kingdoms Isle"
+  },
+  feature:"staffDirectory",
+  intro:{
+    th:"รายชื่อด้านล่างคือทีมงานที่ได้รับอนุญาตให้ปฏิบัติหน้าที่ภายในเซิร์ฟเวอร์",
+    en:"The people listed below are the official staff members authorized to perform staff duties within the server.",
+    vi:"Những người dưới đây là thành viên đội ngũ chính thức được phép thực hiện nhiệm vụ trong máy chủ."
+  },
+  contactNote:{
+    th:"หากต้องการความช่วยเหลือ รายงานผู้เล่น หรือแจ้งปัญหา กรุณาติดต่อทีมงานผ่านระบบ Ticket ของเซิร์ฟเวอร์เป็นหลัก ไม่ใช้ช่องทางติดต่อส่วนตัวของ Staff",
+    en:"For assistance, player reports, or server-related issues, please contact staff through the official server Ticket system. Private staff DMs are not the official support channel.",
+    vi:"Nếu cần hỗ trợ, báo cáo người chơi hoặc vấn đề liên quan đến máy chủ, vui lòng liên hệ đội ngũ qua hệ thống Ticket chính thức. Tin nhắn riêng cho Staff không phải là kênh hỗ trợ chính thức."
+  },
+  groups:[
+    {
+      key:"developer", label:"DEVELOPER", icon:"👑",
+      members:[
+        {
+          name:"CZ",
+          role:"OWNER / DEVELOPER",
+          responsibility:"Server Development & Technical Management",
+          description:{
+            th:"เจ้าของเซิร์ฟเวอร์ ดูแลการพัฒนาและระบบเทคนิคหลักของ Kingdoms Isle",
+            en:"Server owner responsible for development and core technical systems of Kingdoms Isle.",
+            vi:"Chủ sở hữu máy chủ, phụ trách phát triển và các hệ thống kỹ thuật chính của Kingdoms Isle."
+          },
+          status:"ACTIVE"
+        }
+      ]
+    },
+    {
+      key:"head-staff", label:"HEAD STAFF", icon:"🔰",
+      members:[
+        {
+          name:"HERA",
+          role:"HEAD STAFF",
+          responsibility:"Staff Management & Community Operations",
+          description:{
+            th:"ดูแลการบริหารทีมงานและการดำเนินงานด้าน Community",
+            en:"Oversees staff management and community operations.",
+            vi:"Phụ trách quản lý đội ngũ và hoạt động cộng đồng."
+          },
+          status:"ACTIVE"
+        },
+        {
+          name:"DEL REY",
+          role:"HEAD STAFF",
+          responsibility:"Staff Management & Server Systems Development",
+          description:{
+            th:"ดูแลทีมงาน และพัฒนาเว็บไซต์กฎกับระบบ Discord Bot ของเซิร์ฟเวอร์",
+            en:"Oversees staff operations and develops the Rules Website and Discord Bot systems.",
+            vi:"Quản lý đội ngũ và phát triển website luật cùng hệ thống Discord Bot của máy chủ."
+          },
+          status:"ACTIVE"
+        }
+      ]
+    },
+    {
+      key:"staff", label:"STAFF TEAM", icon:"🛡️",
+      members:[
+        {
+          name:"XMel",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        },
+        {
+          name:"THE LION",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        },
+        {
+          name:"RICK ROSS",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        },
+        {
+          name:"NABSTARKYUU",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        },
+        {
+          name:"LAYLA",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        },
+        {
+          name:"MINT ALMIRA",
+          role:"STAFF",
+          responsibility:"Player Support, Rule Enforcement & Vietnamese Community Communication",
+          description:{
+            th:"ดูแลผู้เล่น บังคับใช้กฎ และช่วยสื่อสารกับผู้เล่นเวียดนาม",
+            en:"Supports players, enforces rules, and assists communication with the Vietnamese community.",
+            vi:"Hỗ trợ người chơi, thực thi quy tắc và hỗ trợ giao tiếp với cộng đồng Việt Nam."
+          },
+          status:"ACTIVE"
+        },
+        {
+          name:"JAODIAEIEI",role:"STAFF",responsibility:"Staff / Player Support & Rule Enforcement",
+          description:{th:"ดูแลผู้เล่น ให้ความช่วยเหลือ และบังคับใช้กฎของเซิร์ฟเวอร์",en:"Supports players and helps enforce server rules.",vi:"Hỗ trợ người chơi và thực thi quy tắc của máy chủ."},
+          status:"ACTIVE"
+        }
+      ]
+    },
+    {
+      key:"trial-staff", label:"TRIAL STAFF", icon:"🛡️",
+      members:[
+        {
+          name:"OFF",
+          role:"TRIAL STAFF",
+          responsibility:"Trial Staff / Player Support & Rule Enforcement",
+          description:{
+            th:"Staff ช่วงทดลองงาน ช่วยดูแลผู้เล่นและการบังคับใช้กฎ",
+            en:"Trial staff member assisting with player support and rule enforcement.",
+            vi:"Nhân viên thử việc, hỗ trợ người chơi và thực thi quy tắc."
+          },
+          status:"ACTIVE"
+        }
+      ]
+    }
+  ]
+});
